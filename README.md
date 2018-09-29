@@ -1,2 +1,2 @@
 # example
-沪深 pc版本，用angular1
+沪深理财 pc版本，用angular1
