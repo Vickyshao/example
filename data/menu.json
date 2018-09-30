@@ -1,0 +1,81 @@
+{"result":[
+    {
+        "memnTitle": "我的账户",
+        "url":"main.myAccount.accountHome",
+        "class":"accountHome"
+    },{
+        "memnTitle": "我的资产",
+        "class":"myAssets",
+        "children": [
+        {
+            "memnTitle": "我的投资",
+            "url":"main.myAccount.myInvest"
+        },{
+            "memnTitle": "资产记录",
+            "url":"main.myAccount.myAssets"
+        }]
+    },{
+    	"memnTitle": "资金管理",
+        "class":"fundManage",
+        "children": [
+        {
+            "memnTitle": "充值",
+            "url":"main.myAccount.recharge"
+        },{
+            "memnTitle": "提现",
+            "url":"main.myAccount.Withdraw"
+        }]
+    },{
+    	"memnTitle": "账户管理",
+        "class":"accManage",
+        "children": [
+        {
+            "memnTitle": "个人中心",
+            "url":"main.myAccount.person"
+        },{
+            "memnTitle": "安全认证",
+            "url":"main.myAccount.security"
+        }]
+    },{
+    	"memnTitle": "我的福利",
+        "class":"myWelfare",
+        "children": [
+        {
+            "memnTitle": "我的优惠券",
+            "url":"main.myAccount.myCoupon"
+        },{
+            "memnTitle": "我的体验金",
+            "url":"main.myAccount.myFinance"
+        }]
+    },{
+        "memnTitle": "活动中心",
+        "class":"activityCenter",
+        "children": [
+        {
+            "memnTitle": "我的返现",
+            "url":"main.myAccount.cashback"
+        },{
+            "memnTitle": "中奖记录",
+            "url":"main.myAccount.winningRecord"
+        },{
+            "memnTitle": "我的奖品",
+            "url":"main.myAccount.myPrize"
+        }]
+    },{
+        "memnTitle": "我要报销",
+        "url":"main.myAccount.reimtask",
+        "class":"reimburse"
+    },{
+    	"memnTitle": "我的邀请",
+        "url":"main.myAccount.myFriend",
+        "class":"myFriend"
+    },{
+    	"memnTitle": "消息中心",
+        "class":"myMsg",
+        "children": [
+        {
+            "memnTitle": "我的消息",
+            "url":"main.myAccount.myMsg"
+        }]
+    }
+]}

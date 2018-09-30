@@ -1,0 +1,100 @@
+<div class="investgiftnew-wrapper" ng-controller="investgiftCtrl">
+    <div class="banner">
+        <div class="center">
+            <a href="/main/home"></a>
+            <div class="inner">已有<span>{{investCount}}</span>人免费领取</div>
+        </div>
+    </div>
+    <div class="summerbg-wrap">
+        <i class="summer-bga"></i>
+        <i class="summer-bgb"></i>
+        <i class="summer-bgc"></i>
+        <i class="summer-bgd"></i>
+        <i class="summer-bge"></i>
+        <div class="list-wrap">
+            <div class="inner">
+                <div class="summer-title"></div>
+                <div class="list">
+                    <div class="mode" ng-repeat="item in prizeList">
+                        <div class="mod" ng-class="{true:'nowaitmod'}[item.name != undefined]">
+                            <img ng-if="item.name != undefined" src="{{item.pcImgUrlH}}">
+                            <img ng-if="item.name == undefined" src="images/investgiftnew/wait.png">
+                            <div class="btn" ng-if="item.name != undefined">
+                                <a href="" class="order" ng-if="item.isNot==1" ng-click="bookGift(item)">立即预约</a>
+                                <a href="/main/investgiftBillDetail?id={{item.pid}}" ng-if="item.isNot == 0">免费领取</a>
+                                <p ng-if="item.activityRate != 0" ng-class="{1:'book'}[item.isNot]">还可获得<br>{{item.rate}}%+{{item.activityRate}}% 收益</p>
+                                <p ng-if="item.activityRate == 0" ng-class="{1:'book'}[item.isNot]">还可获得<br>{{item.rate}}% 收益</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="record-wrap">
+            <div class="investgiftnew-titleb"></div>
+            <div class="listwrap">
+                <table class="table-title">
+                    <tr>
+                        <th width="27%">用户名</th>
+                        <th width="24%">投资金额（元）</th>
+                        <th width="23%">投资时间</th>
+                        <th width="26%">获得礼品</th>
+                    </tr>
+                </table>
+                <div class="list">
+                    <table>
+                        <tr ng-repeat="item in investList">
+                            <td width="27%">{{item.mobilePhone}}</td>
+                            <td width="24%">
+                                <p>{{item.amount}}</p>
+                            </td>
+                            <td width="23%">{{item.investTime | date:'yyyy-MM-dd'}}</td>
+                            <td width="26%" class="gift">
+                                <p>{{item.name}}</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-wrap">
+            <div class="inner">
+                <i class="clip"></i>
+                <div class="user">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <input class="text" type="text" id="mylink" ng-click="showTip=false" maxlength="255" ng-blur="testUrl()">
+                    <input class="text type" type="text" placeholder="型号、颜色、内存等，如64GB、玫瑰金" id="wishtype" ng-click="showTip=false" maxlength="255">
+                    <a href="" class="btn" ng-click="subWish()">提交心愿</a>
+                    <i class="summer-tip" ng-if="showTip"></i>
+                </div>
+            </div>
+        </div>
+        <div class="rules">
+            <div class="title">活动规则</div>
+            <div class="inner">
+                <ul>
+                    <li><i class="investgift-num">1.</i>本活动专属标为“好礼钜献专享标”。投资本标的单笔满足礼品对应的金额即可免费领取该礼品，同时还额外获得投资收益。</li>
+                    <li><i class="investgift-num">2.</i>投资本活动标不享受红包等平台其他任何福利。</li>
+                    <li><i class="investgift-num">3.</i>礼品领取方式：投资成功后，请务必填写正确的收货人姓名、地址及联系方式，平台将按您填写的收货信息寄出礼品，预计投资后15个工作日内可到货。</li>
+                </ul>
+                <p>*本活动由沪深理财发起并就活动内容作出解释和说明，任何疑问请咨询沪深理财客服：400-031-9909</p>
+            </div>
+        </div>
+    </div>
+    <div class="totop-wrap">
+        <div class="inner">
+            <div class="ask" ng-click="showQuestion()">
+                <i></i>
+                <p>常见问题</p>
+            </div>
+            <div class="poster-totop" ng-click="toTop()"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,160 @@
+<div class="invite-new-wrapper" ng-controller="inviteCtrl">
+    <div class="invite-new-bg">
+        <div class="banner-wrap">
+            <div class="banner">
+                <a href="/main/home" class="logo"></a>
+                <div class="date">活动时间：{{info.startDate | date:'M月d日'}}~{{info.endDate | date:'M月d日'}}</div>
+            </div>
+        </div>
+        <div class="mode-wrap">
+            <div class="invitenew-titlea invitenew-title"></div>
+            <div class="invitenew-cal"></div>
+            <table class="cal-table">
+                <tr>
+                    <td width="26%"><span>邀请好友人数</span></td>
+                    <td width="42%"><span><b>10</b>元现金</span></td>
+                    <td width="32%"><span>我的财富</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>每位好友首投≥1000元</p>
+                    </td>
+                    <td>
+                        <p>首投成功即可返现</p>
+                    </td>
+                    <td>
+                        <p>邀请好友人数越多返现越多，奖励无上限</p>
+                    </td>
+                </tr>
+            </table>
+            <div class="tips">
+                <i class="invitenew-triangle"></i>
+                <p>好友注册成功可获得：100000元体验金+666元红包 +1.2倍翻倍券</p>
+            </div>
+            <div class="rules-wrap" ng-class="{false:'up-rules',true:'down-rules'}[showRulesA]">
+                <div class="title title-up">奖励规则</div>
+                <div class="title title-down" ng-click="showRulesA=true">奖励规则</div>
+                <div class="con">
+                    <ul>
+                        <li><i>1.</i>活动期间，每邀请一位好友注册，且好友首投定期标金额≥1000元，您可获得10元现金返现，邀请好友人数越多返现越多，奖励无上限。</li>
+                        <li><i>2.</i>首投返现只针对好友首次投资的小胜30、中胜60及中胜180系列标的，投资活动标则无返现。</li>
+                        <li><i>3.</i>被邀好友可获得100000元体验金+666元红包+1.2倍翻倍券，可在“我的账户”查询。</li>
+                        <li><i>4.</i>好友必须通过您提供的专属链接或专属邀请码进行注册，并在活动期间完成注册及首投，才能建立邀请关系获得返现，本活动返现与其他形式的首投返现不可同时享受。</li>
+                        <li><i>5.</i>奖励发放：当您的好友完成首投后，系统将自动发放返现奖励至您的平台账户中，一小时内即可到账，返现奖励可继续投资或者直接提现。</li>
+                    </ul>
+                </div>
+                <span class="invitenew-up" ng-click="showRulesA=false"></span>
+                <span class="invitenew-down" ng-click="showRulesA=true"></span>
+            </div>
+        </div>
+        <div class="mode-wrap">
+            <div class="invitenew-titleb invitenew-title"></div>
+            <div class="eg-wrap">
+                <div class="invitenew-back"></div>
+                <div class="eg">
+                    <div class="invitenew-eg"></div>
+                    <div class="txt">好友在平台第2笔投资中胜180标的<br>投50000元<br>则你获得返现：<br>50000*10.5%*180/360*30%<br>=<strong>787.5</strong>元</div>
+                    <a href="" ng-click="alertCal()">返现计算器<i class="invitenew-icon"></i></a>
+                </div>
+            </div>
+            <div class="rules-wrap" ng-class="{false:'up-rules',true:'down-rules'}[showRulesB]">
+                <div class="title title-up">奖励规则</div>
+                <div class="title title-down" ng-click="showRulesB=true">奖励规则</div>
+                <div class="con">
+                    <ul>
+                        <li><i>1.</i>活动期间，您邀请的好友在平台进行多笔投资，您可获得好友第2笔及第3笔投资收益30%的现金返现。</li>
+                        <li><i>2.</i>返现奖励只针对好友投资的小胜30、中胜60及中胜180系列标的，投资活动标则无返现。</li>
+                        <li><i>3.</i>返现金额将根据好友投资额的“基础历史年化收益率”计算，即基础年化收益*30%，不含使用加息券、翻倍券及平台贴息的收益。</li>
+                        <li><i>4.</i>奖励发放：返现奖励将在好友投资后由系统自动发放至您的平台账户中，一小时内可到账，返现奖励可继续投资或直接提现。</li>
+                    </ul>
+                </div>
+                <span class="invitenew-up" ng-click="showRulesB=false"></span>
+                <span class="invitenew-down" ng-click="showRulesB=true"></span>
+            </div>
+        </div>
+        <div class="mode-wrap modec-wrap">
+            <div class="invitenew-titlec invitenew-title"></div>
+            <div class="time">
+                <span>距离人脉王产生还有</span>
+                <p><i>{{day}}</i>天 <i>{{hour}}</i>小时 <i>{{minute}}</i>分钟</p>
+            </div>
+            <div class="toplist">
+                <div class="top-wrap">
+                    <div class="invitenew-title"></div>
+                    <table>
+                        <tr>
+                            <th width="8%"></th>
+                            <th width="20%">排名</th>
+                            <th width="33%">用户</th>
+                            <th width="39%">好友累计年化投资</th>
+                        </tr>
+                        <tr class="normal" ng-repeat="item in top" ng-class="{1:'one',2:'two',10:'last'}[item.rownum]">
+                            <td></td>
+                            <td>NO.{{item.rownum}}</td>
+                            <td>{{item.mobilePhone}}</td>
+                            <td>¥ {{item.amount | currency:''}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="invitenew-gift"></div>
+            </div>
+            <div class="rules-wrap" ng-class="{false:'up-rules',true:'down-rules'}[showRulesC]">
+                <div class="title title-up">奖励规则</div>
+                <div class="title title-down" ng-click="showRulesC=true">奖励规则</div>
+                <div class="con">
+                    <ul>
+                        <li><i>1.</i>排行榜根据好友累计年化投资额进行排名，好友累计年化投资额=好友累计投资额/360*投资期限，投资活动标的金额不计入排行榜。</li>
+                        <li><i>2.</i>按排行榜，奖励前十位人脉王：
+                            <p>排行榜第1名的邀请者可获得价值¥5388的 iPhone7（32G）一部；</p>
+                            <p>排行榜第2名的邀请者可获得价值¥1888的外交官拉杆箱一个；</p>
+                            <p>排行榜第3~5名的邀请者每人可获得500元红包；</p>
+                            <p>排行榜第6~10名的邀请者每人可获得200元红包。</p>
+                        </li>
+                        <li><i>3.</i>最终排名以6月1日24：00点排名为准，之后排名不再更新。</li>
+                        <li><i>4.</i>奖品发放：最终排行榜将以公告进行公布，红包在活动结束后2个工作日内发放，实物奖品5个工作日内寄出。</li>
+                    </ul>
+                </div>
+                <span class="invitenew-up" ng-click="showRulesC=false"></span>
+                <span class="invitenew-down" ng-click="showRulesC=true"></span>
+            </div>
+            <div class="bot">*本活动由沪深理财发起并就活动内容作出解释和说明，任何疑问请联系沪深理财客服：400-031-9909</div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="bottom-wrapper">
+            <div class="center" ng-if="!isLogin">
+                <i class="invitenew-bgb"></i>
+                <div class="login">
+                    <p class="invitenew-now"></p>
+                    <a href="/dl?fromActivity=true" class="invitenew-loginbtn"></a>
+                </div>
+            </div>
+            <div class="center" ng-if="isLogin">
+                <i class="invitenew-bg"></i>
+                <a href="" class="check" ui-sref="main.myAccount.cashback">查看我的返现</a>
+                <div class="mod">
+                    <span>邀请方式一：微信扫码</span>
+                    <div class="code">
+                        <qrcode version="5" error-correction-level="L" size="140" data="https://hushenlc.cn/friendreg?frompc=true&recommCode={{myPhone}}"></qrcode>
+                    </div>
+                </div>
+                <div class="mod">
+                    <span>邀请方式二：分享链接</span>
+                    <input class="text" id="mycopy" value="https://www.hushenlc.cn/reg/reginvite?recommCode={{recommCode}}">
+                    <a href="" class="invitenew-copy" ng-click="copy()" id="goCopy"></a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-line">
+            <div class="inner"><i class="invitenew-now-y"></i><a href="/main/myAccount/myFriend" ng-if="isLogin">立即邀请</a><a href="/dl?goMyFriend=true" ng-if="!isLogin">立即邀请</a></div>
+        </div>
+        <!-- <div class="foot-hide"></div> -->
+        <!-- ng-click="goBot()" -->
+    </div>
+</div>

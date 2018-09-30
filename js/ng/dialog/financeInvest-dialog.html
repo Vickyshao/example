@@ -1,0 +1,16 @@
+<div class="dialog invest-success-dialog next-invest-dialog finance-invest-dialog">
+	<a href="" class="close" ng-click="refresh()">×</a>
+	<div class="success-text tear-success-text">
+		恭喜您！成功投资<span>{{experienceAmount.experAmount | currency:'' }}</span>元
+	</div>
+	<div class="process">
+		<div class="process-line"><img src="images/bill/process-line.png"></div>
+		<div class="process-text">
+			<div><span>投资成功</span><p>{{today | date:'yyyy.MM.dd'}}</p></div>
+			<div class="center"><span>产品成立</span><p>{{clDate | date:'yyyy.MM.dd'}}</p></div>
+			<div><span>产品到期</span><p>{{dqDate | date:'yyyy.MM.dd'}}</p></div>
+		</div>
+	</div>
+	<div class="bot" ng-if="isFuiou==1 && redTotal>0"><a href="/main/myAccount/myCoupon" ng-click="closeDialog()">立即变现></a>您还有{{redTotal}}个红包未使用，激活即可变现哦！</div>
+	<!-- <div class="bot" ng-if="realverify==0"><a href="" ng-click="bindBank()">立即领取></a>绑卡即可再领10000元体验金+200元红包！</div> -->
+</div>

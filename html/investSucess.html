@@ -1,0 +1,107 @@
+<div class="investSuc" ng-controller="investSucessCtrl">
+	<div class="investSucess">
+		<!--<div ng-show="luckCodeInvestSuc">
+			<div class="tipTxt">
+				<i class="dialog-error" ng-if="investResults.statusCode && investResults.statusCode == 'error'"></i>
+				&lt;!&ndash;<i class="dialog-{{statusCode}}" ng-if="!redbag"></i>&ndash;&gt;
+				<i class="dialog-investReg" ng-if="!investResults.redbag"></i>　
+				<div class="info">
+					<p ng-if="investResults.redbag"><img src="/images/dialog/succes.png" /><span ng-show="investResults.redbag">投资成功！</span></p>
+					<p ng-if="!investResults.redbag"><img src="/images/dialog/error.png" /><span style="line-height: 61px;">&nbsp;{{pText}}</span></p>
+					<p><b ng-show="investResults.showForgetPwd == true">，请一小时后再试，或<a href="" ng-click="forgetTradeCode()">找回密码</a>解锁</b></p>
+				</div>
+				<img ng-if="investResults.redbag" src="/images/bill/process-line.png">
+			</div>
+			<div class="cs90-success" ng-if="luckCodeCount&&luckCodes" style="background:#fff;padding:0;color:#000;font-size:16px;"><p title="{{luckCodes}}">恭喜你获得<span>{{luckCodeCount}}</span>个抽奖码</p></div>
+			<div class="process" ng-if="!investResults.redbag">
+				<div class="process-text procOpt">
+					<div><span>投资成功</span><p>{{product.investTime | date:'yyyy.MM.dd'}}</p></div>
+					<div class="center"><span>产品成立</span><p>{{product.establish | date:'yyyy.MM.dd'}}</p></div>
+					<div><span>产品到期</span><p>{{product.expireDate | date:'yyyy.MM.dd'}}</p></div>
+				</div>
+			</div>
+			&lt;!&ndash;<a class="invest-btn" ng-hide="isSuc" href="/main/myAccount/recharge"  ng-click="closeDialog('false')">充值</a><br/><br/>&ndash;&gt;
+			&lt;!&ndash; 抽奖活动-有抽奖码时btn查看抽奖码式 &ndash;&gt;
+			<div ng-class="{true: 'hasCodeBox'}[showLuckCode]" class="clearfix btns">
+				<a class="invest-btn" ng-hide="!investResults.redbag" href="" ng-click="onClick('返回')">返回</a>
+				<a class="invest-btn hasCode1" ng-if="luckCodeCount && luckCodes" ng-click="selectMyWinning()">查看抽奖码</a>
+				&lt;!&ndash;<a class="invest-btn hasCode2" ng-show="luckCodeCount && isSuc && !redbag" href="">返回投资页面</a>&ndash;&gt;
+				<a class="invest-btn hasCode2" style="margin-top: 100px" ng-show="investResults.redbag" ui-sref="main.bankBillList">返回投资列表</a>
+				<a class="invest-btn" ng-if="errorCode == 1007 || 1004 == errorCode" href="/main/myAccount/security" ng-click="closeDialog('false')">立即充值</a>
+				<a class="invest-btn" ng-if="errorCode == 1009" href="/main/tradepasswdSet" ng-click="closeDialog('false')">立即认证</a>
+			</div>
+		</div>-->
+
+		<div style="display: none;" ng-show="!investResults.isShowOver && investResults.isRepeats" ng-init="changeIMGCode()" class="dialog invest-success-dialog next-invest-dialog" ng-class="{true: 'redbag-dialog'}[redbag]">
+			<div class="success-text" ng-if="!isDoubleEgg">
+				恭喜您！成功投资<span>{{nextInvestNumber | currency:'' }}</span>元
+			</div>
+			<div class="success-text tear-success-text" ng-if="isDoubleEgg">
+				恭喜您！成功投资<span>{{nextInvestNumber | currency:'' }}</span>元
+				<p class="teartip">同时获得<i>1</i>次拆钱袋的机会</p>
+				<i class="christmas-tearbag tear-rotate" ui-sref="newlayout.christmas({goTear:true})" ng-click="closeDialog('false')"></i>
+			</div>
+			<div class="process" ng-if="investResults.redbag">
+				<div class="process-line"><img src="images/bill/process-line.png"></div>
+				<div class="process-text">
+					<div><span>投资成功</span><p>{{product.investTime | date:'yyyy.MM.dd'}}</p></div>
+					<div class="center"><span>产品成立</span><p>{{product.establish | date:'yyyy.MM.dd'}}</p></div>
+					<div><span>产品到期</span><p>{{product.expireDate | date:'yyyy.MM.dd'}}</p></div>
+				</div>
+			</div>
+			<div class="invite"><a href="/newlayout/invite" ng-click="closeDialog('false')"><img src="images/invitenew/investbanner.png"></a></div>
+		</div>
+
+		<!--常规投资成功弹窗 -->
+		<div>
+			<div class="tipTxt">
+				<i class="dialog-{{investResults.statusCode}}" ng-if="investResults.redbag"></i>
+				<i class="dialog-investReg" ng-if="!investResults.redbag"></i>　
+				<!--<i class="dialog-succes"></i>-->
+				<!--<i class="dialog-investReg" ng-if="redbag"></i>　-->
+				<div class="info">
+					<p ng-if="investResults.redbag"><img src="/images/dialog/succes.png" /><span>&nbsp;恭喜您，投资成功！</span></p>
+					<p ng-if="!investResults.redbag"><img src="/images/dialog/error.png" /><span style="line-height: 61px;">&nbsp;{{investResults.pText}}</span></p>
+					<p><b ng-show="investResults.showForgetPwd == true">，请一小时后再试，或<a href="" ng-click="forgetTradeCode()">找回密码</a>解锁</b></p>
+				</div>
+				<img src="/images/bill/chunjieTxt.png" ng-show="isInNewYearActivityTime">
+				<img class="proImg" src="/images/chunjie/chuanjiePrize.png" ng-show="isInNewYearActivityTime">
+				<div ng-if="!isInNewYearActivityTime">
+					<img ng-if="investResults.redbag && product.type!=1" src="/images/bill/process-line.png">
+                    <img ng-if="investResults.redbag && product.type==1" src="/images/bill/newhand-process-line.png">
+				</div>
+			</div>
+			<!--抽奖码个数-->
+			<!--<div class="cs90-success" ng-if="luckCodeCount&&luckCodes" style="background:#fff;padding:0;color:#000;font-size:16px;"><p title="{{luckCodes}}">恭喜你获得<span>{{luckCodeCount}}</span>个抽奖码</p></div>-->
+			<div class="process" ng-if="investResults.redbag && !isInNewYearActivityTime">
+				<div class="process-text procOpt">
+					<div><span>投资成功</span><p>{{product.investTime | date:'yyyy.MM.dd'}}</p></div>
+					<div class="center"><span>产品成立</span><p>{{product.establish | date:'yyyy.MM.dd'}}</p></div>
+					<div><span>产品到期</span><p>{{product.expireDate | date:'yyyy.MM.dd'}}</p></div>
+				</div>
+			</div>
+			<div ng-class="{true: 'hasCodeBox'}[showLuckCode]" class="clearfix btns">
+				<!--<a class="invest-btn" ng-show="!investResults.redbag" href="" ng-click="onClick('返回')">返回</a>-->
+				<a class="invest-btn" ng-show="!investResults.redbag" href="" ng-click="isShowOver = true;" ui-sref="main.bankBillList">返回</a>
+				<a class="invest-btn hasCode1 pull-left" ng-if="investResults.redbag && luckCodeInvestSuc" ng-click="selectMyWinning()">查看抽奖码</a>
+				<a class="invest-btn hasCode1 processOpt viewInvestList pull-left" ng-if="investResults.redbag && !luckCodeInvestSuc" ng-click="closeDialog('true')" ui-sref="main.myAccount.myInvest">查看我的投资</a>　　　
+				<a class="invest-btn hasCode2 processOpt pull-right" ng-if="investResults.redbag && !isInNewYearActivityTime" ng-click="closeDialog('true')" ui-sref="main.bankBillList">继续投资</a>
+				<a class="invest-btn hasCode2 processOpt pull-right" ng-if="investResults.redbag && isInNewYearActivityTime" ng-click="closeDialog('true')" ui-sref="chunjie2018">新年礼</a>
+				<a class="invest-btn" ng-if="errorCode == 1007 || 1004 == errorCode" href="/main/myAccount/security" ng-click="closeDialog('false')">立即充值</a>
+				<a class="invest-btn" ng-if="errorCode == 1009" href="/main/tradepasswdSet" ng-click="closeDialog('false')">立即认证</a>
+			</div>
+
+
+			<!-- 抽奖活动-有抽奖码时btn查看抽奖码式 -->
+			<!--<div ng-class="{true: 'hasCodeBox'}[showLuckCode]" class="clearfix btns">
+				<a class="invest-btn" ng-hide="!investResults.redbag" href="" ng-click="onClick('返回')">返回</a>
+				<a class="invest-btn hasCode1" ng-if="luckCodeInvestSuc" ng-click="selectMyWinning()">查看抽奖码</a>
+				<a class="invest-btn hasCode2" style="margin-top: 100px" ng-show="investResults.redbag" ui-sref="main.bankBillList">返回投资列表</a>
+				<a class="invest-btn" ng-if="errorCode == 1007 || 1004 == errorCode" href="/main/myAccount/security" ng-click="closeDialog('false')">立即充值</a>
+				<a class="invest-btn" ng-if="errorCode == 1009" href="/main/tradepasswdSet" ng-click="closeDialog('false')">立即认证</a>
+			</div>-->
+
+
+		</div>
+	</div>
+</div>

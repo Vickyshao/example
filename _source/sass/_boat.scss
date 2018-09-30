@@ -1,0 +1,667 @@
+.boat-app-wrapper{
+	background: #daffe6;
+	.banner{
+		img{
+			width: 100% !important;
+		}
+		// max-width: 640px;
+		// height: rem-calc(669);
+		// background: image-url('boat-app-banner.png') center top;
+		// background-size: contain;
+		// @include rem-sprite("boat-app/*.png", banner);
+		// background-position: center top;
+	}
+	.top-tip{
+		color: #07a245;
+		font-size: rem-calc(28);
+		text-align: center;
+		padding: rem-calc(4 0 0);
+	}
+	.login-tip{
+		height: rem-calc(80);
+		p{
+			height: rem-calc(80);
+			line-height: rem-calc(74);
+			color: #295d2c;
+			font-size: rem-calc(28);
+			text-align: center;
+			span{
+				color: #ff8400;
+				font-size: rem-calc(46);
+				font-weight: bold;
+			}
+		}
+	}
+	.lottery-box{
+		.boat-lottery{
+			width: rem-calc(607);
+			height: rem-calc(490);
+			position: relative;
+			@include rem-sprite("boat-app/*.png", bg,$spacing:4px);
+			margin: 0 auto;
+			table{
+				width: rem-calc(607);
+				height: rem-calc(490);
+				td{
+					text-align: center;
+					vertical-align: middle;
+					img{
+						width: rem-calc(146);
+					}
+				}
+			}
+			.nologin-bg{
+				width: rem-calc(607);
+				height: rem-calc(490);
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: rgba(0,0,0,.6);
+				border-radius: rem-calc(16);
+				a{
+					display: block;
+					@include rem-sprite("boat-app/*.png", login,$spacing:4px);
+					font-size: rem-calc(48);
+					color: #e25300;
+					margin: rem-calc(192 auto 0);
+					text-align: center;
+					line-height: rem-calc(111);
+				}
+			}
+			.giftbg{
+				position: absolute;
+				left: rem-calc(40);
+				top: rem-calc(94);
+				&.boat-nogift{
+					@include rem-sprite("boat-app/*.png", nogift,$spacing:4px);
+				}
+				&.boat-getnext{
+					@include rem-sprite("boat-app/*.png", getnext,$spacing:4px);
+				}
+				&.boat-getgift{
+					@include rem-sprite("boat-app/*.png", success,$spacing:4px);
+					top: rem-calc(11);
+					left: rem-calc(54);
+					p{
+						padding-top: rem-calc(284);
+						text-align: center;
+						height: rem-calc(95);
+						line-height: rem-calc(95);
+						font-size: rem-calc(40);
+						color: #fff195;
+					}
+				}
+			}
+		}
+	}
+	.showrules-box{
+		text-align: right;
+		padding: rem-calc(35 16 45 0);
+		a{
+			color: #43b149;
+			font-size: rem-calc(32);
+		}
+	}
+	.boatgift-wrapper{
+		width: rem-calc(607);
+		border: 1px solid #295d2c;
+		border-radius: rem-calc(12);
+		margin: 0 auto;
+		padding: rem-calc(0 0 45);
+		.title{
+			background: #daffe6;
+			width: rem-calc(268);
+			color: #295d2c;
+			font-size: rem-calc(32);
+			font-weight: bold;
+			margin: rem-calc(-25 auto 0);
+			text-align: center;
+		}
+		table{
+			width: 100%;
+			font-size: rem-calc(28);
+			color: #2e4f28;
+			margin-top: rem-calc(60);
+			td{
+				text-align: center;
+				vertical-align: bottom;
+				img{
+					&.img1{
+						width: rem-calc(116);
+					}
+					&.img2{
+						width: rem-calc(103);
+					}
+					&.img3{
+						width: rem-calc(138);
+					}
+				}
+			}
+		}
+	}
+	.list-wrapper{
+		background: #ccf1cc;
+		padding-bottom: rem-calc(57);
+		.list-show{
+			.invest-info{
+				font-size: rem-calc(28);
+				color: #24a224;
+				text-align: center;
+				p{
+					padding: rem-calc(20 0);
+					span{
+						color: #f39800;
+						font-size: rem-calc(40);
+						font-weight: bold;
+					}
+				}
+				a{
+					display: block;
+					width: rem-calc(492);
+					height: rem-calc(88);
+					background: #f39800;
+					border-radius: rem-calc(16);
+					color: #fcfee8;
+					line-height: rem-calc(88);
+					text-align: center;
+					margin: 0 auto;
+				}
+			}
+		}
+		.list-title{
+			img{
+				width: 100%;
+			}
+			// @include rem-sprite("boat-app/*.png", title);
+		}
+		.stitle{
+			font-size: rem-calc(32);
+			color: #037c1a;
+			text-align: center;
+			padding: rem-calc(10 0 30);
+		}
+		.gift-list{
+			width: rem-calc(591);
+			background: #f0fbe8;
+			font-size: rem-calc(32);
+			color: #1a9a23;
+			margin: 0 auto;
+			border-radius: rem-calc(22);
+			border-width: rem-calc(8);
+			border-color: #8acf88;
+			border-style: solid;
+			.my-title{
+				height: rem-calc(90);
+				line-height: rem-calc(90);
+				font-size: rem-calc(32);
+				color: #f98e00;
+				text-align: center;
+				font-weight: bold;
+				width: rem-calc(554);
+				margin: 0 auto;
+				border-bottom: 1px dashed #a1e79c;
+			}
+			ul{
+				padding: rem-calc(20 0 0 66);
+				li{
+					height: rem-calc(96);
+					line-height: rem-calc(96);
+					padding-left: rem-calc(50);
+					position: relative;
+					i{
+						position: absolute;
+						width: rem-calc(16);
+						height: rem-calc(16);
+						background: #007419;
+						border-radius: rem-calc(10);
+						left: 0;
+						top: rem-calc(48);
+						&.dot2{
+							background: #008e1e;
+						}
+						&.dot3{
+							background: #15b529;
+						}
+						&.dot4{
+							background: #6cd86a;
+						}
+						&.dot5{
+							background: #cefaca;
+						}
+					}
+					span{
+						font-size: rem-calc(56);
+						margin: rem-calc(0 10);
+					}
+				}
+			}
+			.btn{
+				width: rem-calc(492);
+				height: rem-calc(88);
+				line-height: rem-calc(88);
+				text-align: center;
+				background: #f39800;
+				color: #fcfee8;
+				font-size: rem-calc(32);
+				border-radius: rem-calc(16);
+				display: block;
+				margin: rem-calc(40 auto 54);
+			}
+			
+			table{
+				width: rem-calc(562);
+				margin: 0 auto;
+				// margin: rem-calc(58 auto 0);
+				th{
+					height: rem-calc(54);
+					padding-left: rem-calc(19);
+					background: #ccf1cc;
+					font-weight: normal;
+					font-size: rem-calc(32);
+					color: #2d4e32;
+				}
+				td{
+					height: rem-calc(64);
+					padding-left: rem-calc(19);
+					font-size: rem-calc(28);
+					color: #159c23;
+				}
+			}
+			.show-list{
+				width: rem-calc(562);
+				height: rem-calc(320);
+				margin: rem-calc(20 auto 20);
+				overflow: hidden;
+			}
+		}
+	}
+	.common-wrapper{
+		padding: rem-calc(70 0 30);
+		overflow: hidden; 
+		margin-bottom: rem-calc(-68);
+		.mode{
+			width: rem-calc(618);
+			border: 1px solid #c6f6d7;
+			margin: rem-calc(0 auto 68);
+			table{
+				width: 100%;
+				margin-top: rem-calc(60);
+				td{
+					text-align: center;
+					img{
+						width: rem-calc(260);
+						border-radius: rem-calc(12);
+					}
+				}
+				p{
+					font-size: rem-calc(22);
+					color: #333;
+					width: rem-calc(260);
+					padding: rem-calc(20 0 60);
+					text-align: center;
+					display: inline-block;
+				}
+			}
+			.imgs{
+				table{
+					margin-top: rem-calc(30);
+					margin-bottom: rem-calc(25);
+					img{
+						width: 95%;
+						border-radius: 0;
+					}
+				}
+			}
+			.title{
+				width: rem-calc(274);
+				height: rem-calc(45);
+				text-align: center;
+				line-height: rem-calc(45);
+				margin: rem-calc(-22 auto 0);
+				background: #75d39a;
+				font-size: rem-calc(32);
+				color: #fff;
+			}
+			.content{
+				padding: rem-calc(60 0 0 38);
+				.iconmode{
+					height: rem-calc(160);
+					position: relative;
+					i{
+						position: absolute;
+						left: 0;
+						top: rem-calc(4);
+						&.gqkg{
+							@include rem-sprite("boat-app/*.png", gqkg,$spacing:4px);
+						}  
+						&.guarantee{
+							@include rem-sprite("boat-app/*.png", bxbz,$spacing:4px);
+						}
+						&.pjcd{
+							@include rem-sprite("boat-app/*.png", pjcd,$spacing:4px);
+						}
+						&.lszc{
+							@include rem-sprite("boat-app/*.png", djls,$spacing:4px);
+						}
+					}
+					div{
+						padding-left: rem-calc(132);
+						span{
+							font-size: rem-calc(28);
+							color: #31b352;
+							font-weight: bold;
+						}
+						p{
+							font-size: rem-calc(24);
+							color: #333;
+							width: rem-calc(340);
+						}
+					}
+				}
+			}
+		}
+	}
+	.code-wrapper{
+		width: 100%;
+		background: #71cd95;
+		overflow: hidden;
+		padding: rem-calc(30 0);
+		.number{
+			// width: rem-calc(400);
+			// margin: rem-calc(30 auto 0);
+			color: #fff;
+			position: relative;
+			width: 100%;
+			td{
+				text-align: center;
+			}
+			i{
+				display: inline-block;
+				@include rem-sprite("boat-app/*.png", phone,$spacing:4px);
+			}
+			div{
+				display: inline-block;
+				padding-left: rem-calc(10);
+				text-align: left;
+				span{
+					font-size: rem-calc(38);
+				}
+				p{
+					font-size: rem-calc(14);
+				}
+			}
+		}
+	}
+	.boat-rules-bg{
+		width: rem-calc(564);
+		background: #f0fbe8;
+		border: rem-calc(8) solid #8acf88;
+		border-radius: rem-calc(30);
+		position: fixed;
+		top: rem-calc(50);
+		left: 50%;
+		margin-left: rem-calc(-290);
+		z-index: 100;
+		p{
+			height: rem-calc(70);
+			line-height: rem-calc(70);
+			text-align: center;
+			color: #f98e00;
+			font-weight: bold;
+			font-size: rem-calc(34);
+			border-bottom: 1px dashed #a1e79c;
+		}
+		ul{
+			width: 95%;
+			margin: 0 auto;
+			padding-top: rem-calc(20);
+			li{
+				padding-left: rem-calc(25);
+				position: relative;
+				font-size: rem-calc(28);
+				color: #159c23;
+				i{
+					position: absolute;
+					width: rem-calc(12);
+					height: rem-calc(12);
+					left: 0;
+					top: rem-calc(16);
+					border-radius: rem-calc(10);
+					background: #159c23;
+				}
+			}
+		}
+		span{
+			display: block;
+			font-size: rem-calc(24);
+			color: #159c23;
+			padding: rem-calc(26 0 26 35);
+		}
+		a{
+			font-size: rem-calc(60);
+			width: rem-calc(66);
+			height: rem-calc(66);
+			color: #8acf88;
+			line-height: rem-calc(66);
+			text-align: center;
+			position: absolute;
+			right: rem-calc(-14);
+			top: rem-calc(-45);
+			background: #f0fbe8;
+			border: rem-calc(8) solid #8acf88;
+			border-radius: rem-calc(100);
+			z-index: 10;
+		}
+	}
+	.mask{
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background: rgba(0,0,0,.6);
+	}
+	&.financialapp-wrapper{
+		background: #ff4f69;
+		.banner{
+			position: relative;
+		}
+		.top-title{
+			text-align: center;
+			font-size: rem-calc(72px,1080);
+			color: #fff;
+			// font-weight: bold;
+			position: absolute;
+			bottom: rem-calc(30px,1080);
+			width: 100%;
+			text-align: center;
+			vertical-align: bottom;
+			span{
+				color: #ffea37;
+				font-weight: bold;
+				font-size: rem-calc(104px,1080);
+			}
+		}
+		.package{
+			width: rem-calc(1016px,1080);
+			margin: 0 auto;
+			padding-top: rem-calc(27px,1080);
+			position: relative;
+			.get{
+				width: rem-calc(1016px,1080);
+				position: absolute;
+				height: rem-calc(420px,1080);
+				left: 0;
+				top: 0;
+				background: rgba(255,79,105,.75);
+				.geticon{
+					@include rem-sprite("financialapp/*.png",getbg,$spacing:4px,$rem-base:1080px);
+					margin: rem-calc(10px auto 0,1080);
+					font-size: rem-calc(72px,1080);
+					text-align: center;
+					line-height: rem-calc(408px,1080);
+					color: #fff;
+				}
+			}
+			ul{
+				width: rem-calc(1060px,1080);
+				color: #f72342;
+				font-size: rem-calc(42px,1080);
+				overflow: hidden;
+				li{
+					width: rem-calc(310px,1080);
+					height: rem-calc(175px,1080);
+					text-align: center;
+					border-radius: rem-calc(16px,1080);
+					background: #fbe4e5;
+					float: left;
+					margin: rem-calc(0 43px 31px 0,1080);
+					overflow: hidden;
+					span{
+						display: block;
+						width: rem-calc(290px,1080);
+						height: rem-calc(101px,1080);
+						margin: rem-calc(11px auto 0,1080);
+						border-radius: rem-calc(13px,1080);
+						font-size: rem-calc(70px,1080);
+						background: #ffc8cb;
+					}
+				}
+			}
+			.tip{
+				width: 100%;
+				text-align: center;
+				padding: rem-calc(0 0 90px,1080);
+				font-size: rem-calc(48px,1080);
+				color: #ffc8cb;
+			}
+			.btn{
+				display: block;
+				width: rem-calc(848px,1080);
+				height: rem-calc(148px,1080);
+				line-height: rem-calc(148px,1080);
+				text-align: center;
+				border-radius: rem-calc(48px,1080);
+				font-size: rem-calc(72px,1080);
+				color: #ec4456;
+				background: #ffea37;
+				box-shadow: rem-calc(0 16px 0,1080) #f4b302;
+				margin: 0 auto;
+				&.time{
+					font-size: rem-calc(48px,1080);
+				}
+			}
+		}
+		.code-wrapper{
+			background: #ff4f69;
+			.number i{
+				@include rem-sprite("financialapp/*.png",phone,$spacing:4px,$rem-base:1080px);
+			}
+		}
+		.common-wrapper{
+			margin-bottom: rem-calc(-148px,1080);
+			padding-bottom: 0;
+			padding-top: rem-calc(183px,1080);
+			img{
+				display: block;
+				width: 100%;
+			}
+		}
+		.common-wrapper .mode{
+			border: none;
+			width: rem-calc(1040px,1080);
+			background: #ffeef0;
+			border-radius: rem-calc(23px,1080);
+			margin-bottom: 0;
+			overflow: hidden;
+			table{
+				margin-top: rem-calc(160px,1080);
+			}
+			.title{
+				@include rem-sprite("financialapp/*.png",title-bg,$spacing:4px,$rem-base:1080px);
+				margin: rem-calc(-118px 0 0 -400px,1080);
+				position: absolute;
+				left: 50%;
+			}
+			.actrules{
+				padding: rem-calc(130px 35px  50px 34px,1080);
+				li{
+					font-size: rem-calc(48px,1080);
+					color: #333;
+					line-height: rem-calc(90px,1080);
+					padding: rem-calc(0 0 30px 47px,1080);
+					position: relative;
+					i{
+						position: absolute;
+						width: rem-calc(20px,1080);
+						height: rem-calc(20px,1080);
+						border-radius: rem-calc(20px,1080);
+						left: 0;
+						top: rem-calc(34px,1080);
+						background: #ec4456;
+					}
+					&.small{
+						font-size: rem-calc(40px,1080);
+					}
+				}
+			}
+			.imgs table{
+				margin: rem-calc(113px 0 63px,1080);
+			}
+			.content{
+				padding: rem-calc(146px 0 0 62px,1080);
+				.iconmode{
+					height: auto;
+					padding-bottom: rem-calc(110px,1080);
+					i{
+						&.gqkg{
+							@include rem-sprite("financialapp/*.png",gqkg,$spacing:4px,$rem-base:1080px);
+						}
+						&.guarantee{
+							@include rem-sprite("financialapp/*.png",guarantee,$spacing:4px,$rem-base:1080px);
+						}
+						&.pjcd{
+							@include rem-sprite("financialapp/*.png",pjcd,$spacing:4px,$rem-base:1080px);
+						}
+						&.lszc{
+							@include rem-sprite("financialapp/*.png",lszc,$spacing:4px,$rem-base:1080px);
+						}
+					}
+					div{
+						overflow: hidden;
+					}
+					span{
+						color: #e9447c;
+						font-size: rem-calc(47px,1080);
+						margin-top: rem-calc(10px,1080);
+						display: block;
+					}
+					p{
+						font-size: rem-calc(40px,1080);
+					}
+				}
+			}
+		}
+	}
+}
+#qTip{
+	max-width: 750px !important;
+}
+@media screen and (max-width: 330px) {
+	.more-rules{
+		height: 90% !important;
+	}
+	.boat-rules-content{
+		height: 88%;
+		position: fixed;
+		overflow: auto;
+		top: rem-calc(58);
+		left: 50%;
+		margin-left: rem-calc(-282);
+		width: rem-calc(564);
+		color: red !important;
+		span{
+			padding-bottom: rem-calc(10) !important;
+		}
+	}
+}

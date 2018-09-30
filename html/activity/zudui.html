@@ -1,0 +1,148 @@
+<div ng-controller="mainCtrl">
+    <zt-header></zt-header>
+</div>
+
+<div class="zudui" ng-controller="zuduiCtrl">
+
+    <div class="banner">
+        <img src="/images/zudui/banner.jpg" />
+        <a href="main.home" class="logo"></a>
+    </div>
+    
+    <!-- 邀友即送 -->
+    <div class="title">
+        <img src="/images/zudui/title01.png" />
+    </div>
+    <div class="invgift">
+        <img src="/images/zudui/invite.jpg" />
+        <a ui-sref="main.myAccount.myFriend({toGet:true,activityCode:'zudui',teamId:teamId})" class="inviteBtn" ng-if="isLogin"></a>
+        <a ui-sref="dl({fromActivity:true})" class="inviteBtn" ng-if="!isLogin"></a>
+    </div>
+    
+    <!-- 组队再送 -->
+    <div class="title">
+        <img src="/images/zudui/title02.png" />
+        <p>3人即可成队，每人仅可组建或者加入1个队伍，组队后不可退出</p>
+    </div>
+
+     <!-- 未登录队员信息 -->
+    <div class="teamgiftno" ng-if="!isLogin">
+        <div class="players">
+            <p class="noplayer">登录后查看我的战队</p>
+        </div>
+        <a ui-sref="dl({fromActivity:true})" ng-if="!isLogin"><img src="/images/zudui/inviteBtn2.png"></a>  
+    </div>
+    <!-- 登录后队员信息 -->
+    <div class="teamgift"  ng-if="isLogin">
+        <!-- 队员信息 -->
+        <!-- 队长登录 -->
+        <div class="players clearfix">
+            <div class="left">
+                <img src="/images/zudui/captain1.png" ng-if="isCaptain">
+                <img src="/images/zudui/player1.png" ng-if="!isCaptain">
+                <p>{{myInfo.inviteTel}}</p>
+            </div>
+            <div class="right">
+                <h5>我的战队<span>（人数：<strong>{{total}}</strong>人）</span></h5>
+                <ul class="member" id="member">
+                    <li ng-repeat="y in myTeamMembers">
+                        <div class="up"></div>
+                        <div class="middle">
+                            <p>{{y.realName}}</p>
+                            <p class="small">{{y.inviteTel}}</p>
+                        </div>
+                        <div class="down">{{y.investedStatus}}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>  
+        <div class="centerTip">所有队员参队后需完成投资才能瓜分战队奖励</div>
+        <!-- 战队信息 -->
+        <ul class="info clearfix">
+            <li>
+                <p class="names">战队排名</p>
+                <p class="money" ng-if="info.rank>0">第{{info.rank}}名</p>
+                <p class="money" ng-if="info.rank<=0 || info.rank==undefined" style="font-size:18px;">暂无排名</p>
+            </li>
+            <li>
+                <p class="names">战队累计年化投资额</p>
+                <p class="money">¥{{info.teamInvestedMoney ? info.teamInvestedMoney : 0  |currency:'':0}}</p>
+            </li>
+            <li>
+                <p class="names">我的累计年化投资额</p>
+                <p class="money">¥{{info.myInvestedMoney ? info.myInvestedMoney : 0  |currency:'':0}}</p>
+            </li>
+            <li>
+                <p class="names">我离战队内TOP1还差</p>
+                <p class="money">¥{{info.distanceMoney ? info.distanceMoney : 0  |currency:'':0}}</p>
+            </li>
+        </ul>
+        <!-- 按钮开始 -->
+        <div class="btns1"  ng-if="!full">
+            <a ui-sref="main.myAccount.myFriend({toGet:true,activityCode:'zudui',teamId:teamId})" ng-if="isLogin"><img src="/images/zudui/inviteBtn2.png"></a>
+        </div>
+        <div class="btns2" ng-if="full">
+            <a ui-sref="main.myAccount.myFriend({toGet:true,activityCode:'zudui',teamId:teamId})" ng-if="isLogin"><img src="/images/zudui/continueBtn.jpg"></a>
+            <!-- <a ui-sref="dl({fromActivity:true})" ng-if="!isLogin"><img src="/images/zudui/continueBtn.jpg"></a> -->
+            <a ui-sref="main.bankBillList" ng-if="isLogin"><img src="/images/zudui/investBtn.png"></a>
+            <!-- <a ui-sref="dl({fromActivity:true})" ng-if="!isLogin"><img src="/images/zudui/investBtn.png"></a> -->
+        </div>
+        <!-- 按钮结束 -->
+    </div>
+    <div class="news">
+        <ul>
+            <li ng-repeat="x in newslist">{{x.inviteTel}}邀请用户{{x.invitedTel}}已加入战队</li>
+        </ul>
+    </div>
+    
+
+    <!-- 排行榜 -->
+    <div class="title">
+        <img src="/images/zudui/title03.png" />
+        <p>累计战队年化投资额前10名</p>
+    </div>
+    <div class="ranklist">
+        <ul class="content">
+            <li  ng-repeat="item in teamList" ng-class="{highLightShow: item.highLightShow == 1}">
+                <p class="one"><i class="num" ng-class="{'num1': $index==0, 'num2': $index==1,'num3': $index==2, 'nums': $index>2}">{{$index>2 ? $index+1 : '' }}</i>战队：{{item.teamName}}</p>
+                <p class="two">累计年化投资额:{{item.amount  |currency:'':0}}</p>
+                <p class="three">战队奖励:{{item.teamReward  |currency:'':0}}</p>
+                <p class="four">战队TOP1奖励:{{item.topReward  |currency:'':0}}</p>
+            </li>
+            <li ng-if="teamList == undefined || teamList == ''" class="nolist">暂无排名</li>
+        </ul>
+        <div class="tip">
+            战队以队长的手机号命名；<br/> 
+            战队TOP1：指战队内年化投资金额排名第一的用户；<br/>
+            排行榜数据实时更新，最终以活动截止后为准。
+        </div>
+    </div>
+    <div class="center">
+        <a ui-sref="main.bankBillList" class="toInvest" ng-if="isLogin"><img src="/images/zudui/investBtn.png" /></a>
+        <a ui-sref="dl({fromActivity:true})" class="toInvest" ng-if="!isLogin"><img src="/images/zudui/investBtn.png" /></a>
+    </div>
+    
+    <!--活动规则-->
+    <div class="ruleOut">
+        <div class="rule">
+            <p>活动期间，累计年化投资额最高的前10名战队可获得现金奖励</p>
+            <p>奖励：个人奖励=个人年化投资总额/战队年化投资总额*奖励总额；</p>
+            <p>年化投资额=投资金额*投资期限/360天；</p>
+            <p>排前10的每个战队投资金额TOP1可另外获得相应现金奖励；</p>
+            <p>3人即可成队，每人仅可组建或者加入1个战队，组队后不可退出，注册用户直接享受队长特权，队长需邀请未注册用户组建战队；</p>
+            <p>话费奖励将在受邀人投资达标后，10个工作日内发放至注册手机号中；</p>
+            <p>所有队员参队后需完成投资才可获得活动奖励，未投资队员无法获得返现奖励，当累计年化投资金额（战队和TOP1）相同时，以投资时间优先排名；</p>
+            <p>战队奖励以现金红包形式发放（只需投资100元即可激活变现，可提现可投资），所得奖励将在活动结束后10个工作日内发放至您的注册账户中；</p>
+            <p>队长及队员投资标期需≥30天的定期标，投资新手标、活动标则无奖励，部分合作渠道用户的首次投资不计入本次活动，以渠道活动说明为准；</p>
+            <p>如有恶意刷奖行为，一经本平台核实将取消获奖资格。</p>
+            <p>* 本活动最终解释权归沪深理财所有，如有疑问请咨询客服：400-031-9909。</p>
+            </div>
+    </div>
+
+    <div class="footer">
+        <p>粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司v1.0.0</p>
+        <p>温馨提示：市场有风险，投资需谨慎</p>
+    </div>
+
+</div>
+

@@ -1,0 +1,15 @@
+
+<!-- 风险评估结果 -->
+<div class="risk-assess-result">
+	<i class="top"></i>
+	<img class="icoClose" src="/images/riskAssess/close.png" ng-click="closeDialog()"/>
+	<h3>{{riskResult.type}}</h3>
+
+	<!-- <p class="info1">该类型的投资本金：800,000元</p> -->
+	<p class="info2">{{riskResult.describle}}</p>
+	<p class="tip">注：以上建议仅供参考，不构成任何收益保证。</p>
+	<a class="btn1" ng-click="closeDialog()" ui-sref="main.riskAssess" style="margin:40px auto 10px;">重新评测</a>
+
+	<!-- <p class="info3">在我的页面可以看到风险承受能力结果。若要提升限额，可以重新测评。风险承担能力越大的投资类型，允许投资本金越大。</p>
+	<a class="btn2" ng-click="closeDialog()" ui-sref="main.riskAssess">重新评测</a> -->
+</div>

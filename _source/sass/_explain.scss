@@ -1,0 +1,176 @@
+.specs-wrapper{
+	.check-img-wrap{
+		position: fixed;
+		top: 0;
+		background: rgba(0,0,0,.8);
+		height: 100%;
+		width: 100%;
+		/*max-width: 640px;*/
+		overflow: hidden;
+		z-index: 15;
+		max-width: 750px;
+		display: none;
+	}
+	.check-img-wrap .img{
+		display: table-cell;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.check-img-wrap img{
+		max-width: 100%;
+		max-height: 100%;
+	}
+	.bot{
+		width: 100%;
+		height: rem-calc(1920px,1080);
+		background: image-url('safetybg.png') center top;
+		background-size: cover !important;
+		overflow: hidden;
+		table{
+			width: 100%;
+			td{
+				height: rem-calc(252px,1080);
+				vertical-align: middle;
+			}
+			margin: rem-calc(580px auto 0,1080);
+			i{
+				display: inline-block;
+				margin: rem-calc(0 72px 0 180px,1080);
+				vertical-align: middle;
+				&.regqkg{
+					@include rem-sprite("explain/*.png",regqkg,$spacing:4px,$rem-base:1080px);
+				}
+				&.relszc{
+					@include rem-sprite("explain/*.png",relszc,$spacing:4px,$rem-base:1080px);
+				}
+				&.pjcd{
+					@include rem-sprite("explain/*.png",pjcd,$spacing:4px,$rem-base:1080px);
+				}
+				&.safe{
+					@include rem-sprite("explain/*.png",safe,$spacing:4px,$rem-base:1080px);
+				}
+				&.hg{
+					@include rem-sprite("explain/*.png",hg,$spacing:4px,$rem-base:1080px);
+				}
+			}
+			span{
+				vertical-align: middle;
+				font-size: rem-calc(48px,1080);
+				color: #99583a;
+			}
+		}
+	}
+	.mode{
+		.title{
+			height: rem-calc(128px,1080);
+			position: relative;
+			background: #f2f2f2;
+			font-size: rem-calc(44px,1080);
+			color: #333;
+			line-height: rem-calc(154px,1080);
+			padding-left: rem-calc(96px,1080);
+			i{
+				position: absolute;
+				width: rem-calc(14px,1080);
+				height: rem-calc(46px,1080);
+				background: #fe7634;
+				top: rem-calc(56px,1080);
+				left: rem-calc(56px,1080);
+			}
+		}
+		.con{
+			background: #fff;
+			padding: rem-calc(70px 56px,1080);
+			color: #666;
+			.mycon{
+				font-size: rem-calc(40px,1080);
+				line-height: rem-calc(80px,1080);
+			}
+			.pattern{
+				padding: rem-calc(36px 56px,1080);
+				margin: rem-calc(60px 0,1080);
+				font-size: rem-calc(36px,1080);
+				line-height: rem-calc(72px,1080);
+				background: #f2f2f2;
+				span{
+					color: #333;
+					font-size: rem-calc(40px,1080);
+				}
+			}
+			.modeone{
+				margin: 0 auto;
+				@include rem-sprite("explain/*.png",modeone,$spacing:4px,$rem-base:1080px);
+			}
+			.modetwo{
+				margin: 0 auto;
+				@include rem-sprite("explain/*.png",modetwo,$spacing:4px,$rem-base:1080px);
+			}
+			img{
+				width: rem-calc(475px,1080);
+				margin: 0 auto;
+				display: block;
+				box-shadow: rem-calc(0 0 30px #cfcfcf,1080);
+			}
+			.little-table{
+				width: 100%;
+				margin-top: rem-calc(60px,1080);
+				i{
+					display: inline-block;
+					vertical-align: middle;
+					margin-right: rem-calc(10px,1080);
+					&.cpdf{
+						@include rem-sprite("explain/*.png",cpdf,$spacing:4px,$rem-base:1080px);
+					}
+					&.lyq{
+						@include rem-sprite("explain/*.png",lyq,$spacing:4px,$rem-base:1080px);
+					}
+					&.cd{
+						@include rem-sprite("explain/*.png",cd,$spacing:4px,$rem-base:1080px);
+					}
+				}
+				span{
+					vertical-align: middle;
+					font-size: rem-calc(40px,1080);
+				}
+			}
+			.guarantee-box{
+				width: rem-calc(969px,1080);
+				margin: rem-calc(80px auto -70px,1080);
+				td{
+					height: rem-calc(295px,1080);
+					vertical-align: top;
+				}
+				i{
+					display: inline-block;
+					margin-left: rem-calc(32px,1080);
+					vertical-align: top;
+					&.guarantee{
+						@include rem-sprite("explain/*.png",guarantee,$spacing:4px,$rem-base:1080px);
+					}
+					&.lszc{
+						@include rem-sprite("explain/*.png",lszc,$spacing:4px,$rem-base:1080px);
+					}
+					&.gqkg{
+						@include rem-sprite("explain/*.png",gqkg,$spacing:4px,$rem-base:1080px);
+					}
+				}
+				div{
+					display: inline-block;
+					padding-left: rem-calc(45px,1080);
+					width: rem-calc(700px,1080);
+					vertical-align: top;
+					span{
+						font-size: rem-calc(48px,1080);
+						color: #333;
+					}
+					p{
+						font-size: rem-calc(36px,1080);
+						line-height: rem-calc(56px,1080);
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,55 @@
+<div class="login-dialog-wrap special-dialog" ng-controller="dlCtrl">
+	<i class="iphone-close" ng-click="closeDialog()"></i>
+	<form class="login_form" ng-model="userLogin" name="userLoginform">
+		<input style="display:none">
+		<input type="password" style="display:none">
+		<div class="quick-login-mod">
+			<div class="title">
+				用户登录
+			</div>
+			<div class="quick-register-box">
+
+				<!-- 登录用户名 -->  
+				<div class="input-box">
+					<div class="input-mod">
+						<input type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/" placeholder="请输入手机号码"  ng-mouseOut="userNameShowError=true" ng-mouseOver="userNameShowError=fasle" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'') " class="text"  ng-model="userLogin.mobilephone" name="userName" required minlength="11" maxlength="11" autocomplete="off" />
+						<i ng-cloak ng-show="userLoginform.userName.$valid && userNameShowError" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[userLoginform.userName.$dirty || userLoginform.userName.$error.serverError]"></i>
+						<span ng-show="userLoginform.userName.$valid && userNameShowError" ng-cloak class="error"><font color="red">{{userLoginform.userName | denLuUserNameError:serverErrorCode}}</font></span>
+					</div>
+				</div>
+				<!-- 图文验证 -->
+				<div ng-show="isPicYanZhen" class="input-box">
+					<div class="img-box">
+						<img ng-click="clickInput('changePic',$event)" src="login/validateCode.do">
+					</div>
+					<div class="input-mod">
+						<input type="text" placeholder="请输入验证码"  ng-mouseOut="picShowError=true" ng-mouseOver="picShowError=fasle" class="text small-text" ng-model="userLogin.picCode" name="picCode" autocomplete="off" />
+					</div>
+					<i ng-show="userLoginform.picCode.$valid && picShowError" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[userLoginform.picCode.$error.serverError]"></i>
+					<span class="error" ng-show="userLoginform.picCode.$valid && picShowError"><font color="red">{{userLoginform.picCode | denLuPicCodeNameError:serverErrorCode}}</font></span>
+				</div>
+				<!-- 密码 -->
+				<div ng-hide='isShowUserPsw' class="input-box passwd-box">
+					<div class="input-mod">
+						<input placeholder="请输入密码" type="password" ng-model="userLogin.passWord" class="text" name="passWord"   autocomplete="off" required />
+					</div>
+					<i ng-show="userLoginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[userLoginform.passWord.$valid]"></i>
+					<span class="error" ng-show="userLoginform.passWord.$valid"><font color="red">{{userLoginform.passWord | denLuPassWordError:serverErrorCode}}</font></span>
+				</div>
+				<!-- 登录/注册 按钮 -->
+				<div class="sub-box" ng-click="LoginClick('denLu',userLoginform)">
+					<input  style="background:#ed3334;" ng-disabled="userLoginform.$invalid" class="sub-btn sub" type="submit" value="登 录"/>
+				</div>
+				<!-- 服务条款/切换状态 -->
+				<div class="agreement-box">
+					<div class="forget">
+						<a href="/main/resetPasswd" ng-click="closeDialog()" class="reset-passwd">忘记密码</a>
+					    <span class="choose-box">没有账号？
+							<a href="{{hrefUrl}}zhuce" class="change-btn" ng-click="closeDialog()">快速注册</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

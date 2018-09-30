@@ -1,0 +1,157 @@
+<div class="cashback-detail-wrap" ng-controller="taskDetailCtrl">
+	<div class="account-common-title">我的返现</div>
+	<!--<div class="account-common-con" ng-if="info != null && info != undefined ">-->
+		<div class="account-common-con">
+		<div class="task-detail" style="text-align: center; padding-top: 70px;">
+			<img src="../images/vno-activity.png">
+		</div>
+		<div class="task-detail hide">
+			<div class="innerbanner"><a href="{{invite.pcPutUrl}}"><img src="{{invite.pcPutImg}}"></a></div>
+			<div class="time">活动时间：{{invite.startDate | date:'M月d日'}} — {{invite.endDate | date:'M月d日'}}<span ng-if="invite.status == 1">活动进行中...</span><span ng-if="invite.status == 2">活动结束了！</span></div>
+			<div class="total-box">
+				<!-- <span class="get-now" ng-if="info.threePresentUnclaimed <= 0">马上领取</span>
+				<a href="" class="get-now noget" ng-click="getReward()" ng-if="info.threePresentUnclaimed > 0">马上领取</a> -->
+				<div class="total-all">
+					<span>累计获得返现</span>
+					<strong><b>{{info.threePresentRewards | currency:''}}</b>元</strong>
+				</div>
+				<!-- <div class="total-no">
+					<span>未领取奖金</span>
+					<strong><i>{{info.threePresentUnclaimed | currency:''}}</i>元</strong>
+				</div> -->
+			</div>
+			<div class="table">
+				<div class="title"><i></i><span>基础奖励</span><b>每邀请一位好友首投≥1000元，可获得10元返现，返现无上限！</b></div>
+				<div class="total-box">
+					<div class="total-add">
+						<span>邀请好友人数总计</span>
+						<strong><b>{{info.recommendedCount}}</b>位</strong>
+					</div>
+					<div class="total-no">
+						<span>完成首投的好友</span>
+						<strong><i>{{info.firstInvestCount}}</i>位</strong>
+					</div>
+				</div>
+				<div class="table-all">
+					<table class="table-title">
+						<tr>
+							<th width="22%">我的好友</th>
+							<th width="19%">注册时间</th>
+							<th width="25%">投资金额（元）</th>
+							<th width="34%">我的返利奖金（元）</th>
+						</tr>
+					</table>
+					<div class="table-content">
+						<table class="table-con">
+							<tr ng-repeat="item in firstInvestList" ng-if="getFirCount>0">
+								<td width="22%">{{item.realname}}</td>
+								<td width="19%">{{item.regdate | date:'yyyy-MM-dd'}}</td>
+								<td width="25%">{{item.investAmount}}</td>
+								<td width="34%">{{item.rebateAmount}}<!-- <span ng-if="item.status==0">未领取</span><span ng-if="item.status==1">已领取</span> --></td>
+							</tr>
+							<tr ng-if="getFirCount<=0" class="none">
+								<td colspan="4"><i class="invitenew-none"></i></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="table">
+				<div class="title"><i></i><span>进阶奖励</span><b>邀请人可获得好友第2笔及第3笔投资收益30%的现金返现！</b></div>
+				<div class="total-box">
+					<div class="total-add">
+						<span>邀请好友人数总计</span>
+						<strong><b>{{info.recommendedCount}}</b>位</strong>
+					</div>
+					<div class="total-no">
+						<span>完成复投的好友</span>
+						<strong><i>{{info.reInvestCount}}</i>位</strong>
+					</div>
+				</div>
+				<div class="table-all">
+					<table class="table-title">
+						<tr>
+							<th width="20%">我的好友</th>
+							<th width="8%">投资次数</th>
+							<th width="23%">投资金额（元）</th>
+							<th width="8%">投资期限</th>
+							<th width="18%">基础利率</th>
+							<th width="23%">我的返利奖金（元）</th>
+						</tr>
+					</table>
+					<div class="table-content">
+						<table class="table-con">
+							<tr ng-repeat="item in repeatInvestList" ng-if="getRepeatCount>0">
+								<td width="20%">{{item.realname}}</td>
+								<td width="8%">{{item.investOrder}}</td>
+								<td width="23%">{{item.investAmount}}</td>
+								<td width="8%">{{item.deadline}}</td>
+								<td width="18%">{{item.rate}}%</td>
+								<td width="23%">{{item.rebateAmount}}<!-- <span ng-if="item.status==0">未领取</span><span ng-if="item.status==1">已领取</span> --></td>
+							</tr>
+							<tr ng-if="getRepeatCount<=0" class="none">
+								<td colspan="6"><i class="invitenew-none"></i></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="table">
+				<div class="title"><i></i><span>终极奖励</span><b>排行榜前10名的邀请者可获得人脉王大奖</b></div>
+				<div class="last-table">
+					<table class="table-l" ng-if="nowRanking==undefined || nowRanking>10">
+						<tr>
+							<td class="img"><i class="invitenew-norank"></i></td>
+						</tr>
+						<tr>
+							<td class="bot">赶紧用洪荒之力召唤您的好友~</td>
+						</tr>
+					</table>
+					<table class="table-l" ng-if="nowRanking!=undefined && nowRanking<=10">
+						<tr>
+							<td class="img"><i class="invitenew-rank"></i></td>
+						</tr>
+						<tr>
+							<td class="bot">保持住，马上就可领取大奖了！</td>
+						</tr>
+					</table>
+					<div class="rank-table">
+						<div class="total-box">
+							<div class="total-no" ng-if="nowRanking!=undefined && nowRanking<=10">
+								<span>您的当前排名</span>
+								<strong>第<i>{{nowRanking}}</i>位</strong>
+							</div>
+							<div class="total-no" ng-if="nowRanking==undefined || nowRanking>10">
+								您当前的排名暂时无法上榜
+							</div>
+						</div>
+						<div class="table-all">
+							<table class="table-title">
+								<tr>
+									<th width="30%">排名</th>
+									<th width="30%">用户</th>
+									<th width="40%%">好友累计年化投资（元）</th>
+								</tr>
+							</table>
+							<div class="table-content">
+								<table class="table-con">
+									<tr ng-repeat="item in top" ng-if="top.length>0">
+										<td width="30%">NO.{{item.rownum}}</td>
+										<td width="30%">{{item.mobilePhone}}</td>
+										<td width="40%">{{item.amount}}</td>
+									</tr>
+									<tr class="none" ng-if="top.length<=0 || top==undefined">
+										<td colspan="3"><i class="invitenew-none"></i></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="account-common-none hide"  ng-if="info == null && info == undefined ">
+		<h2 class="text-center">什么都没有哦~</h2>
+	</div>
+</div>

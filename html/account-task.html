@@ -1,0 +1,31 @@
+<div class="account-mymsg-wrap account-task-wrap" ng-controller="taskCtrl">
+	<div class="account-common-title">赚钱任务</div>
+	<div class="account-common-con">
+		<div class="coupon-wrap">
+			<div class="account-top-box">
+		    	<p ng-click="showList(0)" ng-class="{0:'top-list',1:'',2:''}[action]">全部</p>
+		    	<p ng-click="showList(1)" ng-class="{0:'',1:'top-list',2:''}[action]">进行中</p>
+		        <p ng-click="showList(2)" ng-class="{2:'top-list',1:'',0:''}[action]" style="border-right: 1px solid #ececec;">已结束</p>
+		    </div>
+		    <div class="task-wrap">
+		    	<div class="task-box">
+		    		<div class="task-mod" ng-repeat="item in inviteList">
+		    			<div ng-class="{1:'invite-viewone',2:'invite-view',3:'invite-view',4:'invite-viewfour',5:'invite-viewfour',6:'invite-viewfour'}[item.periods]" ui-sref="main.myAccount.taskDetail({id: item.id})">
+		    				<p class="invite-num">第<span>{{item.periods}}</span>期</p>
+		    				<div class="mask" ng-if="item.status == 2"><p class="mask-tag">已结束</p></div>
+		    			</div>
+		    			<p class="title">邀请好友-第{{item.periods}}期</p>
+		    		</div>
+		    	</div>
+		    	<div class="page-wrap">
+					<div class="page-box">
+						<a href ng-click="changePage('beforPage',a)" class="prev">上一页</a><ul><li ng-click="changePage('currentPage',a)" ng-repeat="a in mylistPage.pages"><a href="" ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == a]">{{a}}</a></li></ul><a href class="next" ng-click="changePage('nextPage',a)">下一页</a>
+					</div><span>共{{mylistPage.totalPage}}页</span>
+				</div>
+		    </div>
+
+
+		</div>
+	</div>
+</div>
+			

@@ -1,0 +1,184 @@
+<div class="christmas-wrapper" ng-controller="christmasCtrl">
+    <!-- test xue -->
+    <div class="banner-wrap">
+        <div class="snowbg">
+            <canvas class="snow-canvas" speed="1" interaction="false" size="2" count="180" opacity="0.00001" start-color="rgba(253,252,251,1)" end-color="rgba(251,252,253,0.3)" wind-power="0" image="false" width="100%" height="1416"></canvas>
+        </div>
+        <div class="banner">
+            <span class="christmas-tip"><i>老用户<br>专享</i></span>
+            <div class="title"><i class="christmas-title"></i>
+                <p>活动时间：<span>2016.12.23-2017.1.10</span></p>
+            </div>
+            <div class="con">嘿，你好！<br>我是国企控股平台沪深理财的运营经理candy，很高兴能为你带来这个好消息。<br>又到每年双蛋节<br>或许，你攒了一年的存款，人民币却贬值了10%...<br>或许，你辛苦攒了很多钱，却只在银行享受着年化2%....<br>那么，就请放心把钱生钱的事交给我吧。双蛋狂欢专场最高送<span>18888</span>元!<br>很多投资人正在参加...</div>
+        </div>
+    </div>
+    <div class="modea-wrap">
+        <i class="christmas-snowbig"></i>
+        <i class="christmas-snowsmall"></i>
+        <i class="christmas-snowsmall snowsmall"></i>
+        <i class="christmas-snowmedium"></i>
+        <div class="christmas-titlea"></div>
+        <div class="layout"></div>
+        <div class="box">
+            <div class="inner">单笔投资收益<span>“+0.5%”</span>、<span>“+1%”</span>标识的项目不少于1000元<br>即获得1次拆钱袋机会，100%得现金，不限次数,最高得<i>18888</i>元！</div>
+        </div>
+        <table class="tear">
+            <tr>
+                <td>
+                    <div class="christmas-tear christmas-teara" ng-click="teadBag()"></div>
+                </td>
+                <td>
+                    <div class="christmas-tear christmas-tearb" ng-click="teadBag()"></div>
+                </td>
+                <td>
+                    <div class="christmas-tear christmas-tearc" ng-click="teadBag()"></div>
+                </td>
+            </tr>
+        </table>
+        <div class="invest-table">
+            <div class="top">拆钱袋，100%得现金</div>
+            <div class="table-box">
+                <div class="border-table">
+                    <table class="list-table">
+                        <tr>
+                            <th width="33%">单笔投资金额</th>
+                            <th width="20%">一等奖</th>
+                            <th width="22%">二等奖</th>
+                            <th width="25%">三等奖</th>
+                        </tr>
+                        <tr>
+                            <td><span>1000-9999元</span></td>
+                            <td>188元</td>
+                            <td>8元</td>
+                            <td>1元</td>
+                        </tr>
+                        <tr>
+                            <td><span>1万-99999元</span></td>
+                            <td>1888元</td>
+                            <td>88元</td>
+                            <td>18元</td>
+                        </tr>
+                        <tr>
+                            <td><span>10万-200000元</span></td>
+                            <td>18888元</td>
+                            <td>888元</td>
+                            <td>188元</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="lucky">
+                    <div class="luckytop">幸运榜</div>
+                    <table class="lucky-title">
+                        <tr>
+                            <th width="55%">用户名</th>
+                            <th width="45%">奖金</th>
+                        </tr>
+                    </table>
+                    <div class="num-wrap">
+                        <table class="lucky-num">
+                            <tr ng-repeat="item in luckyList">
+                                <td width="55%">{{item.userName}}</td>
+                                <td width="45%"><span>{{item.amount}}元</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rules">
+            <p>活动规则：</p>
+            <ul>
+                <li>1、老用户投资60天、180天标的任意金额即可享受加息，同时单笔投资金额满1000元，还可获得拆钱袋机会，100%得现金；</li>
+                <li>2、投资区间与奖励区间一一对应，不同投资金额的奖励不相同。投资额越大，所获奖励也越大；</li>
+                <li>3、拆钱袋奖励以现金的形式发放，1个工作日充值到账户，由用户自由支配。</li>
+                <li><span></span>* 新用户需先投资定期标成为老用户，同时单笔投资相应的加息标不少于1000元方可参加活动。</li>
+            </ul>
+        </div>
+    </div>
+    <div class="modeb-wrapper">
+        <div class="modeb-wrap">
+            <div class="christmas-titleb"></div>
+            <div class="table">
+                <table>
+                    <tr>
+                        <th width="20%">项目名称</th>
+                        <th width="17%">年化率</th>
+                        <th width=13%>项目总额</th>
+                        <th width="12%">项目期限</th>
+                        <th width="18%">项目进度</th>
+                        <th width="20%"></th>
+                    </tr>
+                </table>
+                <table ng-repeat="item in productList">
+                    <tr>
+                        <td width="20%">{{item.fullName}}</td>
+                        <td class="rate" width="17%">
+                            <div><span>{{item.rate}}</span>%<i>+</i><span ng-if="item.deadline == 60">{{addRate60}}</span><span ng-if="item.deadline == 180">{{addRate180}}</span>%</div>
+                        </td>
+                        <td width=13%>{{item.amount |currency:'':0}}</td>
+                        <td width="12%">{{item.deadline}}天</td>
+                        <td width="18%">
+                            <div class="percentage-box">
+                                <i>{{item.pert | setProgress}}%</i>
+                                <div class="percentage"><span ng-attr-style="width: {{item.pert | setProgress}}%"></span></div>
+                            </div>
+                        </td>
+                        <td width="20%">
+                            <a href="/main/billDetail?id={{item.id}}" class="invest-btn">立即投资</a>
+                        </td>
+                    </tr>
+                    <tr class="tiptr">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="3">
+                            <p ng-if="item.deadline==60">例子：往期兑付100%/ 60天投资10万可得收益<span>1333</span>元</p>
+                            <p ng-if="item.deadline==180">例子：往期兑付100%/ 180天投资10万可得收益<span>5750</span>元</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="rules">
+                <p>活动规则：</p>
+                <ul>
+                    <li>1、本次全场活动针对老用户，即投资过定期标的用户（新手标、体验标除外）；新用户需先投资定期标成为老用户，方可参加活动；</li>
+                    <li>2、活动只针对投资60天、180天有收益“+0.5%”、“+1%”标识的项目；</li>
+                    <li>3、活动期间原砸金蛋活动暂停。</li>
+                </ul>
+            </div>
+            <i class="christmas-snowbig"></i>
+            <i class="christmas-snowbigger"></i>
+        </div>
+    </div>
+    <div class="modec-wrapper">
+        <div class="modec-wrap">
+            <div class="christmas-titlec"></div>
+            <div class="con">拆完钱袋后<br>将拆中奖金<span>晒到朋友圈</span>即有机会获得双蛋礼物一份！随机抽取<span>50名</span>，机会多多哦~<br>中奖名单将在活动结束后7个工作日内公布<br>敬请留意沪深理财官微（搜索微信号：jsfax2016）</div>
+            <i class="christmas-snowbig"></i>
+            <i class="christmas-snowsmall"></i>
+        </div>
+    </div>
+    <div class="bottom-wapper">
+        <div class="center">
+            <p>最终解释权归沪深理财所有</p>
+            <i class="christmas-gift"></i>
+        </div>
+    </div>
+    <div class="chance" ng-class="{true:'inner-chance'}[littleWindow]" ng-if="!isLogin">
+        <i class="christmas-garland"></i>
+        <div class="con">您有？次<br>拆钱袋机会</div>
+        <a href="/dl?fromActivity=true">立即登录</a>
+    </div>
+    <div class="chance login-chance" ng-class="{true:'inner-chance'}[littleWindow]" ng-click="show('A')" ng-if="isLogin">
+        <i class="christmas-garland"></i>
+        <div class="con num">拆钱袋机会<br><span>{{pullCount}}</span>次</div>
+    </div>
+    <div class="christmas-float" ng-class="{true:'inner-float'}[littleWindow]">
+        <div class="list">
+            <p class="one" ng-class="{true: 'active'}[showMode == 'A']" ng-click="show('A')"></p>
+            <p class="two" ng-class="{true: 'active'}[showMode == 'B']" ng-click="show('B')"></p>
+            <p class="three" ng-class="{true: 'active'}[showMode == 'C']" ng-click="show('C')"></p>
+        </div>
+        <a href="" class="gotop" ng-click="show('TOP')"></a>
+    </div>
+</div>

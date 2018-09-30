@@ -1,0 +1,11 @@
+<div class="lantern-dialog-wrap">
+	<div class="lantern-get">
+		<p ng-if="gift.type == 1">获得{{gift.num}}元红包</p>
+		<p ng-if="gift.type == 2">获得{{gift.num}}%加息券</p>
+		<p ng-if="gift.type == 3">获得{{gift.num}}元体验金</p>
+		<p ng-if="gift.type == 4">获得{{gift.num}}倍翻倍券</p>
+		<a href="" class="get" ng-click="closeDialog()" ng-if="gift.type == 3" ui-sref="main.financeDetail"></a>
+		<a href="" class="get" ng-click="closeDialog()" ng-if="gift.type != 3" ui-sref="main.bankBillList"></a>
+	</div>
+	<a href="" class="close" ng-click="closeDialog()"></a>
+</div>

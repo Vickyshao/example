@@ -1,0 +1,23 @@
+<!-- 新闻列表 -->
+<div class="jt-wrap news-wrap" ng-controller="newsCtrl" style="padding:18px">
+	<div class="title"><span>公司新闻</span></div>
+	<div class="news-box">
+		<ul>
+			<li ng-repeat="item in news">
+				<span class="date">{{item.createTime | date:"y-M-d"}}</span>
+				<a href="/main/jt/XWXQ?newId={{item.artiId}}&t=1" >{{item.title}}</a>
+			</li>
+		</ul>
+	</div>
+	<!-- 页码 -->
+	<!-- <div class="page-wrap">
+		<div class="page-box">
+			<a href="" class="prev">上一页</a><ul><li><a href="">1</a></li></ul><a href="" class="next">下一页</a>
+		</div>
+	</div> -->
+	<div class="page-wrap">
+		<div class="page-box">
+			<a href ng-click="onClickPage('beforPage',a)" class="prev">上一页</a><ul><li ng-click="onClickPage('currentPage',a)" ng-repeat="a in bill.pages"><a href="" ng-class="{true: 'cur', false: ''}[bill.pageOn == a]">{{a}}</a></li></ul><a href class="next" ng-click="onClickPage('nextPage',a)">下一页</a>
+		</div><span>共{{bill.totalPage}}页</span>
+	</div>
+</div>

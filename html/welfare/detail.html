@@ -1,0 +1,51 @@
+<div class="welfaredetail-wrapper" ng-controller="welfareCtrl">
+	<div class="bread-wrap">
+		<div class="bread"><a href="/main/home">首页</a><i>></i><a href="/main/welfarelist">公益活动</a></div>
+	</div>
+	<div class="banner" style="background: url({{info.pcBanner}}) center top no-repeat;"><img src="{{info.pcBanner}}"></div>
+	<div class="content">
+		<div class="title">
+			<p>{{info.title}}</p>
+			<span></span>
+		</div>
+		<div class="info">{{info.summary}}</div>
+		<div class="detail">
+			<div class="video"><a href="{{info.videoUrl}}"><img src="{{info.imgUrl}}"></a></div>{{info.content}}
+		</div>
+	</div>
+	<div class="live-wrap" ng-show="picList.length>0">
+		<div class="title"><p>活动现场</p><span></span></div>
+		<!-- <div class="stage">
+			<div class="container">
+				<div class="piece piece1">
+					<div></div>
+					<img src="images/welfare/img.png">
+				</div>
+				<div class="piece piece2">
+					<div></div>
+					<img src="images/welfare/img1.png">
+				</div>
+				<div class="piece piece3">
+					<div></div>
+					<img src="images/welfare/img1.png">
+				</div>
+				<div class="piece piece4">
+					<div></div>
+					<img src="images/welfare/img1.png">
+				</div>
+				<div class="piece piece5">
+					<div></div>
+					<img src="images/welfare/img.png">
+				</div>
+			</div>
+		</div> -->
+		<div class="mystage">
+			<div class="pictureSlider poster-main" data-setting='{"width":1200,"height":380,"posterWidth":533,"posterHeight":380,"scale":0.8,"autoPlay":false,"delay":2000,"speed":300}'>
+				<div class="prev-btn" ng-if="picList.length>1"></div>
+			    <ul class="poster-list">
+			    </ul>
+			    <div class="next-btn" ng-if="picList.length>1"></div>
+			</div>
+		</div>
+	</div>
+</div>

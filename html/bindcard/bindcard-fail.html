@@ -1,0 +1,68 @@
+<div class="bindcard-wrap-out" ng-controller="bindcardCtrl">
+	<div class="bindcard-wrap clearfix">
+
+		<!-- 投资信息 -->
+		<div class="investInfo" ng-show="investInfo">
+			<h4>投资信息</h4>
+			<ul class="content">
+				<li>
+					<span class="left">产品名称：</span>
+					<span class="right">{{product.fullName}}</span>
+				</li>
+				<li>
+					<span class="left">历史年化收益率：</span>
+					<span class="right">
+						{{product.rate}}%
+						<i ng-if="product.activityRate>0 && (specialRate == undefined || specialRate == 0) && product.type!=1"> + {{product.activityRate}}%</em></i>		
+						<i ng-if="specialRate != undefined && specialRate > 0"> + {{specialRate+product.activityRate}}%</i>
+					</span>
+				</li>
+				<li>
+					<span class="left">项目期限：</span>
+					<span class="right">{{product.deadline}}天</span>
+				</li>
+				<li>
+					<span class="left">还款方式：</span>
+					<span class="right" ng-if='product.type!=1'><span ng-if="product.repayType==1">到期一次还本付息</span><span ng-if="product.repayType==2">按月付息到期还本</span><span ng-if="product.repayType==3">等本等息 按周回款</span><span ng-if="product.repayType==4">等本等息 按月回款</span><span ng-if="product.repayType==5">其他</span></span>
+					<span class="right" ng-if='product.type==1'><span>到期一次还本付息</span></span>
+				</li>
+				<li>
+					<span class="left">投资总额：</span>
+					<span class="right">{{product.nowNum | isNumber2}}元</span>
+				</li>
+				<li>
+					<span class="left">预计收益：</span>
+					<span class="right" ng-show="!ecId">{{((product.rate/100 + product.activityRate/100 + product.specialRate/100) / 360 * product.nowNum * product.deadline) | isNumber2}}元</span>
+					<span class="right" ng-show="ecId">{{((product.rate/100 + product.activityRate/100 + product.specialRate/100) / 360 * product.maxAmount * product.deadline) | isNumber2}}元</span>
+				</li>
+				<li>
+					<span class="left">奖励收益：</span>
+					<span class="right">{{product.rewardProfit | isNumber2}}元</span>
+				</li>
+			</ul>
+			<div class="down clearfix">
+				<img src="/images/bindcard/service.png" class="left">
+				<div class="wenzi right">
+					<p>如有疑问，请及时联系客服</p>
+					<p class="big">400-031-9909</p>
+					<p>周一至周五&nbsp;&nbsp;&nbsp;09:00-18:00</p>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 实名绑卡，认证充值 -->
+		<div class="bindcard result"  ng-class="{true: 'sbindcard', false: ''}[investInfo]">
+			<h4 ng-hide="investInfo">实名绑卡</h4>
+			<h4 ng-show="investInfo">认证充值</h4>
+			<div class="content">
+				<div class="failinfo">
+					<img src="/images/bindcard/cardicon.png">
+				</div>
+				<div class="failimg"><img src="/images/bindcard/fail.png"></div>
+				<div class="failtip">{{errorMsg}}</div>
+			</div>
+			<a class="resultBtn" ui-sref="main.bindcard">重新绑卡</a>
+		</div>
+
+	</div>
+</div>

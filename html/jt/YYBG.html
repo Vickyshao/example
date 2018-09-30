@@ -1,0 +1,36 @@
+<div class="wqq-ysbm-box brief" ng-controller="YYBGCtrl">
+	<div class="content">
+		<div class="content-box">
+			<img class="topImg" src="/images/gsjj/yybg.png"/>
+			<div class="content-box-bcontent">
+				<div class="tabs">
+					<span ng-click="action=1" ng-class="{1:'cur'}[action]">2018</span>
+					<span ng-click="action=2" ng-class="{2:'cur'}[action]">2017</span>
+				</div>
+				<div class="reports">
+					<ul>
+						<li ng-repeat="item in reports | filter: {year:2018}" ng-if="action==1" >
+							<a ui-sref="reportDetail({artiId:item.artiId})" target="_blank">
+								<img src="{{item.litpic}}" />
+								<div class="detail">
+									<span>{{item.title}}</span>
+									<a class="detailBtn" ui-sref="reportDetail({artiId:item.artiId})" target="_blank">查看详情</a>
+								</div>
+							</a>
+						</li>
+						<li ng-repeat="item in reports | filter: {year:2017}" ng-if="action==2" >
+							<a ui-sref="reportDetail({artiId:item.artiId})" target="_blank">
+								<img src="{{item.litpic}}" />
+								<div class="detail">
+									<span>{{item.title}}</span>
+									<a class="detailBtn" ui-sref="reportDetail({artiId:item.artiId})" target="_blank">查看详情</a>
+								</div>
+							</a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

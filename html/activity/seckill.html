@@ -1,0 +1,76 @@
+<div class="seckill-wrapper" ng-controller="seckillCtrl">
+	<div class="banner"></div>
+	<i class="seckill-bga"></i>
+	<i class="seckill-bgb"></i>
+	<div class="seckill-time"></div>
+	<div class="wrap">
+		<div class="seckill-sweet">
+			<i class="seckill-boata shake-vertical"></i>
+			<span class="seckill-icon"></span>
+			<div class="percentage-box" ng-if="showTime || productInfo45.id!=undefined">
+                <i>{{productInfo45.pert | setProgress}}%</i>
+                <div class="percentage"><span ng-attr-style="width: {{productInfo45.pert | setProgress}}%"></span></div>
+            </div>
+            <div class="percentage-box" ng-if="!showTime && productInfo45.id==undefined">
+                <i>100%</i>
+                <div class="percentage"><span style="width: 100%"></span></div>
+            </div>
+            <div class="btns">
+            	<div class="count-down" ng-if="showTime && productInfo45.id==undefined">{{hour}}:{{minute}}:{{second}}  后开抢</div>
+        		<a target="_blank" href="main/billDetail?id={{productInfo45.id}}" class="btn" ng-if="productInfo45.pert<100" ng-if="productInfo45.id != undefined">立即抢购</a>
+        		<span class="btn endbtn" ng-if="!showTime && productInfo45.id==undefined">已抢完</span>
+            </div>
+		</div>
+		<div class="seckill-salty">
+			<i class="seckill-boatb shake-vertical"></i>
+			<span class="seckill-icon"></span>
+			<div class="percentage-box" ng-if="showTime || productInfo75.id!=undefined">
+                <i>{{productInfo75.pert | setProgress}}%</i>
+                <div class="percentage"><span ng-attr-style="width: {{productInfo75.pert | setProgress}}%"></span></div>
+            </div>
+            <div class="percentage-box" ng-if="!showTime && productInfo75.id==undefined">
+                <i>100%</i>
+                <div class="percentage"><span style="width: 100%"></span></div>
+            </div>
+            <div class="btns">
+            	<div class="count-down" ng-if="showTime && productInfo75.id==undefined">{{hour}}:{{minute}}:{{second}}  后开抢</div>
+        		<a target="_blank" href="main/billDetail?id={{productInfo75.id}}" class="btn" ng-if="productInfo75.id != undefined">立即抢购</a>
+        		<span class="btn endbtn" ng-if="!showTime && productInfo75.id==undefined">已抢完</span>
+            </div>
+		</div>
+	</div>
+	<div class="rules-wrap">
+		<div class="list-box">
+			<p class="title">抢购记录</p>
+			<div class="list">
+				<table class="top">
+					<tr>
+						<td width="30%">用户名</td>
+						<td width="40%">抢购时间</td>
+						<td width="30%">抢购金额</td>
+					</tr>
+				</table>
+				<div class="seckill-bg" ng-show="investLog.length<=0"></div>
+				<div class="box" ng-show="investLog.length>0">
+					<table>
+						<tr ng-repeat="item in investLog">
+							<td width="30%">{{item.mobilePhone}}</td>
+							<td width="40%">{{item.investTime | date:'HH:mm:ss'}}</td>
+							<td width="30%">{{item.amount}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="rules">
+			<ul>
+				<li style="padding: 0;">活动规则：</li>
+				<li><i>1.</i>本活动所有注册用户可参与；</li>
+				<li><i>2.</i>活动期间，每天上午11:00和下午14:00各开启一场秒杀；</li>
+				<li><i>3.</i>本活动标的为“端午秒杀专享”标的，平台贴息8%，期限45天及75天；</li>
+				<li><i>4.</i>秒杀遵循先到先得原则，每场秒杀标满即止，本活动标不同时享受红包等平台其他任何福利。</li>
+				<li class="bot">*本活动由沪深理财发起并就活动内容作出解释和说明，任何疑问请咨询沪深理财客服：400-031-9909</li>
+			</ul>
+		</div>
+	</div>
+</div>

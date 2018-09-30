@@ -1,0 +1,60 @@
+<!-- 活动中心 -->
+<div class="actcenter" ng-controller="actcenterCtrl" ng-init="status=1">
+	<!-- 标题 -->
+	<div class="top-box clearfix">
+		<div class="left">精彩活动</div>
+		<div class="right">
+			<span ng-click="change(1)" ng-class="{1:'active',2:''}[status]" class="clickable">正在进行</span>
+			<span class="line">|</span>
+			<span ng-click="change(2)" ng-class="{1:'',2:'active'}[status]" class="clickable">往期回顾</span>
+		</div>
+	</div>
+	<!-- 活动 -->
+	<div class="info-box">
+		<!-- 正在进行 -->
+		<div class="info" ng-if="status==1">
+			<!-- 恩弗教育 -->
+			<div class="list offline clearfix">
+				<i class="lineIcon"></i>
+				<div class="up"><img src="/images/actcenter/enfuImg.png"></div>
+				<div class="down">
+					<p class="title">恩弗教育扫码送课时</p>
+					<p class="time">活动时间：2018.1.15起</p>
+					<p style="color:#ff7a22;font-size:16px;">(仅限恩弗体育用户)</p>
+				</div>
+			</div>
+
+			<div class="list clearfix" ng-repeat="info in infolist">
+				<i class="lineIcon"></i>
+				<div class="up"><img src="{{info.pcPic}}"></div>
+				<div class="down">
+					<p class="title">{{info.title}}</p>
+					<p class="time">
+						活动时间：{{info.startTime | date:'yyyy.MM.dd'}}<span ng-if="info.endTime!=undefined && info.endTime!=''">-{{info.endTime | date:'yyyy.MM.dd'}}</span><span ng-if="info.endTime==undefined || info.endTime==''">起</span>
+					</p>
+					<a class="todetail" href={{info.pcUrl}} ng-if="info.pcUrl!=undefined && info.pcUrl!=''">查看详情</a>
+				</div>
+			</div>
+			<button class="more" ng-click="more()" ng-if="showmore">查看更多</button>
+		</div>
+
+		<!-- 往期回顾 -->
+		<div class="info info2" ng-if="status==2">
+			<div class="list clearfix" ng-repeat="info in infolist">
+				<i class="lineIcon"></i>
+				<div class="up"><img src="{{info.pcPic}}"></div>
+				<div class="down">
+					<p class="title">{{info.title}}</p>
+					<p class="time">
+						活动时间：{{info.startTime | date:'yyyy.MM.dd'}}<span ng-if="info.endTime!=undefined && info.endTime!=''">-{{info.endTime | date:'yyyy.MM.dd'}}</span><span ng-if="info.endTime==undefined || info.endTime==''">起</span>
+					</p>
+					<a class="todetail" href={{info.pcUrl}}  ng-if="info.pcUrl!=undefined && info.pcUrl!=''">查看详情</a>
+					<i></i>
+				</div>
+			</div>
+			<button class="more" ng-click="more()" ng-if="showmore">查看更多</button>
+		</div>
+		
+	</div>
+	
+</div>

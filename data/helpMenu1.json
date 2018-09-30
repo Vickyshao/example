@@ -1,0 +1,71 @@
+{"result":[
+    {
+        "memnTitle": "走进沪深",
+        "name": "GSJJ",
+        "status": true,
+        "children": [
+            {
+                "memnTitle": "公司简介",
+                "name": "GSJJ",
+                "status": true,
+                "url":"main.jt.GSJJ"
+            },{
+                "memnTitle": "管理团队",
+                "name": "GLTD",
+                "status": false,
+                "url":"main.jt.GLTD"
+            }]
+    },{
+        "memnTitle": "运营数据",
+        "name": "YYBG",
+        "status": false,
+        "children": [
+            {
+                "memnTitle": "运营报告",
+                "name": "YYBG",
+                "status": false,
+                "url":"main.jt.YYBG"
+            }]
+    },{
+        "memnTitle": "资质荣誉",
+        "name": "GSZZ",
+        "status": false,
+        "children": [
+            {
+                "memnTitle": "公司资质",
+                "name": "GSZZ",
+                "status": false,
+                "url":"main.jt.GSZZ"
+            },{
+                "memnTitle": "一亿验资",
+                "name": "YYYZ",
+                "status": false,
+                "url":"main.jt.YYYZ"
+            },{
+                "memnTitle": "企业荣誉",
+                "name": "YYBG",
+                "status": false,
+                "url":"main.jt.QYRY"
+            }]
+    },{
+        "memnTitle": "媒体动态",
+        "name": "GSDT",
+        "status": false,
+        "url":"main.jt.GSDT"
+    },{
+        "memnTitle": "网站公告",
+        "name": "GSGG",
+        "status": false,
+        "url":"main.jt.GSGG"
+    },{
+        "memnTitle": "监管法规",
+        "name": "JGFG",
+        "status": false,
+        "url":"main.jt.JGFG"
+    },{
+        "memnTitle": "联系我们",
+        "name": "LXWM",
+        "status": false,
+        "url":"main.jt.LXWM"
+    }
+]}

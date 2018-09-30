@@ -1,0 +1,529 @@
+<div ng-controller="homeCtrl" class="home-wrapper">
+    
+    <!-- 组队活动icon -->
+    <a ui-sref="zudui" class="zudui-icon" ng-show="zuduiShow"><img src="/images/zudui/icon.png"></a>
+    
+    <!-- banner -->
+    <div class="home-banner">
+        <div class="banner-box">
+            <div class="hello-box login-{{(a | isRegister).register}}">
+                <div class="login my-box">
+                    <div ng-if="user.realName != undefined" class="hello">欢迎您，{{user.realName}} {{user.sex | isSex}}！</div>
+                    <div ng-if="user.realName == undefined" class="hello">欢迎您，{{user.mobilephone | limitTo:3}}*****{{user.mobilephone | limitTo:-3}}！</div>
+                    <div class="my-info">
+                        <div class="my-account">
+                            <span ng-show="showBalance" class="balance">账户余额：<b>{{user.balance}}</b>元</span>
+                        </div>
+                        <div class="account-tip">近30天共有<b>{{user.dueIn}}</b>笔待收收益</div>
+                    </div>
+                    <a href="/main/myAccount/accountHome" class="hello-btn">我的账户</a>
+                    <div class="operate"><a href="" ng-click="userOut('userOut')" class="quit">安全退出</a></div>
+                </div>
+                <div class="nologin my-box nologin">
+                    <!-- <div class="hello">预计最高年化收益<strong><i>可达</i><span>13</span>%</strong></div> -->
+                    <div class="hello welcome">
+                        <!--<i>——</i>&nbsp;&nbsp;欢迎加入沪深理财&nbsp;&nbsp;<i>——</i>-->
+                        <i>历史年化收益率</i>
+                        <h2><span>6</span>% &nbsp;~&nbsp;<span>12</span>%</h2>
+                    </div>
+
+                    <a href="{{hrefUrl}}zhuce" class="register" style="width: 214px!important;">注册领288红包</a>
+                    <!-- <i ng-if="!(a | isRegister).register" class="home-icon"></i> -->
+                    <div class="operate">
+                        已有账号？<a href="{{hrefUrl}}dl" class="">立即登录</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="banner-img">
+            <!-- <my-banner></my-banner> -->
+            <banner banner="banner"></banner>
+            <!-- <div class="trigger-wrap"><div class="trigger-box"></div></div> -->
+        </div>
+    </div>
+    <!-- banner结束 -->
+
+    <div class="notice-wrapper" ng-show="showSummary == true && (summaryContents!='' || summaryContents!=undefined)">
+        <div class="notice-box">
+            <span class="noticet">最新公告<i class="home-tip"></i></span>
+            <div class="con">
+                <div><span ng-repeat="item in noticeList"><a target="_blank" href="{{a|webIE8}}main/jt/GGXQ?newId={{item.arti_id}}&t=2">{{item.title}}<!-- <a target="_blank" href="/main/jt/XWXQ?newId={{item.arti_id}}&t=0" title="{{item.summaryContents}}">{{item.summaryContents}}</a> --></a>
+                    <!--<i>{{item.create_time|date:"yyyy.MM.dd"}}</i>-->
+                </span></div>
+            </div>
+            <p><a href="/main/jt/GSGG" target="_blank">更多>></a></p>
+            <!-- <p><b>[ {{summaryTime | date:'yyyy-MM-dd HH:mm'}} ]</b><br><a href="close" ng-click="showSummary=false">关闭</a></p> -->
+        </div>
+    </div>
+
+    <!-- 内容 -->
+    <div class="home-content-wrapper">
+        <!-- 特性 -->
+        <div class="feature-wrap">
+            <!-- 平台数据 -->
+            <!--<div class="platformData">
+                <ul>
+                    <li>平台数据</li>
+                    <li>累计投资金额 <span>¥{{investCumulative}}元</span></li>
+                    <li>已为用户赚取收益 <span>¥{{profitCumulative}}元</span></li>
+                    <li>平台用户 <span>{{investTotal.regCount}}人</span></li>
+                </ul>
+            </div>-->
+            <div class="platformData">
+                <ul>
+                    <li>平台数据</li>
+                    <li>累计投资金额 <span>¥<h2 class="timer currency count-title" id="count-number" data-from="155978675" data-to="{{investCumulative}}" data-speed="3000"></h2>元</span></li>
+                    <li>已为用户赚取收益 <span>¥<h2 class="timer currency count-title" id="count-number" data-from="1961600"  data-to="{{profitCumulative}}" data-speed="3000"></h2>元</span></li>
+                    <li>平台用户 <span><h2 class="timer count-title" id="count-number" data-from="19875" data-to="{{investTotal.regCount}}" data-speed="3000"></h2>人</span></li>
+                </ul>
+            </div>
+
+            <div class="feature-list">
+                <div class="feature-box">
+                    <ul>
+                        <li>
+                            <p class="img" ng-if="!isInDoubleEggActivity"><img src="images/features/gzbj.png" ></p>
+                            <p class="img" ng-if="isInDoubleEggActivity"><img src="images/features/newyear1.png"></p>
+                            <div>
+                                <span>实力雄厚</span>
+                                <p>实缴1亿注册资金</p>
+                            </div>
+                        </li>
+                        <li>
+                            <p class="img" ng-if="!isInDoubleEggActivity"><img src="images/features/fxbz.png" ></p>
+                            <p class="img" ng-if="isInDoubleEggActivity"><img src="images/features/newyear2.png"></p>
+                            <div>
+                                <span>风险保障</span>
+                                <p>精准风控优先垫付</p>
+                            </div>
+
+                        </li>
+                        <li>
+                            <p class="img" ng-if="!isInDoubleEggActivity"><img src="images/features/yhcg.png" ></p>
+                            <p class="img" ng-if="isInDoubleEggActivity"><img src="images/features/newyear3.png"></p>
+                            <div>
+                                <span>银行存管</span>
+                                <p>正式签约存管协议</p>
+                            </div>
+
+                        </li>
+                        <li>
+                            <p class="img" ng-if="!isInDoubleEggActivity"><img src="images/features/hgjy.png" ></p>
+                            <p class="img" ng-if="isInDoubleEggActivity"><img src="images/features/newyear4.png"></p>
+                            <div>
+                                <span>合规经营</span>
+                                <p>专业级律所法律支持</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--广告部分-->
+            <!--<div class="feature-ad cursor-pointer" ui-sref="main.guide">-->
+                <!--<h2 class="block"><img src="/images/home/img01.png" alt=""></h2>-->
+                <!--<p><a>新手指引：一分钟认识沪深</a></p>-->
+            <!--</div>-->
+            <!--视频部分-->
+            <div class="feature-ad cursor-pointer border0 video">
+                <img src="/images/home/video.png" ng-click="getVideo()">
+            </div>
+        </div>
+        <!-- 特性结束 -->
+
+        <!--新手专区newhand-->
+        <!--<div class="pro-wrapper-new"  ng-if="newhand">-->
+            <!--<div class="left" ui-sref="zhuce"><img src="images/redPacket.png" /></div>-->
+            <!--<div class="right" ui-sref="main.billDetail({ id: newhand.id })">-->
+                <!--<ul class="list">-->
+                    <!--<li class="item">-->
+                        <!--<h2 class="red">{{newhand.rate}}<span>%</span></h2>-->
+                        <!--<p>历史年化收益率</p>-->
+                    <!--</li>-->
+                    <!--<li class="item">-->
+                        <!--<h2>{{newhand.deadline}}<span>天</span></h2>-->
+                        <!--<p>投资期限</p>-->
+                    <!--</li>-->
+                    <!--<li class="item">-->
+                        <!--<h2>{{newhand.leastaAmount}}<span>元</span></h2>-->
+                        <!--<p>起投金额</p>-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="item">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<h2>{{newhand.maxAmount}}<span>元</span></h2>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<p>最高可投</p>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                <!--</ul>-->
+                <!--<div class="pro-btn">立即投资（限投一次）</div>-->
+                <!--<p class="carets back-none"><a><img src="images/pullNew.gif" /></a></p>-->
+                <!--&lt;!&ndash;<p class="carets"></p>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="pro-wrapper">
+            <div class="pro-wrap">
+                <!--热门活动-->
+                <!--<div class="promod phone-promod">-->
+                    <!--<div class="side">-->
+                        <!--<span>第<i>{{activity.activityPeriods}}</i>期</span>-->
+                        <!--<h2>热门活动</h2>-->
+                        <!--<h3></h3>-->
+                        <!--<p>投资拿豪礼 </p>-->
+                        <!--<p> 选择礼品，收益多多</p>-->
+                    <!--</div>-->
+                    <!--<div class="data">-->
+                        <!--这个接口是fuiouNewhands-->
+                        <!--<div class="inner"  ui-sref="main.billDetail({ id: activity.id })">-->
+                            <!--<div class="title">-->
+                                <!--活动标二<span class="txt">投资相应金额 0元拿豪礼</span>-->
+                                <!--<span class="home-iphone"></span>-->
+                            <!--</div>-->
+                            <!--<table class="list">-->
+                                <!--<tr>-->
+                                    <!--<td width="43%" class="rate"><strong>{{activity.rate}}</strong>％<span ng-if="activity.activityRate > 0"><b>+</b><strong>{{activity.activityRate}}</strong>％</span></td>-->
+                                    <!--<td width="25%"><strong>{{activity.deadline}}</strong>天</td>-->
+                                    <!--<td width="32%"><a href="" class="btn">立即抢购</a></td>-->
+                                <!--</tr>-->
+                                <!--<tr class="bot">-->
+                                    <!--<td><p>历史年化收益率</p></td>-->
+                                    <!--<td><p>产品期限</p></td>-->
+                                    <!--<td></td>-->
+                                <!--</tr>-->
+                            <!--</table>-->
+                        <!--</div>-->
+                        <!--<div class="inner" ui-sref="main.billDetail({ id: activity.id })">-->
+                            <!--<div class="title">-->
+                                <!--活动标一<span class="txt">投资1000元 赢取iPhon8</span>-->
+                                <!--<span class="home-ipad"></span>-->
+                            <!--</div>-->
+                            <!--<table class="list">-->
+                                <!--<tr>-->
+                                    <!--<td width="43%" class="rate"><strong>{{activity.rate}}</strong>％<span ng-if="activity.activityRate > 0"><b>+</b><strong>{{activity.activityRate}}</strong>％</span></td>-->
+                                    <!--<td width="25%"><strong>{{activity.deadline}}</strong>天</td>-->
+                                    <!--<td width="32%"><a href="" class="btn">立即抢购</a></td>-->
+                                <!--</tr>-->
+                                <!--<tr class="bot">-->
+                                    <!--<td><p>历史年化收益率</p></td>-->
+                                    <!--<td><p>产品期限</p></td>-->
+                                    <!--<td></td>-->
+                                <!--</tr>-->
+                            <!--</table>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--新手专区-->
+                <div class="promod phone-promod">
+                    <div class="data border0">
+                        <div class="inner">
+                            <div class="caption">
+                                <div><img src="/images/home/newIco.png"/><i>新手专区</i>实现投资第一桶金</div>
+                            </div>
+                            <div class="innerCnt" ui-sref="main.billDetail({ id: newhand.id })">
+                                <div class="redPacket">
+                                    <img ui-sref="zhuce" src="/images/home/redPacket.png"/>
+                                </div>
+                                <div class="info">
+                                    <div class="title">{{newhand.fullName}}<span class="txt">可用新手红包</span>
+                                    </div>
+                                    <table class="list">
+                                        <tr>
+                                            <td width="30%" class="rate"><strong>{{newhand.rate}}</strong>％</td>
+                                            <td width="37%"><strong>{{newhand.deadline}}</strong>天</td>
+                                            <!--<td width="33%"><a class="btn">立即抢购</a></td>-->
+                                            <td width="33%">
+                                                <div class="toInvest">
+                                                    <a class="invest-btn">　立即抢购　</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="bot">
+                                            <td width="30%"><p>历史年化收益率</p></td>
+                                            <td width="37%"><p>投资期限</p></td>
+                                            <td width="33%"><p>限投一次</p></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--热门活动-->
+                        <div class="inner">
+                            <div class="caption">
+                                <div><img src="/images/home/hotIco.png"/><i>热门活动</i>期期送好礼</div>
+                            </div>
+                            <div class="innerCnt act" ng-if="activity.status == 5" ui-sref="main.billDetail({ id: activity.id })">
+                                <div class="redPacket margin0">
+                                    <img ng-src="{{activity.pcIndexImgUrl}}"/>
+                                </div>
+                                <div class="info">
+                                    <div class="title">{{activity.fullName}}<span class="txt intro"><i>{{activity.pcIndexIntroduce}}</i></span>
+                                    </div>
+                                    <table class="list">
+                                        <tr>
+                                            <td width="30%" class="rate"><strong>{{activity.rate}}</strong>％</td>
+                                            <td width="37%"><strong>{{activity.deadline}}</strong>天</td>
+                                            <!--<td width="33%"><a class="btn">立即抢购</a></td>-->
+                                            <td width="33%">
+                                                <div class="toInvest">
+                                                    <a href class="invest-btn">立即抢购</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="bot">
+                                            <td width="30%"><p>历史年化收益率</p></td>
+                                            <td width="37%"><p>投资期限</p></td>
+                                            <td width="33%"><p></p></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="innerCnt act" ng-if="activity.status != 5" ui-sref="luckyDraw">
+                                <div class="redPacket margin0">
+                                    <!--<img src="/images/luckyDraw/jdk.png"/>-->
+                                    <img ng-src="{{!!activityReward ? activityReward.pcIndexImgUrl :'/images/luckyDraw/jdk.png'}}"/>
+                                </div>
+                                <div class="info">
+                                    <div class="title">沪深活动标<span class="txt intro"><i>投资白拿{{!!activityReward ? activityReward.name :'京东卡'}}</i></span>
+                                    </div>
+                                    <table class="list">
+                                        <tr>
+                                            <td width="30%" class="rate"><strong>8</strong>％</td>
+                                            <td width="37%"><strong>180</strong>天</td>
+                                            <td width="33%">
+                                                <div class="toInvest">
+                                                    <a href class="invest-btn">立即预约</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="bot">
+                                            <td width="30%"><p>历史年化收益率</p></td>
+                                            <td width="37%"><p>投资期限</p></td>
+                                            <td width="33%"><p></p></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--精选产品-->
+                <div class="promod backfff">
+                    <div class="side side-last">
+                        <h2>精选产品</h2>
+                        <p>定期投资</p>
+                        <p>分散投标</p>
+                        <a href="/main/bankBillList" class="more">查看更多</a>
+                        <p class="packet"></p>
+                    </div>
+                    <div class="data">
+                        <!--精选产品-->
+                        <div class="product-wrap">
+                            <div class="product">
+                                <table>
+                                    <tr>
+                                        <td ng-repeat="item in listDatas">
+                                            <!--立即投资-->
+                                            <div class="cuowei mode pull-left" ng-show="item.status == 5" ui-sref="main.billDetail({ id: item.id })">
+                                                <!--<i class="home-hot" ng-if="item.isHot == 1"></i>-->
+                                                <div class="top">
+                                                    <!--<i class="home-shang" ng-if="item.billType == 1"></i>-->
+                                                    {{item.fullName}}
+                                                    <div class="platformDis">平台贴息{{item.activityRate}}%</div>
+                                                </div>
+                                                <div class="data">
+                                                <span>
+                                                    <b>{{item.rate}}</b>
+
+                                                    <!-- 双旦红包加息60 -->
+                                                    <i ng-if="shuangDanActivity && item.deadline==60 && map.activity_60>0">
+                                                        +{{map.activity_60+item.activityRate}}%
+                                                    </i>
+                                                    <!-- 双旦红包加息180 -->
+                                                    <i ng-if="shuangDanActivity && item.deadline==180 && map.activity_180>0">
+                                                        +{{map.activity_180+item.activityRate}}%
+                                                    </i>
+                                                    <!-- 活动利率 -->
+                                                    <i class="" ng-if="item.activityRate != undefined && item.activityRate > 0 && !shuangDanActivity">
+
+                                                        +{{item.activityRate}}%
+                                                        <!--<b class="flag">平台贴息</b>-->
+                                                    </i>
+                                                </span>
+                                                    <p>历史年化收益率</p>
+                                                    <div class="egg-box" ng-click="ifGoDetail($event,item)" ng-show="item.maxActivityCoupon != undefined">
+                                                        <div class="egg-map">
+                                                            <div class="egg-shake-icon shake-rotate megg" ng-click="showEggDialog(item,'home')" ng-show="item.isEgg == 1"></div>
+                                                            <div class="egg-mopenegg" ng-show="item.isEgg == 2"><i>+{{item.maxActivityCoupon}}%</i></div>
+                                                        </div>
+                                                        <div class="egg-msg" ng-show="item.isEgg == 1">最高<br>{{item.maxActivityCoupon}}%</div>
+                                                        <div class="num" ng-show="item.isEgg == 2">满标<br>作废</div>
+                                                        <i class="egg-mshadow"></i>
+                                                    </div>
+                                                    <!-- 双旦红包 -->
+                                                    <div class="tearbag" ng-if="shuangDanActivity && (item.deadline==60 || item.deadline==180)" ng-click="noGoDetail($event)" ui-sref="newlayout.christmas({goTear:true})"><i class="christmas-txt"></i></div>
+                                                </div>
+                                                <div class="percentage-box homepercent">
+                                                    <!--<i>{{item.pert | setProgress}}1%</i>-->
+                                                    <div class="percentage homeper"><span ng-attr-style="width: {{item.pert | setProgress}}%"></span></div>
+                                                </div>
+                                                <div class="deadline">
+                                                    <!--<p>计息方式：次日计息</p>-->
+                                                    <p>期限：<b>{{item.deadline}}</b>天</p>
+                                                </div>
+                                                <!--<div class="percentage-box">-->
+                                                    <!--<i>{{item.pert | setProgress}}%</i>-->
+                                                    <!--<div class="percentage"><span ng-attr-style="width: {{item.pert | setProgress}}%"></span></div>-->
+                                                <!--</div>-->
+                                                <div class="toInvest">
+                                                    <a href class="invest-btn" ng-class="{true: 'nouse-btn', false: ''}[item.status == 6 || item.status == 8 || item.status == 9]">{{(item.status | isProductType).cnvalue}}</a>
+                                                </div>
+                                            </div>
+
+                                            <!--不可点击的状态-->
+                                            <div class="cuowei mode pull-left" ng-show="item.status != 5" ui-sref="main.billDetail({ id: item.id })">
+                                                <!--<i class="home-hot" ng-if="item.isHot == 1"></i>-->
+                                                <div class="top">
+                                                    <!--<i class="home-shang" ng-if="item.billType == 1"></i>-->
+                                                    {{item.fullName}}
+                                                    <div class="platformDis">平台贴息{{item.activityRate}}%</div>
+                                                </div>
+                                                <div class="data">
+                                                <span>
+                                                    <b>{{item.rate}}</b>
+
+                                                    <!-- 双旦红包加息60 -->
+                                                    <i ng-if="shuangDanActivity && item.deadline==60 && map.activity_60>0">
+                                                        +{{map.activity_60+item.activityRate}}%
+                                                    </i>
+                                                    <!-- 双旦红包加息180 -->
+                                                    <i ng-if="shuangDanActivity && item.deadline==180 && map.activity_180>0">
+                                                        +{{map.activity_180+item.activityRate}}%
+                                                    </i>
+                                                    <!-- 活动利率 -->
+                                                    <i class="" ng-if="item.activityRate != undefined && item.activityRate > 0 && !shuangDanActivity">
+
+                                                        +{{item.activityRate}}%
+                                                        <!--<b class="flag">平台贴息</b>-->
+                                                    </i>
+                                                </span>
+                                                    <p>历史年化收益率</p>
+                                                    <div class="egg-box" ng-click="ifGoDetail($event,item)" ng-show="item.maxActivityCoupon != undefined">
+                                                        <div class="egg-map">
+                                                            <div class="egg-shake-icon shake-rotate megg" ng-click="showEggDialog(item,'home')" ng-show="item.isEgg == 1"></div>
+                                                            <div class="egg-mopenegg" ng-show="item.isEgg == 2"><i>+{{item.maxActivityCoupon}}%</i></div>
+                                                        </div>
+                                                        <div class="egg-msg" ng-show="item.isEgg == 1">最高<br>{{item.maxActivityCoupon}}%</div>
+                                                        <div class="num" ng-show="item.isEgg == 2">满标<br>作废</div>
+                                                        <i class="egg-mshadow"></i>
+                                                    </div>
+                                                    <!-- 双旦红包 -->
+                                                    <div class="tearbag" ng-if="shuangDanActivity && (item.deadline==60 || item.deadline==180)" ng-click="noGoDetail($event)" ui-sref="newlayout.christmas({goTear:true})"><i class="christmas-txt"></i></div>
+                                                </div>
+                                                <div class="percentage-box homepercent">
+                                                    <!--<i>{{item.pert | setProgress}}1%</i>-->
+                                                    <div class="percentage homeper"><span ng-attr-style="width: {{item.pert | setProgress}}%"></span></div>
+                                                </div>
+                                                <div class="deadline">
+                                                    <!--<p>计息方式：次日计息</p>-->
+                                                    <p>期限：<b>{{item.deadline}}</b>天</p>
+                                                </div>
+                                                <!--<div class="percentage-box">-->
+                                                <!--<i>{{item.pert | setProgress}}%</i>-->
+                                                <!--<div class="percentage"><span ng-attr-style="width: {{item.pert | setProgress}}%"></span></div>-->
+                                                <!--</div>-->
+                                                <div class="toInvest disable">
+                                                    <a href class="invest-btn" style="margin: 0 auto;background: #d1d1d1!important; width: 138px;color: #fff!important;border-radius: 0 ;" ng-class="{true: 'nouse-btn noUse', false: ''}[item.status == 6 || item.status == 8 || item.status == 9]">{{(item.status | isProductType).cnvalue}}</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--广告banner-->
+            <div class="pro-banner">
+                <a class="item" href="https://hushenlc.cn/main/jt/XWXQ?newId=148&t=0" target="_blank"><img src="/images/home/zx.png" /></a>
+                <!--<a class="item" ui-sref="creditRating" target="_blank"><img src="/images/home/zx.png" /></a>-->
+                <!--<a class="item" ui-sref="main.jt.XWXQ({newId:138,t:0})" target="_blank"><img src="/images/home/hlw.png" /></a>-->
+
+                <a class="item" href="https://hushenlc.cn/main/jt/XWXQ?newId=138&t=0" target="_blank"><img src="/images/home/hlw.png" /></a>
+                <a class="item" ui-sref="main.hswelfare" target="_blank"><img src="/images/home/racd.png" /></a>
+            </div>
+            <!--新闻-->
+            <div class="news-wrap">
+                <div class="news-con">
+                    <div class="news tips">
+                        <div class="title"><a class="more" href="/main/jt/GSGG" target="_blank">更多>></a>
+                            <span>网站公告</span>
+                        </div>
+                        <div class="con">
+                            <ul>
+                                <li ng-repeat="item in noticeList"><span>{{item.create_time|date:"yyyy.MM.dd"}}</span><a target="_blank" href="{{a|webIE8}}main/jt/GGXQ?newId={{item.arti_id}}&t=2">{{item.title}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="news">
+                        <div class="title"><a class="more" ui-sref="main.jt.GSDT" href="" target="_blank">更多>></a>
+                            <span>媒体动态</span>
+                        </div>
+                        <news news="news"></news>
+                    </div>
+                </div>
+            </div>
+
+            <!--合作机构-->
+            <div class="partners">
+            <div class="partner-title">
+                <span>合作机构</span>
+                <!--<a href="" class="more">更多>></a>-->
+            </div>
+            <div class="partner-box">
+                <ul class="partner-list">
+                    <li class="partner-box-item"><img src="/images/home-partners/01.png"></li>
+                    <li class="partner-box-item"><img src="/images/home-partners/02.png"></li>
+                    <li class="partner-box-item"><img src="/images/home-partners/03.png"></li>
+                    <li class="partner-box-item"><img src="/images/home-partners/04.png"></li>
+                    <li class="partner-box-item"><img src="/images/home-partners/05.png"></li>
+                    <li class="partner-box-item"><a href="http://www.wdzj.com/" target="_blank"><img src="/images/home-partners/06.png"></a></li>
+                    <li class="partner-box-item"><img src="/images/home-partners/07.png"></li>
+                    <li class="partner-box-item"><img src="/images/home-partners/08.png"></li>
+                    <li class="partner-box-item"><img src="/images/home-partners/09.png"></li>
+                    <li class="partner-box-item"><img src="/images/home-partners/010.png"></li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <!-- 内容结束 -->
+
+        <!-- 右侧边栏 -->
+        <float-menu></float-menu>
+        <!--<div class="float-ad" ng-show="isShowGg">-->
+            <!--<a href="{{floatList.location}}" target="_blank"><img src="{{floatList.imgUrl}}"></a>-->
+        <!--</div>-->
+
+        <!--<div class="home-video-wrap" ng-click="closeVideo()" ng-show="showVideo==true">-->
+            <!--<div class="video" ng-click="noGoDetail($event)">-->
+                <!--<span ng-click="closeVideo()">×</span>-->
+                <!--<video src="" controls="controls" width="800" height="450" poster="images/pc-d1cj.png">您的浏览器不支持该视频播放。</video>-->
+                <!--&lt;!&ndash; https://www.hushenlc.cn/images/shipin/hepingjusheng.mp4 &ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div ng-if="isShowGangGao" ng-init="isShowGangGao=false">-->
+            <!--<a target="_blank" href="{{popList.location}}" ng-click="closeAD()">-->
+                <!--<div class="donghuawrap" style="width: 100%;height: 100%;position: fixed;top: 0;left: 0;z-index: 998;background: rgba(0,0,0,.7);">-->
+
+                <!--</div>-->
+                <!--<div class="donghua" style="width:416px;height:613px;position: fixed;top: 50%;left: 50%;z-index: 999;margin:-300px 0 0 -208px;">-->
+                    <!--<img class="donghua" style="width:100%;height:100%;" src="{{popList.imgUrl}}">-->
+                    <!--<a href="" ng-click="closeAD()">-->
+                        <!--<div style="width: 44px;height: 44px;border-radius: 100px;left: 191px;top: 553px;line-height: 50px;position: absolute;text-align: center;font-size: 60px;opacity: 0;">×</div>-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</a>-->
+        <!--</div>-->
+
+    </div>
+</div>

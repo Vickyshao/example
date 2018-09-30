@@ -1,0 +1,50 @@
+<!-- <div class="investgift-book-dialog-wrap" ng-if="bookStatus == 'before'">
+	<a href="" class="close" ng-click="closeDialog()">×</a>
+	<div class="title">预约商品</div>
+	<div class="con">
+		<div class="mytitle">{{prize.name}}<span>（{{prize.simpleName}}）</span></div>
+		<ul>
+			<li>投资金额：<i>{{prize.amount | currency:''}}</i>元</li>
+			<li>预计收益：<i>{{((product.rate)/100 / 360 * product.nowNum * product.deadline) | isNumber2}}</i>元</li>
+		</ul>
+	</div>
+	<a href="" class="book" ng-click="bookNow()">确认预约</a>
+	<p class="bot">*预约后您的专属客服将会在下期活动上线时通知您</p>
+</div>
+
+<div class="investgift-book-dialog-wrap" ng-if="bookStatus == 'next'">
+	<a href="" class="close" ng-click="closeDialog()">×</a>
+	<div class="investgift-gou"></div>
+	<div class="success">恭喜 预约成功！</div>
+	<p class="center">新一期即将上线，敬请期待！</p>
+	<a href="" class="sure" ng-click="closeDialog()">确认</a>
+</div> -->
+
+<div class="investgift-book-dialog-wrapper" ng-if="bookStatus == 'before'">
+	<a href="" class="close" ng-click="closeDialog()"></a>
+	<div class="con">
+		<div class="goods">
+			<i></i>
+			<div class="data">
+				<span>预约商品：</span>
+				<p>{{prize.name}}</p>
+			</div>
+		</div>
+		<ul>
+			<li>投资金额：<i>¥{{prize.amount | currency:''}}</i></li>
+			<li>预计收益：<i>¥ {{((product.rate+product.activityRate)/100 / 360 * product.nowNum * product.deadline) | isNumber2}}</i></li>
+		</ul>
+	</div>
+	<div class="btns">
+		<a href="" class="cancel" ng-click="closeDialog()">取消</a>	
+		<a href="" class="book" ng-click="bookNow()">确认预约</a>
+	</div>
+	<p class="bot">预约后您的专属客服会在2个工作日内联系您</p>
+</div>
+
+<div class="investgift-book-dialog-wrapper" ng-if="bookStatus == 'next'">
+	<a href="" class="close" ng-click="closeDialog()"></a>
+	<div class="investgift-smile"></div>
+	<div class="success">恭喜 预约成功！</div>
+	<a href="" class="sure" ng-click="closeDialog()">确认</a>
+</div>

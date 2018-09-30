@@ -1,0 +1,60 @@
+<div class="account-mymsg-wrap winningRecord">
+    <div class="account-common-title">中奖记录</div>
+    <div class="account-common-con">
+        <div class="coupon-wrap">
+            <div class="account-top-box">
+                <p ng-click="clickStatus(1)" ng-class="{'top-list':action==1}">全部</p>
+                <p ng-click="clickStatus(3)" ng-class="{'top-list':action==3}">已开奖</p>
+                <p ng-click="clickStatus(2)" ng-class="{'top-list':action==2}" style="border-right: 1px solid #ECECEC;">未开奖</p>
+            </div>
+            <div class="winningTab">
+            	<div class="winningTab-head">
+                    <span class="cloumn1">活动名称</span>
+                    <span class="cloumn2">投资项目</span>
+                    <span class="cloumn3">投资金额（元）</span>
+                    <span class="cloumn4">中奖结果</span>
+                    <span class="cloumn5">操作</span>
+                </div>
+            	<div class="winningTab-body">
+            		<div class="winningTab-box" ng-repeat="item in data">
+            			<div class="winningTab-item">
+                            <span class="cloumn1">{{item.activityName}}</span>
+                            <span class="cloumn2">{{item.productName}}</span>
+                            <span class="cloumn3">{{item.amount|currency:"￥"}}</span>
+                            <span class="cloumn4" ng-class="{red:item.prizeStatus==2}">{{item.prizeStatus|prizeStatus}}</span>
+                            <span class="cloumn5" ng-click="showInfo($event)">查看</span>
+                        </div>
+                        <div class="winningTab-info">
+                            <div class="codes-out clearfix" ng-if="item.isFull==0">
+                                <p>我的幸运码：</p>
+                                <div class="codes">
+                                    <span ng-repeat="x in item.luckCodes" ng-class="{'blue':item.prizeStatus==0,'gray':item.prizeStatus==1 || item.prizeStatus==2 && !(x==item.prizeCode),'red':item.prizeStatus==2 && (x==item.prizeCode)}">{{x}}</span>
+                                </div>
+                            </div>
+                            <div class="codes-out clearfix" ng-if="item.isFull==1">
+                                <p>我的幸运码：</p>
+                                <div class="codes" style="line-height:44px;">全部抽奖码</div>
+                            </div>
+                            <a ng-click="gotoDetail(item.pid)">查看中奖号码</a>
+                        </div>
+                        <!-- 原版 -->
+            			<!-- <div class="winningTab-info">
+                            <p>活动奖励：<span ng-class="{red:item.prizeStatus==2}">{{item.activityPrizes}}</span></p>
+                            <p>我的幸运码：<span style="color:#444;" ng-draw drawdata='item.luckCodes' drawvalue="item.prizeCode"></span></p>
+                                                    <a ng-click="gotoDetail(item.pid)">查看中奖号</a>
+                        </div> -->
+            		</div>
+            	</div>
+            </div>
+            <div class="page-wrap">
+                <div class="page-box">
+                    <a href ng-click="onClick('beforePage',page.pageOn-1)" class="prev">上一页</a>
+                    <ul>
+                        <li ng-click="onClick('currentPage',a)" ng-repeat="a in totalPage|pageFilter:page.pageOn track by $index"><a href="" ng-class="{true: 'cur', false: ''}[page.pageOn == a]">{{a}}</a></li>
+                    </ul>
+                    <a href class="next" ng-click="onClick('nextPage',page.pageOn+1)">下一页</a>
+                </div><span>共{{totalPage}}页</span>
+            </div>
+        </div>
+    </div>
+</div>

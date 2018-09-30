@@ -1,0 +1,74 @@
+<div class="newhand-success-wrapper" ng-controller="newhandDialogCtrl">
+	<div class="newhand-success-wrap" ng-show="showType == 'a'">
+		<div class="success-stepa">
+			<div class="title"><i class="new-icon"></i>恭喜您，您的本次投资已成功！</div>
+			<div class="total">
+				<span>本次投资金额：<i>{{product.nowNum | currency:''}}</i>元</span>
+				<span class="income">预计收益：<i>{{((product.rate + product.activityRate)/100 / 360 * product.nowNum * product.deadline) | isNumber2 }}</i>元</span>
+				<span>还款日期：{{hkDate | date: 'yyyy-MM-dd'}}</span>
+			</div>
+			<div class="bag-wrap">
+				<i class="new-one"></i>
+				<div class="new-screat"></div>
+				<a href="" class="btn" ng-click="goNext()">续投领现金红包</a><a href="" class="giveup" ng-click="showDialog('giveup')">放弃机会></a>
+			</div>
+		</div>
+	</div>
+	<div class="next-invest-wrap" ng-show="showType == 'b'">
+		<div class="title">请选择想要领取的现金金额</div>
+		<div class="box">
+			<i class="new-once"></i>
+			<ul class="bag">
+				<li ng-repeat="item in data" ng-class="{true: 'active'}[deadline == item.deadline]">
+					<div class="new-littlebag"><b>{{item.amount}}元</b><i>现金红包</i></div>
+					<div class="new-bigbag" ng-click="showDetailData(item)"><b>{{item.amount}}元</b><i>现金红包</i></div>
+					<p>续投<span>{{item.deadline}}</span>天</p>
+				</li>
+			</ul>
+			<div class="new-list">
+				<ul>
+					<li><p ng-repeat="item in list">{{item.mobilePhone}}<span>领取{{item.amount}}元</span></p></li>
+				</ul>
+			</div>
+		</div>
+		<div class="data-wrap" ng-repeat="item in data" ng-show="deadline == item.deadline && showDataAll == true">
+			<div class="tip">想立即领取<span>{{item.amount}}</span>元现金么？新手标到期后继续投资<i>{{item.deadline}}天</i>产品，即可领取！</div>
+			<div class="info-box">
+				<table>
+					<tr>
+						<td width="28%">
+							<div>{{item.investAmount}}元</div>
+							<p>新手标到期后投资金额</p>
+						</td>
+						<td>
+							<div>{{item.deadline}}天</div>
+							<p>投资期限</p>
+						</td>
+						<td>
+							<div class="data"><i>{{item.rate | currency:''}}</i>%<span ng-if="item.activityRate != undefined && item.activityRate > 0"> +<i>{{item.activityRate | currency:''}}</i>%</span></div>
+							<p>历史年化收益率</p>
+						</td>
+						<td>
+							<div class="data">{{item.profitAmount}}元</div>
+							<p>预计收益</p>
+						</td>
+						<td>
+							<div class="data">{{item.amount}}元</div>
+							<p>现金红包</p>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<a href="" class="next-btn" ng-click="showDialog('sure')">续投领现金红包</a>
+			<a href="" class="giveup-btn" ng-click="showDialog('giveup')">放弃机会></a>
+		</div>
+		<div class="tips">
+			<p>温馨提示：</p>
+			<ul>
+				<li>1.续投所获奖励不可与其他福利同时享受。</li>
+				<li>2.投资金额即1天新手标到期后的投资本金，续投时不可修改金额。</li>
+				<li>3.续投申请成功即视为您同意续投方案，不可取消，如有疑问请拨打400-031-9909。</li>
+			</ul>
+		</div>
+	</div>
+</div>                           

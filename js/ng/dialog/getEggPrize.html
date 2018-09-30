@@ -1,0 +1,20 @@
+<div class="egg-dialog-wrap smashEgg">
+    <a href="" class="close" ng-click="closeDialog()">×</a>
+    <div class="fir-dialog dialog-wrap eggfirst">
+        <div class="topPro">
+            <div class="proName"> 恭喜您砸到
+                <!--<span>小米耳机</span>-->
+                <span>{{drAward.awardName}}</span>
+            </div>
+            <!--<img ng-src="{{drAward.picUrl}}" width="285" height="185"/>-->
+            <img ng-src="{{drAward.picUrl}}" height="185"/>
+        </div>
+        <div class="info">
+            领取条件：单笔投资定期标满{{drAward.useCondition}}元（新手标、活动标除外）<br/>
+            有效期限：次日00:00
+        </div>
+        <div class="btns">
+            <img src="/images/smashEgg/goGet.png" ng-click="channelUser()"/>
+        </div>
+    </div>
+</div>

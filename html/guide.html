@@ -1,0 +1,119 @@
+<div class="newguide-wrapper" ng-controller="newguideCtrl">
+	<div class="banner"></div>
+	<div class="modea-wrap">
+		<div class="mode">
+			<div class="title">一分钟认识沪深</div>
+			<div class="con">
+				沪深理财是由沪深金控资产管理有限公司100%全资控股的互联网金融信息平台<br>致力于为广大中小微型企业主、都市白领等投资者<br>提供<span>风控更强、体验更好、收益更高</span>的线上金融投资服务。
+			</div>
+			<div class="newguide-process"></div>
+		</div>
+	</div>
+	<div class="modeb-wrap">
+		<div class="mode">
+			<div class="title">一分钟找到安全感</div>
+			<div class="list">
+				 <div class="mod">
+					<i class="newguide-gqkg"></i>
+					<div class="content">
+						<p class="t"><b class="newguide-dot"></b>实力雄厚</p>
+						<p class="c">实缴1亿<br>注册资金</p>
+					</div>
+				</div>
+				<div class="mod">
+					<i class="newguide-lv"></i>
+					<div class="content">
+						<p class="t"><b class="newguide-dot"></b>银行存管</p>
+						<p class="c">正式签约<br>
+							存管协议</p>
+					</div>
+				</div>
+				<div class="mod">
+					<i class="newguide-other"></i>
+					<div class="content">
+						<p class="t"><b class="newguide-dot"></b>风险保障</p>
+						<p class="c">精准风控<br>优先垫付</p>
+					</div>
+				</div>
+				<div class="mod">
+					<i class="newguide-six"></i>
+					<div class="content">
+						<p class="t"><b class="newguide-dot"></b>合规经营</p>
+						<p class="c">专业级律所<br>法律支持</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modec-wrap">
+		<div class="mode">
+			<div class="title">一分钟通晓投资产品</div>
+			<div class="pro">
+				<ul>
+					<li>
+						<a href="/main/bankBillList" target="_blank">
+							<!--<div class="top">初露锋芒 · 灵活投资</div>-->
+							<div class="newguide-pleasure"></div>
+							<!--<div class="info">-->
+								<!--<p><i class="newguide-tip"></i>产品期限:<span><b>35天</b></span></p>-->
+								<!--<p><i class="newguide-tip"></i>历史年化收益率:<span><strong>6</strong>%+<strong>4.5</strong>%</span></p>-->
+							<!--</div>-->
+						</a>
+					</li>
+					<li>
+						<a href="/main/bankBillList" target="_blank">
+							<!--<div class="top">步步高升 · 轻松投资</div>-->
+							<div class="newguide-freely"></div>
+							<!--<div class="info">-->
+								<!--<p><i class="newguide-tip"></i>产品期限:<span><b>60天</b></span></p>-->
+								<!--<p><i class="newguide-tip"></i>历史年化收益率:<span><strong>7.5</strong>%+<strong>3.8</strong>%</span></p>-->
+							<!--</div>-->
+						</a>
+					</li>
+					<li>
+						<a href="/main/bankBillList" target="_blank">
+							<!--<div class="top">坐享其成 · 高效投资</div>-->
+							<div class="newguide-wait"></div>
+							<!--<div class="info">-->
+								<!--<p><i class="newguide-tip"></i>产品期限:<span><b>180天</b></span></p>-->
+								<!--<p><i class="newguide-tip"></i>历史年化收益率:<span><strong>10.5</strong>%+<strong>1.5</strong>%</span></p>-->
+							<!--</div>-->
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="moded-wrap">
+		<div class="mode">
+			<div class="title">一分钟开启赚钱之旅</div>
+			<div class="step-icons">
+				<p class="newguide-steptruea" ng-show="showStep == 1"></p>
+				<p class="newguide-stepnora" ng-show="showStep != 1" ng-click="showStep = 1"></p>
+				<p class="newguide-steptrueb" ng-show="showStep == 2"></p>
+				<p class="newguide-stepnorb" ng-show="showStep != 2" ng-click="showStep = 2"></p>
+				<p class="newguide-steptruec" ng-show="showStep == 3"></p>
+				<p class="newguide-stepnorc" ng-show="showStep != 3" ng-click="showStep = 3"></p>
+				<p class="newguide-steptrued" ng-show="showStep == 4"></p>
+				<p class="newguide-stepnord" ng-show="showStep != 4" ng-click="showStep = 4"></p>
+			</div>
+			<div class="window">
+				<div class="newguide-prev" ng-click="prev()"></div>
+				<div class="newguide-window">
+					<div class="box">
+						<ul>
+							<li ng-if="showStep == 1"><p class="newguide-reg"></p></li>
+							<li ng-if="showStep == 2"><p class="newguide-certification"></p></li>
+							<li ng-if="showStep == 3"><p class="newguide-recharge"></p></li>
+							<li ng-if="showStep == 4"><p class="newguide-invest"></p></li>
+						</ul>
+					</div>
+				</div>
+				<div class="newguide-next" ng-click="next()"></div>
+			</div>
+			<a href="/zhuce" class="regbtn">立即注册领红包</a>
+			<p class="bot">其它疑问？您还可以<a href="/main/jt2/help">查看帮助中心</a></p>
+		</div>
+	</div>
+	<float-menu></float-menu>
+</div>

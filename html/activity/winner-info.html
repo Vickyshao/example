@@ -1,0 +1,65 @@
+<div class="special-winner-wrapper" ng-controller="winnerInfoCtrl">
+	<div class="special-winner-wrap">
+		<div class="special-winner-box">
+			<div class="title"><a href="/newlayout/special">返回>></a><i></i>往期中奖者信息</div>
+			<div class="current-wrap">
+				<!-- <a href="{{curHistory.prizeVideoLink}}" target="_blank"> -->
+					<div class="video" style="background: #000;">
+						<!-- <span class="special-defaultbg"></span> -->
+						<!-- <i>第 {{curHistory.activityPeriods}} 期</i> -->
+						<!-- <embed id="video" ng-src="" allowFullScreen="true" autoplay="true" quality="high" width="660" height="376" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed> -->
+					</div>
+				<!-- </a> -->
+				<div class="info">
+					<dl>
+						<dt><img ng-if="curHistory.prizeHeadPhoto != '' && curHistory.prizeHeadPhoto != undefined" src="{{curHistory.prizeHeadPhoto}}"><img ng-if="curHistory.prizeHeadPhoto == '' || curHistory.prizeHeadPhoto == undefined" src="images/iphone/defaultheader.png"></dt>
+						<dd>
+							<div class="num"><a href="/main/billDetail?id={{curHistory.pid}}" target="_blank">查看本期</a></div>
+							<p>中奖号<span>{{curHistory.prizeCode}}</span></p>
+							<p>中奖者<span>{{curHistory.prizeMobile}}</span></p>
+						</dd>
+					</dl>
+					<div class="con">
+						<p class="yin">TA说<i class="iphone-pre"></i></p>
+						<div class="text">{{curHistory.prizeContentL}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="past-wrap">
+				<div class="past">
+					<dl ng-repeat="item in history" ng-click="changeInfo(item)" ng-class="{true: 'active'}[item.activityPeriods == curNum]">
+						<dt><img ng-if="item.prizeHeadPhoto != '' && item.prizeHeadPhoto != undefined" src="{{item.prizeHeadPhoto}}"><img ng-if="item.prizeHeadPhoto == '' || item.prizeHeadPhoto == undefined" src="images/iphone/defaultheader.png"></dt>
+						<dd>
+							<span><i>TA</i>说</span>
+							<p>{{item.prizeContentS}}</p>
+						</dd>
+					</dl>
+				</div>
+			</div>
+
+			<div class="page-wrap" ng-if="mylistPage.pages.length < 7">
+				<div class="page-box">
+					<a href ng-click="onClickPage('beforPage',a)" class="prev">上一页</a><ul><li ng-click="onClickPage('currentPage',a)" ng-repeat="a in mylistPage.pages"><a href="" ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == a]">{{a}}</a></li></ul><a href class="next" ng-click="onClickPage('nextPage',a)">下一页</a>
+				</div><span>共{{mylistPage.TotalPage}}页</span>
+			</div>
+			
+			<div ng-if="mylistPage.pages.length >= 7">
+				<div class="page-wrap" ng-if="mylistPage.pageOn <= 5">
+					<div class="page-box">
+						<a href ng-click="onClickPage('beforPage',a)" class="prev">上一页</a><ul><li ng-click="onClickPage('currentPage',1)"><a ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == 1]" href="">1</a></li><li ng-click="onClickPage('currentPage',2)"><a ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == 2]" href="">2</a></li><li ng-click="onClickPage('currentPage',3)"><a ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == 3]" href="">3</a></li><li ng-click="onClickPage('currentPage',4)"><a ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == 4]" href="">4</a></li><li ng-click="onClickPage('currentPage',5)"><a ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == 5]" href="">5</a></li><li ng-if="mylistPage.pageOn == 5" ng-click="onClickPage('currentPage',6)"><a href="">6</a></li><li ng-if="mylistPage.pageOn == 5" ng-click="onClickPage('currentPage',7)"><a href="">7</a></li><li ng-if="mylistPage.pages.length != 0"><span>...</span></li></ul><a href class="next" ng-click="onClickPage('nextPage',a)">下一页</a>
+					</div><span>共{{mylistPage.TotalPage}}页</span>
+				</div>
+				<div class="page-wrap" ng-if="mylistPage.pageOn > 5 && mylistPage.pageOn <= (mylistPage.pages.length - 4)">
+					<div class="page-box">
+						<a href ng-click="onClickPage('beforPage',mylistPage.pageOn)" class="prev">上一页</a><ul><li ng-click="onClickPage('currentPage',1)"><a href="">1</a></li><li ng-click="onClickPage('currentPage',2)"><a href="">2</a></li><li><span>...</span></li><li ng-click="onClickPage('currentPage',mylistPage.pageOn-2)"><a href="">{{mylistPage.pageOn-2}}</a></li><li ng-click="onClickPage('currentPage',mylistPage.pageOn-1)"><a href="">{{mylistPage.pageOn-1}}</a></li><li ng-click="onClickPage('currentPage',mylistPage.pageOn)"><a href="" class="cur">{{mylistPage.pageOn}}</a></li><li ng-click="onClickPage('currentPage',mylistPage.pageOn+1)"><a href="">{{mylistPage.pageOn+1}}</a></li><li ng-click="onClickPage('currentPage',mylistPage.pageOn+2)"><a href="">{{mylistPage.pageOn+2}}</a></li><li><span>...</span></li></ul><a href class="next" ng-click="onClickPage('nextPage',mylistPage.pageOn)">下一页</a>
+					</div><span>共{{mylistPage.TotalPage}}页</span>
+				</div>
+				<div class="page-wrap" ng-if="mylistPage.pageOn > 5 && mylistPage.pageOn > (mylistPage.pages.length - 4)">
+					<div class="page-box">
+						<a href ng-click="onClickPage('beforPage',mylistPage.pageOn)" class="prev">上一页</a><ul><li ng-click="onClickPage('currentPage',1)"><a href="">1</a></li><li ng-click="onClickPage('currentPage',2)"><a href="">2</a></li><li><span>...</span></li><li ng-click="onClickPage('currentPage',mylistPage.pages.length-4)"><a ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == (mylistPage.pages.length - 4)]" href="">{{mylistPage.pages.length-4}}</a></li><li ng-click="onClickPage('currentPage',mylistPage.pages.length-3)"><a ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == (mylistPage.pages.length - 3)]" href="">{{mylistPage.pages.length-3}}</a></li><li ng-click="onClickPage('currentPage',mylistPage.pages.length-2)"><a ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == (mylistPage.pages.length - 2)]" href="">{{mylistPage.pages.length-2}}</a></li><li ng-click="onClickPage('currentPage',mylistPage.pages.length-1)"><a ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == (mylistPage.pages.length - 1)]" href="">{{mylistPage.pages.length-1}}</a></li><li ng-click="onClickPage('currentPage',mylistPage.pages.length)"><a ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == (mylistPage.pages.length)]" href="">{{mylistPage.pages.length}}</a></li></ul><a href class="next" ng-click="onClickPage('nextPage',mylistPage.pageOn)">下一页</a>
+					</div><span>共{{mylistPage.TotalPage}}页</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

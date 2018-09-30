@@ -1,0 +1,67 @@
+<div>
+	<!-- 欢迎栏 -->
+	<div ng-controller="mainCtrl">
+		<!-- 欢迎栏 -->
+		<div ng-hide="isLoginPage" class="top-global-wrapper">
+			<div class="top-content">
+				<div class="tel">
+					<i class="global-topphone"></i>
+					<b>客服热线：<span>{{(a | web).phone}}</span>（工作日：09:00-21:00；   周末及节假日：09:00-18:00）</b>
+				</div>
+				<div class="top-nav">
+					<a href="{{a|webIE8}}main/jt/JSGK?menuName=JSGK" target="_blank">信息披露</a><span style="margin-right: 12px;">|</span><a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">帮助中心</a><span>|</span><div class="appCode"><a href="{{a|webIE8}}downloadApp" target="_blank"><i>手机APP</i></a>
+						<div>
+							<img src="images/global/app.png">
+							<p>手机客户端<br>APP下载</p>
+						</div>
+					</div><span style="margin-left: -4px;">|</span><div class="appCode"><i class="global-topwechat"></i>
+						<div>
+							<img src="images/global/wechat.png">
+							<p>扫一扫<br>关注官方微信</p>
+						</div>
+					</div>
+					<span ng-if="(a | isRegister).register" style="margin: 0 8px 0 -8px;">|</span>
+					<a ng-if="(a | isRegister).register" href="" ng-click="gotoLoginPage('myAccount')">{{(a | isRegister).user.userName}}</a>
+					<i ng-if="(a | isRegister).register">，</i>
+					<a ng-show="(a | isRegister).register" ng-click="userOut()" href="#" class="top-quit">退出</a>
+				</div>
+			</div>
+		</div>
+	<!-- 欢迎栏结束 -->
+
+	<!-- 导航 -->
+				
+		<div class="globalheader-wrapper">
+			<div class="globalheader-wrap">
+				<div ng-click="$state.go('main.home');" class="logo-wrap">
+					<img src="/images/global/logo.png">
+					<span></span>
+					<!--<i class="global-slogo"></i>-->
+					<img class="slogo" src="/images/global/slogo.png">
+				</div>
+				<!-- <i class="christmaslogo"></i> -->
+				<div class="nav-box">
+					<div>
+						<ul>
+							<li><a ng-class="{true: 'active'}[activeNav == 'home']" ng-click="activeNav='home'" href="{{a|webIE8}}main/home">首页</a></li>
+							<li><a ng-class="{true: 'active'}[activeNav == 'bill']" ng-click="activeNav='bill'" href="{{a|webIE8}}main/bankBillList">我要投资</a></li>
+							<li><a ng-class="{true: 'active'}[activeNav == 'help']" ng-click="activeNav='help'" href="{{a|webIE8}}main/guarantee">安全保障</a></li>
+							<li><a ng-class="{true: 'active'}[activeNav == 'new']" ng-click="activeNav='new'" href="{{a|webIE8}}main/guide">新手指引</a></li>
+							<li><a ng-class="{true: 'active'}[activeNav == 'together']" ng-click="activeNav='together'" href="{{a|webIE8}}main/together">活动专区</a></li>
+							<li class="account" ng-if="(a | isRegister).register"><a href="{{a|webIE8}}dl" ng-if="!(a | isRegister).register">我的账户</a><a href="{{a|webIE8}}main/myAccount/accountHome" ng-class="{true: 'active'}[activeNav == 'account']" ng-if="(a | isRegister).register"><i class="drop"></i>我的账户</a><div class="con" ng-show="(a | isRegister).register"><div><a href="{{a|webIE8}}main/myAccount/myAssets">我的资产</a><a href="{{a|webIE8}}main/myAccount/myInvest" ng-click="activeNav = 'account'">我的投资</a><a href="{{a|webIE8}}main/myAccount/myCoupon">我的优惠券</a><a href="{{a|webIE8}}main/myAccount/myMsg">我的消息</a></div></div></li>
+						</ul>
+						<div class="nologin" ng-if="!(a | isRegister).register">
+							<a href="/dl" class="login">登录</a>
+							<a href="/zhuce" class="register">注册送大礼</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 中间容器 -->
+	<div ui-view="" ng-cloak class='ng-scope ng-cloak' style="height:800px;background: #000"></div>
+	<!-- 中间容器结束 -->
+
+</div>

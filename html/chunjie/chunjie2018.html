@@ -1,0 +1,192 @@
+<div ng-controller="mainCtrl">
+    <zt-header></zt-header>
+</div>
+
+<div class="chunjie" ng-controller="chunjie2018Ctrl">
+    <div class="activityOffMask" ng-show="!isInActivityTime">
+        <div class="offLine">
+            <span>砸蛋活动现已结束<br/>敬请留意更多活动</span>
+        </div>
+    </div>
+    <!--计算器-->
+    <div class="myCalc" ng-click="openCalc()">
+        <img src="/images/chunjie/calc.png"/>
+    </div>
+    <div class="topBanner">
+        <div class="banner"> </div>
+    </div>
+
+    <div class="ins">
+        <!--累计年化投资金额为-->
+        <div class="investedAmount">
+            <ul>
+                <li class="amount">您累计年化投资金额为</li>
+                <li ng-show="isLogin"><span>{{myInvestInfo.myAnnualizedAmount}}</span>元</li>
+                <li ng-show="!isLogin" ng-click="isLoginFun()"><a>请先登录</a></li>
+                <li class="amount" ng-show="isLogin && !getFullPrize">距离{{myInvestInfo.awardTypeName}}：年化投资额仅差{{myInvestInfo.gapAnnualizedAmount}}元</li>
+                <li ng-show="isLogin"><div class="sameBtn" ui-sref="main.bankBillList">立即投资</div></li>
+                <li ng-show="!isLogin"><div class="sameBtn" ng-click="isLoginFun()">立即投资</div></li>
+            </ul>
+        </div>
+
+        <div class="investedPeople">
+            <div class="investedCnt">
+            <!--<marquee direction="left" loop="-1" scrollamount="10"  scrolldelay="2" behavior="scroll">-->
+                  <span ng-repeat="item in winningRecords">{{item.realname}}{{item.winningTime | date: 'yyyy.M.d'}}获得{{item.awardName}}</span>
+            <!--</marquee>-->
+            </div>
+        </div>
+
+        <!--才高八斗-->
+        <div class="cgbdCnt">
+            <div class="newYear-cgbd"></div>
+            <div class="title">投资达到对应金额后，可包揽前面所有<span>现金及京东卡</span>哦~</div>
+            <div class="ins">
+                <ul>
+                    <li ng-repeat="item in awardLists">
+                        <div class="alreadyReceived" ng-class="{1:'show'}[item.status]"></div>
+                        <div ng-click="awardDetail(item)">
+                            <div class="img">
+                                <img ng-src="{{item.picUrl}}" />
+                            </div>
+                            <div class="amount">累计年化投资额
+                                <div>{{item.useCondition}}元</div>
+                            </div>
+                            <div class="receive" ng-class="{1:'received'}[item.status]">领</div>
+                            <div class="name">{{item.awardTypeName}}</div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="txt">举例：小沪累计年化投资额达到3600元后，他可获得现金18元+京东卡50元哦~</div>
+            </div>
+        </div>
+
+        <!--节节高升-->
+        <div class="jjgsCnt">
+            <div class="newYear-jjgs"></div>
+            <div class="title">TOP 10 用户可获得<span>额外加奖</span>哦~</div>
+            <div class="title" ng-show="isLogin && (rankList10.annualizedAmount > myInvestInfo.myAnnualizedAmount)" style="margin-top: -33px;">您距离TOP10还差{{rankList10.annualizedAmount - myInvestInfo.myAnnualizedAmount}}元(年化投资额) ~</div>
+            <div class="ins">
+                <div class="top3">
+                    <ul>
+                        <!--top2-->
+                        <li>
+                            <div class="img">
+                                <img src="/images/chunjie/topPro.png"/>
+                            </div>
+                            <div class="numInfo" ng-show="rankList.length">
+                                <div class="name">{{rankList[1].userName}}</div>
+                                <div class="investAmount">{{rankList[1].annualizedAmount}}元</div>
+                                <div class="totalTxt">累计年化投资额</div>
+                            </div>
+                            <!-- && rankList[1].status == 0
+                            <div class="numInfo" ng-show="rankList[1].status == 1"><br/>可获得</div>-->
+                            <div class="numInfo" ng-show="!rankList.length"><br/>可获得</div>
+                            <div class="proInfo">
+                                <div class="name">新秀丽20寸拉杆箱</div>
+                                <div class="price">价值：2180元</div>
+                            </div>
+                            <div class="ranking">
+                                <span class="ownPos" ng-show="rankList[1].status == 1">您：</span>
+                                TOP2
+                            </div>
+                        </li>
+                        <!--top1-->
+                        <li>
+                            <div class="img">
+                                <img src="/images/chunjie/phone.png"/>
+                            </div>
+                            <div class="numInfo" ng-show="rankList.length">
+                                <div class="name">{{rankList[0].userName}}</div>
+                                <div class="investAmount">{{rankList[0].annualizedAmount}}元</div>
+                                <div class="totalTxt">累计年化投资额</div>
+                            </div>
+                            <!--<div class="numInfo" ng-show="rankList[0].status == 1"><br/>可获得</div>-->
+                            <div class="numInfo" ng-show="!rankList.length"><br/>可获得</div>
+                            <div class="proInfo">
+                                <div class="name"> 华为mate10手机</div>
+                                <div class="price">价值：5399元</div>
+                            </div>
+                            <div class="ranking">
+                                <span class="ownPos" ng-show="rankList[0].status == 1">您：</span>
+                                TOP1
+                            </div>
+                        </li>
+                        <!--top3-->
+                        <li>
+                            <div class="img">
+                                <img src="/images/chunjie/headset.png"/>
+                            </div>
+                            <div class="numInfo" ng-show="rankList.length">
+                                <div class="name">{{rankList[2].userName}}</div>
+                                <div class="investAmount">{{rankList[2].annualizedAmount}}元</div>
+                                <div class="totalTxt">累计年化投资额</div>
+                            </div>
+                            <!--<div class="numInfo" ng-show="rankList[2].status == 1"><br/>可获得</div>-->
+                            <div class="numInfo" ng-show="!rankList.length"><br/>可获得</div>
+                            <div class="proInfo">
+                                <div class="name"> Beats 蓝牙耳机</div>
+                                <div class="price">价值：1388元</div>
+                            </div>
+                            <div class="ranking">
+                                <span class="ownPos" ng-show="rankList[2].status == 1">您：</span>
+                                TOP3
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ranking">
+                    <ul class="title">
+                        <li>排名</li>
+                        <li>用户</li>
+                        <li>累计年化投资额（元）</li>
+                        <li>奖品</li>
+                    </ul>
+                    <ul class="rank">
+                        <li ng-repeat="item in rankListOther7">
+                            <ul class="info" ng-class="{1: 'Red'}[item.status]">
+                                <li>
+                                    <span class="pos"> {{item.status ? '您：' : '　'}}</span>
+                                    <!--<span class="pos" ng-show="!item.status"></span>-->
+                                    <span class="rankNum">{{item.index}}</span></li>
+                                <li>{{item.userName}}</li>
+                                <li>{{item.annualizedAmount}}</li>
+                                <li>{{item.awardName}}</li>
+                                <!--<li>京东卡800元</li>-->
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--活动规则-->
+    <div class="rules">
+        <div class="ins">
+            <div class="name"><span>活动规则</span></div>
+            <div class="rule">
+                <ul class="act">
+                    <li>1 活动时间：2018.2.3 - 2018.3.14；</li>
+                    <li>2 “财”高八斗：活动时间内，投资定期标（新手标，活动标除外）累计年化投资额达到一定条件即可直接获得对应现金及奖励，每档奖励都能获得1次；</li>
+                    <li>3 节节高升：活动时间内，投资定期标（新手标，活动标除外）累计年化投资额最高的前10名用户额外再获得排行榜奖励，若排名相同，则以最先达到该排名的用户为先。最终排名以活动结束后的排行榜为准；</li>
+                    <li>4 年化投资额=单次投资额/360*投资天数。小数点会累计计算，但活动只显示整数部分，排行榜以整数进行对比；</li>
+                    <li>5 部分合作渠道用户的首次投资不计入本次活动，以渠道活动说明为准；</li>
+                    <li>6 获得实物奖励会有工作人员联系您核实地址信息。获实物奖后超过30个工作日无法联系到的用户，将默认自动放弃奖励；</li>
+                    <li>7 实物奖励和京东卡将在兑换后的20个工作内发放，京东卡会通过卡密方式发送到获奖手机。由于春节期间物流采购会有一定影响，可能会有部分延期，敬请谅解。</li>
+                    <li>*本活动由沪深理财发起并就活动内容作出解释和说明，任何疑问请咨询沪深客服：400-031-9909。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="reg-footer footer">
+        <p class="right">粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司v1.0.0<br/>
+            温馨提示：市场有风险，投资需谨慎</p>
+    </div>
+</div>
+
+
+
+

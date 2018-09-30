@@ -1,0 +1,153 @@
+<div class="reim" ng-controller="myAccountReimCtrl">
+    <div class="account-common-title" style="padding-bottom: 20px;">分期报销</div>
+    <!--<div>-->
+    <!--<div class="process"> 当前进度<span class="pull-right">450元</span></div>-->
+    <!--<div class="percent">-->
+    <!--<div class="percentage-box">-->
+    <!--&lt;!&ndash;<i>{{product.pert | setProgress}}30%</i>&ndash;&gt;-->
+    <!--<i style="margin-left: 27%;">10元</i>-->
+    <!--<em style="margin-left: 29.2%;"></em>-->
+    <!--<div class="percentage"><span style="width: 30%;" ng-attr-style="width: 30%;"></span></div>-->
+    <!--&lt;!&ndash;<div class="percentage newhandPer"><span ng-attr-style="width: {{product.pert | setProgress}}30%;"></span></div>&ndash;&gt;-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--进度条单独占一行-->
+    <!--<div class="proProcess">-->
+        <!--<div class="process">-->
+            <!--&lt;!&ndash;<img src="/images/ecommerce/processIco.png"/> &ndash;&gt;-->
+            <!--<span class="processIco">  当前进度</span><span class="reimamount">{{totalPeriodsReimburseAmount}}元</span></div>-->
+        <!--<div style="height: 6px; width: 100%">&nbsp;</div>-->
+        <!--<div class="percent">-->
+            <!--<div class="percentage-box">-->
+                <!--&lt;!&ndash;<i>{{product.pert | setProgress}}30%</i>&ndash;&gt;-->
+                <!--&lt;!&ndash;<i ng-if="periodsReimbursedRate != 100" style="margin-left: {{periodsReimbursedAmount-3}}%;">{{periodsReimbursedAmount}}元</i>&ndash;&gt;-->
+                <!--<i ng-if="periodsReimbursedRate != 1 && periodsReimbursedRate != 0" style="margin-left: {{periodsReimbursedRate*100}}%;">{{periodsReimbursedAmount}}元</i>-->
+                <!--<i ng-if="periodsReimbursedRate == 0" style="margin-left: {{(periodsReimbursedRate*100)-3}}%;">{{periodsReimbursedAmount}}元</i>-->
+                <!--<em ng-if="periodsReimbursedRate == 0" style="margin-left:{{periodsReimbursedRate-0.8}}%;"></em>-->
+                <!--<em ng-if="periodsReimbursedRate != 0 && periodsReimbursedRate != 1" style="margin-left:{{(periodsReimbursedRate*100)+2.3}}%;"></em>-->
+
+                <!--&lt;!&ndash;100%&ndash;&gt;-->
+                <!--<em class="absolutely" ng-if="periodsReimbursedRate == 1" style="margin-left:{{(periodsReimbursedRate*100) - 1.9}}%;"></em>-->
+                <!--<div class="percentage" ng-show="periodsReimbursedRate != 0">-->
+                    <!--<span style="width: {{periodsReimbursedRate*100}}%;" ng-attr-style="width: {{(periodsReimbursedRate*100)+2.4}}%;"></span>-->
+                <!--</div>-->
+                <!--<div class="percentage" ng-show="periodsReimbursedRate == 0">-->
+                    <!--<span style="width: {{periodsReimbursedRate*100}}%;" ng-attr-style="width: {{periodsReimbursedRate*100}}%;"></span>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;<div class="percentage newhandPer"><span ng-attr-style="width: {{product.pert | setProgress}}30%;"></span></div>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="proProcess">
+        <div class="process">
+            <span class="processIco">  当前进度</span>
+
+            <div class="percent jdt">
+                <div class="percentage-box">
+                    <!--<i>{{product.pert | setProgress}}30%</i>-->
+                    <!--<i ng-if="periodsReimbursedRate != 100" style="margin-left: {{periodsReimbursedAmount-3}}%;">{{periodsReimbursedAmount}}元</i>-->
+                    <i ng-if="periodsReimbursedRate != 1 && periodsReimbursedRate != 0" style="margin-left: {{periodsReimbursedRate*100-0.3}}%;">{{periodsReimbursedAmount}}元</i>
+                    <i ng-if="periodsReimbursedRate == 0" style="margin-left: {{(periodsReimbursedRate*100)-3.6}}%;">{{periodsReimbursedAmount}}元</i>
+                    <em ng-if="periodsReimbursedRate == 0" style="margin-left:{{periodsReimbursedRate-0.8}}%;"></em>
+                    <em ng-if="periodsReimbursedRate != 0 && periodsReimbursedRate != 1" style="margin-left:{{(periodsReimbursedRate*100)+2.3}}%;"></em>
+
+                    <!--100%-->
+                    <em class="absolutely" ng-if="periodsReimbursedRate == 1" style="margin-left:{{(periodsReimbursedRate*100) - 1.9}}%;"></em>
+                    <div class="percentage" ng-show="periodsReimbursedRate != 0">
+                        <span style="width: {{periodsReimbursedRate*100}}%;" ng-attr-style="width: {{(periodsReimbursedRate*100)+2.4}}%;"></span>
+                    </div>
+                    <div class="percentage" ng-show="periodsReimbursedRate == 0">
+                        <span style="width: {{periodsReimbursedRate*100}}%;" ng-attr-style="width: {{periodsReimbursedRate*100}}%;"></span>
+                    </div>
+                    <!--<div class="percentage newhandPer"><span ng-attr-style="width: {{product.pert | setProgress}}30%;"></span></div>-->
+                </div>
+            </div>
+
+            <span class="reimamount">{{totalPeriodsReimburseAmount}}元</span></div>
+    </div>
+
+    <!--第几期-->
+    <div ng-show="latestActiveNotReimbursedRecord">
+        <div class="dividLine"></div>
+        <div class="price border0" style="padding: 0;">
+            <div class="ico" style="margin-top: 9px;"><span>{{amount}}</span>元</div>
+            <div class="txt">
+                <div class="name">{{title}}</div>
+                <div class="sm des">本期报销{{amount}}元，报销后即可提现</div>
+            </div>
+            <div class="accbaoxiao">
+                <!--<div class="ecommer-accbaoxiao"></div>-->
+                <div class="baoxiao grey" ng-if="latestStatus == 1">未开始</div>
+                <div class="baoxiao" ng-if="latestStatus == 2" ng-click="toReim()">立即报销</div>
+            </div>
+        </div>
+    </div>
+
+    <!--报销计划-->
+    <div class="bxjh">
+        <div class="dividLine"></div>
+        <br/>
+        <!--报销计划-->
+        <!--<div class="ecommer-bxjh"></div>-->
+        <div class="ecommer-clock pull-left"></div>
+        <div class="title">&nbsp; 报销计划</div>
+        <table>
+            <thead>
+            <tr>
+                <td>事项</td>
+                <td>金额</td>
+                <td>报销时间</td>
+                <td>状态</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in infos">
+                <td>{{item.title}}</td>
+                <td>{{item.amount}}元</td>
+                <td ng-if="item.status != 1">{{item.planReimburseTime | date:"yyyy.MM.dd"}}</td>
+                <td ng-if="item.status == 1" class="colorgrey">{{item.planReimburseTime | date:"yyyy.MM.dd"}}</td>
+                <td ng-if="item.status == 1" class="colorgrey">未开始</td>
+                <td ng-if="item.status == 2" class="colorRed">未领取</td>
+                <td ng-if="item.status == 3" class="colorgreen">已领取</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--<div ng-controller="myAccountmyInvestCtrl">-->
+    <div>
+        <div class="page-wrap" ng-if="page.totalPage < 7">
+            <div class="page-box">
+                <a href ng-click="onClick('beforePage',a)" class="prev">上一页</a>
+                <ul>
+                    <li ng-click="onClick('currentPage',a)" ng-repeat="a in pages">
+                        <a href="" ng-class="{true: 'cur', false: ''}[page.pageOn == a]">{{a}}</a>
+                    </li>
+                </ul>
+                <a href class="next" ng-click="onClick('nextPage',a)">下一页</a>
+            </div>
+            <span>共{{page.totalPage}}页</span>
+        </div>
+
+        <div ng-if="page.totalPage >= 7">
+            <div class="page-wrap" ng-if="page.pageOn <= 5">
+                <div class="page-box">
+                    <a href ng-click="onClick('beforePage',a)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 1]" href="">1</a></li><li ng-click="onClick('currentPage',2)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 2]" href="">2</a></li><li ng-click="onClick('currentPage',3)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 3]" href="">3</a></li><li ng-click="onClick('currentPage',4)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 4]" href="">4</a></li><li ng-click="onClick('currentPage',5)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 5]" href="">5</a></li><li ng-if="page.pageOn == 5" ng-click="onClick('currentPage',6)"><a href="">6</a></li><li ng-if="page.pageOn == 5" ng-click="onClick('currentPage',7)"><a href="">7</a></li><li ng-if="page.totalPage != 0"><span>...</span></li></ul><a href class="next" ng-click="onClick('nextPage',a)">下一页</a>
+                </div><span>共{{page.totalPage}}页</span>
+            </div>
+            <div class="page-wrap" ng-if="page.pageOn > 5 && page.pageOn <= (page.totalPage - 4)">
+                <div class="page-box">
+                    <a href ng-click="onClick('beforePage',page.pageOn)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a href="">1</a></li><li ng-click="onClick('currentPage',2)"><a href="">2</a></li><li><span>...</span></li><li ng-click="onClick('currentPage',page.pageOn-2)"><a href="">{{page.pageOn-2}}</a></li><li ng-click="onClick('currentPage',page.pageOn-1)"><a href="">{{page.pageOn-1}}</a></li><li ng-click="onClick('currentPage',page.pageOn)"><a href="" class="cur">{{page.pageOn}}</a></li><li ng-click="onClick('currentPage',page.pageOn+1)"><a href="">{{page.pageOn+1}}</a></li><li ng-click="onClick('currentPage',page.pageOn+2)"><a href="">{{page.pageOn+2}}</a></li><li><span>...</span></li></ul><a href class="next" ng-click="onClick('nextPage',page.pageOn)">下一页</a>
+                </div><span>共{{page.totalPage}}页</span>
+            </div>
+            <div class="page-wrap" ng-if="page.pageOn > 5 && page.pageOn > (page.totalPage - 4)">
+                <div class="page-box">
+                    <a href ng-click="onClick('beforePage',page.pageOn)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a href="">1</a></li><li ng-click="onClick('currentPage',2)"><a href="">2</a></li><li><span>...</span></li><li ng-click="onClick('currentPage',page.totalPage-4)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 4)]" href="">{{page.totalPage-4}}</a></li><li ng-click="onClick('currentPage',page.totalPage-3)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 3)]" href="">{{page.totalPage-3}}</a></li><li ng-click="onClick('currentPage',page.totalPage-2)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 2)]" href="">{{page.totalPage-2}}</a></li><li ng-click="onClick('currentPage',page.totalPage-1)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 1)]" href="">{{page.totalPage-1}}</a></li><li ng-click="onClick('currentPage',page.totalPage)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage)]" href="">{{page.totalPage}}</a></li></ul><a href class="next" ng-click="onClick('nextPage',page.pageOn)">下一页</a>
+                </div><span>共{{page.totalPage}}页</span>
+            </div>
+        </div>
+    </div>
+
+</div>

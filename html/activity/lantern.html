@@ -1,0 +1,46 @@
+<div class="lantern-wrapper" ng-controller="lanternCtrl">
+    <div class="banner"></div>
+    <div class="center">
+        <div class="wrap">
+            <div class="txt"></div>
+            <!-- <div class="sweet"></div> -->
+            <div class="guang slight-rotate"></div>
+            <div class="shao shake-vertical-slow shake-constant"></div>
+            <div class="wan"></div>
+            <a href="/dl?fromActivity=true" class="btn" ng-if="!isLogin"></a>
+            <a href="" class="btn" ng-click="getGift()" ng-if="isLogin"></a>
+            <div class="list">
+                <div class="title">领取记录</div>
+                <div class="box">
+                    <ul>
+                        <li ng-repeat="item in list">
+                            <p>{{item.updateTime | date:'yyyy.MM.dd HH:mm:ss'}}</p>
+                            <div><span>{{item.mobilePhone}}</span><i>{{item.name}}</i></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="rules">
+                <p>活动规则</p>
+                <ul>
+                    <li>1.活动期间，登录沪深理财官网或App即可参与吃元宵领取开工利是，每个用户每天可领取1次，共4次机会。</li>
+                    <li>2.点击吃元宵即可获得1个利是封，打开利是封对应随机金额的红包、翻倍券、体验金等。</li>
+                    <li>3.获得的红包、翻倍券及体验金可在登录后我的账户中查看。</li>
+                </ul>
+                <br>
+                <p>关于利是</p>
+                <ul>
+                    <li>红包及翻倍券使用只针对30、60、180天期限产品，每次投资只能使用1个奖券，红包、加息券、翻倍券不可同时使用。体验金可用于投资体验标，到期本金回收，收益可提现。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bot">
+        <div class="box">
+            <div class="code">
+                <img src="images/lantern/code.jpg">
+                <p>扫一扫 &nbsp; 晒花灯</p>
+            </div>
+        </div>
+    </div>
+</div>

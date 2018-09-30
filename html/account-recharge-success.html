@@ -1,0 +1,64 @@
+<div class="recharge-success account-home-wrap" ng-controller="rechargeSuccessCtrl">
+	<table>
+		<tr ng-if="success">
+			<td><i class="dialog-recharge-success"></i></td>
+			<td class="stitle">充值成功</td>
+		</tr>
+		<tr ng-if="fail">
+			<td><i class="dialog-recharge-fail"></i></td>
+			<td class="stitle">充值失败</td>
+		</tr>
+	</table>
+	<table class="ing" ng-if="ing">
+		<tr>
+			<td>正在充值中，请稍等......</td>
+		</tr>
+	</table>
+	<table>
+		<!-- <tr ng-if="success"><td colspan="2" class="info">本次充值<span>{{amount}}</span>元，充值已成功。</td></tr> -->
+		<tr ng-if="fail"><td colspan="2" class="info">请重新充值</td></tr>
+	</table>
+	<table>
+		<tr>
+			<td><a href="" class="go-recharge" ng-click="$state.go('main.myAccount.recharge');">继续充值</a></td>
+			<td><a ng-if="success" href="" class="go-recharge go-list" ng-click="$state.go('main.bankBillList');">去投资</a></td>
+		</tr>
+	</table>
+	<table ng-if="!success" class="phone">
+		<tr><td>客服热线：400-031-9909</td></tr>
+	</table>
+
+	<!-- <div class="content-wrap" ng-if="success">
+		<div class="show-mode">
+			<div class="mode-title">
+				产品推荐
+			</div>
+			<div class="pro-recommend">
+				<ul ng-repeat="item in infoList" ng-click="onClickToBillDetail(item)" >
+					<li class="bill-name">{{item.fullName}}
+					</li>
+					<li class="rate-box">
+						<span class="rate"><b>{{item.rate}}</b>%</span>
+						<p>历史年化收益率</p>
+					</li>
+					<li>
+						<span>{{item.leastaAmount}}</span>
+						<p>起投金额</p>
+					</li>
+					<li>
+						<span>{{item.deadline}}天</span>
+						<p>投资期限</p>
+					</li>
+					<li>
+						<span>{{item.amount | currency:'￥':0}}</span>
+						<p>产品总额</p>
+					</li>
+					<li class="invest-btn-box">
+						<a href="" class="invest-btn">{{(item.status | isProductType).cnvalue}}</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div> 1-->
+
+</div>

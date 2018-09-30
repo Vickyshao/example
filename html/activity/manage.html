@@ -1,0 +1,128 @@
+<div class="managefa-wrapper" ng-controller="manageCtrl">
+    <i class="bga"></i>
+    <i class="bgb"></i>
+    <div class="banner">
+        <div class="inner">
+            <a href="/main/home"></a>
+        </div>
+    </div>
+    <div class="total">
+        <div class="data" ng-if="isLogin">
+            <span ng-if="amount == 0">我的累计投资金额：<i>{{amount}}</i> 元</span>
+            <p ng-if="amount == 0">现金红包等待您的召唤，还不快行动！</p>
+            <span class="t" ng-if="amount > 0">我的累计投资金额：<i>{{amount}}</i> 元</span>
+        </div>
+        <div class="data" ng-if="!isLogin">
+            <span class="t">我的累计投资金额：<a href="/dl?fromActivity=true">登录</a>后查看</span>
+        </div>
+    </div>
+    <div class="list-wrap">
+        <div class="title"></div>
+        <p class="tip">活动期间累计投资金额满足以下条件，即可领取现金奖励</p>
+        <div class="list">
+            <div class="method">
+                <table>
+                    <tr>
+                        <th width="50"></th>
+                        <th width="320">累计投资金额(元)</th>
+                        <th width="194">奖励金额(元) </th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><b>1.2</b>万≤累计投资金额＜<b>3.8</b>万</td>
+                        <td><i class="icon"></i>奖励<span>100</span>元现金</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><b>3.8</b>万≤累计投资金额＜<b>6.2</b>万</td>
+                        <td><i class="icon"></i>奖励<span>300</span>元现金</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><b>6.2</b>万≤累计投资金额＜<b>12</b>万</td>
+                        <td><i class="icon"></i>奖励<span>500</span>元现金</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><b>12</b>万≤累计投资金额＜<b>35</b>万</td>
+                        <td><i class="icon"></i>奖励<span>1000</span>元现金</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>累计投资金额≥<b>35</b>万</td>
+                        <td><i class="icon"></i>奖励<span>3000</span>元现金</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="foruser">
+                <p>已有<i>{{count}}</i>个用户获得奖励</p>
+                <div class="inner">
+                    <ul>
+                        <li ng-repeat="item in list">累计投资金额达到{{item.amount | currency:'':0}} 可获<i>{{item.fxAmount}}</i>元奖励！<span>{{item.name}}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inner-rules">
+        <ul>
+            <li>温馨提示：1.本活动不享受平台返现、红包、加息券等平台其他任何福利，使用红包等福利的投资额将不计算本次活动内。</li>
+            <li class="indent">2.以活动结束后用户累计最高投资额送出相应的现金奖励，现金奖励不重复获得。</li>
+        </ul>
+    </div>
+    <div class="pro-wrap">
+        <div class="title"></div>
+        <p class="tip">投资以下产品参与活动</p>
+        <table>
+            <tr>
+                <th width="8"> </th>
+                <th>项目名称</th>
+                <th>年化率</th>
+                <th>项目总额</th>
+                <th>项目期限</th>
+                <th>项目进度</th>
+                <th></th>
+            </tr>
+            <tr class="line">
+                <td></td>
+                <td>{{pro60.fullName}}</td>
+                <td><span><b>{{pro60.rate}}</b>% <i ng-if="pro60.activityRate!=''&&pro60.activityRate!=undefined">+ <b>{{pro60.activityRate}}</b>%</i></span></td>
+                <td>{{pro60.amount |currency:'':0}}</td>
+                <td>{{pro60.deadline}}天</td>
+                <td>
+                    <strong>{{pro60.pert}}%</strong>
+                    <div><span ng-attr-style="width: {{pro60.pert | setProgress}}%"></span></div>
+                </td>
+                <td>
+                    <a href="/main/billDetail?id={{pro60.id}}"></a>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td>{{pro180.fullName}}</td>
+                <td><span><b>{{pro180.rate}}</b>% <i ng-if="pro180.activityRate!=''&&pro180.activityRate!=undefined">+ <b>{{pro180.activityRate}}</b>%</i></span></td>
+                <td>{{pro180.amount |currency:'':0}}</td>
+                <td>{{pro180.deadline}}天</td>
+                <td>
+                    <strong>{{pro180.pert}}%</strong>
+                    <div><span ng-attr-style="width: {{pro180.pert | setProgress}}%"></span></div>
+                </td>
+                <td>
+                    <a href="/main/billDetail?id={{pro180.id}}"></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="rules-wrap">
+        <span></span>
+        <p></p>
+        <ul>
+            <li>仅限投资期限60或180天以上的产品（35天标、活动标除外）；<i>1</i></li>
+            <li>本活动不享受平台返现、红包、加息券等平台其他任何福利，使用红包等福利的投资额将不计算本次活动内；<i>2</i></li>
+            <li>以活动结束后用户累计最高投资额送出相应的现金奖励，现金奖励不重复获得；<i>3</i></li>
+            <li>活动结束后2个工作日，系统将自动发放现金奖励至您的平台账户中，返现奖励可继续投资或者直接提现；<i>4</i></li>
+            <li>活动时间：2017年5月12日—2017年5月19日；<i>5</i></li>
+            <li>本活动由沪深理财发起并就活动内容作出解释和说明。<i>6</i></li>
+        </ul>
+    </div>
+</div>

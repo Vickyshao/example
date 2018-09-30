@@ -1,0 +1,139 @@
+<div class="login-dialog-wrap special-dialog eggLogin">
+	<div ng-show="showREG" ng-controller="dlCtrl">
+		<form class="login_form" ng-model="userLogin" name="userLoginform">
+		<input style="display:none">
+		<input type="password" style="display:none">
+		<div class="title">会员登录
+			<!--<i class="iphone-close" ng-click="closeDialog()"></i>-->
+			<img class="closeDialog" src="/images/icoClose.png" ng-click="closeDialog()"/>
+		</div>
+		<div class="quick-login-mod">
+			<div class="quick-register-box">
+				<!-- 登录用户名 -->
+				<div class="input-box">
+					<div class="input-mod">
+						<input type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/" placeholder="请输入手机号"  ng-blur="userNameShowError=true" ng-focus="userNameShowError=fasle" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'') " class="text"  ng-model="userLogin.mobilephone" name="userName" required minlength="11" maxlength="11" autocomplete="off" />
+						<i ng-cloak ng-show="userLoginform.userName.$valid && userNameShowError" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[userLoginform.userName.$dirty || userLoginform.userName.$error.serverError]"></i>
+						<span ng-show="userLoginform.userName.$valid && userNameShowError" ng-cloak class="error"><font color="red">{{userLoginform.userName | denLuUserNameError:serverErrorCode}}</font></span>
+					</div>
+				</div>
+				<!-- 密码 -->
+				<div ng-hide='isShowUserPsw' class="input-box passwd-box">
+					<div class="input-mod">
+						<input placeholder="请输入密码" type="password" ng-model="userLogin.passWord" class="text" name="passWord"  autocomplete="off" required />
+					</div>
+					<i ng-show="userLoginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[userLoginform.passWord.$valid]"></i>
+					<span class="error" ng-show="userLoginform.passWord.$valid"><font color="red">{{userLoginform.passWord | denLuPassWordError:serverErrorCode}}</font></span>
+				</div>
+				<!-- 图文验证 -->
+				<div ng-show="isPicYanZhen" class="input-box">
+					<div class="img-box">
+						<img ng-click="clickInput('changePic',$event)" src="login/validateCode.do">
+					</div>
+					<div class="input-mod">
+						<input type="text" placeholder="请输入图形验证码"  ng-mouseOut="picShowError=true" ng-mouseOver="picShowError=fasle" class="text small-text" ng-model="userLogin.picCode" name="picCode" autocomplete="off" />
+					</div>
+					<i ng-show="userLoginform.picCode.$valid && picShowError" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[userLoginform.picCode.$error.serverError]"></i>
+					<span class="error" ng-show="userLoginform.picCode.$valid && picShowError"><font color="red">{{userLoginform.picCode | denLuPicCodeNameError:serverErrorCode}}</font></span>
+				</div>
+				<!-- 登录/注册 按钮 -->
+				<div class="sub-box">
+					<!--<input style="background:#ed3334;" ng-disabled="userLoginform.$invalid" class="sub-btn sub" type="submit" value="登 录"/>-->
+					<input ng-show="count" type="image" src="/images/smashEgg/login.png" ng-click="LoginClick('denLu',userLoginform)" ng-disabled="userLoginform.$invalid" ng-mouseenter="count=false" />
+					<input ng-show="!count" type="image" src="/images/smashEgg/loginHover.png" ng-click="LoginClick('denLu',userLoginform)" ng-disabled="userLoginform.$invalid" ng-mouseleave="count=true" />
+				</div>
+				<!-- 服务条款/切换状态 -->
+				<div class="agreement-box">
+					<div class="forget">
+						<!--<a href="/main/resetPasswd" ng-click="closeDialog()" class="reset-passwd">忘记密码</a>-->
+					    <span class="choose-box">没有账号？
+							<!--<a href="{{hrefUrl}}zhuce" class="change-btn" ng-click="closeDialog()">立即注册</a>-->
+							<a class="change-btn" ng-click="eggRegister()">立即注册</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	</div>
+
+	<div ng-show="!showREG">
+		<div class=" quick-register-wrap" ng-controller="zhuceCtrl">
+		<form class="login_form" ng-model="login" name="loginform">
+			<div class="title margin0">会员注册
+				<img class="closeDialog" src="/images/icoClose.png" ng-click="closeDialog()"/>
+			</div>
+			<input style="display:none">
+			<input type="password" style="display:none">
+
+			<div class="quick-register-wrapper">
+				<div class="quick-register-mod">
+					<div class="quick-register-box">
+						<div class="input-wrap">
+							<div class="input-box">
+								<div class="input-mod">
+									<b class="icon finance-phone"></b>
+									<input id="mobilephone" type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/"  placeholder="请输入手机号码" ng-blur="blurID('focusMobilephone',loginform,$event)" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text semmobilephone" ng-model="login.mobilephone" name="mobilephone" required minlength="11" maxlength="11" />
+								</div>
+								<i ng-show="loginform.mobilephone.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.mobilephone.$valid]"></i>
+								<span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+							</div>
+						</div>
+						<div class="input-wrap">
+							<div class="input-box semimg-box">
+								<div class="img-box"><img ng-click="clickInput('changePic',$event)" src="login/validateCode.do"></div>
+								<div class="input-mod small-inputmod">
+									<b class="icon finance-code"></b>
+									<input type="text" style="width: 180px;" placeholder="请输入验证码" class="text small-text" ng-model="login.picCode" name="picCode" minlength="4" maxlength="4" required autocomplete="off"/>
+								</div>
+								<i ng-show="loginform.picCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.picCode.$valid]"></i>
+								<span class="error" ng-show="loginform.picCode.$valid"><font>{{loginform.picCode | zhuCePicCodeError:serverErrorCode}}</font></span>
+							</div>
+						</div>
+						<div class="input-wrap">
+							<div class="input-box">
+								<a href="" ng-if="loginform.mobilephone.$valid" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+
+								<a href="" ng-if="!loginform.mobilephone.$valid" ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+								<div class="input-mod small-inputmod">
+									<b class="icon finance-code"></b>
+									<input style="width: 180px;" ng-disabled="!loginform.mobilephone.$dirty || !loginform.picCode.$dirty || loginform.mobilephone.$valid || loginform.picCode.$valid" placeholder="请输入验证码"  type="text" ng-model="login.smsCode"  name="smsCode" class="text small-text" maxlength="4" required />
+								</div>
+								<i ng-show="loginform.smsCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.smsCode.$valid]"></i>
+								<span class="error" ng-show="loginform.smsCode.$valid"><font color="red">{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+							</div>
+						</div>
+						<div class="input-wrap">
+							<div class="input-box passwd-box">
+								<div class="input-mod">
+									<b class="icon finance-mycode"></b>
+									<input autocomplete="off" ng-show="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" ng-mouseout="showPassword(passwordText)" type="text" ng-model="login.passWord" class="text" name="passWord" required />
+									<input autocomplete="off" ng-hide="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" type="passWord" ng-model="login.passWord" class="text" name="passWord" required/>
+								</div>
+								<i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]" ng-click="showPassword(passwordText)" ></i>
+
+								<i ng-show="loginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.passWord.$valid]"></i>
+								<span  class="error" ng-show="loginform.passWord.$valid"><font>{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+							</div>
+						</div>
+						<div class="agreement-box">
+							<label for="agreement">我已阅读并同意<a href="/zc" target="_blank" class="server-agreement">《沪深理财注册协议》</a><input type="checkbox" ng-model="login.checkbox" class="check-box pull-left" id="agreement" checked /></label>
+						</div>
+						<div class="sub-box"">
+							<!--<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册领取" />-->
+							<input type="image" src="/images/smashEgg/regBtn.png" ng-click="LoginClick('zhuCe',loginform)" ng-disabled="loginform.$invalid || !login.checkbox" />
+						</div>
+						<!--<div class="sub-box" ng-if="loginform.$invalid" >-->
+							<!--&lt;!&ndash;<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册领取" />&ndash;&gt;-->
+							<!--<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册领取" />-->
+						<!--</div>-->
+
+					</div>
+					<div class="choose-box bottom-choose">已有账号，
+						<a class="change-btn" ng-click="eggLogin()">立即登录</a>
+					</div>
+				</div>
+		</form>
+	</div>
+	</div>
+</div>

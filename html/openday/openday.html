@@ -1,0 +1,94 @@
+<div class="openday-wrapper" ng-controller="opendayCtrl">
+	<div class="banner">
+		<div class="opendaybanner">
+			<img src="{{jsSpecial.pCTopBanner}}">
+			<!-- <div class="title">首届沪深理财投资人开放日</div> -->
+			<!-- <div class="date">3月9日  现 / 场 / 直 / 击 /</div> -->
+		</div>
+		<div class="sign-up">
+			<p ng-if="jsSpecial.isAppointment">在线报名</p>
+			<p class="wait" ng-if="!jsSpecial.isAppointment">新一期活动正在火热筹备中</p>
+			<div class="box" ng-if="jsSpecial.isAppointment">
+				<form ng-model="opendayForm" name="openForm">
+					<div class="input-box">
+						<div class="t" style="line-height: 40px;">姓名</div>
+						<div class="input-mod">
+							<input type="text" class="text" ng-model="opendayForm.username" name="name" required autocomplete="off"/>
+						</div>
+						<i ng-show="openForm.name.$dirty && openForm.name.$error.required" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[openForm.name.$dirty || openForm.name.$error.required]"></i>
+						<span ng-show="openForm.name.$dirty && openForm.name.$error.required" class="error">请输入姓名</span>
+					</div>
+					<div class="input-box">
+						<div class="t">性别</div>
+						<div class="input-mod">
+							<label><input type="radio" ng-model="opendayForm.sex" class="radio" value="0" name="sex" checked />男</label>
+							<label><input type="radio" ng-model="opendayForm.sex" class="radio" value="1" name="sex" />女</label>
+						</div>
+					</div>
+					<div class="input-box">
+						<div class="t" style="line-height: 40px;">地区</div>
+						<div class="input-mod">
+							<input type="text" class="text"  ng-model="opendayForm.area" name="area" required autocomplete="off"/>
+						</div>
+						<i ng-cloak ng-show="openForm.area.$dirty && openForm.area.$error.required" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[openForm.area.$dirty || openForm.area.$error.required]"></i>
+						<span ng-show="openForm.area.$dirty && openForm.area.$error.required" ng-cloak class="error">请输入地区</span>
+					</div>
+					<div class="sub-box" ng-if="(a | isRegister).register">
+						<input ng-click="goSign(openForm.$invalid)" type="submit" class="btn" value="报名参加" ng-disabled="openForm.$invalid" />
+					</div>
+					<div class="sub-box" ng-if="!(a | isRegister).register">
+						<a href="/dl?fromActivity=true" class="btn">报名参加</a>
+					</div>
+				</form>
+			</div>
+			<div class="box waitbox" ng-if="!jsSpecial.isAppointment">
+				<div class="openday-wait"></div>
+			</div>
+		</div>
+	</div>
+	<div class="detail">
+		<dl>
+			<dt>
+				<img src="{{jsSpecial.pCRightBanner}}">
+			</dt>
+			<dd>
+				<div class="t">{{jsSpecial.title}}</div>
+				<div class="con"></div><!-- {{jsSpecial.context}} -->
+			</dd>
+		</dl>
+	</div>
+	<div class="images-wrap">
+		<div class="images-box">
+			<div class="openday-titlenow"></div>
+			<div class="slide-wrap">
+				<div class="swiper-container gallery-top">
+			        <div class="swiper-wrapper">
+						<div class="swiper-slide" ng-repeat="item in jsSpecial.jsSpecialPic" repeat-finish="galleryTopFinish()"><img src="{{item.imgUrl}}"></div>
+			        </div>
+			    </div>
+			    <div class="swiper-container gallery-thumbs">
+			        <div class="swiper-button-next openday-next"></div>
+			        <div class="swiper-button-prev openday-prev"></div>
+			        <div class="swiper-wrapper">
+			            <div class="swiper-slide" ng-repeat="item in jsSpecial.jsSpecialPic" ng-click="changeGalleryTop($index)" repeat-finish="galleryThumbsFinish()"><img src="{{item.imgUrl}}"></div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<div class="bot-wrap">
+		<div class="bot">
+			<div class="openday-titlepast"></div>
+			<div class="more"><a href="/main/opendaylist">更多+</a></div>
+			<div class="info" ui-sref="main.opendaydetail({id:firOpenList.id})">
+				<dl>
+					<dt><img src="{{firOpenList.imgUrl}}"></dt>
+					<dd>
+						<div class="t"><span>{{firOpenList.openDayDate | date:'yyyy-MM-dd'}}</span>{{firOpenList.openDayName}}</div>
+						<div class="con">{{firOpenList.summaryContents}}</div>
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>

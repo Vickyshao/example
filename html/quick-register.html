@@ -1,0 +1,44 @@
+<div class="quick-register-wrap" ng-controller="quickCtrl">
+	<i class="register-banner"></i>
+	<form>		
+		<div class="quick-register-box">
+			<div class="title">快速注册用户</div>
+			<div class="input-box">
+				<div class="input-mod">
+					<input type="text" class="text" name="tel" id="tel" placeholder="请输入手机号码" />
+				</div>
+			</div>
+			<div class="input-box">
+				<a href="" class="get-code">获取短信验证码</a><!--  nouse-btn -->
+				<div class="input-mod">
+					<input type="text" class="text small-text" name="phone-code" id="phone-code" placeholder="短信验证码" />
+				</div>
+			</div>
+			<div class="input-box passwd-box">
+				<div class="input-mod">
+					<input type="text" class="text" name="passwd" id="passwd" placeholder="设置密码" />
+				</div>
+				<i class="login-icons-eye login-icons-eyehide"></i>
+			</div>
+			<div class="input-box">
+				<div class="img-box"><img src=""></div>
+				<div class="input-mod">
+					<input type="text" class="text small-text" name="img-code" id="img-code" placeholder="图形验证码" />
+				</div>
+			</div>
+			<div class="input-box">
+				<div class="show-mod"><a href="">推荐人手机号码（选填）<i class="login-icons-triangle"></i></a></div>
+				<div class="input-mod" ng-show="isShow">
+					<input type="text" class="text" name="rec-tel" ng-model="" placeholder="请输入推荐人手机号" />
+				</div>
+			</div>
+			<div class="sub-box">
+				<input class="sub-btn" type="submit" value="登 录" />
+			</div>
+			<div class="agreement-box">
+				<label for="agreement">我已阅读并同意《XX财富注册服务协议》<input type="checkbox" class="check-box" id="agreement" checked /></label>
+				<div class="choose-box">我已注册 <a href="" class="change-btn">立即登录</a></div>
+			</div>
+		</div>
+	</form>
+</div>

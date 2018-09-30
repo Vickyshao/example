@@ -1,0 +1,23 @@
+<div class="dialog recharge-dialog" ng-class="{true: 'recharge-gift-dialog'}[giftFlag]" ng-controller="rechargeCtrl">
+	<div class="success-content">
+		<div class="header">
+			<img src="/images/rechargeClose.png" ng-click="closeDialog()">
+		</div>
+		<div class="{{status}}-text">
+			<div class="tipHeader">
+				<i class="dialog-{{status}}"></i>
+				<span>{{type}}{{text}}</span><strong ng-if="status == 'error'">({{errorCode}})</strong>
+			</div>
+			<p>{{msg}}<b ng-show="showForgetPwd == true">，请一小时后再试，或<a href="" ng-click="forgetTradeCode()" class="forget">找回密码</a>解锁</b>。</p>
+			<p class="little-tip" ng-if="showLittleTip">预计将在10分钟内到账，请耐心等待。</p>
+			<a ng-if="!ecId" href="" ng-click="closeDialog()" ng-hide="status == 'success'">返回</a>
+			<a ng-if="!ecId" href="" ng-click="toInvest()" ng-show="status == 'success'">去投资</a>
+			<a ng-if="!!ecId && hasRecharged" href="" ng-click="rechargeToReim()">继续报销</a>
+			<a ng-if="!!ecId && !hasRecharged" href="" ng-click="closeDialog()">返回</a>
+		</div>
+	</div>
+	<div class="gift-bg">
+		<a href="" class="close" ng-click="closeDialog()">×</a>
+		<a href="/main/myAccount/myCoupon" class="check" ng-click="closeDialog()">立即查看</a>
+	</div>
+</div>

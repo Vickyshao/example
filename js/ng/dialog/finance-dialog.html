@@ -1,0 +1,11 @@
+<div class="finnace-dialog">
+    <div class="title"><i class="finance-success2"></i>认证成功！</div>
+    <div class="btn">
+        <!--<a href="/main/myAccount/myFinance" ng-if="isCps == 0" ng-click="closeDialog('myFinance')">查看</a>-->
+        <!--<a href="/main/myAccount/myCoupon" ng-if="isCps == 1" ng-click="closeDialog('myCoupon')">查看</a>-->
+        <a href="/main/bankBillList" class="go" ng-if="!exclusiveUser && !ecId && isCps == 0" ng-click="closeDialog()" style="margin-left: 0;">去赚钱</a>
+        <a href="/main/bankBillList" class="go" ng-if="!exclusiveUser && !ecId && isCps == 1" ng-click="closeDialog()" style="margin-left: 0;">去赚钱</a>
+        <a href="/main/exclusiveBillList" class="go" ng-if="exclusiveUser" ng-click="closeDialog()" style="margin-left: 0;">去赚钱</a>
+        <a class="go" ng-if="!!ecId" ng-click="sectoInvest()" style="margin-left: 0;">继续报销</a>
+    </div>
+</div>

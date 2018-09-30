@@ -1,0 +1,25 @@
+$reset:true; // 是否开启样式重置,默认false
+$rem-base: 640; 
+$Response:true;
+
+@import "compass", "mobile-mixin";
+
+// @import "compass/reset";
+@import "compass/CSS3";
+@import "compass/typography/lists";
+@import "compass/utilities/sprites";
+@import "compass/utilities/general/clearfix";
+
+body{
+	max-width: 750px;
+	width: 100%;
+	margin: 0 auto;
+	font: 12px/1.5 "Microsoft Yahei",arial,tahoma,"Hiragino Sans GB",\5b8b\4f53;
+}
+
+@import "boat";
+@import "explain";
+@import "manage";
+@import "guarantee";
+@import "summer";
+@import "report";

@@ -1,0 +1,93 @@
+<div class="together-wrapper" ng-controller="togetherCtrl">
+	<div class="together-wrap">
+	<div class="together-box">
+		<div class="together-list">
+			<div class="top">
+				<div class="tabs">
+					<span ng-class="{false: 'active'}[showOn]" ng-click="showOn = false">往期回顾</span>
+					<i></i>
+					<span ng-class="{true: 'active'}[showOn]" ng-click="showOn = true">正在进行</span>
+				</div>
+				<div class="title">
+					<i class="together-gift"></i>
+					<div class="txt">
+						<span>精彩活动</span>
+						<p>会花钱更要会赚钱，沪深理财让您赚钱更安心</p>
+					</div>
+				</div>
+			</div>
+			<div class="list-wrap liston-wrap" ng-if="showOn" ng-class="{true:'hasmore'}[showNewBtn]">
+				<div class="mode" ng-repeat="item in newList">
+					<i class="together-hot" ng-if="item.isTop == 1"></i>
+					<div class="img">
+						<img src="{{item.pcPic}}">
+					</div>
+					<div class="con">
+						<div class="t">{{item.title}}</div>
+						<p><i class="together-date"></i>活动时间：{{item.activityDate}}</p>
+						<a target="_blank" href="{{item.pcUrl}}" ng-if="item.status == 1">查看详情</a>
+					</div>
+				</div>
+			</div>
+			<div class="list-wrap" ng-if="!showOn" ng-class="{true:'hasmore'}[showOldBtn]">
+				<div class="mode" ng-repeat="item in oldList">
+					<div class="img">
+						<img src="{{item.pcPic}}">
+					</div>
+					<div class="con">
+						<i class="together-fin" ng-if="item.status == 2"></i>
+						<div class="t">{{item.title}}</div>
+						<p><i class="together-date"></i>活动时间：{{item.activityDate}}</p>
+						<span ng-if="item.status == 2">查看详情</span>
+					</div>
+				</div>
+			</div>
+			<a href="" class="more" ng-if="showOn && showNewBtn" ng-click="showMore('new')">查看更多 >></a>
+			<a href="" class="more" ng-if="!showOn && showOldBtn" ng-click="showMore('old')">查看更多 >></a>
+		</div>
+		<div class="slide">
+			<div class="aboutus">
+				<!-- <div class="title">
+					<i></i>关注我们
+				</div> -->
+				
+				<div class="mod">
+					<div class="tabs">
+						<p ng-class="{true:'active'}[showCode == 'wechat']" ng-click="showCode = 'wechat'"><i class="together-wechat"></i><span>官方微信</span></p>
+						<p ng-class="{true:'active'}[showCode == 'phone']" ng-click="showCode = 'phone'"><i class="together-phone"></i><span>下载APP</span></p>
+					</div>
+					<div class="modecode-wrap">
+						<div class="code" ng-if="showCode == 'wechat'">
+							<img src="images/together/wechat-code.png">
+							<p>扫一扫 关注我</p>
+						</div>
+						<div class="code" ng-if="showCode == 'phone'">
+							<img src="images/together/phone-code.png">
+							<p>手机客户端APP下载</p>
+						</div>
+					</div>
+				</div>
+					
+			</div>
+			<div class="words-wrap">
+				<div class="title">
+					<a href="/newlayout/winnerInfo">查看更多>></a><i></i>活动中奖者感言
+				</div>
+				<div class="words">
+					<div class="mod-wrap">
+						<div class="mod-box">
+							<div class="mod" ng-repeat="item in history" ng-click="gotoDetail(item.pid)">
+								<div class="head"><img ng-if="item.prizeHeadPhoto != undefined && item.prizeHeadPhoto != ''" src="{{item.prizeHeadPhoto}}"><img ng-if="item.prizeHeadPhoto == undefined || item.prizeHeadPhoto == ''" src="images/special/defaultheader.png"></div>
+								<div class="text">
+									<span>TA说</span>
+									<p>{{item.prizeContent}}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>

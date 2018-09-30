@@ -1,0 +1,225 @@
+﻿<div ng-controller="mainCtrl">
+    {{listDatas}}
+
+    <!-- 欢迎栏 -->
+    <common-header></common-header>
+    <!--<div ng-hide="isLoginPage" class="top-global-wrapper">-->
+        <!--<div class="top-content">-->
+            <!--<div class="tel">-->
+                <!--<i class="global-topphone"></i>-->
+                <!--<b>客服热线：<span>{{(a | web).phone}}</span>（周一至周五 09:00-18:00）</b>-->
+            <!--</div>-->
+            <!--<div class="top-nav">-->
+                <!--&lt;!&ndash;<a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a><span style="margin-right: 12px;">|</span>&ndash;&gt;-->
+                <!--<a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">帮助中心</a>-->
+                <!--<span>|</span>-->
+                <!--<div class="appCode">-->
+                    <!--<a href="{{a|webIE8}}downloadApp" target="_blank"><i>手机APP</i></a>-->
+                    <!--&lt;!&ndash;<a target="_blank"><i>手机APP</i></a>&ndash;&gt;-->
+                    <!--<div>-->
+                    <!--<img src="images/global/app.png">-->
+                    <!--<p>手机客户端<br>APP下载</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<span style="margin-left: -4px;">|</span>-->
+                <!--<div class="appCode"><i class="global-topwechat"></i>-->
+                <!--<div>-->
+                <!--<img src="images/global/wechat.png">-->
+                <!--<p>扫一扫<br>关注官方微信</p>-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--&lt;!&ndash;之前的样式<span ng-if="(a | isRegister).register" style="margin: 0 8px 0 -8px;">|</span>下面的是新增&ndash;&gt;-->
+                <!--<span ng-if="(a | isRegister).register" style="margin: 0 3px;">|</span>-->
+                <!--<a ng-if="(a | isRegister).register" href="" ng-click="gotoLoginPage('myAccount')">{{(a | isRegister).user.userName}}</a>-->
+                <!--<i ng-if="(a | isRegister).register">，</i>-->
+                <!--<a ng-show="(a | isRegister).register" ng-click="userOut()" href="#" class="top-quit">退出</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!-- 欢迎栏结束 -->
+
+    <!-- 导航 -->
+    <div class="globalheader-wrapper">
+        <div class="globalheader-wrap">
+            <div ng-click="$state.go('main.home');" class="logo-wrap">
+                <img class="logo" src="/images/global/logo.png">
+                 <span></span>
+                <img class="slogo" src="/images/global/slogo.png">
+                <!--<i class="global-slogo"></i>-->
+            </div>
+            <!-- <i class="christmaslogo"></i> -->
+            <div class="nav-box" ng-show="!noMenu">
+                <div>
+                    <ul>
+                        <li><a ng-class="{true: 'active'}[activeNav == 'home']" ng-click="activeNav='home'" href="{{a|webIE8}}main/home">首页</a></li>
+                        <li><a ng-class="{true: 'active'}[activeNav == 'bill']" ng-click="activeNav='bill'" href="{{a|webIE8}}main/bankBillList">我要投资</a></li>
+                        <!--exclusiveUser值为2 是恩福产品-->
+                        <li ng-show="exclusiveUser == 2"><a ng-class="{true: 'active'}[activeNav == 'enfu']" ng-click="activeNav='enfu'" href="{{a|webIE8}}main/enfu">专属产品</a></li>
+                        <!--exclusiveUser值为1 是专属用户-->
+                        <li ng-show="exclusiveUser == 1"><a ng-class="{true: 'active'}[activeNav == 'exclusivePro']" ng-click="activeNav='exclusivePro'" href="{{a|webIE8}}main/exclusiveBillList">专属产品</a></li>
+                        <li><a ng-class="{true: 'active'}[activeNav == 'help']" ng-click="activeNav='help'" href="{{a|webIE8}}main/guarantee">安全保障</a></li>
+                        <li><a ng-class="{true: 'active'}[activeNav == 'actcenter']" ng-click="activeNav='actcenter'" href="{{a|webIE8}}main/actcenter">活动中心</a></li>
+                        <!--<li><a ng-class="{true: 'active'}[activeNav == 'guild']" ng-click="activeNav='guild'" href="{{a|webIE8}}main/guide">新手指引</a></li>-->
+                        <!--<li class="account" ng-mouseenter="xxpl=true" ng-mouseleave="xxpl=false"><a ng-class="{true: 'active'}[activeNav == 'new']" ng-click="activeNav='new'" href="{{a|webIE8}}main/jt/JSGK?menuName=JSGK"><i class="drop"></i>信息披露</a>
+                            <div class="con" ng-show="xxpl">
+                                <div>
+                                    <a href="{{a|webIE8}}main/jt/JSGK?menuName=JSGK">关于我们</a>
+                                    <a href="{{a|webIE8}}main/jt/GSZZ">公司资质</a>
+                                    <a href="{{a|webIE8}}main/jt/YYYZ">一亿验资</a>
+                                    <a href="{{a|webIE8}}main/jt/GSGG">网站公告</a>
+                                </div>
+                            </div>
+                        </li>-->
+                        <li class="account"><a ng-class="{true: 'active'}[activeNav == 'new']" ng-click="activeNav='new'" href="{{a|webIE8}}main/jt/GSJJ?menuName=GSJJ">信息披露</a></li>
+                        <!--<li><a ng-class="{true: 'active'}[activeNav == 'hswelfare']" ng-click="activeNav='hswelfare'" href="{{a|webIE8}}main/hswelfare">沪深公益</a></li>-->
+                        <!--<li class="account"><a ng-class="{true: 'active'}[activeNav == 'together']" href=""><i class="drop"></i>活动专区</a><div class="con"><div><a ng-click="activeNav='together'" href="{{a|webIE8}}main/together">线上活动</a><a href="{{a|webIE8}}main/openday">开放日</a><a href="{{a|webIE8}}main/welfarelist">公益活动</a></div></div></li>-->
+                        <li class="account" ng-if="(a | isRegister).register" ng-mouseenter="myaccount=true" ng-mouseleave="myaccount=false">
+                            <a href="{{a|webIE8}}dl" ng-if="!(a | isRegister).register">我的账户</a>
+                            <a href="{{a|webIE8}}main/myAccount/accountHome" ng-class="{true: 'active'}[activeNav == 'account']" ng-if="(a | isRegister).register"><i class="drop"></i>我的账户</a>
+                            <div class="con" ng-show="(a | isRegister).register">
+                                <div>
+                                    <a href="{{a|webIE8}}main/myAccount/myAssets">我的资产</a>
+                                    <a href="{{a|webIE8}}main/myAccount/myInvest" ng-click="activeNav = 'account'">我的投资</a>
+                                    <a href="{{a|webIE8}}main/myAccount/myCoupon">我的优惠券</a>
+                                    <a href="{{a|webIE8}}main/myAccount/myMsg">我的消息</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="nologin" ng-if="!(a | isRegister).register">
+                        <a href="/dl" class="login">登录</a>
+                        <a href="/zhuce" class="register">注册送大礼</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 绑卡（无头部菜单） -->
+            <div class="nonav" ng-show="!rechargePros && noMenu">
+                <img src="/images/bindcard/bindcarBar.png" ng-show="investInfo">
+            </div>
+
+            <!-- 完成充值（无头部菜单） -->
+            <div class="nonav" ng-show="!fullProcess && rechargePros && noMenu">
+                <img src="/images/bill/rechargePros.png">
+            </div>
+
+            <!-- 完成投资（无头部菜单） -->
+            <div class="nonav" ng-show="fullProcess && noMenu">
+                <img ng-show="fullProcess" src="/images/bill/fullProcess.png">
+                <img ng-show="!fullProcess" src="/images/bill/rechargePros.png">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 中间容器 -->
+    <div ui-view=""></div>
+    <!-- 中间容器结束 -->
+
+    <!-- 底部 -->
+    <div id="footer">
+        <div class="footer-wrapper">
+            <div class="foot-wrap">
+                <div class="foot-nav">
+                    <div class="nav-mod">
+                        <!-- <i class="common-fot-home"></i> -->
+                        <p>信息披露</p>
+                        <ul>
+                            <li><a href="{{a|webIE8}}main/jt/JSGK?menuName=JSGK" target="_blank">公司简介</a></li>
+                            <!-- <li><a href="{{a|webIE8}}main/jt/FLFG?menuName=FLFG" target="_blank">法律法规</a></li> -->
+                            <li><a href="{{a|webIE8}}main/jt/LXWM?menuName=LXWM" target="_blank">联系我们</a></li>
+                            <li><a href="{{a|webIE8}}main/guarantee?menuName=guarantee" target="_blank">安全保障</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-mod">
+                        <!-- <i class="common-fot-qa"></i> -->
+                        <p>帮助中心</p>
+                        <ul>
+                            <li><a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">常见问题</a></li>
+                            <li><a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a></li>
+                            <li><a href="{{a|webIE8}}main/FLFG" target="_blank">法律保障</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--<div class="modeline"></div>-->
+                <div class="foot-code">
+                    <div class="mode">
+                        <div class="box">
+                            <img src="images/appcode.png" width="100%" height="100%" />
+                        </div>
+                        <p>
+                            手机客户端<br>APP下载
+                        </p>
+                    </div>
+                    <div class="mode">
+                        <div class="box">
+                            <img src="images/weichar-code.png" width="100%" height="100%" />
+                        </div>
+                        <p>
+                            扫一扫<br />关注官方微信
+                        </p>
+                    </div>
+                </div>
+                <!--<div class="modeline"></div>                                                                -->
+                <div class="contact-wrap">
+                    <div class="title">
+                        <p>客服热线</p>
+                    </div>
+                    <strong ng-cloak>{{(a | web).phone}}</strong>
+                    <span class="serviceTime">周一至周五 09:00-18:00<!-- <br>法定节假日除外<br>客服QQ: --></span>
+                    <div class="footerqq">
+                        <div class="ico qqblue"><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDgyMjQxMV80NzQ2ODdfODAwODIyNDExXw" target="_blank"><span class="text">客服QQ</span></a></div>
+                        <!--<div class="ico emailblue" ng-focus="count=1" ng-mouseover="count=1" ng-mouseleave="count=0" ng-init="count=0"><span class="text">客服邮箱</span></div>-->
+                        <div class="ico emailblue" ng-mouseover="mouseover()" ng-mouseout="mouseout()"><span class="text">客服邮箱</span></div>
+                        <div class="emailhover" ng-if="count">
+                            <a href="mailto:kefu@hsh-yx.com"><i>客服邮箱：</i><i>kefu@hsh-yx.com</i></a>
+                            <!--<a href="mailto:kefu@hsh-yx.com"><div class="common-emailhover"></div> </a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-wrapper">
+            <div class="foot-right">
+                <ul>
+                    <!-- <li><a id='___szfw_logo___' href='https://credit.szfw.org/CX20161019026653110332.html' target='_blank'><img width="100" height="35" src='images/cert.png' border='0' /></a></li> -->
+                    <!--<li><a id="_pingansec_bottomimagesmall_p2p" target="_blank" href="http://si.trustutn.org/info?sn=458161019000540153872&certType=4"><img width="100" height="35" src="images/hyrz.png"/></a></li>-->
+                    <li>
+                         <a class="spread-partners" href="http://www.sgs.gov.cn/shaic/" target="_blank">
+                        <img src="/images/spread-partners/gsh.png">
+                         </a>
+                    </li>
+                    <li>
+                         <a class="spread-partners" href="http://www.12377.cn/" target="_blank">
+                        <img src="/images/spread-partners/jbao.png">
+                         </a>
+                    </li>
+                    <li>
+                         <a class="spread-partners" href="http://www.zx110.org/" target="_blank">
+                        <img src="/images/spread-partners/zxin.png">
+                         </a>
+                    </li>
+                    <li>
+                         <a class="spread-partners" href="http://www.jytpay.com/" target="_blank">
+                        <img src="/images/spread-partners/pay.png">
+                         </a>
+                    </li>
+                    <li>
+                         <a class="spread-partners" href="https://www.aliyun.com/" target="_blank">
+                        <img src="/images/spread-partners/aliyun.png">
+                         </a>
+                    </li>
+                    <!-- <script type='text/javascript'>(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();</script> -->
+                </ul>
+
+                <div class="right-text">
+                    <p>粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司{{v}}</p>
+                    <p>温馨提示：市场有风险，投资需谨慎</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部结束 -->
+
+</div>

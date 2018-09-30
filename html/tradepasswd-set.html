@@ -1,0 +1,138 @@
+<div class="tradepasswd-wrapper" ng-controller="registerCtrl">
+<div class="tradepasswd-wrap">
+	<div class="shadow"></div>
+	<!-- 第一步 -->
+	<form ng-if="authenticationOne" name="trueNameForm" novalidate ng-submit="submitForm(trueNameForm.$valid, 'trueNameForm')">
+		<input style="display:none">
+        <input type="password" style="display:none">
+		<div class="realname-wrap">
+			<div class="setp-icon login-icons-name-step"></div>
+			<!-- <div class="tips-wrap">
+				<i class="login-icons-success"></i>
+				<div class="con">
+					<b>恭喜您注册成功，请继续完成实名认证</b>
+				</div>
+			</div> -->
+			<div class="wqq-new-tishitext">根据互联网金融协会相关规定，您必须先进行身份认证，沪深不会在任何场所泄露你的身份信息</div>
+			<div class="form-box">
+				<div class="input-box">
+					<p>真实姓名</p>
+					<div class="input-mod">
+                        <input type="text" class="text" name="truename" id="truename" placeholder="请输入您的姓名" ng-model="user.truename" required ng-pattern="/^[\u4E00-\u9FA5]+$/" autocomplete="off">
+                        <!-- 验证通过显示对勾勾 -->
+                        <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[trueNameForm.truename.$valid]" ng-show="trueNameForm.truename.$dirty"></i>
+                        <span class="error" ng-show="trueNameForm.truename.$error.pattern">请输入正确的姓名</span>
+                        <span class="error" ng-show="trueNameForm.truename.$dirty && trueNameForm.truename.$error.required">请输入真实姓名</span>
+                    </div>
+				</div>
+				<div class="input-box">
+					<p>身份证号码</p>
+					<div class="input-mod">
+                        <input type="text" class="text" name="idcard" id="idcard" ng-model="user.idcard" placeholder="请输入您的身份证号码" required ng-minlength="15" ng-maxlength="18" ng-pattern="/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/" autocomplete="off">
+                        <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[trueNameForm.idcard.$valid]" ng-show="trueNameForm.idcard.$dirty"></i>
+                        <span class="error" ng-show="trueNameForm.idcard.$error.pattern">请输入正确的身份证号码</span>
+                        <span class="error" ng-show="trueNameForm.idcard.$dirty && trueNameForm.idcard.$error.required">请输入身份证号码</span>
+                    </div>
+				</div>
+				<div class="input-box banknum-box">
+                    <p>充值/提现银行卡号</p>
+                    <!-- <span class="bank-tip" ng-show="trueNameForm.bankcardno.$pristine">仅支持借记卡</span> -->
+                    <div class="input-mod">
+                        <input type="text" class="text" name="bankcardno" id="bankcardno" ng-model="user.bankcardno" placeholder="请输入您的银行卡号（仅支持借记卡）" required valbankcardno autocomplete="off">
+                        <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[trueNameForm.bankcardno.$valid]" ng-show="trueNameForm.bankcardno.$dirty"></i>
+                        <span class="error" ng-show="trueNameForm.bankcardno.$error.valbankcardno">请输入正确的银行卡号</span>
+                        <span class="error" ng-show="trueNameForm.bankcardno.$dirty && trueNameForm.bankcardno.$error.required">请输入您充值和提现的银行卡号</span>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <p>银行预留手机号</p>
+                    <div class="input-mod">
+                        <input type="text" class="text" name="bankphone" id="bankphone" ng-model="user.bankphone" placeholder="请输入您的银行预留手机号" required ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/" autocomplete="off">
+                        <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[trueNameForm.bankphone.$valid]" ng-show="trueNameForm.bankphone.$dirty"></i>
+                        <span class="error" ng-show="trueNameForm.bankphone.$error.pattern">请输入正确的手机号码</span>
+                        <span class="error" ng-show="trueNameForm.bankphone.$dirty && trueNameForm.bankphone.$error.required">请输入银行预留手机号</span>
+                    </div>
+                </div>
+                <div class="input-box getphonecode-box">
+                    <p>短信验证码</p>
+                    <div class="input-mod">
+                        <input type="text" class="phonecode text" name="phonecode" id="phonecode" ng-model="user.phonecode" placeholder="请输入短信验证码" required onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" autocomplete="off">
+                        <a class="getphonecode" href="javascript:;" ng-class="{'getcode-disabled': trueNameForm.truename.$invalid || trueNameForm.idcard.$invalid || trueNameForm.bankcardno.$invalid || trueNameForm.bankphone.$invalid || user.isGetCode || isGetVoice}" ng-click="getPhoneCode(user.bankphone, $event, user, false)">{{user.getCodeText}}</a>
+                        <div class="phonecodemsg">
+                            <i class="common-form-error" ng-show="trueNameForm.phonecode.$dirty && (bankPhoneCodeError || trueNameForm.phonecode.$invalid)"></i>
+                            <span class="error" ng-show="trueNameForm.phonecode.$dirty && trueNameForm.phonecode.$error.required">请输入短信验证码</span>
+                        </div>
+                    </div>
+                </div>
+				
+				<div class="sub-box">
+					<input class="sub-btn" ng-disabled="trueNameForm.$invalid" value="认证" type="submit">
+				</div>
+				<div class="bot-tips">请填写您本人真实有效的身份信息，一旦认证成功，信息将不可更改</div>
+			</div>
+			<div class="newtips">
+				<p>友情提示：</p>
+				<p>1. 浦发银行/邮储银行/上海银行 需要开通银联无卡支付，开通地址：<a target="_blank" href="https://online.unionpay.com/portal/open/init.do?entry=open">https://online.unionpay.com/portal/open/init.do?entry=open</a>，<a href="/main/jt2/YLKT" target="_blank">查看开通演示</a>；</p>
+				<p>2. 认证前，请确认“您填写银行预留的手机号”与您的银行卡预留的手机号码一致，如果您尚未在银行预留手机号码，建议你去银行柜面进行信息补充；</p>
+				<p>3. 银行卡快捷充值支付额度请 <a href="../main/jt2/ZFED" target="_blank">点击查看</a> 。</p>
+			</div>
+			<div class="skip-wrap"><a href="" ng-click="goNext(2)">跳过此步</a><span>|</span><a href="" ng-click="$state.go('main.myAccount.accountHome')">进入我的账户</a></div>
+		</div>
+	</form>
+	<!-- 第一步结束 -->
+	
+	<!-- 第二步 -->
+	<form ng-if="authenticationTwo" name="tpwdSetForm" novalidate ng-submit="submitForm(tpwdSetForm.$valid, 'tpwdSetForm')">
+		<input style="display:none">
+        <input type="password" style="display:none">
+		<div class="tradepasswd">
+			<div class="setp-icon login-icons-code-step"></div>
+			<div class="wqq-new-tishitext">　</div>
+			<div class="form-box">
+				<div class="input-box">
+					<p>设置交易密码</p>
+					<div class="input-mod">
+						<input type="password" class="text" name="tpasswd" id="tpasswd" placeholder="6位数字" required ng-pattern="/^\d{6}$/" ng-model="trade.tpasswd" autocomplete="off" maxlength="6" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')"/>
+			            <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[tpwdSetForm.tpasswd.$valid]" ng-show="tpwdSetForm.tpasswd.$dirty"></i>
+			            <span class="error" ng-show="tpwdSetForm.tpasswd.$error.pattern">交易密码格式不正确</span>
+			            <span class="error" ng-show="tpwdSetForm.tpasswd.$dirty && tpwdSetForm.tpasswd.$error.required">请输入交易密码</span>
+					</div>
+					<div class="error" ng-show="userPassWordform.passWordOne.$error.minlength"><font color="red">密码大于6位</font></div>
+				</div>
+				<div class="input-box">
+					<p>确认交易密码</p>
+					<div class="input-mod">
+						<input type="password" class="text" name="retpasswd" placeholder="请再次输入您的交易密码" required ng-model="trade.retpasswd" match="tpasswd" autocomplete="off" maxlength="6" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" />
+			            <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[tpwdSetForm.retpasswd.$valid]" ng-show="tpwdSetForm.retpasswd.$dirty"></i>
+			            <span class="error" ng-show="tpwdSetForm.retpasswd.$error.match && !tpwdSetForm.retpasswd.$error.required">两次输入的交易密码不符</span>
+			            <span class="error" ng-show="tpwdSetForm.retpasswd.$dirty && tpwdSetForm.retpasswd.$error.required">请再次输入您的交易密码</span>
+					</div>
+				</div>
+				<div class="sub-box" >
+					<input type="submit" class="sub-btn" value="完成" ng-disabled="tpwdSetForm.$invalid"/>
+				</div>
+				<div class="bot-tips">交易密码将在投标、提现时使用</div>
+			</div>
+			<div class="skip-wrap"><a href="" ng-click="$state.go('main.myAccount.accountHome')">跳过此步</a><span>|</span><a href="" ng-click="$state.go('main.myAccount.accountHome')">进入我的账户</a></div>
+		</div>
+	</form>
+	<!-- 第二步结束 -->
+
+
+	<!-- 第三部设置成功 -->
+	<!-- <div class="success-wrap" ng-show="authenticationOk">
+		<div class="tips-wrap">
+			<i class="login-icons-success"></i>
+			<div class="con">
+				<b>恭喜，您的沪深理财账户已开通</b>
+				<p class="tip">请绑定银行卡，便于投资体现</p>
+			</div>
+		</div>
+		<div class="sub-box" >
+			<a href="" class="sub-btn bind-card" ng-click="onClickReal('ok')">绑定银行卡</a>
+		</div>
+	</div> -->
+	<!-- 第三部设置成功结束 -->
+	
+</div>
+</div>

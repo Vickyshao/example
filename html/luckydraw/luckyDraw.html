@@ -1,0 +1,214 @@
+<div ng-controller="mainCtrl">
+    <zt-header></zt-header>
+</div>
+
+<div class="luckyDraw" ng-controller="luckyDrawCtrl">
+    <!--我的抽奖码-->
+    <div class="myCode" ng-click="getCode()" ng-show="!!currentAward">
+        <img class="proImg" src="/images/luckyDraw/myCode.png"/>
+    </div>
+    <div class="center">
+        <img src="/images/luckyDraw/banner.png" />
+    </div>
+
+    <!--本期大奖 活动奖品-->
+    <div class="latest" ng-show="currentAward.awardType == 0">
+        <div class="ins">
+            <div class="condition">满{{currentAwardInfo.totalCount ? currentAwardInfo.totalCount : '300'}}个抽奖码就开奖</div>
+            <div class="latestTitle">第{{currentAwardInfo.activityPeriods}}期大奖</div>
+            <div class="proName">
+                <img src="/images/luckyDraw/proNameL.png" />
+                <span>{{currentAwardInfo.awardName}}&nbsp;</span>
+                <img src="/images/luckyDraw/proNameR.png" />
+            </div>
+            <div class="txt">每投资<span>{{currentAwardInfo.amount}}</span>元即可获得一个抽奖码</div>
+            <div class="pro">
+                <img class="proImg" ng-src="{{currentAwardInfo.pcImgUrlV}}"/>
+            </div>
+            <a><div ui-sref="main.billDetail({id:currentAwardInfo.pid})" class="draw-purchaseBtn"></div></a>
+            <div class="remain">
+                <div class="num">还剩{{currentAwardInfo.residueCount}}个抽奖码</div>
+                <div class="orderOther">
+                    不喜欢？<a ng-click="orderOther()">预约其它奖品</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--本期大奖 预约奖品   1：预约奖品(可预约状态) 2：预约奖品(不可预约状态)  -->
+    <div class="latest" ng-show="currentAward.awardType == 1 || currentAward.awardType == 2">
+        <div class="ins">
+            <div class="condition">满{{currentAward.periodCount ? currentAward.periodCount : '300'}}个抽奖码就开奖</div>
+            <!--<div class="latestTitle">第{{currentAward.activityPeriods}}期大奖</div>-->
+            <div class="latestTitle">下一期大奖</div>
+            <div class="proName">
+                <img src="/images/luckyDraw/proNameL.png" />
+                <span>{{currentAwardInfo.name}}</span>
+                <img src="/images/luckyDraw/proNameR.png" />
+            </div>
+            <!--<div class="txt">每投资<span>{{currentAwardInfo.unitPrice}}</span>元即可获得一个抽奖码</div>-->
+            <div class="pro">
+                <img class="proImg" ng-src="{{currentAwardInfo.pcImgUrl}}"/>
+            </div>
+            <a ng-show="currentAward.awardType == 1" ng-click="toReserveNext()"><div class="draw-reservisBtn"></div></a>
+            <a ng-show="currentAward.awardType == 2"><div class="draw-reservisBtn"></div></a>
+            <div class="remain">
+                <div class="orderOther float-none" style="margin-right: 0">
+                    不喜欢？<a ng-click="orderOther()">预约其它奖品</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--本期大奖 默认奖品-->
+    <div class="latest" ng-show="currentAward.awardType == 3">
+        <div class="ins" style="height: 716px;">
+            <div class="condition">满300个抽奖码就开奖</div>
+            <div class="latestTitle">下一期大奖</div>
+            <div class="proName">
+                <img src="/images/luckyDraw/proNameL.png" />
+                <span>京东卡1000元&nbsp;</span>
+                <img src="/images/luckyDraw/proNameR.png" />
+            </div>
+            <div class="pro">
+                <img class="proImg" src="/images/luckyDraw/proImg.png"/>
+            </div>
+            <div class="draw-beginningBtn"></div>
+            <div class="remain">
+                <div class="orderOther float-none" style="margin-right: 0">
+                    不喜欢？<a ng-click="orderOther()">预约其它奖品</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--往期开奖视频-->
+    <div class="pastVideo">
+        <div class="ins">
+            <div class="draw-pastTitle"></div>
+            <div class="videos">
+                <div class="videoA">
+                    <a class="have" ng-show="activerevious.videoImgUrl" href="{{activerevious.videoUrl}}" target="_blank">
+                        <div class="play"></div>
+                        <img class="proImg" ng-src="{{activerevious.videoImgUrl}}"/>
+                    </a>
+                    <!--没有视频时-->
+                    <a class="none" ng-show="!activerevious.videoImgUrl" href="{{activerevious.videoUrl? activerevious.videoUrl : ''}}" target="_blank">
+                        <img class="proImg"  src="/images/luckyDraw/notOpen.png"/>
+                    </a>
+                </div>
+                <div class="info">
+                    <div class="phase">第{{activerevious.issue? activerevious.issue : '1'}}期</div>
+                    <div class="detail">
+                        <span class="winner">中奖用户：<i>{{activerevious.winningUser ? activerevious.winningUser : '未开奖'}}</i></span>
+                        <span class="winnerNo">　　中奖号：<i>{{activerevious.winningNumbers? activerevious.winningNumbers : '未开奖'}}</i></span>
+                        <span class="more" ng-init="getMore=false" ng-click="moreToggle()">查看所有</span>
+                    </div>
+                </div>
+                <div class="pastAward" ng-show="getMore">
+                    <ul>
+                        <li ng-repeat="item in previousLottery" ng-click="changepreviousLottery($index)">
+                            <span>第{{item.issue}}期</span>
+                            <span>中奖号： {{item.winningNumbers}}</span>
+                            <span>中奖用户：  {{item.winningUser}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="process">
+        <div class="ins">
+            <img class="proImg" src="/images/luckyDraw/process.png"/>
+        </div>
+    </div>
+
+    <!--最新动态-->
+    <div class="latestNews" ng-show="latestAwarDynamic.length">
+        <div class="ins">
+            <div class="draw-latestNewTitle"></div>
+            <div class="info">
+                <ul>
+                    <li ng-repeat="item in latestAwarDynamic">
+                        <span class="mobile">{{item.phone}} {{item.name}}</span>
+                        <span class="contents">{{item.contents}}</span>   
+                        <span class="date">{{item.time | date:'yyyy-MM-dd　HH：mm：ss'}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--奖品预约-->
+    <div class="reservation">
+        <div class="center float-none">
+            <div class="draw-reservTitle"></div>
+            <div class="txt">人气奖品会在下一期优先发布</div>
+        </div>
+        <div class="ins">
+            <div class="pros">
+                <ul>
+                    <li ng-repeat="item in awards">
+                        <div class="name">{{item.name}}</div>
+                        <div class="price">投资{{item.unitPrice}}元赢大奖</div>
+                        <div class="proImg" ng-class="{true: 'noImg', false: ''}[!item.pcImgUrl]"><img ng-src="{{ item.pcImgUrl}}"/></div>
+                        <!--<div class="proImg"><img ng-src="{{ 0 ? item.pcImgUrl : '/images/luckyDraw/loading.png'}}"/> </div>-->
+                        <!--预约成功-->
+                        <div ng-show="item.reservation == 1" class="reservBtn succ" >预约成功</div>
+                        <!--可预约-->
+                        <div ng-show="item.reservation == 0" class="reservBtn" ng-click="toReserve($index)">预约</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--活动规则-->
+    <div class="rules">
+        <div class="name">活动规则</div>
+        <div class="rule">
+            <ul class="act">
+                <li>1、本活动标期180天，属于活动标。根据奖励不同，每期投资总金额不同。投资者除获得收益以外，还有机会获得大奖。</li>
+                <li>2、每期共有300个名额。根据奖励不同，每次投资对应金额获得1个“字母+数字”组合的抽奖号码，也可以一次性投资对应金额的倍数获得多个抽奖号码，提升获奖几率。</li>
+                <li>3、投资本活动标不享受红包等平台或渠道的其它任何福利。</li>
+                <li>4、开奖方式及中奖结果。活动遵循公开公平公正的原则。每期活动标满后5个工作日内进行开奖，请关注沪深理财微信公众号"沪深金融官微“（hushenlicai）查看获奖信息。同时会有工作人员联系您记录收货地址。正常情况下中奖奖励会在开奖后的15个工作日内发货。</li>
+                <li>* 本活动由沪深理财发起并就活动内容作出解释和说明，苹果公司（Apple Inc. ）非活动赞助商，本活动与苹果公司无关。任何疑问请咨询沪深客服：400-031-9909</li>
+            </ul>
+
+            <div class="name" ng-click="toggleFAQ()">
+                <a>常见问题
+                    <div class="arr"></div>
+                </a>
+            </div>
+            <div class="questions hide" ng-show="showFAQ">
+                <ul>
+                    <li>1、关于中奖礼品</li>
+                    <li>平台精选多种品质商品作为中奖礼品，供用户投资并中奖获得。根据活动情况，礼品可能会进行上下架调整，具体请以活动页展示为准。</li>
+                    <li>2、中奖礼品是否可以选择尺寸及颜色？</li>
+                    <li>获奖礼品一般为固定型号固定尺寸，不可选择。礼品颜色一般默认为平台展示的颜色，具体将以实际库存颜色随机发货。</li>
+                    <li>3、中奖礼品售后保障怎么办？</li>
+                    <li>本活动礼品不提供发票，凡活动获得的实物类礼品，若有质量问题，可联系商家进行售后退换或维修，售后服务以商家为准，沪深客服可配合
+                        您完成售后咨询。
+                    </li>
+                    <li>4、中奖用户未及时收到奖励是什么原因？</li>
+                    <li>获奖后会有工作人员联系您确认收货地址。若地址提供错误或不全等可能导致礼品延期发货；部分礼品因库存因素等无法保证具体发货时间，
+                        如未能及时到货也请您耐心等待，我们承诺会按照下单顺序，尽快发货。
+                    </li>
+                    <li>5、中奖礼品发货配送问题处理？</li>
+                    <li>为了保障您的权益，若您在中奖并联系您确认地址后15天内未收到礼品，请及时联系沪深客服跟踪订单、申请维权，投资后30天内为维权问题
+                        受理期，逾期则视为放弃申请维权，平台将不再受理。
+                    </li>
+                    <li>6、奖励价格与市场价不一样，为什么？</li>
+                    <li>因奖励为沪深平台批量采购，采购价格在市场价格上下浮动。属于正常情况。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="reg-footer footer">
+        <p class="right">粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司v1.0.0<br/>
+            温馨提示：市场有风险，投资需谨慎</p>
+    </div>
+</div>
+</div>

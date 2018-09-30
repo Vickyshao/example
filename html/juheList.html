@@ -1,0 +1,19 @@
+<div class="juhelist" ng-controller="juheCtrl" >
+	<div class="juhe-banner">
+		<img src="images/juhe/juhebanner.png" />
+	</div>
+	<div class="juhelist-box" ng-waterfall config="config" style="min-height: 1384px;" id="main">
+
+		<div class="itembox" ng-repeat="item in data" on-finish-render="waterNow()">
+
+			<h1 ui-sref="main.juheDetail({ id: item.id })">{{item.title}}</h1>
+			<div class="star-box"><i>信用评级：</i>
+				<div class="star"><span style="width:{{item.star/5*100}}%"></span></div>
+			</div>
+			<img ui-sref="main.juheDetail({ id: item.id })" src="{{item.imgsrc}}" />
+			<p ui-sref="main.juheDetail({ id: item.id })">{{item.content}}</p>
+			<a href="{{item.url}}">查看详情</a>
+		</div>
+	</div>
+	<p style="text-align: center; color:#525252;font-weight: bold; font-size:15px;padding:55px 0px 22px;">更多企业，待更新…</p>
+</div>

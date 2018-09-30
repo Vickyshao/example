@@ -1,0 +1,44 @@
+<div class="account-myinfo-wrap" ng-controller="personalCtrl">
+	<div class="account-common-title">个人基本信息</div>
+	<div class="account-common-con">
+		<div class="myinfo-wrapper">
+			<div class="myinfo-wrap">
+				<div class="info-mode">
+					<div class="ok"><i class="my-info-set"></i>已认证</div>
+					<dl>
+						<dt><i>*</i>手机号</dt>
+						<dd>{{user.phone}}</dd>
+					</dl>
+				</div>
+				<div class="info-mode">
+					<div class="n-ok" ng-hide="user.verify"><i class="my-info-setfalse"></i>未认证</div>
+					<div class="ok" ng-show="user.verify"><i class="my-info-set"></i>已认证</div>
+					<dl>
+						<dt><i>*</i>真实姓名</dt>
+						<dd>{{user.realName}}</dd>
+					</dl>
+				</div>
+				<div class="info-mode">
+					<div class="n-ok" ng-hide="user.verify"><i class="my-info-setfalse"></i>未认证</div>
+					<div class="ok" ng-show="user.verify"><i class="my-info-set"></i>已认证</div>
+					<dl>
+						<dt><i>*</i>身份证号</dt>
+						<dd>{{user.idCards}}</dd>
+					</dl>
+				</div>
+				<div class="info-mode">
+					<dl>
+						<dt><i>*</i>性别</dt>
+						<dd>{{user.sexInfo}}</dd>
+					</dl>
+				</div>
+				<div class="info-mode">
+					<dl>
+						<dt><i>*</i>出生日期</dt>
+						<dd>{{user.birth}}</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

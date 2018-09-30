@@ -1,0 +1,39 @@
+<!-- 恩弗投资成功 -->
+<div class="investSuc" ng-controller="enfuInvestSucessCtrl">
+	<div class="enfuSuccess">
+		<div class="title">恭喜您！投资成功！</div>
+		<ul class="info">
+			<li>
+				<span class="left">投资项目</span>
+				<span class="right">{{enfu.fullName}}</span>
+			</li>
+			<li>
+				<span class="left">投资期限</span>
+				<span class="right">{{enfu.deadline}}天</span>
+			</li>
+			<li>
+				<span class="left">回款日期</span>
+				<span class="right">{{enfu.huikuan | date:'yyyy-MM-dd'}}</span>
+			</li>
+			<li>
+				<span class="left">到期本息</span>
+				<span class="right">{{enfu.benxi | isNumber2}}元</span>
+			</li>
+		</ul>
+		<div class="toDetail">
+			<a ng-click="gotoDetail(enfu.id)">去恩弗少儿运动俱乐部兑换课程</a>
+			<p>兑换电话：<span>021-52999132</span></p>
+		</div>
+		<div class="mark clearfix">
+			<div class="up">
+				<p class="amount">¥1170</p >
+				<p>恩弗精选课程</p >
+			</div>
+			<div class="down">
+				<p class="value">价值¥1170恩弗精选课程</p >
+				<p class="change">兑换码：{{enfu.enFuConvertCode}}</p >
+			</div>
+		</div>
+
+	</div>
+</div>

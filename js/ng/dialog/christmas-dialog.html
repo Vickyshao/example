@@ -1,0 +1,28 @@
+<div class="christmas-dialog-wrap">
+    <i class="christmas-close" ng-click="closeDialog()"></i>
+    <div class="top" ng-if="!isWin">
+        <div class="title" ng-if="!prizeError">您还没有拆钱袋的机会~</div>
+        <div class="title" ng-if="prizeError">钱袋还没有准备好~</div>
+        <p ng-if="isOldUser && !prizeError">投资收益“<span>+0.5%</span>”或“<span>+1%</span>”标识<br>的项目不少于1000元即可获取机会！</p>
+        <p class="old" ng-if="!isOldUser && !prizeError">新用户需先投资定期标成为老用户<br>再投资相应的加息标<br>不少于<span>1000元</span>方可参加活动。</p>
+        <p class="error" ng-if="prizeError">没有找到您的钱袋，请刷新页面后再试！</p>
+    </div>
+    <div class="win" ng-if="isWin">
+        <div class="title">{{prizeName}}</div>
+        <div class="tip">恭喜您获得<span>{{amount}}</span>元奖励！</div>
+        <i class="christmas-santafin"></i>
+    </div>
+    <div class="bot" ng-if="!isWin">
+        <i class="christmas-santatip"></i>
+        <a href="" class="invest-btn" ng-if="!prizeError && isOldUser" ng-click="goInvest()">立即投资</a>
+        <a href="" class="invest-btn" ng-if="!prizeError && !isOldUser" ng-click="closeDialog()" ui-sref="main.bankBillList">立即投资</a>
+        <a href="" class="close" ng-click="closeDialog()" ng-if="prizeError">关闭</a>
+    </div>
+    <div class="code" ng-if="isWin">
+        <div class="code-box">
+            <qrcode version="5" error-correction-level="L" size="190" data="https://hushenlc.cn/shuangdanshare?wap=true&uid={{uid}}"></qrcode>
+        </div>
+        <p>扫一扫，分享到朋友圈<br>有机会获得神秘礼物一份哦~</p>
+        <a href="" ng-click="goRules()">活动规则</a>
+    </div>
+</div>

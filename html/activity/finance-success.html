@@ -1,0 +1,64 @@
+<div class="finance-success-wrapper" ng-controller="financeCtrl">
+	<div class="finance-success-wrap newhandsuccess" ng-if="!newToInvest && !isecCommer">
+		<div class="title"><i class="finsuc-icon"></i>恭喜您，注册成功！</div>
+		<div class="finsuc02 finsuc"><img src="/images/finance/finsuc02.png" ></div>
+		<!-- <div class="finsuc03 finsuc"><img src="/images/finance/finsuc03.png" ></div> -->
+		<div class="finsuc04 finsuc"><img src="/images/finance/finsuc04.png" ></div>
+		<div class="tocard">
+			<a class="btn" ng-click="bindBank()">绑卡领8888元</a><br/ ><br/ >
+			<a class="next" ui-sref="main.home">跳过</a>
+		</div>
+	</div>
+
+	<div class="finance-success-wrap ecommerSuccess" ng-if="isecCommer">
+		<div class="title"><i class="finance-right"></i>恭喜您注册成功！</div>
+		<div class="center">
+			<p>首笔<span>{{price}}</span>元已放入您账户，快去领吧</p>
+		</div>
+		<div class="bot">
+			<!-- <a href="" ng-click="bindBank()">立即激活</a> -->
+			<!--<a ui-sref="main.myAccount.reimtask({ecCode:ecCode})">立即领取</a>-->
+			<a ng-click="toReceivePacket()">立即领取</a>
+		</div>
+		<div class="tips">
+			<span>沪深理财送您288元新人红包，已放入您的账户，快快体验投资吧！</span>
+		</div>
+	</div>
+
+	<div class="finance-success-wrap newtoInvestsuc" ng-show="newToInvest">
+		<div class="title"><i class="finance-newsRegSuc"></i>恭喜您，注册成功！</div>
+		<div class="newredPacket marginAuto"></div>
+		<div class="finance-newPacketNum marginAuto"></div>
+		<div class="txt">
+			<p class="grey">在”我的-优惠券”内可查看</p><br/>
+			<p class="grey" style="margin-bottom: 12px">完成投资即刻激活红包</p>
+		</div>
+		<div class="btn">
+			<a ui-sref="main.bankBillList">立即投资</a>
+		</div>
+	</div>
+</div>
+
+<!-- 原版
+<div class="finance-success-wrap newhandsuccess" ng-if="!newToInvest && !isecCommer">
+		<div class="title"><i class="finance-right"></i>恭喜您注册成功！</div>
+		<div class="redPacket marginAuto"></div>
+		<div class="newhand">
+			<div class="pullnew"><img src="images/pullNew.gif" /></div>
+			<div class="name">新手专享标<div class="limit-time">每位用户仅限一次投资机会</div></div>
+			<div class="info">
+				<div class="text">
+					<ul class="nums">
+						<li class="rate"><span><i>12.88{{rate}}</i>%</span><br/>历史年化收益率</li>
+						<li class="days"><span><i>5{{deadline}}</i>天</span><br/>投资期限</li>
+						<li><a ui-sref="main.billDetail({ id: newhand.id })"><br/><img src="images/finance/toInvest.png"/></a><br/>可用新手红包哦</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+ -->
+
+
+
+

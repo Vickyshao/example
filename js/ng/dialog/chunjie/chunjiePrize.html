@@ -1,0 +1,17 @@
+<div class="fir-dialog dialog-wrap chunjiePrize">
+    <a href="" class="close" ng-click="closeDialog()"><img src="/images/chunjie/dialogPrizeCloseBtn.png"/> </a>
+    <div class="topPro">
+        <div class="proName">
+            <span>{{proInfos.awardTypeName}}</span>
+        </div>
+        <div class="img">
+            <img ng-src="{{proInfos.picUrl}}" height="110"/>
+        </div>
+    </div>
+    <div class="info">
+        年化投资额还差{{proInfos.useCondition - myInvestInfo.myAnnualizedAmount}}元
+    </div>
+    <div class="btns">
+        <a ui-sref="main.bankBillList" ng-click="closeDialog()">去投资</a>
+    </div>
+</div>

@@ -1,0 +1,336 @@
+// .redbag-dialog-wrap{
+// 	width: 640px;
+// 	background: #fff;
+// 	border-radius: 10px;
+// 	.dtitle{
+// 		padding: 40px 0 41px;
+// 		.mytitle{
+// 			color: #656566;
+// 			font-size: 30px;
+// 			padding-bottom: 15px;
+// 			font-weight: bold;
+// 			span{
+// 				color: #f9351b;
+// 			}
+// 		}
+// 		.tip{
+// 			color: #f9351b;
+// 			font-size: 20px;
+// 		}
+// 		&.promotetitle{
+// 			.mytitle{
+// 				font-size: 26px;
+// 				font-weight: normal;
+// 			}
+// 			.tip{
+// 				color: #656566;
+// 				font-size: 20px;
+// 			}
+// 		}
+// 	}
+// 	.bag-wrap{
+// 		table{
+// 			width: 560px;
+// 			margin: 0 auto;
+// 			text-align: center;
+// 			td{
+// 				text-align: center;
+// 			}
+// 			.bag-box{
+// 				width: 268px;//242px;
+// 				height: 309px;//283px;
+// 				background: image-url('redbag/nocheck.png') 12px 13px no-repeat;
+// 				display: inline-block;
+// 				color: #fff;
+// 				.title{
+// 					padding-top: 48px;
+// 					font-size: 36px;
+// 					text-align: center;
+// 					i{
+// 						font-size: 24px;
+// 					}
+// 				}
+// 				ul{
+// 					padding: 14px 0 0 26px;
+// 					li{
+// 						line-height: 28px;
+// 						font-size: 16px;
+// 						text-align: left;
+// 					}
+// 				}
+// 				.btn{
+// 					width: 198px;
+// 					height: 48px;
+// 					margin: 30px auto 0;
+// 					display: block;
+// 					background: #f3f2f2;
+// 					font-size: 18px;
+// 					color: #7e807f;
+// 					font-weight: bold;
+// 					border-radius: 4px;
+// 					box-shadow: 1px 4px 0 #cd1f0a;
+// 					text-align: center;
+// 					line-height: 48px;
+// 					outline: none;
+// 					&:hover{
+// 						text-decoration: none;
+// 					}
+// 				}
+// 				&:hover{
+// 					background: image-url('redbag/check.png') no-repeat;
+// 					.btn{
+// 						background: #fadf4c;
+// 						color: #793707;
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// 	.giveup-box{
+// 		padding: 33px 0 49px;
+// 		text-align: center;
+// 		a{
+// 			display: block;
+// 			width: 260px;
+// 			height: 56px;
+// 			text-align: center;
+// 			line-height: 56px;
+// 			border-radius: 5px;
+// 			font-size: 22px;
+// 			color: #808090;
+// 			border: 1px solid #b3b1b1;
+// 			margin: 0 auto;
+// 		}
+// 	}
+// 	.more-box{
+// 		padding: 40px 56px 23px 0;
+// 		font-size: 18px;
+// 		text-align: right;
+// 		a{
+// 			color: #f9351b;
+// 		}
+// 	}
+// 	.botlist{
+// 		width: 520px;
+// 		margin: -1px auto 0;
+// 		padding-bottom: 68px;
+// 		.top{
+// 			border-top: 1px solid #b3b3b3;
+// 			span{
+// 				display: inline-block;
+// 				vertical-align: top;
+// 				padding: 0 16px;
+// 				margin-top: -15px;
+// 				font-size: 18px;
+// 				color: #323233;
+// 				background: #fff;
+// 			}
+// 		}
+// 		.listbox{
+// 			max-height: 216px;
+// 			overflow: hidden;
+// 		}
+// 		ul{
+// 			margin-top: 7px;
+// 			li{
+// 				margin-bottom: 24px;
+// 				line-height: 28px;
+// 				font-size: 16px;
+// 				color: #4b4b4c;
+// 				padding: 0 10px;
+// 				text-align: left;
+// 				span{
+// 					float: right;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
+
+.redbag-dialog-wrapper .ngdialog-content {
+  background: none !important;
+  position:static;
+}
+.redbag-dialog-wrapper .ngdialog-close{
+	display:none;
+}
+.redbag-dialog-wrap{
+	position: relative;
+	width:430px;
+	height:259px;
+	padding-left:28px;
+	padding-top:168px;
+	background:image-url('redbag/futoubg.png') no-repeat center center;
+	.bg{
+		width:457px;
+		height:426px;
+		position:absolute;
+		left:0;
+		top:0;
+	}
+	.bag-wrap{
+		height:230px;
+		overflow-y:scroll;
+		scrollbar-arrow-color:transparent;
+		scrollbar-face-color:transparent;
+		scrollbar-highlight-color:rgba(0,0,0,0);
+		scrollbar-base-color:#af290c;
+		&::-webkit-scrollbar{
+			width:6px;
+		}
+		&::-webkit-scrollbar-thumb{
+			border-radius:3px;
+			background-color: #af290c;
+		}
+		.bag{
+			width:198px;
+			height:210px;
+			background:#fff;
+			float:left;
+			margin-right:8px;
+			margin-bottom:20px;
+			color:#f9482b;
+			border-radius:8px;
+			-webkit-border-radius:8px;
+			-moz-border-radius:8px;
+			-ms-border-radius:8px;
+			-o-border-radius:8px;
+			position:relative;
+			.first{
+				font-size:32px;
+				text-align: center;
+				width:100%;
+				height:32px;
+				line-height:32px;
+				position:absolute;
+				left:0;
+				top:12px;
+			}
+			.second{
+				font-size:12px;
+				text-align: center;
+				width:100%;
+				height:12px;
+				line-height:12px;
+				position:absolute;
+				left:0;
+				top:52px;
+			}
+			.third{
+				position:absolute;
+				left:0;
+				top:70px;
+			}
+			.fourth{
+				font-size:14px;
+				display:inline;
+				position:absolute;
+				left:32px;
+				top:92px;
+			}
+			.fifth{
+				font-size:14px;
+				display:inline;
+				position:absolute;
+				left:32px;
+				top:118px;
+			}
+			.sixth{
+				position:absolute;
+				left:22px;
+				bottom:18px;
+				a{
+					display:inline-block;
+					width:150px;
+					height:36px;
+					line-height: 36px;
+					text-align: center;
+					border-radius:36px;
+					-webkit-border-radius:36px;
+					background:#ff5b40;
+					color:#fff;
+					font-size:16px;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+	.giveupBox{
+		position:absolute;
+		top:-2px;
+		right:-43px;
+		a{
+			display: inline-block;
+			width:43px;
+			height:43px;
+			background:image-url('redbag/close.png') no-repeat center center;
+		}
+	}
+}
+.promote-dialog-wrapper{
+	position: relative;
+	.redbag-openbg{
+		width: 539px;
+		height: 387px;
+		background: image-url('redbag/openbg.png') no-repeat;
+		margin-right: -35px;
+		position: relative;
+		p{
+			font-size: 20px;
+			text-align: center;
+			padding-top: 100px;
+			line-height: 34px;
+			color: #fff;
+		}
+		.tear{
+			position: absolute;
+			width: 110px;
+			height: 110px;
+			bottom: 53px;
+			left: 201px;
+		}
+		.close{
+			font-size: 40px;
+			position: absolute;
+			right: 50px;
+			top: 0;
+			color: #fff;
+			z-index: 10;
+			&:hover{
+				text-decoration: none;
+				color: #ddd;
+			}
+		}     
+	}
+	.redbag-dialog-wrap{
+		position: relative;
+		.close{
+			font-size: 40px;
+			position: absolute;
+			right: 15px;
+			top: 0;
+			color: #888;
+			z-index: 10;
+			&:hover{
+				text-decoration: none;
+				color: #bbb;
+			}
+		}
+	}
+}
+
+.redbag-dialog-wrapper.ngdialog-theme-default .ngdialog-content{
+	background: none;
+}
+
+.account-home-wrap .content-wrap .total-num{
+	.redbag-tear{
+		display: inline-block;
+		vertical-align: bottom;
+		width: 69px;
+		height: 69px;
+		cursor: pointer;
+		margin: -30px 0 -3px 10px;
+		background: image-url('redbag/tear.png') no-repeat;
+	}
+}

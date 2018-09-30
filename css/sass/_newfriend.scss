@@ -1,0 +1,372 @@
+$newfriend-sprite-dimensions: true;
+@import "newfriend/*.png";
+@include all-newfriend-sprites();
+$newfriend-spacing:3px;
+
+.friend-body{
+	background: #342359;
+	.top-bg{
+		height: 530px;
+		background: #32323c;
+		.center-bg{
+			margin: 0 auto;
+			position: relative;
+		}
+	}
+	.newfriend-gradient-bg{
+		width: 100%;
+	}
+	.top-share{
+		width: 1059px;
+		margin: 0 auto;
+		position: relative;
+		height: 380px;
+		.copy{
+			position: absolute;
+			width: 364px;
+			height: 83px;
+			font-size: 30px;
+			color: #fff;
+			text-align: center;
+			line-height: 83px;
+			border-radius: 18px;
+			border: 1px solid #fff;
+			left: 29px;
+			top: 51px;
+			background: #24183e;
+			&:hover{
+				text-decoration: none;
+				background: #2b1a4e;
+			}
+		}
+		.icon-share{
+			position: absolute;
+			right: 45px;
+			top: 21px;
+			z-index: 10;
+			.icons{
+				overflow: hidden;
+				margin-right: -48px;
+				a{
+					float: left;
+					margin-right: 48px;
+					cursor: pointer;
+					&:hover{
+						opacity: 0.8;
+					}
+				}
+			}
+			.tip{
+				height: 41px;
+				line-height: 41px;
+				text-align: center;
+				font-size: 14px;
+				color: #fff;
+				background: #299be6;
+				border-radius: 19px;
+				position: relative;
+				margin-top: 23px;
+				i{
+					position: absolute;
+					left: 141px;
+					top: -18px;
+				}
+			}
+		}
+		.newfriend-line{
+			position: absolute;
+			left: 170px;
+			top: 125px;
+			z-index: 1;
+		}
+	}
+	.mode{
+		width: 1053px;
+		margin: 0 auto;
+		border: 3px solid #fff;
+		box-shadow: 0 0 13px rgba(255,255,190,.8) inset;
+		padding-bottom: 27px;
+		position: relative;
+		z-index: 10;
+		.title{
+			font-size: 46px;
+			color: #fff;
+			text-align: center;
+			text-shadow: 0 0 6px rgba(255, 255, 190, 1);
+			height: 106px;
+			line-height: 100px;
+			span{
+				margin-left: 13px;
+				color: #f4af24;
+			}
+			&.stitle{
+				margin-top: -106px;
+				text-shadow: 0 0 8px rgba(255, 255, 190, .8);
+			}
+		}
+		.tip{
+			margin-left: 87px;
+			height: 89px;
+			div{
+				padding: 0 37px;
+				height: 66px;
+				background: #f5a550;
+				border-radius: 22px;
+				position: relative;
+				line-height: 66px;
+				text-align: center;
+				font-size: 28px;
+				color: #342359;
+				float: left;
+				i{
+					position: absolute;
+					left: 31px;
+					top: 66px;
+				}
+				&.rtip{
+					margin-left: 304px;
+					font-size: 36px;
+					padding: 0 33px;
+					i{
+						left: 171px;
+					}
+				}
+			}
+		}
+		li{
+			overflow: hidden;
+			padding-bottom: 15px;
+			i{
+				float: left;
+				width: 478px;
+				height: 3px;
+				background: #fff;
+				font-size: 0;
+				line-height: 0;
+				margin-top: 60px;
+			}
+		}
+		.invest,.reward{
+			width: 300px;
+			text-align: right;
+			padding-right: 32px;
+			font-size: 66px;
+			color: #ffe970;
+			float: left;
+			font-weight: bold;
+			span{
+				font-size: 30px;
+				color: #fff;
+			}
+		}
+		.reward{
+			width: auto;
+			text-align: left;
+			padding: 0 0 0 32px;
+		}
+		.method{
+			overflow: hidden;
+			padding: 72px 0 0 41px;
+			.copy-wrap{
+				float: left;
+				margin-right: 106px;
+				.ltitle{
+					font-size: 39px;
+					text-align: center;
+					color: #fff;
+					font-weight: bold;
+				}
+				.copy{
+					display: block;
+					width: 231px;
+					height: 56px;
+					border-radius: 14px;
+					border: 1px solid #fff;
+					text-align: center;
+					line-height: 56px;
+					background: #24183e;
+					font-size: 20px;
+					color: #fff;
+					margin-top: 20px;
+					&:hover{
+						text-decoration: none;
+						background: #2b1a4e;
+					}
+				}
+				.icons{
+					margin-right: -29px;
+					padding-top: 14px;
+					overflow: hidden;
+					a{
+						float: left;
+						margin-right: 29px;
+						cursor: pointer;
+						&:hover{
+							opacity: 0.8;
+						}
+					}
+				}
+			}
+		}
+		&.smode{
+			margin-top: 30px;
+			.tip{
+				margin: 0 -142px 0 59px;
+				div{
+					padding: 0 0 0 37px;
+					width: 180px;
+					text-align: left;
+					margin-right: 142px;
+				}
+			}
+			.method{
+				padding: 72px 0 46px 200px;
+			}
+			.rule-con{
+				width: 984px;
+				margin-left: 30px;
+				font-size: 18px;
+				color: #fff;
+				span{
+					float: left;
+					width: 28px;
+				}
+				div{
+					float: left;
+					width: 956px;
+				}
+			}
+		}
+		.data{
+			overflow: hidden;
+			padding: 27px 0 0 77px;
+			div{
+				float: left;
+				height: 90px;
+				line-height: 90px;
+				&.num{
+					width: 90px;
+					border-radius: 90px;
+					font-size: 48px;
+					color: #342359;
+					text-align: center;
+					&.num-1{
+						background: #f4af24;
+					}
+					&.num-2{
+						background: #ffcd67;
+					}
+					&.num-3{
+						background: #ffec9e;
+					}
+					&.num-4{
+						background: #fff;
+					}
+					&.num-5{
+						background: #fff;
+					}
+				}
+				&.phone{
+					font-size: 47px;
+					color: #fff;
+					padding: 0 95px 0 220px;
+				}
+			}
+		}
+	}
+	.rules{
+		width: 1059px;
+		margin: -47px auto 0;
+		position: relative;
+		.newfriend-beautybg{
+			position: absolute;
+			right: -162px;
+			bottom: -18px;
+			z-index: 1;
+		}
+	}
+	.code-wrapper{
+		width: 100%;
+		height: 234px;
+		background: #32323c;
+		margin-top: 62px;
+		overflow: hidden;
+		.code{
+			width: 1060px;
+			margin: 0 auto;
+			overflow: hidden;
+			height: 234px;
+			.appcode{
+				float: left;
+				margin: 30px 0 0 19px;
+			}
+			.wechatcode{
+				float: left;
+				margin: 30px 0 0 180px;
+				.code-box{
+					padding-left: 10px;
+				}
+			}
+			.tel{
+				float: left;
+				margin: 30px 0 0 180px;
+				.number{
+					padding-top: 23px;
+					i{
+						float: left;
+						width: 56px;
+						height: 56px;
+					}
+					div{
+						float: left;
+						color: #ff6c00;
+						padding: 5px 0 0 9px;
+						span{
+							font-size: 30px;
+							font-weight: bold;
+						}
+						p{
+							font-size: 12px;
+							margin-top: -3px;
+						}
+					}
+				}
+			}
+			.title{
+				font-size: 25px;
+				color: #fff;
+				// font-weight: bold;
+				padding-bottom: 10px;
+			}
+			.code-box{
+				.app-code-icon{
+					float: left;
+				}
+				.app-code-word{
+					float: left;
+					padding: 11px 0 0 12px;
+					p{
+						width: 110px;
+						height: 33px;
+						border: 3px solid #ff6c00;
+						border-radius: 5px;
+						margin-bottom: 7px;
+						font-size: 16px;
+						color: #ff6c00;
+						// font-weight: bold;
+						line-height: 33px;
+						i{
+							float: left;
+							width: 30px;
+							height: 33px;
+							margin: 0 5px 0 3px;
+						}
+					}
+				}
+			}
+		}
+	}
+	.mycopy{
+		opacity: 0;
+	}
+}

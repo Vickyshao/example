@@ -1,0 +1,654 @@
+<div ng-controller="investgiftBillDetailCtrl" class="investgift-billdetail-wrapper">
+	<float-menu></float-menu>
+	<div class="bread-nav-wrapper new-bread-wrapper">
+		<div class="bread-nav">
+			<div class="bread-box"><span ng-repeat="item in path"><a href="{{item.url}}">{{item.pathName}}</a> > </span>{{title}}</div>
+		</div>
+	</div>
+
+	<div class="bill-detail-wrap">
+		<div class="bill-detail-content">
+			<div class="bill-detail-box">
+				<div class="bill-detail">
+					<div class="detail-box">
+						<div class="title">
+							<i class="bill-newhand" ng-if="product.type==1"></i>
+							<div class="feature-box" style="float: right;">
+	                            <p class="feature">
+	                                <span class="ng-binding">可用翻倍券</span>
+	                                <span class="ng-binding">可用加息券</span>
+	                            	<span class="ng-binding">可用红包</span>
+	                            </p>
+	                        </div>
+							<div class="feature-box">
+								<b>
+									<i class="public-yinicon" ng-if="product.billType == 2"></i>
+									<i class="public-shangicon" ng-if="product.billType == 1"></i>
+									{{product.fullName}}
+									<!-- <span class="huodongBox" ng-show="product.activityRate>0 && product.type!=1"><t ng-show="!isFinish" class="huodong">活动</t><t ng-show="isFinish" class="huodongFinish">活动</t></span> -->
+									<span class="bubiaoBox" ng-show="product.isRepair==1"><t ng-show="!isFinish" class="bubiao">补标</t><t ng-show="isFinish" class="bubiaoFinish">补标</t>
+										<!-- 补标说明 -->
+										<div class="NNSM">
+											<i class="common-bb-bg">
+												<span>客户单笔投资此产品所剩余金额并满标后，即可获得对应奖励。奖励请查看详情</span>
+												<a href="{{a|webIE8}}main/jt2/BBYJ?menuName=BBYJ" target="_blank">详情</a>
+											</i>
+										</div>
+									</span>
+									<img ng-if="product.atid" src="images/cs90/iphone7ico.png" />
+								</b>
+								<div class="egg-box" ng-show="product.maxActivityCoupon != undefined">
+		                        	<div class="egg-map">
+		                        		<div class="egg-shake-icon shake-rotate megg" ng-show="product.isEgg == 1" ng-click="showEggDialog(product,'detail')"></div>
+		                        		<div class="egg-mopenegg" ng-show="product.isEgg == 2"><i>+{{product.maxActivityCoupon}}%</i></div>
+		                        	</div>
+		                        	<div class="num" ng-show="product.isEgg == 1">最高{{product.maxActivityCoupon}}%加息</div>
+	                        		<div class="num" ng-show="product.isEgg == 2">满标后作废哦</div>
+		                        	<i class="egg-mshadow"></i>
+		                        </div>
+	                        </div>
+							<span class="honour-tip" ng-if="product.accept != '' && product.type!=1">
+                                <i class="common-honour-icon"></i>
+                                {{product.accept}}
+                            </span>
+							<!--<i class="bill-detail-bao"></i>-->
+						</div>
+						<div class="list-wrap" ng-class="{6: 'end-list',7: 'end-list',8: 'end-list',9: 'end-list'}[product.status]"> <!--  || {1: 'newhand-wrap'}[product.type] -->
+							<ul>
+								<li class="rate-mod" style="width: 300px;"><!-- product.type == 1 &&  -->
+									<div class="rate"><b><em>{{product.rate}}</em> % &nbsp;
+									<i ng-if="product.activityRate>0 && (specialRate == undefined || specialRate == 0)" class=""> + <em class="font28">{{product.activityRate}}</em> %
+										<div class="font14 color666 billTip">平台贴息
+					    					<i class="ico"></i>
+						    			</div>
+									</i>
+									<i ng-if="specialRate != undefined && specialRate > 0"> + <em class="font28">{{specialRate+product.activityRate}}</em>%
+										<div class="font14 color666 billTip">平台贴息
+					    					<i class="ico"></i>
+						    			</div>	
+									</i>
+									</b>
+									</div>
+									<!--<p>历史年化收益率</p><img class="ico_point" src="../../images/ico_point.png">-->
+									<div class="finance hisroty-income">
+										历史年化收益率 <img class="ico_point" src="../../images/vico_point.png">
+										<div class="font14 color666 hide finance_tip">
+											<div class="finance_tip_ins">
+												* 历史年化收益率为过往同类项目收益
+											</div>
+										</div>
+									</div>
+								</li>
+								<li class="deadline border0"> 
+									<div><b><em class="fontNormal">{{product.deadline}}</em></b><span>天</span></div>
+									<p>投资期限</p>
+									<!-- <div class="explain"><i class="bill-explainicon"></i><span class="bill-explaintop"></span><div>本产品的投资人对债权的持有期限为{{product.deadline}}<br>天，到期后沪深理财提供全自动化的债<br>权转让服务，您可通过债权转让退出，<br>资金返至您的沪深账户</div></div> -->
+								</li>
+							</ul>
+						</div>
+						<div class="list-mod newhand-list-mod" ng-if='product.type==1'>
+							<p class="detail1" style="">仅限未投资过任何标的的用户购买（体验标除外），限投一次</p><!-- 最大投资额：{{product.maxAmount | isNumber2}} 元 -->
+							<p class="detail2">还款方式：到期一次还本付息</p>
+						</div>
+
+						<div class="list-mod" ng-if='product.status==5&&product.type!=1'>
+							<p class="detail1">产品总额：<span class="colorBlack">{{product.amount| currency:''}}元 </span></p>
+							<!--<p class="detail2">融资余额：<span class="colorBlack">{{product.surplusAmount | currency:''}} 元</span></p>-->
+							<div ng-if='product.status==5&&product.type!=1'>
+								<p class="detail2">还款方式：<span ng-if="product.repayType==1">到期一次还本付息</span><span ng-if="product.repayType==2">按月付息到期还本</span><span ng-if="product.repayType==3">等本等息 按周回款</span><span ng-if="product.repayType==4">等本等息 按月回款</span><span ng-if="product.repayType==5">其他</span></p>
+							</div>
+							<div ng-if='product.type==1'>
+								<!--<p class="detail1" style="">仅限未投资过任何标的的用户购买（体验标除外），限投一次</p>--><!-- 最大投资额：{{product.maxAmount | isNumber2}} 元 -->
+								<p class="detail2">还款方式：到期一次还本付息</p>
+							</div>
+						</div>
+						<!--<div class="list-mod" ng-if='product.status==5&&product.type!=1'>
+							<p class="detail1">还款方式：<span ng-if="product.repayType==1">到期一次还本付息</span><span ng-if="product.repayType==2">按月付息到期还本</span><span ng-if="product.repayType==3">等本等息 按周回款</span><span ng-if="product.repayType==4">等本等息 按月回款</span><span ng-if="product.repayType==5">其他</span></p>
+							<p class="detail2">剩余时间：{{nowTimer}}</p>
+						</div>-->
+
+						<div class="list-mod" ng-if='product.status!=5&&product.type!=1'>
+							<p class="detail1" >产品总额：<span class="colorBlack">{{product.amount| currency:''}} 元</span></p>
+							<!--<p class="detail2" >融资余额：0.00 元</p>-->
+							<div>product.status: {{product.status}}</div>
+							<p class="detail2" ng-if='product.status==5&&product.type!=1'>还款方式：<span ng-if="product.repayType==1">到期一次还本付息</span><span ng-if="product.repayType==2">按月付息到期还本</span><span ng-if="product.repayType==3">等本等息 按周回款</span><span ng-if="product.repayType==4">等本等息 按月回款</span><span ng-if="product.repayType==5">其他</span></p>
+							<p class="detail2" ng-if='product.status!=5&&product.type!=1'>还款方式：<span class="colorBlack"><span ng-if="product.repayType==1">到期一次还本付息</span><span ng-if="product.repayType==2">按月付息到期还本</span><span ng-if="product.repayType==3">等本等息 按周回款</span><span ng-if="product.repayType==4">等本等息 按月回款</span><span ng-if="product.repayType==5">其他</span></span></p>
+							<p class="detail2" ng-if='product.type==1'>还款方式：<span class="colorBlack">到期一次还本付息</span></p>
+						</div>
+						<!--<div class="list-mod" ng-if='product.status!=5&&product.type!=1'>-->
+						<div class="list-mod" ng-if='product.type!=1'>
+							<p class="detail1  ng-show="product.establish != undefined && product.type !=1"">成立时间：<span class="colorBlack">{{product.establish | date:'yyyy-MM-dd'}}</span></p>
+							<p class="detail2"  ng-if='product.status!=5&&product.type!=1'>剩余时间：<span class="colorBlack">已结束</span></p>
+							<p class="detail2"  ng-if='product.status==5&&product.type!=1'>剩余时间：<span class="colorBlack">{{nowTimer}}</span></p>
+						</div>
+						<div class="list-mod last-list-mod" ng-show="product.establish != undefined && product.type !=1">
+							<p class="detail1">起息时间：<span class="colorBlack">投资次日计息</span><!--{{product.establish | date:'yyyy-MM-dd'}}--></p>
+							<!-- <div class="explain"><i class="bill-explainicon"></i><span class="bill-explainleft"></span><div>产品成立日期{{product.establish | date:'yyyy-MM-dd'}}<br>产品到期日期{{product.expireDate | date:'yyyy-MM-dd'}}<br>到期后1-2工作日自动赎回至账户余额</div></div> -->
+							<!-- 新需求 -->
+							<!-- <p class="detail2 special-detail" ng-if="product.atid">累计<span>{{investTotal}}</span>人已参与</p> -->
+						</div>
+					</div>
+				</div>
+				<div class="bill-form-wrap">
+					<img ng-if="product.status == 5" class="ico_buying" src="../../images/vicon_buying.png">
+					<img ng-if="product.status != 5" class="ico_buying" src="../../images/vwithout.png">
+					<div class="rest-wrap border0  end-rest" ng-class="{6: 'end-rest',7: 'end-rest',8: 'end-rest',9: 'end-rest'}[product.status]" ng-if="!hasGold || !isLogin">
+						<div class="isLogin && rest-box">
+							<!--<i ng-if="product.status == 5" class="bill-ing"></i>-->
+							<!-- <i ng-if="product.isRepair==1&&product.status!=6&&!isFinish" class="bill-bubiao"></i>-->   <!-- 补标中图标 --> 
+							<div class="percentage-box" ng-if="product.type!=1">
+								<i>{{product.pert | setProgress}}%</i>
+								<div class="percentage"><span ng-attr-style="width: {{product.pert | setProgress}}%;"></span></div>
+							</div>
+							<div class="data" ng-if="islogin && product.status == 5 && product.type!=1">可投金额：<b>{{product.surplusAmount | currency:''}}</b> 元</div>
+							<p ng-if="product.isRepair==1&&!isFinish">单笔投资此产品剩余金额并满标后，可获得对应奖励。</p>
+							<p ng-if="product.isRepair==1&&!isFinish">奖励请<a target="_blank" ui-sref="main.jt2.BBYJ">查看详情</a></p>
+						</div>
+					</div>
+					<div class="rest-wrap gold-rest-wrap end-rest" ng-if="hasGold && isLogin">
+						<div class="gold-tip">您有<b>10万</b>元体验金尚未激活，仅限一次哦</div>
+						<div class="goldicons" ng-click="changeGoldACT()">
+						<div class="bill-golddefault" ng-if="!goldACT"></div>
+						<div class="bill-goldact" ng-if="goldACT"></div></div>
+					</div>
+					
+					<div ng-if="isLogin && product.status == 5" class="form-box">
+						<form>
+							<input style="display:none">
+							<input type="password" style="display:none">
+							<div class="data font14" ng-if="isLogin && product.status == 5 && product.type!=1">可投金额(元)：<b class="color_red font_bold">{{product.surplusAmount | currency:''}}</b> </div>
+							<div class="recharge-box">
+								<div class="my-rest">可用金额(元)：<b>{{account.balance| isNumber2}} </b><!--<b ng-hide="isHideNowNum">{{account.balance| isNumber2}} </b>--></div>
+								<a ng-show="(a | isRegister).register" href="/main/myAccount/recharge" class="recharge-btn">充值</a>
+								<a ng-show="ischufa" ng-click="onClick('补标')" class="isbubiao-btn">补标</a>
+								<a ng-show="(a | isRegister).register&&product.isRepair==1&&!ischufa" class="bubiao-btn">补标</a>
+							</div>
+							<div class="input-box">
+								<ul>
+									<!--<li ng-show="(a | isRegister).register" ng-click="onClick('cut')">
+										<span ng-class="{true:'cut',false:'cut nouse'}[product.nowNum > product.leastaAmount]">-</span>
+									</li>-->
+									
+									<li class="amountNum">
+										<input ng-disabled="!(a | isRegister).register || (!isNewGay && (a | isRegister).register && (product.type == 1))" ng-blur="onClick('keyUpBalance',$event,amount)" class="text" type="text" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'') " name="amount" autocomplete="off" ng-model="product.nowNum" placeholder="{{product.leastaAmount}}元起投，{{product.leastaAmount}}元整数倍递增" /><!--  ng-keyUp='isNumCash=false'-->
+										<span>元</span>
+									</li>
+									<!--<li ng-show="(a | isRegister).register" ng-click="onClick('add')">
+										<span ng-class="{true:'add',false:'add nouse'}[product.nowNum < product.maxAmount]">+</span>
+									</li>-->
+								</ul>
+							</div>
+							<span class="error" style="color:red;position: absolute;" ng-show="(product.nowNum-product.leastaAmount)%product.increasAmount != 0 && !(product.nowNum<product.leastaAmount) && !(product.nowNum>product.maxAmount)">注意：输入金额应该是{{product.increasAmount}}的倍数</span>
+							<!-- 加息券 -->
+							<div ng-if="product.type==1" class="pc-tyj-coupon">
+								<div ng-click="onSelTyj(item)" ng-class="{true:'pc-tyj-y',false:'pc-tyj-n'}[item.tyjCouponBool]" ng-repeat="item in tyjCoupons">
+									<h1><b>{{item.amount}}</b> 元</h1>
+									<p>投资≥{{item.enableAmount}}元</p>
+								</div>
+							</div>
+							<div ng-if="product.type != 1">
+								<div class="profit font14" ng-show="!isShowShouyi">预计收益(元)：<b>{{((product.rate/100 + product.activityRate/100 + specialRate/100) / 360 * product.nowNum * product.deadline) | isNumber2}}</b> </div>
+						        <!-- 补标 加息 -->
+								<div class="profit font14" ng-show="isShowShouyi">预计收益(元)：<b>{{(product.nowNum * (product.rate/100 + product.activityRate/100 + repair.content/100) / 360 * product.deadline) | isNumber2}}</b> </div>
+							</div>
+							<div ng-if="product.type == 1" style="position:relative;">
+								<div class="profit font14" ng-if="product.activityRate != undefined && product.activityRate>0">预计利息收益：<b>{{((product.rate + product.activityRate)/100 / 360 * product.nowNum * product.deadline) | isNumber2 }}</b> 元</div>
+								<div class="profit font14" ng-if="product.activityRate == undefined || product.activityRate<=0">预计利息收益：<b>{{(product.rate/100 / 360 * (product.nowNum) * product.deadline) | isNumber2}}</b> 元</div>
+								<div ng-if="!isNewGay && (a | isRegister).register && (product.type == 1)" style="position:absolute;width:260px;top:12px;background-color:white;">
+									<img ng-if="!XQ.newHandInvested" src="/images/activity/xsb-xyh.png" alt="" style="width:100%;display:block;">
+									<img ng-if="XQ.newHandInvested" src="/images/activity/xsb-ytz.png" alt="" style="width:100%;display:block;">
+								</div>
+							</div>
+							<div class="checkbox-mod" ng-show="product.type!=1">
+								<label><input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="playSound"  />我已阅读并同意<div class="protocol" ng-class="{true:'okprotocol'}[playSound == true]"><a href="/loan" class="colorBlack" target="_blank" ng-if="product.fid == undefined">《借款协议》（范本）</a><p>本协议为借款协议范本，仅做参考。<br>投资后即刻生成正式有效合同。</p></div>
+								</label>
+							</div>
+							<div class="sub-box">
+								<!-- 新手标 -->
+								<div style="position: absolute;left: 0;top: 500px;">
+								</div><!-- (account.balance < product.leastaAmount)(account.balance - product.nowNum < 0) -->
+								<input type="submit" 
+								ng-if="!hasGold && !isShowShouyi && (a | isRegister).register && (product.type == 1) && isNewGay" 
+								ng-disabled="!playSound ||(product.nowNum<product.leastaAmount)||(product.nowNum > product.maxAmount) ||(product.nowNum-product.leastaAmount)%product.increasAmount != 0 || isNumCash || product.nowNum==undefined" 
+
+								ng-click="onClick('立即抢购')" 
+
+								class="sub invest-btn"
+
+								ng-value="{true:'立即抢购',false:'立即抢购'}[(account.balance < product.leastaAmount)||(account.balance - product.nowNum < 0)]" />
+
+								<input type="submit" 
+								ng-if="hasGold && !isShowShouyi && (a | isRegister).register && (product.type == 1) && isNewGay" 
+								ng-disabled="!playSound ||(product.nowNum<product.leastaAmount)||(product.nowNum > product.maxAmount) ||(product.nowNum-product.leastaAmount)%product.increasAmount != 0 || isNumCash || product.nowNum==undefined" 
+
+								ng-click="onClick('立即抢购')" 
+
+								class="sub invest-btn"
+
+								ng-value="{true:'投资≥5000元激活体验金',false:'立即抢购'}[!playSound ||(product.nowNum<product.leastaAmount)||(product.nowNum > product.maxAmount) ||(product.nowNum-product.leastaAmount)%product.increasAmount != 0 || isNumCash || product.nowNum==undefined]" />
+					
+
+								<!-- 常规 (account.balance < product.leastaAmount)|||| (account.balance - product.nowNum < 0)-->
+								<input type="submit" 
+
+								ng-if="!isShowShouyi && (a | isRegister).register && product.type != 1&&!(product.surplusAmount < product.nowNum) " 
+								ng-disabled="!playSound || (product.nowNum<product.leastaAmount)||(product.nowNum > product.maxAmount) ||(product.nowNum-product.leastaAmount)%product.increasAmount != 0 || isNumCash || product.nowNum==undefined" 
+
+								ng-click="onClick('立即抢购')" 
+
+								class="sub invest-btn"
+
+								ng-value="{true:'立即抢购',false:'立即抢购'}[(account.balance < product.leastaAmount)||(account.balance - product.nowNum < 0)]" />
+								<!-- 密码未设 (account.balance < product.leastaAmount)|||| (account.balance - product.nowNum < 0)-->
+								<!-- 5555 -->
+								<!-- <input type="submit" ng-if="!XQ.tpwdFlag && (a | isRegister).register" class="sub invest-btn" ng-click="onClick('立即投资')" 
+
+								ng-disabled="!playSound ||(product.nowNum<product.leastaAmount)||(product.nowNum > product.maxAmount) ||(product.nowNum-product.leastaAmount)%product.increasAmount != 0" 
+
+								ng-value="{true:'立即投资',false:'立即投资'}[(account.balance < product.leastaAmount)||(account.balance - product.nowNum < 0)]" /> -->
+								
+								<!-- 新手标修改（不需要体验金的判断） -->
+
+								<!-- <input type="submit" 
+								ng-if="(product.type == 1)  && !((TYJ.enableAmount*1) <=( product.nowNum*1)) && XQ.tpwdFlag && (a | isRegister).register && isNewGay" class="sub invest-btn" 
+								ng-disabled="true" 
+								value="请选择相应体验金劵" /> -->
+
+								<input type="submit" ng-if="!(a | isRegister).register" ng-click="onClick('登录')"  class="sub invest-btn" value="请登录后查看" />
+
+								<input type="submit" ng-if="(a | isRegister).register && product.type != 1 && product.surplusAmount < product.nowNum" ng-disabled="true"  class="sub invest-btn" value="投资产品金额不足" />
+								<input type="submit" ng-if="!isNewGay && (a | isRegister).register && (product.type == 1)" class="sub invest-btn" ui-sref="main.bankBillList" value="请关注其他项目" />
+							</div>
+							<div class="backg">国资背景，安全投资</div>
+						</form>
+					</div>
+					
+					<div class="fin-box" ng-class="{1: 'has-book',true: 'has-book'}[isReservation]"><!-- ng-if="product.status == 6 || item.status == 7 || product.status == 8 || product.status == 9" [(!isLogin && product.atid) || (isLogin && isReservation)] -->
+						<!--<div class="data">
+							<p>可投金额(元)：<b>{{account.balance| isNumber2}}</b></p>
+						</div>-->
+						<div class="toLogin" ng-if="!isLogin">
+							<div class="headPortrait"></div>
+							<div>登录后才能投资哦！</div>
+							<div>
+								<a href="" ng-click="onClick('登录')"><button>立即登录</button></a>
+							</div>
+							<div class="backg">国资背景，安全投资</div>
+						</div>
+						<div class="toLogin" ng-if="isLogin&&product.status!=5">
+							<div class="headPortrait over"></div>
+							<div class="color_red">去看看其它标的吧！</div>
+							<div>
+								<button class="bgGrey">募集结束</button>
+							</div>
+							<div class="backg">国资背景，安全投资</div>
+						</div>
+						<!-- <div class="data date" ng-if="item.status == 7 || product.status == 8 || product.status == 9">
+							<b>{{product.expireDate | date:'y-MM-d'}} </b>
+							<p>预计回款日期</p>
+						</div> -->
+						<!-- <div class="data date" ng-if="product.status == 6 ">
+							<b>待计息 </b>
+							<p>预计回款日期</p>
+						</div> -->
+					</div>
+					<!-- <div class="book-box form-box" ng-if="product.pert == 100 && product.atid"> -->
+					<div class="book-box form-box" ng-if="isReservation">
+						<input type="button" class="bookbtn" ng-if="!isLogin && isReservation" ng-click="showBookDialog()" value="立即预约下期" ng-disabled="book.playSound == false">
+						<a href="/dl" class="bookbtn" ng-if="!isLogin && product.atid">请登录后查看</a> 
+						<a href="/dl" class="bookbtn" ng-if="!isLogin && isReservation">立即预约下期</a>
+						<div class="checkbox-mod" ng-show="product.type!=1" ng-if="(!isLogin && product.atid) || (isLogin && isReservation)">
+							<label><input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="book.playSound"  />我已阅读并同意<div class="protocol" ng-class="{true:'okprotocol'}[book.playSound == true]"><a class="colorBlack" href="/loan" target="_blank">《借款协议》（范本）</a><p>本协议为借款协议范本，仅做参考。<br>投资后即刻生成正式有效协议合同。</p></div>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="bill-detail-box hide">
+				<div class="bill-detail">
+					<div class="detail-box">
+						<div class="title">
+							<div class="feature-box">
+	                            <p class="feature">
+	                                <span class="ng-binding" style="color:#bfd1e2 " ng-if="product.type==2 || product.type==1">投资成功次日计息</span>
+	                                <span class="ng-binding" style="color:#bfd1e2 " ng-if="product.type==3">募集成功次日计息</span>
+	                            </p>
+	                        	<b>{{product.fullName}}</b>
+	                        	<span class="investgift-icon"></span>
+	                        </div>
+							<i class="bill-detail-bao"></i>
+						</div>
+						<div class="list-wrap" ng-class="{6: 'end-list',7: 'end-list',8: 'end-list',9: 'end-list'}[product.status]">
+							<ul>
+								<li class="rate-mod">
+									<div class="rate"><b>{{product.rate}}%
+									<i ng-if="product.activityRate>0" class="">+{{product.activityRate}}%</i></b>
+									</div>
+									<p>历史年化收益率</p>
+									<a class="rule-btn" href="/newlayout/investgift">活动规则 ></a>
+								</li>
+								<li class="deadline">
+									<div><b>{{product.deadline}}</b><span>天</span></div>
+									<p>投资期限</p>
+								</li>
+								<li>
+									<div><b>{{product.leastaAmount | isNumber2}}</b><span> 元</span></div>
+									<p>起投金额</p>
+								</li>
+							</ul>
+						</div>
+
+						<div class="list-mod" ng-if='product.status==5&&product.type!=1'>
+							<p class="detail1">产品总额：{{product.amount| currency:''}} 元</p>
+							<p class="detail2">融资余额：{{product.surplusAmount | currency:''}} 元</p>
+						</div>
+						<div class="list-mod" ng-if='product.status==5&&product.type!=1'>
+							<p class="detail1">还款方式：<span ng-if="product.repayType==1">到期一次还本付息</span><span ng-if="product.repayType==2">按月付息到期还本</span><span ng-if="product.repayType==3">等额本金</span><span ng-if="product.repayType==4">等额本息</span><span ng-if="product.repayType==5">其他</span></p>
+							<p class="detail2">剩余时间：{{nowTimer}}</p>
+						</div>
+
+						<div class="list-mod" ng-if='product.status!=5&&product.type!=1'>
+							<p class="detail1" >产品总额：{{product.amount| currency:''}} 元</p>
+							<p class="detail2" >融资余额：0.00 元</p>
+						</div>
+						<div class="list-mod" ng-if='product.status!=5&&product.type!=1'>
+							<p class="detail1">还款方式：<span ng-if="product.repayType==1">到期一次还本付息</span><span ng-if="product.repayType==2">按月付息到期还本</span><span ng-if="product.repayType==3">等额本金</span><span ng-if="product.repayType==4">等额本息</span><span ng-if="product.repayType==5">其他</span></p>
+							<p class="detail2">剩余时间：已结束</p>
+						</div>
+
+						<div class="list-mod last-list-mod" ng-show="product.establish != undefined && product.type !=1">
+							<p class="detail1">产品成立日期：{{product.establish | date:'yyyy-MM-dd'}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="bill-form-wrap">
+					<div class="rest-wrap" ng-class="{6: 'end-rest',7: 'end-rest',8: 'end-rest',9: 'end-rest'}[product.status]">
+						<div class="rest-box">
+							<i ng-if="product.status == 5 && prize.isNot == 0" class="bill-ing"></i>
+							<i class="investgift-fin" ng-if="product.status == 5 && prize.isNot == 1"></i>
+							<div class="percentage-box" ng-if="product.type!=1">
+								<i>{{product.pert | setProgress}}%</i>
+								<div class="percentage"><span ng-attr-style="width: {{product.pert | setProgress}}%;"></span></div>
+							</div>
+							<div class="data" ng-if="islogin && product.status == 5 && product.type!=1">可投金额：<b>{{product.surplusAmount | currency:''}}</b> 元</div>
+						</div>
+					</div>
+					<div ng-if="product.status == 5" class="form-box">
+						<form>
+							<input style="display:none">
+							<input type="password" style="display:none">
+							<div class="recharge-box">
+								<div class="my-rest">账户余额：<b ng-hide="isHideNowNum">{{account.balance| isNumber2}} </b>元</div>
+								<a ng-show="(a | isRegister).register" href="/main/myAccount/recharge" class="recharge-btn">充值</a>
+							</div>
+							<!-- <div class="input-box">
+								<ul>
+									<li ng-show="(a | isRegister).register" ng-click="onClick('cut')">
+										<span ng-class="{true:'cut',false:'cut nouse'}[product.nowNum > product.leastaAmount]">-</span>
+									</li>
+									<li>
+										<input ng-disabled="!(a | isRegister).register || (!isNewGay && (a | isRegister).register && (product.type == 1))" ng-blur="onClick('keyUpBalance',$event,amount)" class="text" type="text" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'') " name="amount" autocomplete="off" ng-model="product.nowNum" placeholder="最低{{product.leastaAmount}}元起投" />
+									</li>
+									<li ng-show="(a | isRegister).register" ng-click="onClick('add')">
+										<span ng-class="{true:'add',false:'add nouse'}[product.nowNum < product.maxAmount]">+</span>
+									</li>
+								</ul>
+							</div> -->
+							<div class="input-box">
+								<ul>
+									<li>
+										<input ng-disabled="true" class="text" type="text" name="amount" autocomplete="off" ng-model="product.nowNum" />
+									</li>
+								</ul>
+							</div>
+							
+							<div ng-if="product.type != 1">
+								<div class="profit">预计利息收益：<b>{{((product.rate+product.activityRate)/100 / 360 * product.nowNum * product.deadline) | isNumber2}}</b> 元</div>
+							</div>
+							
+							<div class="sub-box">
+
+								<!-- 常规 XQ.tpwdFlag && -->
+								<input type="submit" 
+
+								ng-if="(a | isRegister).register && product.type != 1&&!(product.surplusAmount < product.nowNum) " 
+								ng-disabled="!playSound || (product.nowNum<product.leastaAmount)||(product.nowNum > product.maxAmount) || isNumCash || product.nowNum==undefined" 
+
+								ng-click="onClick('立即投资')" 
+
+								class="sub invest-btn"
+
+								ng-value="{true:'投资免费领',false:'投资免费领'}[(account.balance < product.leastaAmount)||(account.balance - product.nowNum < 0)]" />
+								<!-- 密码未设 (account.balance < product.leastaAmount)|||| (account.balance - product.nowNum < 0)-->
+								<!-- <input type="submit" ng-if="!XQ.tpwdFlag && (a | isRegister).register" class="sub invest-btn" ng-click="onClick('立即投资')" 
+
+								ng-disabled="!playSound ||(product.nowNum<product.leastaAmount)||(product.nowNum > product.maxAmount) ||(product.nowNum-product.leastaAmount)%product.increasAmount != 0" 
+
+								ng-value="{true:'投资免费领22',false:'投资免费领22'}[(account.balance < product.leastaAmount)||(account.balance - product.nowNum < 0)]" /> -->
+
+								<input type="submit" ng-if="!(a | isRegister).register" ng-click="onClick('登录')"  class="sub invest-btn" value="请登录后查看" />
+
+								<input ng-click="bookGift()" type="submit" ng-if="(a | isRegister).register && product.type != 1 && product.surplusAmount < product.nowNum" class="sub invest-btn" value="标的金额不足，请预约" />
+							</div>
+							<div class="checkbox-mod" ng-show="product.type!=1">
+								<label><input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="playSound"  />我已阅读并同意<div class="protocol" ng-class="{true:'okprotocol'}[playSound == true]"><a class="colorBlack" href="/loan" target="_blank" ng-if="product.fid == undefined">《借款协议》（范本）</a><p>本协议为借款协议范本，仅做参考。<br>投资后即刻生成正式有效合同。</p></div>
+								</label>
+							</div>
+						</form>
+
+					</div>
+
+					<div class="fin-box" ng-if="product.status == 6 || item.status == 7 || product.status == 8 || product.status == 9">
+						<div class="fin-data">
+							<div class="data">
+								<b>{{bill.total}}</b>
+								<p>已投资人数</p>
+							</div>
+						</div>
+						<span ng-class="{6: 'bill-detail-end',7: 'bill-detail-end',8: 'bill-detail-wait',9: 'bill-detail-already'}[product.status]"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="interest-process" ng-if="product.type!=1">
+				<div class="center-wrap">
+					<div class="title"><i class="bill-interest"></i><span>计息流程</span></div>
+					<div class="process-bg bill-process-one" ng-if="product.status == 6 || product.status == 5"></div>
+					<div class="process-bg bill-process-two" ng-if="product.status == 8"></div>
+					<div class="process-bg bill-process-three" ng-if="product.status == 9"></div>
+					<div class="time"><p class="set">{{product.establish | date:'yyyy年MM月dd日'}}</p><p class="expire">{{product.expireDate | date:'yyyy年MM月dd日'}}</p></div>
+				</div><br>
+			</div>
+
+			<div class="bill-detail-info" ng-if="product.type != 1">
+				<div class="bill-info-title">
+					<p ng-click="onClick('礼品详情',$event)" class="" ng-class="{true:'actived'}[showTab == 'gift']">礼品详情</p>
+
+					<p ng-click="onClick('项目介绍',$event)" class="" ng-if="product.type != 1" ng-class="{true:'actived'}[showTab == 'introduce']">项目介绍</p>
+					<p ng-click="onClick('本息保障',$event)" class="" ng-if="product.type != 1" ng-class="{true:'actived'}[showTab == 'guarantee']">安全保障</p>
+					<p ng-click="onClick('投资记录',$event)" class="" ng-class="{true: 'actived'}[showTab == 'invest']">投资记录 &nbsp;<span class="total_num">{{total}}</span></p>
+				</div>
+				<!-- 投资记录 -->
+				<div class="info-wrap">
+					<div ng-show="showTab == 'gift'" class="center-wrap"><img style="width: 100%;height:100%;" src="{{prize.pcDetailImgUrl}}"></div>
+
+					<div ng-show="showTab == 'introduce'" class="info-box intro-box" ng-if="product.type != 1">
+						<div class="center-wrap">
+							<div class="title" ng-if="product.principlePC!=undefined && product.principlePC!=''"><i class="bill-principle"></i><span>产品原理</span></div>
+							<div class="principle-detail" ng-if="product.principlePC!=undefined && product.principlePC!=''"><img src="{{product.principlePC}}"></div>
+							<div class="title"><i class="bill-check"></i><span>审核项目</span></div>
+							<ul class="check-box" ng-if="projectListData == false">
+								<li><span>公司工商信息</span><i class="bill-tick"></i><b>已审核</b></li>
+								<li><span>营业执照</span><i class="bill-tick"></i><b>已审核</b></li>
+								<li><span>开户许可证</span><i class="bill-tick"></i><b>已审核</b></li>
+								<li><span>法人及股东身份证</span><i class="bill-tick"></i><b>已审核</b></li>
+								<li><span>公司章程</span><i class="bill-tick"></i><b>已审核</b></li>
+								<li><span>经营场所实地认证</span><i class="bill-tick"></i><b>已审核</b></li>
+							</ul>
+							<ul class="check-box" ng-if="projectListData == true">
+								<li ng-repeat="item in projectList"><span>{{item}}</span><i class="bill-tick"></i><b>已审核</b></li>
+							</ul>
+							<div class="pro-detail" ng-if="pics.length>0">
+								<div class="center-title">
+									<div><span>产品资料情况</span></div>
+								</div>
+								<div class="img-detail">
+									<div class="bill-turn-left"></div>
+									<div class="imgs swiper-container">
+										<ul class="swiper-wrapper"><li ng-repeat="item in pics" class="swiper-slide" repeat-finish="renderFinish()"><div><img src="{{item.bigUrl}}"></div></li></ul>
+									</div>
+									<div class="bill-turn-right"></div>
+								</div>
+							</div>
+							<div class="title" ng-show="extendInfos.length>0 || investListPast.length>0"><i class="bill-info"></i><span>产品说明</span></div>
+							<table>
+								<tr ng-repeat="item in extendInfos">
+									<td class="t">{{item.title}}</td>
+									<td class="c">{{item.content}}</td>
+								</tr>
+								<tr class="last" ng-show="showPast == true">
+									<td class="t">债权出让人</td>
+									<td class="c">共{{totalPast}}人持有<span ng-show="showPastList == false" ng-click="showPastList = true"><i>＋</i>查看详情</span><span ng-show="showPastList == true" ng-click="showPastList = false"><i>－</i>查看详情</span></td>
+								</tr>
+							</table>
+							<div class="past-wrap" ng-if="showPast == true" ng-show="showPastList == true">
+								<div class="past-title">
+									<div class="stitle"><span class="l">债权出让人</span><span class="r">出让债权额</span></div>
+									<div class="stitle"><span class="l">债权出让人</span><span class="r">出让债权额</span></div>
+								</div>
+								<ul class="pastlist">
+									<li ng-repeat="item in investListPast"><span class="l"><i>{{item.realName}}</i>{{item.mobilephone | limitTo:2}}*******{{item.mobilephone | limitTo:-2}}</span><span class="r">{{item.amount | currency:''}}元</span></li>
+								</ul>
+								<div class="page-wrap">
+									<div class="page-box">
+										<a href ng-click="onClickPastPage('beforPage',a)" class="prev">上一页</a><ul><li ng-click="onClickPastPage('currentPage',a)" ng-repeat="a in billPast.pages"><a href="" ng-class="{true: 'cur', false: ''}[billPast.pageOn == a]">{{a}}</a></li></ul><a href class="next" ng-click="onClickPastPage('nextPage',a)">下一页</a>
+									</div><span>共{{billPast.totalPage}}页</span>
+								</div>
+							</div>
+							<i class="bill-infobg" ng-show="extendInfos.length>0 || investListPast.length>0"></i>                        
+						</div>
+						<ul class="feature-mode">
+							<li ng-if='product.borrower!=undefined && product.borrower!=""'>
+								<i class="bill-person"></i>
+								<div class="info">
+									<span class="title">债务人概况</span>
+									<p ng-repeat="item in product.borrower">{{item}}</p>
+								</div>
+							</li>
+							<li ng-if='product.introduce!=undefined && product.introduce!=""'>
+								<i class="bill-accept"></i>
+								<div class="info">
+									<span class="title">承兑方概况</span>
+									<p ng-repeat="item in product.introduce">{{item}}</p>
+								</div>
+							</li>
+							<li ng-if='product.repaySource!=undefined && product.repaySource!=""'>
+								<i class="bill-payment"></i>
+								<div class="info">
+									<span class="title">还款来源</span>
+									<p ng-repeat="item in product.repaySource">{{item}}</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div ng-show="showTab == 'guarantee'" class="info-box guarantee-box" ng-if="product.type != 1">
+						<ul class="aqbz">
+							<li>
+								<div class="feature-mode-text fl">
+									<div class="bill-aqbza"></div>
+									<h1>两大顶级律师事务所合规支持</h1>
+									<p>沪深理财平台聘用了国内顶级律师事务所作为公司的常年法律顾问。沪深理财平台所有业务活动以及相关合同和协议均咨询律师事务所，确保其符合相关法律法规，沪深理财平台合法守信经营，让沪深理财平台的用户权益受国家法律保护。</p>
+								</div>
+							</li>
+							<li>
+								<div class="feature-mode-text fl">
+									<div class="bill-aqbza bill-aqbzb margin0"></div>
+									<h1>360°严格风控体系</h1>
+									<p>沪深理财平台拥有强大专业的风控团队，采用银行级的风控制度和流程。</p>
+									<p>贷前：针对每一个借款人的资质进行线上大数据建模分析和线下实地考核相结合，评估借款人的还款能力和还款意愿，保证借款人的质量。</p>
+									<p>贷中：采用技术手段跟踪每一笔借款的资金走向，确保资金完全用于经过贷前审核的项目，保证借款资金的专款专用。</p>
+									<p>贷后：利用大数据平台对借款人的状态进行实时扫描和追踪，如出现风险，沪深理财平台的专业团队奖第一时间进行风险管理。</p>
+								</div>
+							</li>
+							<li>
+								<div class="feature-mode-text fl">
+									<div class="bill-aqbza bill-aqbzc"></div>
+									<h1>合作保障机构</h1>
+									<p>沪深理财平台已和业内多家专业的商业保理公司和担保公司达成合作。针对不同的项目，将有相应的合作保障机构进行担保。一旦借款人还款出现坏账，将由相应的合作保障机构对投资人的本息进行垫付。</p>
+								</div>
+							</li>
+							<li>
+								<div class="feature-mode-text fl">
+									<div class="bill-aqbza bill-aqbzd"></div>
+									<h1>银行级网站技术</h1>
+									<p>沪深理财平台有用强大专业的互联网技术团队，核心成员来自著名的互联网金融公司有丰富的行业经验。同时沪深理财平台的网络系统采用了阿里巴巴集团旗下的“阿里云”金融解决方案，该技术平台通过了公安部等级保护评测，达到了银行级技术水平。</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div ng-show="showTab == 'invest'" class="info-box record-box" ng-class="{1: 'actived-box'}[product.type]">
+						<table class="record-table" ng-if="!investGiftOn">
+							<tr>
+								<th width="10%">投资人</th>
+								<th width="60%">金额（元）</th>
+								<th width="30%">时间</th>
+							</tr>
+							<tr ng-repeat="item in investList" ng-class="{0: 'active', 1: ''}[($index + 1) % 2]">
+								<td>{{item.mobilephone | limitTo:2}}*******{{item.mobilephone | limitTo:-2}}</td>
+								<td>{{item.amount | currency:''}}</td>
+								<td>{{item.investTime |  date:'yyyy-MM-dd H:mm'}}</td>
+							</tr>
+							<tr><td colspan="3" class="nolist" ng-if="investList.length == 0">暂无该产品投资记录</td></tr>
+						</table>
+						<table class="record-table" ng-if="investGiftOn">
+							<tr>
+								<th width="25%">用户名</th>
+								<th width="25%">投资金额（元）</th>
+								<th width="25%">投资时间</th>
+								<th width="25%">所获礼品</th>
+							</tr>
+							<tr ng-repeat="item in investList" ng-class="{0: 'active', 1: ''}[($index + 1) % 2]">
+								<td>{{item.mobilephone | limitTo:2}}*******{{item.mobilephone | limitTo:-2}}</td>
+								<td>{{item.amount | currency:''}}</td>
+								<td>{{item.investTime |  date:'yyyy-MM-dd H:mm'}}</td>
+								<td ng-if="prize.amount == item.amount">{{prize.name}}</td>
+								<td ng-if="prize.amount != item.amount">无</td>
+							</tr>
+							<tr><td colspan="4" class="nolist" ng-if="investList.length == 0">暂无该产品投资记录</td></tr>
+						</table>
+						
+						<!-- 页码 -->
+						<dr-pg></dr-pg>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="mask-imgs">
+		<!-- <div class="bill-turn-left"></div> -->
+		<div class="swiper-container1">
+			<ul class="imgs swiper-wrapper"><li ng-repeat="item in pics" class="swiper-slide" repeat-finish="renderFinish()"><img src="{{item.bigUrl}}"></li></ul>
+		</div>
+		<div class="close">×</div>
+		<!-- <div class="bill-turn-right"></div> -->
+	</div>
+
+	<div class="mask-imgs">
+		<div class="swiper-container2">
+			<ul class="imgs swiper-wrapper">
+				<li class="swiper-slide"><img src="images/prove/sample-y.jpg"></li>
+				<li class="swiper-slide"><img src="images/prove/sample-s.jpg"></li>
+			</ul>
+		</div>
+		<div class="close">×</div>
+	</div>
+
+	<form name="storageForm" id="storageForm" method="POST">
+		<input type="hidden" id="storageJson" name="json" value="">
+	</form>
+
+</div>

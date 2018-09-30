@@ -1,0 +1,83 @@
+<div class="investgift-wrapper" ng-controller="investgiftCtrl">
+    <div class="banner-wrapper">
+        <div class="banner">
+            <!-- <div class="time">开始时间：2016年12月29日</div> -->
+        </div>
+    </div>
+    <div class="list-wrap">
+        <div class="investgift-title">豪礼到手 钱还在赚钱</div>
+        <div class="investgift-giftbox">
+            <div class="con">单笔投资满一定金额即可坐享收益，并免费获得活动豪礼！</div>
+            <div class="listbox">
+                <div class="innerbox">
+                    <div class="inner">
+                        <div class="wrap" ng-repeat="item in prizeList">
+                            <div class="box" ng-if="item.name != undefined">
+                                <div class="img"><img src="{{item.pcImgUrlH}}"></div>
+                                <p class="t">{{item.name}}<span>{{item.simpleName}}</span></p>
+                                <div class="bot">原价：<span>{{item.price | currency}}</span><i>0</i>元享</div>
+                                <i class="investgift-actfin" ng-if="item.isNot == 1"></i>
+                            </div>
+                            <div class="mask" ng-if="item.name != undefined">
+                                <p class="innertop" ng-if="item.isNot == 0">{{item.name}}<span>原价：<i>{{item.price | currency}}</i></span></p>
+                                <p class="innertop" ng-if="item.isNot == 1">您的眼光太好啦!<br>爆款商品已抢完</p>
+                                <div class="center">仅投{{item.amount}}元，即可<span>0元享</span></div>
+                                <a href="/main/investgiftBillDetail?id={{item.pid}}" class="btn" ng-if="item.isNot == 0">点击免费领</a>
+                                <a href="" class="btn" ng-if="item.isNot == 1" ng-click="bookGift(item)">我要预约</a>
+                                <div class="bot" ng-if="item.rate != undefined && item.rate != ''">还可获得{{item.rate}}%<i ng-if="item.activityRate != undefined && item.activityRate > 0">+{{item.activityRate}}%</i>收益</div>
+                                <div class="bot" ng-if="item.rate == undefined || item.rate == ''">还可获得收益</div>
+                            </div>
+                            <div class="wait" ng-if="item.name == undefined">
+                                <i class="investgift-wait"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="record-wrapper">
+        <div class="record-wrap">
+            <div class="record">
+                <div class="investgift-title">豪礼领取记录</div>
+                <div class="listwrap">
+                    <table class="table-title">
+                        <tr>
+                            <th width="27%">用户名</th>
+                            <th width="24%">投资金额（元）</th>
+                            <th width="23%">投资时间</th>
+                            <th width="26%">所获礼品</th>
+                        </tr>
+                    </table>
+                    <div class="list">
+                        <table>
+                            <tr ng-repeat="item in investList">
+                                <td width="27%">{{item.mobilePhone}}</td>
+                                <td width="24%">{{item.amount}}</td>
+                                <td width="23%">{{item.investTime | date:'yyyy-MM-dd'}}</td>
+                                <td width="26%">{{item.name}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rules">
+        <div class="investgift-title">活动规则</div>
+        <div class="inner-rules">
+            <div class="inner">
+                <ul>
+                    <li><i class="investgift-num">01</i>活动对象：沪深理财所有注册用户</li>
+                    <li><i class="investgift-num">02</i>活动开始时间： 2017年2月8日</li>
+                    <li><i class="investgift-num">03</i>活动礼品：本期精选了6种礼品，投资本活动专享标的，单笔满礼品对应的投资额即可免费领取该礼品；</li>
+                    <li><i class="investgift-num special">04</i>投资标的：本活动只针对“豪礼钜献专享标”（期限90天）产品，投资该标的除了可免费领礼品之外，还能获得8.5%年化收益；</li>
+                    <li><i class="investgift-num special">05</i>礼品领取方式：投资成功后，请填写收货人姓名、地址、联系方式，礼品将在投资后10个工作日内快递寄出，话费等礼品将在10个工作日内充值到您填写的手机号中；</li>
+                    <li><i class="investgift-num special">06</i>本活动标的不享受红包、加息券等优惠福利，参与此活动的用户不可同时享受其他任何返利等福利，任何疑问请联系沪深理财客服：400-031-9909。</li>
+                </ul>
+                <!-- <p>*本活动最终解释权归沪深理财所有</p> -->
+            </div>
+        </div>
+    </div>
+</div>

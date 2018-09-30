@@ -1,0 +1,66 @@
+<div class="account-security-wrap" id="ngSection" ng-controller="storagedetailCtrl">
+	<div class="account-common-title">存管账户</div>
+	<div class="account-common-con">
+		<div class="set-box">
+            
+            <!-- 开通存款账户 -->
+            <div class="set-wrap set-storage" ng-if="!isFuiou">
+                <div class="set-trigger">
+                    <p class="icon storage-icon"></p>
+                    <p class="title">存管账户</p>
+                    <p class="info">未开通</p>
+                    <p class="btn"><a href="/main/myAccount/openStorage" class="goopen">去开通</a></p>
+                </div>
+            </div>
+            <div class="set-wrap set-storage" ng-if="isFuiou">
+                <div class="set-trigger">
+                    <p class="icon storage-icon"></p>
+                    <p class="title">存管账户</p>
+                    <p class="info">{{member.mobilePhone}}</p>
+                    <p class="btn"><span>已开通</span></p>
+                </div>
+            </div>
+
+            <!-- 身份认证 -->
+            <div class="set-wrap set-truename set-storage">
+                <div class="set-trigger">
+                    <p class="icon mysafety-truename"></p>
+                    <p class="title">身份认证</p>
+                    <p class="info" ng-if="!isFuiou">未认证</p>
+                    <p class="info" ng-if="isFuiou"><span>姓名：{{member.realName}}</span><span>身份证号：{{member.idCards}}</span></p>
+                    <p class="btn"><a ng-if="!isFuiou" class="goopen" href="/main/myAccount/openStorage">去认证</a><span ng-if="isFuiou">已认证</span></p>
+                </div>
+            </div>
+            <!-- 身份认证（结束） -->
+
+            <!-- 银行信息 -->
+            <div class="set-wrap set-bankinfo set-storage">
+                <div class="set-trigger">
+                    <p class="icon mysafety-truename"></p>
+                    <p class="title">银行信息</p>
+                    <p class="info" ng-if="!isFuiou">未绑定</p>
+                    <!-- 已认证的情况 -->
+                    <p class="info" ng-if="isFuiou"><img src="/images/bank/{{member.bankCode}}.jpg">尾号<b>{{member.bankNum}}</b></p>
+                    <p class="btn"><a ng-if="!isFuiou" class="goopen" href="/main/myAccount/openStorage">去绑定</a><span ng-if="isFuiou">已绑定</span></p>
+                </div>
+            </div>
+            <!-- 银行信息（结束） -->
+            <!-- 开通存款账户（结束） -->
+                
+            <!-- 重置交易密码 -->
+            <div class="set-wrap set-tradecode set-storage">
+                <div class="set-trigger">
+                    <p class="icon mysafety-passwd"></p>
+                    <p class="title">交易密码</p>
+                    <p class="info" ng-if="isFuiou">已设置</p>
+                    <p class="info" ng-if="!isFuiou">未设置</p>
+                    <p class="btn"><a class="trade-code-btn" href="" ng-click="changeTradeCode()" ng-if="isFuiou">修改</a><a class="goopen" href="/main/myAccount/openStorage" ng-if="!isFuiou">去设置</a></p>
+                </div>
+            </div>
+            <!-- 重置交易密码（结束） -->
+            <form name="storageForm" id="storageForm" method="POST" style="height: 0;" ><!-- target="_blank" -->
+                <input type="hidden" id="storageJson" name="json" value="">
+            </form>
+        </div>
+	</div>
+</div>

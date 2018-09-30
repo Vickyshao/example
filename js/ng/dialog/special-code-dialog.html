@@ -1,0 +1,13 @@
+<div class="special-code-dialog special-dialog" ng-controller="dlCtrl">
+	<i class="iphone-close" ng-click="closeDialog()"></i>
+	<div class="title">我的幸运码</div>
+	<div class="nocode" ng-if="!luckAmount">
+		<p>您还是无码状态<i class="iphone-nocode"></i></p>
+		<a class="goinvest" ng-click="closeDialog()" href="" ui-sref="main.billDetail({id: product.id})">立即去投资</a>
+	</div>
+	<div class="mycode" ng-if="luckAmount">
+		<div class="codebox">
+			<p ng-repeat="item in luckCodes track by $index">{{item}}</p>
+		</div>
+	</div>
+</div>

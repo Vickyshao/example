@@ -1,0 +1,16 @@
+{"result":[
+    {
+        "memnTitle": "常见问题",
+        "name": "help",
+        "url":"main.jt2.help"
+    },{
+        "memnTitle": "支付额度",
+        "name": "ZFED",
+        "url":"main.jt2.ZFED"
+    },{
+        "memnTitle": "银联开通",
+        "name": "YLKT",
+        "url":"main.jt2.YLKT"
+    }
+]}
+

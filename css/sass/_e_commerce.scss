@@ -1,0 +1,878 @@
+$ecommer-sprite-dimensions: true;
+@import "ecommerce/ecommer/*.png";
+@include all-ecommer-sprites();
+
+@import "compass/css3";
+
+$red: #e32b29;
+$yellow: #ffda15;
+
+.colorRed {
+  color: $red !important;;
+}
+.colorgreen {
+  color: #84c7a1 !important;
+}
+.colorgrey {
+  color: #ccc!important;
+}
+.border0 {
+  border-width: 0;
+}
+
+.ecommerce {
+  .container {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    background: #fff6d7;
+    div {
+      margin: 0 auto;
+    }
+    .zc {
+      height: auto;
+      margin-bottom: 30px;
+      background: #fff6d7 url('/images/ecommerce/bannerBg.png') no-repeat center top;
+      .cnt {
+        width: 1005px;
+        background: url(/images/ecommerce/zcBg.png) no-repeat center top;
+      }
+    }
+
+    .reimstyle {
+      margin-top: 20px;
+      .peoples {
+        font-size: 32px;
+        text-align: center;
+        span {
+          color: $red;
+          font-size: 42px;
+          letter-spacing: 4px;
+          font-weight: bold;
+        }
+      }
+      .bxpro {
+        width: 100%;
+        height: 400px;
+        margin: 0 auto;
+        .detail {
+          width: 1062px;
+          margin: 0 auto;
+          thead {
+            td {
+              color: #983205;
+              font-size: 24px;
+            }
+          }
+          td {
+            color: #444;
+            text-align: center;
+            white-space: nowrap;
+          }
+          .l {
+            float: left;
+            width: 618px;
+            height: 317px;
+            padding: 20px;
+            background: url('/images/ecommerce/bxpro.png') no-repeat center top;
+            table {
+              width: 88%;
+              margin: 0 auto;
+              tr {
+                height: 92px;
+                line-height: 92px;
+                td {
+                  width: 33.33%;
+                  font-size: 21px;
+                }
+              }
+            }
+          }
+          .r {
+            float: left;
+            width: 363px;
+            height: 317px;
+            padding: 25px;
+            background: url(/images/ecommerce/bxpeople.png) no-repeat center top;
+            box-sizing: border-box;
+            .table {
+              .title {
+                font-size: 21px;
+                height: 66px;
+                line-height: 70px;
+                text-align: center;
+                margin-bottom: 12px;
+                color: #983205;
+              }
+              .box {
+                height: 195px;
+                overflow: hidden;
+                margin-top: 1px;
+                table {
+                  height: 203px;
+                  overflow: hidden;
+                  margin: 0 auto;
+                  thead {
+                    tr {
+                      height: 72px;
+                      line-height: 72px;
+                    }
+                  }
+                  tbody {
+                    tr {
+                      float: left;
+                      width: 100%;
+                      height: 35px;
+                      margin-top: 3px;
+                      line-height: 35px;
+                      &:first-child {
+                        margin-top: 12px;
+                      }
+                      td {
+                        float: left;
+                        font-size: 17px;
+                        text-align: left;
+                        &:last-child {
+                          float: right;
+                          text-align: right;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      }
+
+    }
+
+    .says {
+      width: 100%;
+      background: #fffcf2;
+      padding-bottom: 70px;
+      .saysins {
+        height: 595px;
+        width: 1084px;
+        margin: 0 auto;
+      }
+    }
+
+    .ruls {
+      font-size: 16px;
+      color: #fff;
+      background: #fff6d7;
+      padding: 40px;
+      .rulswidth {
+        width: 1090px;
+        margin: 0 auto;
+        .title {
+          margin-top: 10px;
+          font-size: 18px;
+        }
+        .txt {
+          ul {
+            margin-left: 40px;
+            li {
+              text-align: left;
+              white-space: nowrap;
+              line-height: 42px;
+              color: #444;
+            }
+          }
+        }
+      }
+    }
+
+    .footer {
+      background: #585858;
+      padding: 30px 0;
+      text-align: center;
+      p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        padding-bottom: 2px;
+      }
+      h4 {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+
+  .baoxiao {
+    position: fixed;
+    top: 49%;
+    right: 0;
+  }
+}
+
+//两步骤注册
+.zcSteptwo {
+  width: 623px;
+  height: 414px;
+  @include border-radius(6px);
+  .quick-register-wrap {
+    height: 275px;
+    min-height: 275px;
+    background: none;
+    .quick-register-wrapper {
+      width: 100%;
+      overflow-x: visible;
+      .quick-register-mod {
+        width: 87%;
+        border: 0;
+        background: none;
+      }
+      .quick-register-box {
+        padding-top: 20px;
+        .input-wrap {
+          .input-box {
+            margin-bottom: 16px;
+            .input-mod {
+              &.small-inputmod {
+                width: 252px;
+                border-right: none;
+                border-radius: 3px 0 0 3px;
+                margin-left: 0;
+              }
+              b.icon {
+                position: absolute;
+                left: 7px;
+                top: 17px;
+                width: 30px;
+                border-right: 1px solid #ccc;
+                margin-left: 11px;
+              }
+              .text {
+                @include border-radius(6px);
+                border: 0;
+                height: 40px;
+                width: 85%;
+                padding-left: 61px;
+                box-sizing: content-box;
+              }
+              .reimBtn {
+                height: 69px;
+                width: 491px;
+              }
+            }
+            .error {
+              color: $yellow;
+              top: 58px;
+              left: 13px;
+            }
+            a.get-code {
+              float: right;
+              width: 175px;
+              height: 50px;
+              background: #ffbe0e;
+              color: #f9511a;
+              line-height: 50px;
+              text-align: center;
+              font-size: 18px;
+              margin-top: 4px;
+              @include border-radius(8px);
+            }
+          }
+          .change-phone {
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 16px;
+            a {
+              color: $yellow;
+              text-decoration: underline;
+              margin-left: 18px;
+            }
+          }
+        }
+      }
+
+    }
+  }
+  input {
+    @include border-radius(6px);
+  }
+  div.reim {
+    margin: 60px 0 40px 0;
+    padding-left: 0;
+    .operate {
+      color: #fff;
+      text-align: center;
+      margin-top: 13px;
+      a {
+        color: #ffdc16;
+      }
+    }
+  }
+}
+
+//我要报销页面
+.reim {
+  padding: 0 50px;
+  font-size: 16px;
+  color: #000;
+  .account-common-title {
+    padding-left: 0;
+    padding-bottom: 30px;
+    color: #000;
+  }
+  .proProcess {
+    width: 100%;
+    margin-bottom: 30px;
+    .process {
+      width: 100%;
+      .reimamount {
+        float: right;
+        margin-right: -30px;
+        margin-top: -42px;
+        width: 8%;
+        display: inline-block;
+      }
+      .processIco {
+        display: inline-block;
+        width: 10%;
+        height: 23px;
+        background: url("/images/ecommerce/processIco.png") no-repeat left center;
+        padding-left: 40px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .percent {
+    width: 100%;
+    &.jdt {
+      width: 83%;
+      display: inline-block;
+    }
+    .percentage-box {
+      position: relative;
+      width: 100%;
+      i {
+        float: left;
+        margin-left: 28%;
+        width: 47px;
+        height: 28px;
+        color: #fff;
+        text-align: center;
+        font-size: 14px;
+        background: url('/images/ecommerce/processBg.png') no-repeat center center/cover ;
+      }
+      em {
+        position: absolute;
+        top: 18px;
+        left: 0;
+        float: left;
+        width: 10px;
+        height: 10px;
+        @include border-radius(50%);
+        background: #408de6;
+        z-index: 999;
+      }
+    }
+    .percentage {
+      width: 100%;
+    }
+  }
+
+  .price {
+    border: 1px solid #eaeaea;
+    height: 90px;
+    border-left-width: 0;
+    border-right-width: 0;
+    margin-top: 40px;
+    padding: 20px 0;
+    .ico {
+      float: left;
+      width: 82px;
+      height: 82px;
+      color: #fff;
+      text-align: center;
+      line-height: 30px;
+      background:  url('/images/ecommerce/priceBg.png') no-repeat center center ;
+      span {
+        display: block;
+        margin-top: 13px;
+        font-size: 29px;
+      }
+    }
+    .txt {
+      float: left;
+      margin-left: 30px;
+      margin-top: 22px;
+      .name {
+        font-size: 18px;
+        color: #333;
+      }
+      .sm {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 4px;
+        &.des {
+          font-size: 19px;
+        }
+      }
+    }
+    .accbaoxiao {
+      float: right;
+      margin-right: 10px;
+      margin-top: 20px;
+      .baoxiao {
+        padding: 11px 33px;
+        text-align: center;
+        color: #fff;
+        background: #408de6;
+        @include border-radius(6px);
+        cursor: pointer;
+        &.grey {
+          color: #fff!important;
+          background: #ccc;
+          border: 0;
+          &:hover {
+            color: #fff!important;
+            background: #ccc;
+            border: 0;
+        }
+        }
+      }
+
+    }
+  }
+
+  .bxjh {
+    width: 100%;
+    margin-top: 53px;
+    table {
+      width: 100%;
+      margin-top: 20px;
+      td {
+        color: #666;
+        text-align: center;
+      }
+      thead {
+        background: #f8f8f8;
+        td {
+          line-height: 50px;
+        }
+      }
+      tbody {
+        tr {
+          border-bottom: 1px solid #eaeaea;
+          td {
+            line-height: 60px;
+          }
+        }
+      }
+    }
+
+  }
+
+  .page-wrap {
+    margin-top: 20px;
+  }
+
+  .bxje {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    ul {
+      display: flex;
+      li {
+        flex: 1;
+        font-size: 18px;
+        span {
+          font-size: 40px;
+        }
+      }
+    }
+  }
+
+  .page-wrap {
+    a {
+      padding: 0 14px;
+      margin-right: 5px;
+      .cur {
+        background: #dcdcdc;
+        color: #fff;
+      }
+    }
+  }
+
+  .dividLine {
+    width: 130%;
+    height: 20px;
+    margin-left: -7%;
+    background: #f1f1f1;
+  }
+}
+
+//我要报销页面
+.reim {
+  padding: 0 50px;
+  font-size: 16px;
+  color: #000;
+  .account-common-title {
+    padding-left: 0;
+    .subtitle {
+      font-size: 14px;
+      margin-left: 20px;
+      background: #f5f5f5;
+      color: red;
+      padding: 2px 12px;
+      font-weight: normal;
+    }
+    .bxgl {
+      float: right;
+      @include border-radius(5px);
+      font-size: 16px;
+      line-height: 34px;
+      font-weight: normal;
+      color: #3a3a3a;
+      font-size: 16px;
+      border: 1px solid #d9d9d9;
+      padding: 0px 16px;
+      cursor: pointer;
+      .ico {
+        float: left;
+        margin-top: 9px;
+        margin-right: 10px;
+      }
+    }
+  }
+  .process {
+    width: 100%;
+  }
+  .percent {
+    width: 100%;
+    margin-top: 10px;
+    .percentage-box {
+      position: relative;
+      width: 100%;
+      i {
+        float: left;
+        margin-left: 28%;
+        width: 47px;
+        height: 28px;
+        color: #fff;
+        text-align: center;
+        font-size: 14px;
+        background: url('/images/ecommerce/processBg.png') no-repeat center center/cover;
+      }
+      em {
+        position: absolute;
+        top: 18px;
+        left: 0;
+        float: left;
+        width: 10px;
+        height: 10px;
+        @include border-radius(50%);
+        background: #408de6;
+        z-index: 999;
+        &.absolutely {
+        top: -3px;
+        left: 8px;
+      }
+      }
+    }
+    .percentage {
+      width: 100%;
+      background: #dbecff;
+    }
+  }
+
+  .price {
+    border: 1px solid #eaeaea;
+    height: 90px;
+    border-left-width: 0;
+    border-right-width: 0;
+    margin-top: 40px;
+    padding: 20px 0;
+    .ico {
+      float: left;
+      width: 82px;
+      height: 82px;
+      color: #fff;
+      text-align: center;
+      line-height: 30px;
+      background: url('/images/ecommerce/priceBg.png') no-repeat center center;
+      span {
+        display: block;
+        margin-top: 13px;
+        font-size: 29px;
+      }
+    }
+    .txt {
+      float: left;
+      margin-left: 30px;
+      margin-top: 22px;
+      .sm {
+        font-size: 15px;
+        font-weight: bold;
+        margin-top: 4px;
+      }
+    }
+    .accbaoxiao {
+      float: right;
+      margin-right: 10px;
+      margin-top: 20px;
+      .baoxiao {
+        padding: 11px 33px;
+        text-align: center;
+        background: #fff;
+        @include border-radius(6px);
+        cursor: pointer;
+        color: #e56253;
+        border: 1px solid #e56253;
+        &:hover {
+          color: #fff;
+          background: #e56253;
+        }
+      }
+    }
+  }
+
+  .bxjh {
+    width: 100%;
+    margin-top: 53px;
+    table {
+      width: 100%;
+      margin-top: 20px;
+      td {
+        color: #666;
+        text-align: center;
+      }
+      thead {
+        background: #f8f8f8;
+        td {
+          line-height: 50px;
+        }
+      }
+      tbody {
+        tr {
+          border-bottom: 1px solid #eaeaea;
+          td {
+            line-height: 60px;
+          }
+        }
+      }
+    }
+    .title {
+      font-size: 18px;
+    }
+  }
+
+  .page-wrap {
+    margin-top: 20px;
+  }
+
+  .bxje {
+    width: 100%;
+    margin: 0 auto 60px;
+    text-align: center;
+    ul {
+      display: flex;
+      li {
+        flex: 1;
+        font-size: 18px;
+        color: #666;
+        background: #f5f5f5;
+        padding: 23px 5px 11px 0;
+        margin-right: 25px;
+        height: 99px;
+        overflow: hidden;
+        @include border-radius(8px);
+        &:last-child {
+          margin-right: 0;
+        }
+        .txt {
+          float: left;
+          margin-left: 23px;
+          span {
+            font-size: 40px;
+            display: block;
+            color: #000;
+            text-align: left;
+            em {
+              font-size: 18px;
+              margin-left: 5px;
+              color: #000;
+            }
+          }
+        }
+        .ico {
+          float: right;
+          margin-right: 5px;
+          margin-top: 13px;
+        }
+      }
+    }
+  }
+
+  //  报销任务
+  .bxrw {
+    .tasks {
+      .item {
+        float: left;
+        width: 100%;
+        border: 1px solid #eaeaea;
+        margin-bottom: 30px;
+        border-left-width: 0;
+        border-right-width: 0;
+        padding: 30px 23px;
+        &:last-child {
+          border-top-width: 0;
+          padding-top: 0;
+        }
+        .price {
+          float: left;
+          border: 0;
+          margin: 0;
+          padding: 0;
+          .icored {
+            background: url('/images/ecommerce/priceRedBg.png') no-repeat center center;
+          }
+        }
+        ul {
+          width: 50%;
+          float: left;
+          margin-left: 4%;
+          li {
+            text-align: left;
+            float: left;
+            width: 100%;
+            line-height: 30px;
+            span {
+              border: 1px solid #408de6;
+              color: #408de6;
+              padding: 0px 9px;
+              font-size: 14px;
+              margin-left: 10px;
+            }
+            &:last-child {
+              color: #666;
+            }
+            &:nth-child(2) {
+              font-weight: bold;
+              font-size: 17px;
+            }
+          }
+        }
+        .btns {
+          float: right;
+          width: 130px;
+          text-align: center;
+        }
+      }
+    }
+    .title {
+      color: #333;
+      font-size: 18px;
+      padding: 25px 0 10px 10px;
+    }
+  }
+
+}
+
+//注册成功页面
+.ecommerSuccess {
+  .title {
+    color: #e76048 !important;
+    padding-top: 105px !important;
+  }
+  .center {
+    border: 0 !important;
+    background: none !important;
+    margin: 13px auto 29px !important;
+    span {
+      color: #e76048 !important;
+      font-size: 26px !important;
+    }
+  }
+  .bot {
+    a {
+      background: #048eed !important;
+      width: 250px !important;
+      margin-bottom: 70px !important;
+    }
+  }
+  .tips {
+    margin: 0 auto;
+    background: url('/images/ecommerce/tipline.png') no-repeat center center;
+    color: #666;
+    text-align: center;
+    width: 90%;
+    margin-top: 120px;
+    font-size: 18px;
+    span {
+      padding: 0 15px;
+    }
+  }
+}
+
+
+//攻略页
+.ecommerGl {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  img {
+    float: left;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+}
+
+//投资弹窗
+.ecommer-dialog {
+  border: 0;
+  .title {
+    text-align: center;
+    height: 69px;
+    line-height: 69px;
+    color: #fff;
+    background: #408de6;
+    font-size: 26px;
+    letter-spacing: 2px;
+    font-weight: normal;
+  }
+  .price {
+    width: 100%;
+    text-align: center;
+    background: #eff5f9;
+    font-size: 22px;
+    padding: 13px 0;
+    height: auto;
+    border: 0;
+    color: #333;
+  }
+  .immediateInvest {
+    ul {
+      width: 92%;
+      margin: 0 auto;
+      li {
+        width: 100%;
+        text-align: center;
+        background: none;
+        .accbaoxiao {
+          width: 66%;
+          margin: 3px auto 4px;
+          .baoxiao {
+            font-size: 22px;
+            padding: 7px 0;
+            text-align: center;
+            color: #fff;
+            background: #408de6;
+            @include border-radius(6px);
+            cursor: pointer;
+          }
+
+        }
+      }
+    }
+  }
+}

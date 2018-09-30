@@ -1,0 +1,133 @@
+<div class="account-recharge-wrap" ng-controller="rechargeCtrl">
+    <!-- <div class="rechargetip" ng-hide="user.realFlag">根据互联网金融协会相关规定，您必须先进行<a href="" ng-click="bindBank()">身份认证</a>，沪深不会在任何场合泄露你的身份信息</div> -->
+    <div class="account-common-title">充值</div>
+    <div class="account-common-con" ng-show="user.realFlag">
+        <div class="form-wrap">
+            <form name="rechargeForm" novalidate>
+                <input style="display:none">
+                <input type="password" style="display:none">
+                <dl>
+                    <dt>充值金额：</dt>
+                    <dd class="input-box" ng-if="showAmount">
+                        <div class="input-mode">
+                            <input type="text" id="amount" class="text sum amount" name="amount" ng-model="user.amount" ng-value="user.amount" required onkeyup="this.value=this.value.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')" ng-blur="setAmount()"
+                                autocomplete="off" placeholder="0.00" ng-pattern="/^[0-9]+([.]{1}[0-9]+){0,1}$/" maxlength="10" ng-change="setAmountError()" ng-disabled="code.isGetCode || isGetVoice"> <!-- ng-disabled="!user.realFlag" -->
+                            
+                            <span>元</span>
+                        </div>
+                        <i ng-class="{true: '', false: 'common-form-error'}[rechargeForm.amount.$valid && amountIsTrue]" ng-show="rechargeForm.amount.$dirty || amountError"></i><span class="error" ng-show="rechargeForm.amount.$error.pattern && !amountError">请输入正确的数值</span>
+                        <span class="error" ng-show="(rechargeForm.amount.$dirty && rechargeForm.amount.$error.required) || amountError">请输入充值金额</span>
+                        <span class="error" ng-show="amountIsTrue == false">{{amountMsg}}</span>
+                        <span class="error" ng-show="typemax == false">单笔限额<span>{{quota | currency:'':0}}</span>元</span>
+                            <!-- <a href="" class="getphonecode set-info-btn" ng-click="bindBank()" ng-hide="user.realFlag">身份认证</a> -->
+                    </dd>
+    
+                    <dd ng-if="!showAmount" class="amount-fixed"><b>{{user.amount | currency:''}}</b>元<span class="recharge-tip">充值金额最少3元,单笔限额最多50万元,单日限额500万</span></dd>
+                </dl>
+                <!-- <p class="friendTip">充值金额最少3元</p> -->
+                <div ng-if="!showAmount && showBankTip" class="recharge-tip-bank"><i class="my-recharge-tip"></i>{{bankTip}}</div>
+    
+                <dl class="allbalance">
+                    <dt>充值后余额：</dt>
+                    <dd class="input-box">
+                        <b ng-if="user.amount <= 0 || user.amount == undefined">{{user.funds | currency:''}}</b><b ng-if="user.amount > 0">{{(user.amount * 1 + user.funds) | currency:''}}</b>元
+                    </dd>
+                </dl>
+    
+                <!-- <div class="balance-wrap" ng-if="showAmount">
+                    <div class="usable">可用余额：<b>{{user.funds | currency:''}}</b>元</div>
+                    <div class="rest">充值后余额：<b ng-if="user.amount <= 0 || user.amount == undefined">{{user.funds | currency:''}}</b><b ng-if="user.amount > 0">{{(user.amount * 1 + user.funds) | currency:''}}</b>元</div>
+                </div> -->
+    
+                <div> <!-- ng-if="user.realFlag && !showAmount" -->
+                    <div class="tab-trigger">
+                        <p ng-class="{1: 'active',2: ''}[tab]" ng-click="changeTab(1)" ng-if="!showBankTip">快捷支付</p>
+                        <p ng-class="{1: '',2: 'active'}[tab]" ng-click="changeTab(2)">网银支付</p>
+                    </div>
+                    <div class="tab-content" ng-class="{1: 'active-tab',2: ''}[tab]" ng-if="!showBankTip">
+                        <div class="tipcon" ng-show="user.amount > user.quota">提示：当前充值金额大于该银行单笔限额，建议您使用网银支付.</div>
+                        <dl>
+                            <dt>充值银行：</dt>
+                            <dd>
+                                <div class="bank-info">
+                                    <img src="/images/bank/{{user.bankCode}}.jpg">
+                                    <p class="last-num">尾号<b>{{user.bankNum}}</b></p>
+                                </div>
+                                <div class="limit">单笔限额<span>{{user.quota | currency:'':0}}</span>元</div>
+                            </dd>
+                            <!-- <dd class="nobind" ng-hide="user.realFlag">
+                                    <p>未绑定</p>
+                                    <a href="" ng-click="bindBank()">绑定银行卡<i>+</i></a>
+                                </dd> -->
+                        </dl>
+                        <dl>
+                            <dt>银行预留手机号：</dt>
+                            <dd class="get-box">
+                                <p>{{user.mobilePhone}}</p>
+                                <a class="getphonecode" href="javascript:;" ng-class="{'getcode-disabled': code.isGetCode || isGetVoice}" ng-click="getPhoneCode(rechargeForm.amount.$valid, $event, code, false)">{{code.getCodeText}}</a>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>短信验证码：</dt>
+                            <dd class="input-box">
+                                <div class="input-mode">
+                                    <input type="text" class="text" placeholder="请输入短信验证码" required name="phonecode" ng-model="user.phonecode" autocomplete="off" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')">
+                                </div>
+                                <i class="common-form-error" ng-show="rechargeForm.phonecode.$dirty && (bankPhoneCodeError || rechargeForm.phonecode.$invalid)"></i><span class="error" ng-show="rechargeForm.phonecode.$dirty && rechargeForm.phonecode.$error.required">请输入短信验证码</span>
+                                <span
+                                    class="error" ng-show="bankPhoneCodeError">验证码错误</span>
+                            </dd>
+                        </dl>
+                        <div class="sub-box"><input type="submit" value="确认充值"  ng-click="submitForm(rechargeForm.$valid)" class="sub-btn sub" ng-disabled="rechargeForm.$invalid || !amountIsTrue" disabled="disabled"></div>
+                        <!-- <div class="return-btn"><a href="" ng-click="tabRecharge(1)">返回上一步</a></div> -->
+                    </div>
+                    <div class="tab-content" ng-class="{1: '',2: 'active-tab'}[tab]">
+                        <div class="online-tip">确保已经在银行柜台开通了网上支付功能，为了方便您支付请使用IE8及以上版本浏览器！</div>
+                        <div class="bank-mode">
+                            <div class="bank" ng-repeat="item in user.bankList" ng-click="chooseBank(item.bankCode)">
+                                <i ng-class="{true: 'active-bank', false: ''}[item.bankCode == bankCode]"></i>
+                                <div class="img"><img src="/images/bankimg/{{item.id}}.jpg"></div>
+                            </div>
+                        </div>
+                        <div class="sub-box"><input type="button" value="登录网银支付" class="sub-btn sub" ng-disabled="rechargeForm.amount.$invalid || !amountIsTrue" ng-click="goWYPay()"></div>
+                        <!-- <div class="return-btn"><a href="" ng-click="tabRecharge(1)">返回上一步</a></div> -->
+                    </div>
+                </div>
+                <!-- <div class="operate-wrap" ng-if="showAmount"><span class="next-btn" ng-if="user.realFlag" ng-click="tabRecharge(2)">下一步</span><span class="" ng-if="!user.realFlag" ng-click="bindBank()">前去实名认证</span></div> -->
+                <div class="newtips">
+                    <p>友情提示：</p>
+                    <p>1. 浦发银行/邮储银行/上海银行 需要开通银联无卡支付，开通地址：<a target="_blank" href="https://online.unionpay.com/portal/open/init.do?entry=open">https://online.unionpay.com/portal/open/init.do?entry=open</a>，<a href="/main/jt2/YLKT" target="_blank">查看开通演示</a>；</p>
+                    <p>2. 认证前，请确认“您填写银行预留的手机号”与您的银行卡预留的手机号码一致，如果您尚未在银行预留手机号码，建议您去银行柜面进行信息补充。</p>
+                </div>
+    
+                <p style="margin-top: -37px;" ng-if="user.bankCode==3">建行支付服务时间 00:00 至 22:00</p>
+            </form>
+            <form action="" id="hiddenForm" target="_blank">
+                <input type="hidden" class="tranCode" name="tranCode">
+                <input type="hidden" class="version" name="version">
+                <input type="hidden" class="charset" name="charset">
+                <input type="hidden" class="uaType" name="uaType">
+                <input type="hidden" class="merchantId" name="merchantId">
+                <input type="hidden" class="merOrderId" name="merOrderId">
+                <input type="hidden" class="merTranTime" name="merTranTime">
+                <input type="hidden" class="merUserId" name="merUserId">
+                <input type="hidden" class="orderDesc" name="orderDesc">
+                <input type="hidden" class="prodInfo" name="prodInfo">
+                <input type="hidden" class="tranAmt" name="tranAmt">
+                <input type="hidden" class="curType" name="curType">
+                <input type="hidden" class="payMode" name="payMode">
+                <input type="hidden" class="bankCode" name="bankCode">
+                <input type="hidden" class="bankCardType" name="bankCardType">
+                <input type="hidden" class="notifyUrl" name="notifyUrl">
+                <input type="hidden" class="backUrl" name="backUrl">
+                <input type="hidden" class="signType" name="signType">
+                <input type="hidden" class="sign" name="sign">
+                <input type="hidden" class="Key" name="Key">
+            </form>
+        </div>
+    </div>
+    <div class="no-bindcard" ng-hide="user.realFlag">
+        <p>根据互联网金融协会相关规定，需实名<span>认证绑卡</span>后才能进行投资,沪深理财会全面保障您的身份信息安全。</p>
+        <a class="toBindcard" ng-click="bindBank()">认证绑卡</a>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<div class="newyear-wrapper" ng-controller="newyearCtrl">
+	<div class="banner"><p>活动时间：1月18日 - 2月12日</p></div>
+	<div class="newyear-roll">
+		<div class="roll">
+			<div class="mod" ng-class="{'a':'active'}[showMode]" ng-click="showMode = 'a'">
+				<div class="newyear-moda"></div>
+				<p>1月18日-1月26日</p>
+			</div>
+			<div class="mod modb" ng-class="{'b':'active'}[showMode]" ng-click="showMode = 'b'">
+				<div class="newyear-modb"></div>
+				<p>1月27日-1月29日</p>
+			</div>
+			<div class="mod modc" ng-class="{'c':'active'}[showMode]" ng-click="showMode = 'c'">
+				<div class="newyear-modc"></div>
+				<p>2月9日 开启</p>
+			</div>
+		</div>
+	</div>
+	<div class="frame-wrap" ng-if="showMode == 'a'">
+		<i class="newyear-bga"></i>
+		<i class="newyear-bgb"></i>
+		<div class="framea frame">
+			<i class="newyear-cornera"></i>
+			<i class="newyear-cornerb"></i>
+			<i class="newyear-cornerc"></i>
+			<i class="newyear-cornerd"></i>
+			<i class="newyear-lantern"></i>
+			<div class="title">
+				<div class="newyear-titlea"></div>
+			</div>
+			<div class="list">
+				<div class="newyear-graba">
+					<a href="" class="getbtn" ng-click="goDetail(30)"></a>
+				</div>
+				<div class="newyear-grabb">
+					<a href="" class="getbtn" ng-click="goDetail(60)"></a>
+				</div>
+				<div class="newyear-grabc">
+					<a href="" class="getbtn" ng-click="goDetail(180)"></a>
+				</div>
+			</div>
+			<div class="rules">
+				<p>活动规则：</p>
+				<ul>
+					<li>1、奖励活动期间，投资30天期限产品送投资额1倍的年终奖金，投资60天期限产品送投资额5倍的年终奖金，投资180天期限产品送投资额30倍的年终奖金，年终奖金可与平台其他返现及红包福利同时享受。</li>
+					<li>2、年终奖金为平台投资本金（体验金），可用于投资体验标为您赚取收益，到期本金回收，收益可随时提现。</li>
+					<li>3、查看及使用年终奖金请前往PC端“我的账户-我的福利-我的体验金”或App端“我的账户-体验金”。</li>
+					<li class="bot">* 本活动解释权归沪深理财所有，如有疑问请联系在线客服或拨打400-031-9909</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="frame-wrap frameb-wrap" ng-if="showMode == 'b'">
+		<i class="newyear-bga"></i>
+		<i class="newyear-bgb"></i>
+		<div class="frameb frame">
+			<i class="newyear-cornera"></i>
+			<i class="newyear-cornerb"></i>
+			<i class="newyear-cornerc"></i>
+			<i class="newyear-cornerd"></i>
+			<div class="title">
+				<div class="newyear-titleb"></div>
+				<p>每个人都是宝宝，压岁钱怎么能少！自己领，还能发给朋友哦~</p>
+			</div>
+			<div class="list">
+				<div class="newyear-baga"></div>
+				<div class="newyear-bagb"></div>
+				<div class="newyear-bagc"></div>
+			</div>
+			<div class="newyear-frame">
+				<table>
+					<tr class="top">
+						<td width="25%"><span class="newyear-stepa"></span></td>
+						<td width="25%"><span class="newyear-stepb"></span></td>
+						<td width="25%"><span class="newyear-stepc"></span></td>
+						<td width="25%"><span class="newyear-stepd"></span></td>
+					</tr>
+					<tr>
+						<td><p>登录APP<br>领取压岁钱</p></td>
+						<td><p>将压岁钱分享至朋友圈<br>或发送给朋友</p></td>
+						<td><p>好友输入手机号<br>领取你分享的压岁钱</p></td>
+						<td><p>进入APP-我的账户-体验金<br>查看压岁钱</p></td>
+					</tr>
+				</table>
+			</div>
+			<a href="/downloadApp" target="_blank" class="newyear-download"></a>
+			<div class="rules">
+				<p>活动规则：</p>
+				<ul>
+					<li>1、本活动仅在沪深理财APP端进行，所有注册并绑卡的用户可参加领取。</li>
+					<li>2、本活动所领取的压岁钱金额为体验金，可用于投资体验标为您赚取收益，到期本金回收，收益可随时提现。</li>
+					<li>3、每位用户在除夕当天可获得总额18888元的压岁钱，大年初一当天可获得总额28888元的压岁钱，初二当天可获得总额15888元的压岁钱；每天所得的压岁钱须分享后才可领取，金额随机，若未在当天分享则压岁钱作废；已注册用户不可抢他人分享的压岁钱。</li>
+					<li>4、新用户抢到压岁钱后在当天注册领取将成功存入账户，否则压岁钱失效；当天如未注册，仍可继续抢朋友分享的压岁钱。</li>
+					<li>5、抢到的压岁钱（体验金）可在沪深理财App端“我的账户-体验金”中查看。</li>
+					<li>6、额外福利：若您的好友成功注册领取了压岁钱，并在2017年2月6日前投资，您还将获得该好友首次投资的返现。</li>
+					<li class="bot">* 本活动解释权归沪深理财所有，如有疑问请联系在线客服或拨打400-031-9909</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="frame-wrap framec-wrap" ng-if="showMode == 'c'">
+		<i class="newyear-bga"></i>
+		<i class="newyear-bgc"></i>
+		<div class="framec frame">
+			<i class="newyear-cornera"></i>
+			<i class="newyear-cornerb"></i>
+			<i class="newyear-cornerc"></i>
+			<i class="newyear-cornerd"></i>
+			<div class="title">
+				<div class="newyear-titlec"><p>开启时间：2017年2月9日</p></div>
+			</div>
+			<div class="expect">
+				<div class="newyear-expect"></div>
+			</div>
+			<div class="newyear-pic"></div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,74 @@
+{
+  "name": "angular-pdf",
+  "version": "1.3.0",
+  "main": "dist/angular-pdf.js",
+  "author": {
+    "name": "Sayanee",
+    "email": "sayanee@gmail.com"
+  },
+  "description": "An Angularjs directive <ng-pdf> to display PDF in the browser with PDFJS.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sayanee/angular-pdf.git"
+  },
+  "keywords": [
+    "pdf",
+    "angular",
+    "directive"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-bump": "0.7.0",
+    "grunt-cli": "0.1.13",
+    "grunt-contrib-clean": "0.7.0",
+    "grunt-contrib-copy": "0.8.2",
+    "grunt-contrib-jshint": "0.11.3",
+    "grunt-contrib-uglify": "0.11.0",
+    "grunt-jscs": "2.5.0",
+    "grunt-jsonlint": "1.0.6",
+    "grunt-karma": "^0.12.1",
+    "http-server": "^0.8.5",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.15",
+    "karma-jasmine": "^0.3.6",
+    "karma-ng-html2js-preprocessor": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.19"
+  },
+  "scripts": {
+    "build": "grunt",
+    "start": "http-server ./example -p 8081",
+    "test": "grunt --verbose"
+  },
+  "gitHead": "be1ab8cf11ddd1c6f2bfb7f7861fb2d758b6f1a5",
+  "bugs": {
+    "url": "https://github.com/sayanee/angular-pdf/issues"
+  },
+  "homepage": "https://github.com/sayanee/angular-pdf#readme",
+  "_id": "angular-pdf@1.3.0",
+  "_shasum": "ae8d7b04d5cf4eb4bcd739b497e32ad154a73601",
+  "_from": "angular-pdf@latest",
+  "_npmVersion": "3.3.12",
+  "_nodeVersion": "5.5.0",
+  "_npmUser": {
+    "name": "josh.woodward",
+    "email": "josh.woodward2693@gmail.com"
+  },
+  "dist": {
+    "shasum": "ae8d7b04d5cf4eb4bcd739b497e32ad154a73601",
+    "tarball": "https://registry.npmjs.org/angular-pdf/-/angular-pdf-1.3.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "josh.woodward",
+      "email": "josh.woodward2693@gmail.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/angular-pdf-1.3.0.tgz_1460057424847_0.7151242112740874"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/angular-pdf/-/angular-pdf-1.3.0.tgz"
+}

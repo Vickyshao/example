@@ -1,0 +1,177 @@
+$book-sprite-dimensions: true;
+@import "book/*.png";
+@include all-book-sprites();
+$book-spacing:3px;
+
+.fin-box.has-book{
+	.bill-detail-end,
+	.bill-detail-wait,
+	.bill-detail-already{
+		top: 110px !important;
+	}
+}
+.book-box{
+	padding-top: 125px;
+	.bookbtn{
+		width: 300px;
+		height: 40px;
+		border-radius: 5px;
+		background: $globalColor;
+		display: block;
+		line-height: 40px;
+		color: #fff;
+		font-size: 20px;
+		text-align: center;
+		border: none;
+		cursor: pointer;
+		&:hover{
+			background: darken($globalColor,5%);
+			text-decoration: none;
+		}
+		&[disabled="disabled"] {
+			background: #bbb;
+		    color: #ededed;
+		    cursor: default;
+		    &:hover{
+				background: #bbb;
+			}
+		}
+	}
+}
+
+.book-dialog-wrap{
+	.book-dialog{
+		width: 479px;
+		height: 328px;
+		border-radius: 3px;
+		background: #fff;
+		table{
+			width: 479px;
+			height: 230px;
+			td{
+				text-align: center;
+				color: #7a7a7a;
+				div{
+					display: inline-block;
+					&.t{
+						display: block;
+						font-size: 26px;
+						padding-top: 10px;
+					}
+				}
+				p{
+					font-size: 14px;
+				}
+			}
+		}
+		.btn{
+			width: 337px;
+			height: 52px;
+			border: 1px solid #ff4941;
+			color: #ff4941;
+			font-size: 20px;
+			margin: 0 auto;
+			display: block;
+			line-height: 52px;
+			border-radius: 4px;
+		}
+	}
+	.book-now{
+		width: 479px;
+		height: 328px;
+		border-radius: 3px;
+		background: #fff;
+		text-align: left;
+		overflow: hidden;
+		.title{
+			height: 42px;
+			line-height: 42px;
+			padding-left: 24px;
+			background: #f7f7f7;
+			color: #2a2a2a;
+			font-size: 16px;
+		}
+		.stitle{
+			height: 78px;
+			line-height: 78px;
+			color: #5f5f5f;
+			font-size: 14px;
+			padding-left: 28px;
+		}
+		.form{
+			width: 340px;
+			margin: 0 auto;
+			.input-box{
+				overflow: hidden;
+				i{
+					float: left;
+					width: 41px;
+					height: 41px;
+					line-height: 36px;
+					text-align: center;
+					background: #f2f2f2;
+					color: #ff4941;
+					font-size: 30px;
+					cursor: pointer;
+					margin: 0;
+					&.nouse{
+						color: #cfcfcf;
+						cursor: default;
+					}
+				}
+				.text{
+					width: 220px;
+					height: 30px;
+					line-height: 30px;
+					float: left;
+					border: 1px solid #acd8ff;
+					margin: 0 6px;
+					border-radius: 4px;
+					font-size: 16px;
+					color: #161616;
+					padding: 5px 11px;
+					outline: none;
+				}
+			}
+			.tip{
+				height: 47px;
+				line-height: 32px;
+				color: #ff4941;
+				font-size: 12px;
+			}
+			.bot{
+				font-size: 12px;
+				color: #ff4941;
+				padding-top: 20px;
+			}
+		}
+		.sub-btn{
+			width: 340px;
+			height: 54px;
+			border-radius: 4px;
+			background: #ff4941;
+			border: none;
+			font-size: 20px;
+			color: #fff;
+			outline: none;
+			cursor: pointer;
+			&:hover{
+				background: darken(#ff4941,5%);
+			}
+			&[disabled="disabled"] {
+				cursor: default;
+				background: #bbb;
+				&:hover{
+					background: #bbb;
+				}
+			}
+		}
+	}
+}
+
+.book-dialog-wrapper.ngdialog-theme-default .ngdialog-content{
+	background: none;
+}
+.book-dialog-wrapper.ngdialog-theme-default .ngdialog-close{
+	top: 7px;
+}

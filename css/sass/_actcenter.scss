@@ -1,0 +1,157 @@
+// 活动中心
+$bill-sprite-dimensions: true;
+@import "actcenter/*.png";
+@include all-actcenter-sprites();
+
+.actcenter{
+	background:#f1f1f1;
+	padding:30px 0;
+	.top-box{
+		width:1200px;
+		margin:0 auto;
+		padding:0 38px;
+		box-sizing:border-box;
+		height:100px;
+		line-height:100px;
+		background:#fff;
+		border:1px solid #e3e3e3;
+		font-size:22px;
+		color:#000;
+		.left{
+			float:left;
+			padding-left:56px;
+			background:url('/images/actcenter/titleIcon.png') left center no-repeat;
+		}
+		.right{
+			float:right;
+			text-align:right;
+			.line{
+				margin:0 20px;
+			}
+			.clickable{
+				cursor:pointer;
+			}
+			.active{
+				color:#ff6600;
+			}
+		}
+	}
+
+	.info-box{
+		width:1200px;
+		margin:0 auto;
+		padding-top:20px;
+		.info{
+			.list{
+				width:100%;
+				height:310px;
+				margin-bottom:20px;
+				border:1px solid #ff6600;
+				background:#fff;
+				position:relative;
+				.lineIcon{
+					width:130px;
+					height:48px;
+					position:absolute;
+					right:0;
+					top:0;
+					background:url('/images/actcenter/onlineBg.png') no-repeat;
+				}
+				&.offline{
+					.lineIcon{
+						background:url('/images/actcenter/offlineBg.png') no-repeat;
+					}
+				}
+				.up{
+					float:left;
+					padding:25px 80px 25px 38px;
+					img{
+						width:620px;
+						height:260px;
+					}
+				}
+				.down{
+					float:left;
+					color:#000;
+					margin:50px 0;
+					padding:25px 0 30px 68px;
+					border-left:2px solid #e4e4e4;
+					// position:relative;
+					.title{
+						font-size:24px;
+						line-height:24px;
+					}
+					.time{
+						padding-left:30px;
+						font-size:18px;
+						line-height:18px;
+						margin:27px 0 38px;
+						background:url('/images/actcenter/timeIcon.png') left center no-repeat;
+					}
+					.todetail{
+						display:inline-block;
+						width:246px;
+						height:55px;
+						line-height:55px;
+						font-size:20px;
+						text-align:center;
+						box-sizing:border-box;
+						background:#fff;
+						color:#048fee;
+						border-radius:5px;
+						border:1px solid #048fee;
+						&:hover{
+							background:#048fee;
+							color:#fff;
+							text-decoration:none;
+						}
+					}
+				}
+				
+			}
+			.more{
+				display:block;
+				margin:50px auto 40px;
+				width:246px;
+				height:55px;
+				line-height:55px;
+				font-size:20px;
+				text-align:center;
+				background:#048fee;
+				color:#fff;
+				border-radius:5px;
+				outline:none;
+				border:0;
+				&:hover{
+					background:lighten(#048fee,10%);
+				}
+			}
+		}
+		
+		// 往期回顾
+		.info2{
+			.list{
+				border:1px solid #e4e4e4;
+				.lineIcon{
+					background:url('/images/actcenter/endlineBg1.png') no-repeat;
+				}
+				.down{
+					position:relative;
+					i{
+						width:167px;
+						height:167px;
+						position:absolute;
+						right:-68px;
+						bottom:-10px;
+						background:url('/images/actcenter/endIcon.png') no-repeat;
+					}
+					.todetail{
+						color:#a8a8a8;
+						border:1px solid #a8a8a8;
+					}
+					
+				}
+			}
+		}
+	}
+}

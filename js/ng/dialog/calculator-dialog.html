@@ -1,0 +1,39 @@
+<div class="calculator-box">
+	<i class="invitenew-close" ng-click="closeDialog()"></i>
+	<div class="title">算算我能赚多少</div>
+	<div class="input-box">
+		<p>投资金额</p>
+		<div class="input-mod">
+			<form>
+				<input placeholder="请输入100的整数倍" class="text amount" ng-model="amount" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" ng-blur="setAmount($event)" name="amount" type="text"> 元
+			</form>
+		</div>
+	</div>
+	<div class="input-box">
+		<p>产品期限</p>
+		<div class="input-mod">
+			<span ng-class="{'A':'active'}[checkType]" ng-click="changeType('A')">小胜30</span>
+			<span ng-class="{'B':'active'}[checkType]" ng-click="changeType('B')">中胜60</span>
+			<span ng-class="{'C':'active'}[checkType]" ng-click="changeType('C')">中胜180</span>
+		</div>
+	</div>
+	<div class="input-box">
+		<p>基础利率</p>
+		<div class="input-mod">
+			<strong ng-if="checkType == 'A'">6%</strong>
+			<strong ng-if="checkType == 'B'">7.5%</strong>
+			<strong ng-if="checkType == 'C'">10.5%</strong>
+		</div>
+	</div>
+	<div class="input-box">
+		<p>好友收益</p>
+		<div class="input-mod">
+			<strong class="r"><b>X</b> 30%</strong>
+			<b>{{amount*rate/100*deadline/360 | isNumber2}}</b>
+		</div>
+	</div>
+	<div class="total-box">
+		<i>元</i>
+		<p>我的返现</p><span>{{amount*rate/100*deadline/360*percentage | isNumber2}}</span>
+	</div>
+</div>

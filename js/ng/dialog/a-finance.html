@@ -1,0 +1,27 @@
+<style>
+	.afinance{
+		width:720px;
+		height:471px;
+		background:url(/images/afinance/bg.png) top center/contain;
+		position:relative;
+	}
+	.afinance a{
+		width:308px;
+		height:48px;
+		background:url(/images/afinance/btn.png) top center/contain;
+		position:absolute;
+		left:50%;
+		margin-left:-154px;
+		bottom:45px;
+	}
+	.afinance img{
+		position:absolute;
+		right:-50px;
+		top:-50px;
+		cursor:pointer;
+	}
+</style>
+<div class="afinance">
+	<a ng-click="closeDialog()" ui-sref="main.myAccount.myCoupon"></a>
+	<img class="icoClose" src="/images/afinance/close.png" ng-click="closeDialog()"/>
+</div>

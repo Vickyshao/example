@@ -1,0 +1,133 @@
+<div class="special-activity-wrapper" ng-controller="specialCtrl">
+	<div class="banner-wrap">
+		<i class="appdown-bga"></i>
+		<div class="banner">
+			<div class="specialbanner"><div class="special-num"><i class="num">{{activityPeriods}}</i></div></div>
+		</div>
+		<div class="lucky-code">
+			<div class="text">每期送1台iPhone 7，<br>每投1200元，即可获得1个抽奖码！</div>
+			<div class="iphone-check" ng-if="isLogin"><p>您当前有<span>{{luckAmount}}</span>个幸运码<br><a href="" ng-click="alertCode()">立即查看</a></p></div>
+			<div class="iphone-check" ng-if="!isLogin"><p>赶紧来领您的幸运码<br>请先<a href="" ng-click="alertLogin()">登录</a>查看</p></div>
+		</div>
+	</div>
+
+	<div class="lottery-wrapper">
+		<div class="lottery-wrap">
+			<div class="title"><a href="/newlayout/winnerInfo">查看更多中奖者信息></a>开奖专区</div>
+			<div class="winbox">
+				<div class="video-wrap">
+					<div class="pastimgbox">
+						<a href="{{winnerListDesc[0].prizeUrl}}" target="_blank"><span>第 {{winnerListDesc[0].activityPeriods}} 期</span><img src="images/iphone/video.png"></a>
+					</div>
+					<div class="newlist" ng-class="{false:'',true:'upnewlist'}[upList]">
+						<b class="iphone-down" ng-if="upList==true" ng-click="changeUpList()"></b>
+						<b class="iphone-up" ng-if="upList==false" ng-click="changeUpList()"></b>
+						<ul>
+							<li ng-repeat="item in winnerListDesc"><span>第{{item.activityPeriods}}期</span><p class="user" ng-if="item.prizeMobile != undefined">中奖用户:<i>{{item.prizeMobile}}</i></p><p class="user" ng-if="item.prizeMobile == undefined">中奖用户:<i>待公布</i></p><p>中奖号：<i>{{item.prizeCode}}</i></p></li>
+						</ul>
+					</div>
+				</div>
+				<div class="winlist">
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="slide slideone swiper-slide">
+								<ul></ul>
+							</div>
+							<div class="slide slidetwo swiper-slide">
+								<ul></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<i class="iphone-next"></i>
+			</div>
+		</div>
+		<div class="list-wrap">
+			<div class="title">投即享<i>8.5%+3%</i>高收益，还有机会白拿iPhone 7！</div>
+			<div class="list-box-shadow">
+				<i class="shadow"></i>
+				<div class="list-box">
+					<div class="special-box">
+						<div class="show-wrap">
+			                <div class="top">
+			                    <div class="bill-name">{{product.fullName}}<span>拼人品，抽iPhone7</span></div>
+			                </div>
+			                <div class="product-table">
+			                    <table>
+			                        <tr class="data">
+			                            <td width="210" class="rate">
+			                                <span><b>{{product.rate}}</b>%<i ng-if="product.activityRate != undefined && product.activityRate != 0">+{{product.activityRate}}%</i></span>
+			                            </td>
+			                            <td width="120">
+			                                <span><b>{{product.deadline}}</b>天</span>
+			                            </td>
+			                            <td width="154" class="total">
+			                                <span><b>{{product.leastaAmount}}</b>元</span>
+			                            </td>
+			                            <td width="134" rowspan="2">
+			                            	<div class="container">
+				                                <div id="container" class="progress-bar"></div>
+				                                <span class="pert">{{product.pert}}%</span>
+			                            		<p ng-if="item.status != 6 && item.status != 8 && item.status != 9">募集进度</p><p ng-if="item.status == 6 || item.status == 8 || item.status == 9">募集完成</p>
+			                            	</div>
+			                            </td>
+			                        </tr>
+			                        <tr class="bot">
+			                            <td><p>历史年化收益率</p></td>
+			                            <td><p style="padding-left: 2px;">产品期限</p></td>
+			                            <td><p style="padding-left: 20px;">起投金额</p></td>
+			                        </tr>
+			                    </table>
+			                </div>
+						</div>
+						<div class="input-wrap"><!--  ng-disabled="!isLogin" -->
+							<input class="text" placeholder="请输入1200的整数倍数" ng-model="product.nowNum" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" name="amount" ng-blur="setNum()" ng-if="product.pert != 100">
+							<input disabled="disabled" placeholder="募集结束" style="text-align: center;" class="text" ng-if="product.pert == 100">
+							<!-- <span class="error" style="color:red;position: absolute;" ng-show="(product.nowNum-product.leastaAmount)%product.increasAmount != 0 && !(product.nowNum<product.leastaAmount) && !(product.nowNum>product.maxAmount)">注意：输入金额应该是{{product.increasAmount}}的倍数</span> -->
+							<p class="profit">预计利息收益：<span>{{(product.rate/100 / 360 * product.nowNum * product.deadline) | isNumber2}}</span> 元</p>
+							<a href="" class="godetail" ui-sref="main.billDetail({id: product.id})" ng-if="product.pert == 100 && isReservation">预约下期</a>
+							<input ng-disabled="product.pert == 100" value="立即抢购" class="godetail" type="submit" ng-if="product.pert == 100 && !isReservation">
+							<input ng-disabled="(product.nowNum<product.leastaAmount)||(product.nowNum > product.maxAmount) ||(product.nowNum-product.leastaAmount)%product.increasAmount != 0" value="立即抢购" ng-show="isLogin && product.pert != 100" class="godetail" type="button" ui-sref="main.billDetail({id: product.id})">
+							<a href="" class="godetail" ng-show="!isLogin && product.pert != 100" ng-click="alertLogin()">立即抢购</a>
+							<p class="num"><span>{{investTotal}}</span>人已参与</p>
+						</div>
+		            </div>
+				</div>
+			</div>
+		</div>
+		<i class="iphone-bgb"></i>
+	</div>
+
+	<div class="news-wrapper">
+		<div class="news">
+			<i class="iphone-bgd"></i>
+			<div class="iphone-step"></div>
+			<div class="news-box">
+				<p class="iphone-top"></p>
+				<div class="news-inner">
+					<ul>
+						<li ng-repeat="item in newTrends">
+							<span>{{item.realname}}</span>
+							<div>{{item.text}}<i>{{item.investTime}}</i></div>
+						</li>
+					</ul>
+				</div>
+				<p class="iphone-bot"></p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="rules-wrapper">
+		<i class="iphone-bgc"></i>
+		<div class="rules-wrap">
+			<div class="title">活动规则</div>
+			<ul>
+				<li>1. 本活动专属标为财胜90，期限90天，每期总金额36万。投资除获得收益以外还有机会抽取iphone7大奖。每期抽取1部iphone7，颜色可任意选择；</li>
+				<li>2. 每投资1200元即可获得一个“字母+数字”组合的抽奖号码，也可以一次性投资1200元的倍数获得多个抽奖号码，每期共300个抽奖号码；</li>
+				<li>3. 投资本活动标不享受红包等平台其他任何福利；</li>
+				<li>4. 开奖方式及中奖结果：活动遵循公开公平公正的原则，每期活动标满后5个工作日内进行开奖，每周三下午视频直播开奖全程，直播平台为“一直播”,搜索“沪深理财”即可进入直播间查看。</li>
+				<li class="bot">*  本活动由沪深理财发起并就活动内容作出解释和说明，任何疑问请联系客服：400-031-9909</li>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,20 @@
+{"result":[
+    {
+        "title": "我是title",
+        "text": "我是新手，如何注册",
+        "picUrl": "images/media-img.png",
+        "url":"#"
+    },{
+        "title": "我是title23",
+        "text": "阿斯顿飞萨芬",
+        "picUrl": "images/media-img.png",
+        "url":"#"
+    },{
+        "title": "我是title23",
+        "text": "我是新阿呆发生大幅",
+        "picUrl": "images/media-img.png",
+        "url":"#"
+    }
+],
+"newsTitle":"公司新闻"
+}

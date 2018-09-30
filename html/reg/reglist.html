@@ -1,0 +1,222 @@
+<div class="regsem-wrapper semlist-wrapper" ng-controller="regCtrl">
+	<div class="banner">
+		<div class="quick-register-wrap" style="background: none" ng-controller="zhuceCtrl">
+			<i class="regiphone-banner"></i>
+			<div class="quick-register-wrapper">
+				<a href="/main/home" target="_blank" class="mainhome"></a>
+				<form class="login_form" ng-model="login" name="loginform">
+					<input style="display:none">
+					<input type="password" style="display:none">
+					<div class="quick-register-mod">
+						<div class="quick-top">注册领10万元体验金+666元红包</div>
+						<div class="quick-register-box">
+							<div class="input-wrap">
+								<div class="input-box">
+									<div class="input-mod">
+										<b class="icon finance-phone"></b>
+										<input id="mobilephone" type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/"  placeholder="请输入手机号码" ng-blur="blurID('focusMobilephone',loginform,$event)" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text semmobilephone"  ng-model="login.mobilephone" name="mobilephone" required minlength="11" maxlength="11" />
+									</div>
+									<i ng-show="loginform.mobilephone.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.mobilephone.$valid]"></i>
+			                		<span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box semimg-box">
+									<div class="img-box"><img ng-click="clickInput('changePic',$event)" src="login/validateCode.do"></div>
+									<div class="input-mod small-inputmod">
+										<b class="icon finance-code"></b>
+										<input type="text" placeholder="请输入验证码" class="text small-text" ng-model="login.picCode" name="picCode" minlength="4" maxlength="4" required autocomplete="off"/>
+									</div>
+									<i ng-show="loginform.picCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.picCode.$valid]"></i>
+									<span class="error" ng-show="loginform.picCode.$valid"><font>{{loginform.picCode | zhuCePicCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box">
+									<a href="" ng-if="loginform.mobilephone.$valid" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+
+									<a href="" ng-if="!loginform.mobilephone.$valid" ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+									<div class="input-mod small-inputmod">
+										<b class="icon finance-code"></b>
+										<input ng-disabled="!loginform.mobilephone.$dirty || !loginform.picCode.$dirty || loginform.mobilephone.$valid || loginform.picCode.$valid" placeholder="手机验证码"  type="text" ng-model="login.smsCode"  name="smsCode" class="text small-text" maxlength="4" required/>
+									</div>
+									<i ng-show="loginform.smsCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.smsCode.$valid]"></i>
+									<span class="error" ng-show="loginform.smsCode.$valid"><font color="red">{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box passwd-box">
+									<div class="input-mod">
+										<b class="icon finance-mycode"></b>
+										<input autocomplete="off" ng-show="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" ng-mouseout="showPassword(passwordText)" type="text" ng-model="login.passWord" class="text" name="passWord" required />
+										<input autocomplete="off" ng-hide="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" type="passWord" ng-model="login.passWord" class="text" name="passWord" required/>
+									</div>
+									<i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]" ng-click="showPassword(passwordText)" ></i>
+					
+									<i ng-show="loginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.passWord.$valid]"></i>
+									<span  class="error" ng-show="loginform.passWord.$valid"><font>{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="agreement-box">
+								<label for="agreement">我已阅读并同意<a href="/zc" target="_blank" class="server-agreement">《沪深理财注册协议》</a><input type="checkbox" ng-model="login.checkbox" class="check-box" id="agreement" checked /></label>
+							</div>
+							<div class="sub-box" ng-if="!loginform.$invalid" ng-click="LoginClick('zhuCe',loginform)">
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+							</div>
+							<div class="sub-box" ng-if="loginform.$invalid" >
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+							</div>
+
+
+						</div>
+						<div class="choose-box bottom-choose">已有账号？ 
+							<a href="{{hrefUrl}}dl" target="_blank" class="change-btn">【请登录】</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+	<div class="mod-wrapper modb-wrapper">
+		<i class="semlist-bge"></i>
+		<i class="semlist-bgf"></i>
+		<div class="mod">
+			<div class="title">
+				<i class="semlist-titleb"></i>
+				<div class="con">
+					<span>新手福利 产品丰富 壕礼多多</span>
+					<p>新用户成功注册可获得相应体验金、红包奖励！<br>更多的活动期待您的参与！</p>
+				</div>
+			</div>
+			<div class="semlist-line"></div>
+			<table>
+				<tr>
+					<td><a href="/extend/invite" target="_blank"><p class="semlist-bannera"></p></a></td>
+					<td><a href="/reg/investgift" target="_blank"><p class="semlist-bannerb"></p></a></td>
+					<td><a href="/newlayout/finance" target="_blank"><p class="semlist-bannerc"></p></a></td>
+				</tr>
+			</table>
+			<a href="" class="btn" ng-click="alertRegLoginDialog()">立即赚钱</a>
+		</div>
+	</div>
+	<div class="mod-wrapper moda-wrapper">
+		<i class="semlist-bga"></i>
+		<i class="semlist-bgb"></i>
+		<div class="mod">
+			<div class="title">
+				<i class="semlist-titlea"></i>
+				<div class="con">
+					<span>和平影视垂直管理的首家互金平台</span>
+					<p>沪深理财互联网金融平台于2016年9月26日正式上线<br>得到了监管部门、金融机构和业内同行的高度认可</p>
+				</div>
+			</div>
+			<div class="content">
+				<div class="con" ng-if="showTab == 'a'">
+					<div class="semlist-biga img"></div>
+					<div class="txt">
+						<span>上海和平影视企业公司（集团）董事长吴传平先生代表和平影视集团宣布，对集团直属的深圳前海云轩互联网金融服务有限公司进行垂直化管理。</span>
+						<p>吴董表示：“这是和平影视集团进行垂直管理的首家互联网金融平台。并将在沪深理财内建立党支部，将其人事关系纳入到国有企业编制；严格按照网贷管理办法，以国有企业标准制定并向集团提交开展相关业务的制度、流程和标准，由和平影视集团指派专人定期对沪深理财的财务报表进行审计，并建立起对平台的第三方资金存管、银行存管、平台自有运营资金的日常巡查与监管制度。”</p>
+					</div>
+				</div>
+				<div class="con" ng-if="showTab == 'b'">
+					<div class="semlist-bigb img"></div>
+					<div class="txt">
+						<span>深圳前海云轩互联网金融服务有限公司<br>联合创始人王溥迪<br>主旨演讲《国企金融创新发展》</span>
+						<p>王总表示“平台自2016年9月26日正式上线以来，得到了监管部门、金融机构和业内同行的高度认可和广大投资人的支持与信任。获得上海和平影视企业的收购并对沪深理财进行垂直管理，深感荣幸，倍觉重任在肩。沪深理财坚持秉承中央“深化金融改革、服务实体经济”的国家经济发展战略，以服务中小微企业为己任，在2017年，不忘初心，砥砺前行，为中国经济和为普惠金融贡献出我们的一份力量。”</p>
+					</div>
+				</div>
+				<div class="con" ng-if="showTab == 'c'">
+					<div class="semlist-bigc img"></div>
+					<div class="txt">
+						<span>新疆天富蓝玉光电科技有限公司<br>总经理季礼明代表<br>中小企业发表了《中国中小企业融资现状》的演讲</span>
+						<p>季总表示：“针对中小微实体经济普遍存在着借款难，融资贵的阶段性难题，迫切渴望能够获得更为高效的，低成本的融资，投入到企业的再生产中，为社会创造更大的价值。并对以服务中小微企业为己任，产融结合，双轮驱动的沪深理财表示感谢和赞赏。”</p>
+					</div>
+				</div>
+				<div class="con" ng-if="showTab == 'd'">
+					<div class="semlist-bigd img"></div>
+					<div class="txt">
+						<span>大成律师事务所高级合伙人刘新宇律师从专业的司法角度，对《国资系互金平台如何做好合规发展？》进行了解析。</span>
+						<p>他表示：“首先，国资系互金平台必须根据行业相关监管政策，自觉调整，做到合规自律发展；国资系平台应充分发挥自身在资产端的优势、在公信力、风控措施等方面的优势，努力打造平台自身的产品，创新业务模式，优化用户体验，让国资系真正成为整个互联网金融行业的金字招牌；国资系互金平台在践行互联网金融行业使命的同时，更承担着天然的社会责任。国资系互金平台应该把遵守监管、树立行业典范视为本分，把服务国家经济发展、保障投资者利益视为自身义不容辞的责任。”</p>
+					</div>
+				</div>
+				<ul>
+					<li ng-click="showTab = 'a'" ng-class="{'a':'active'}[showTab]"><p class="semlist-imga"></p></li>
+					<li class="tabb" ng-click="showTab = 'b'" ng-class="{'b':'active'}[showTab]"><p class="semlist-imgb"></p></li>
+					<li ng-click="showTab = 'c'" ng-class="{'c':'active'}[showTab]"><p class="semlist-imgc"></p></li>
+					<li ng-click="showTab = 'd'" ng-class="{'d':'active'}[showTab]"><p class="semlist-imgd"></p></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="mod-wrapper modc-wrapper">
+		<i class="semlist-bgc"></i>
+		<i class="semlist-bgd"></i>
+		<div class="mod">
+			<div class="title">
+				<i class="semlist-titlec"></i>
+				<div class="con">
+					<span>合规 稳健 多元发展</span>
+					<p>上海和平影视企业公司（集团）正式宣布<br>对集团所属的沪深理财进行垂直化管理</p>
+				</div>
+			</div>
+			<table>
+				<tr>
+					<td>
+						<div>
+							<i class="semlist-peoa"></i>
+							<span>人事管理方面</span>
+							<p>和平影视集团在沪深理财内建立党支部，将高层团队人事关系纳入到国有企业干部管理序列。</p>
+						</div>
+					</td>
+					<td>
+						<div>
+							<i class="semlist-peob"></i>
+							<span>业务管理方面</span>
+							<p>要求沪深理财严格按照网贷管理办法，以国有企业标准制定并向集团提交开展相关业务的制度、流程和标准，经集团批准后执行。</p>
+						</div>
+					</td>
+					<td>
+						<div>
+							<i class="semlist-peoc"></i>
+							<span>财务管理方面</span>
+							<p>和平影视集团将指派专人定期对沪深理财的财务报表进行审计，并建立起对平台的第三方资金存管 、银行存管、平台自有运营资金的日常巡查与监管制度。以保障投资人的资金安全为首要。</p>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="mod-wrapper mod-bottom-wrapper">
+		<div class="mod">
+			<div class="title">
+				<i class="semlist-titled"></i>
+				<div class="con">
+					<span>1亿验资 层层把控 放心投资</span>
+					<p>致力于打造一个值得信赖的、高效的互联网金融服务平台<br>为您守护好每一分财产</p>
+				</div>
+			</div>
+		</div>
+		<table>
+			<tr>
+				<td width="13%"><i class="semlist-icona"></i></td>
+				<td width="47%">银行账户千万级存款保障<br>逾期先行垫付</td>
+				<td width="13%"><i class="semlist-iconb"></i></td>
+				<td width="27%">拥有1亿验资，实力雄厚<br>沪深理财验资报告</td>
+			</tr>
+			<tr>
+				<td><i class="semlist-iconc"></i></td> 
+				<td>360°层层风控，严格审核<br>投资更放心</td>
+				<td><i class="semlist-icond"></i></td>
+				<td>沪深理财完善的保障机制<br>安享收益高枕无忧</td>
+			</tr>
+			<tr>
+				<td><i class="semlist-icone"></i></td>
+				<td>两大律师合规支持<br>严密保护您的资产</td>
+				<td><i class="semlist-iconf"></i></td>
+				<td>100%国资控股<br>和平影视垂直管理</td>
+			</tr>
+		</table>
+	</div>
+</div>

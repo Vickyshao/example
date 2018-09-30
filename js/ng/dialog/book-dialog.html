@@ -1,0 +1,48 @@
+<div class="book-dialog-wrap">
+	<div class="book-dialog" ng-if="bookType == 'success'">
+		<table>
+			<tr>
+				<td>
+					<div class="book-success"></div>
+					<div class="t">恭喜 预约成功！</div>
+					<p>新一期即将上线，敬请期待！</p>
+				</td>
+			</tr>
+		</table>
+		<a href="" class="btn" ng-click="closeDialog()">确认</a>
+	</div>
+	<div class="book-dialog" ng-if="bookType == 'real'">
+		<table>
+			<tr>
+				<td>
+					<div class="book-real"></div>
+					<div class="t">请先实名认证即可参与预约</div>
+				</td>
+			</tr>
+		</table>
+		<a href="" class="btn" ng-click="bindBank()">确认</a>
+	</div>
+	<div class="book-dialog" ng-if="bookType == 'fin'">
+		<table>
+			<tr>
+				<td>
+					<div class="book-end"></div>
+					<div class="t">预约已结束 ，请等待新一期活动</div>
+				</td>
+			</tr>
+		</table>
+		<a href="" class="btn" ng-click="closeDialog()">确认</a>
+	</div>
+	<div class="book-now" ng-if="bookType == 'book'">
+		<div class="title">{{name}}</div>
+		<p class="stitle">请输入您的预约金额：</p>
+		<div class="form">
+			<div class="input-box">
+				<i ng-click="changeBook('cut')" ng-class="{false:'nouse'}[book.nowNum > book.leastaAmount]">-</i><input class="text" type="text" placeholder="最低1200元起投" ng-model="book.nowNum" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" maxlength="7" ng-blur="changeBook('keyUpBalance')"><i ng-click="changeBook('add')" ng-class="{false:'nouse'}[book.nowNum < book.maxAmount]">+</i>
+			</div>
+			<div class="tip"><span ng-show="(book.nowNum-book.leastaAmount)%book.increasAmount != 0 && !(book.nowNum<book.leastaAmount) && !(book.nowNum>book.maxAmount)">注意：输入金额应该是1200的倍数</span></div>
+			<input type="submit" class="sub-btn" value="确认预约" ng-disabled="(book.nowNum<book.leastaAmount)||(book.nowNum > book.maxAmount) ||(book.nowNum-book.leastaAmount)%book.increasAmount != 0 || isNumCash || book.nowNum==undefined" ng-click="getReservation()">
+			<p class="bot">*预约后我们会在下一期活动上线前由您的专属客服电话通知您</p>
+		</div>
+	</div>
+</div>

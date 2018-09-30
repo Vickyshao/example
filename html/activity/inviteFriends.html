@@ -1,0 +1,103 @@
+<div class="inviteFriends" ng-controller="inviteFriendsCtrl">
+    <div ng-controller="mainCtrl">
+        <zt-header></zt-header>
+    </div>
+
+    <div class="cnt">
+        <div class="imgs">
+            <img src="/images/inviteFriends/invite_01.png" />
+            <img src="/images/inviteFriends/invite_02.png" />
+            <img src="/images/inviteFriends/invite_03.png" />
+            <img src="/images/inviteFriends/invite_04.png" />
+        </div>
+        <!--未登录-->
+        <div class="peoples noneLogin" ng-show="!isLogin">
+            <div class="title">
+                <div class="ins">
+                    <div class="invite-hot fire"></div>
+                    已有 <span>{{pageData.total}} </span> 位用户获得话费
+                </div>
+            </div>
+            <div class="info">
+                <div class="box" style="height: 305px;">
+                    <table>
+                        <tbody>
+                            <tr ng-repeat="item in rows">
+                                <td>恭喜{{item.inviteMobilePhone}} 的用户</td>
+                                <td>已获得{{item.totalReward}}元话费</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+            </div>
+        </div>
+
+       <!--已登录-->
+        <div class="peoples login" ng-show="isLogin">
+            <div class="title">
+                <div class="ins">
+                    <div>我邀请的好友：<span>{{inviteNumbers}}</span>人</div>
+                    <div class="border1">&nbsp;</div>
+                    <div>累计获得奖励：<span>{{totalAmount}}</span>元</div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="box name">
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>邀请账户</td>
+                            <td>注册时间</td>
+                            <td>获得奖励<span>（元）</span></td>
+                            <td>是否投资<span>（新手标、体验标除外）</span></td>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="box">
+                    <table id="loginTable">
+                        <tr ng-repeat="item in pageInfo">
+                            <td>{{item.mobile}}</td>
+                            <td>{{item.regdate | date:'yyyy-MM-dd'}}</td>
+                            <td>{{item.amount}}</td>
+                            <td>{{item.isInvest == 1 ? '是' : '否'}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="ruls">
+            <div class="rulswidth">
+                <div class="invite-ruls"></div>
+                <br/>
+                <div class="txt">
+                    <ul>
+                        <li>1、活动时间：自2017年10月18日起。</li>
+                        <li>2、好友须通过您提供的专属链接或专属邀请码进行注册并投资，即可建立邀请关系获得话费奖励，本活动与其他形式的首投福利不<br/>可同时享受。</li>
+                        <li>3、好友须首次投资定期标≥1000元，即可获得奖励（投资新手标、体验标则无奖励）。</li>
+                        <li>4、奖励发放：好友首投达标后即赠送您和好友相应话费奖励，奖励将在10个工作日内发放至注册手机号中。</li>
+                        <li>5、如有恶意刷奖行为，一经本平台核实将取消获奖资格。</li>
+                        <li>6、活动不与平台其他活动同享（且新手标及活动标不参与本活动）。</li>
+                        <li>* 本活动最终解释权归沪深理财所有，如有疑问请咨询客服：400-031-9909。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="toInvite">
+            <div class="ins">
+                <span>马上邀请好友领话费</span>
+                <span class="trangle"><img src="/images/inviteFriends/trangleArr.png"/> </span>
+                <span ng-if="!isLogin"  ui-sref="dl"><img style="cursor: pointer" src="/images/inviteFriends/toInvite.png"/> </span>
+                <span ng-if="isLogin" ui-sref="main.myAccount.myFriend({toGet:true})"><img style="cursor: pointer" src="/images/inviteFriends/toInvite.png"/> </span>
+            </div>
+        </div>
+
+        <!--footer部分-->
+        <div class="footer">
+            <p>粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司v1.0.0</p>
+            <h4>温馨提示：市场有风险，投资需谨慎</h4>
+        </div>
+    </div>
+</div>

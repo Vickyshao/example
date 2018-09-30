@@ -1,0 +1,25 @@
+<div class="juheDetail" ng-controller="juheDetailCtrl">
+    <div class="banner" style="background: url('../images/business/banner{{id}}.png') center top;"></div>
+    <div class="juheDetail-cont">
+        <div class="img">
+            <img src="images/business/img{{id}}.png">
+        </div>
+        <div class="info info{{id}}">
+            <div class="links" ng-if="id==5">
+                <!-- <a href="http://www.yizhibo.com/l/tcKP7sHMg2W8ng-F.html" target="_blank" class="video"></a><a class="link" href="http://www.yizhibo.com/l/tcKP7sHMg2W8ng-F.html" target="_blank"></a> -->
+            </div>
+            <img src="images/business/info{{id}}.png">
+        </div>
+        <div class="pro">
+            <img src="images/business/pro{{id}}.png">
+        </div>
+        <div class="bot bot{{id}}">
+            <img src="images/business/bot{{id}}.png">
+            <p style="text-align: center;padding:34px 0;">
+                <a ng-click="prev()" ng-if="id!=1">＜上一家企业</a>
+                <a ng-click="next()" ng-if="id!=7">下一家企业 ></a>
+            </p>
+        </div>
+
+    </div>
+</div>

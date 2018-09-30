@@ -1,0 +1,424 @@
+$invite-sprite-dimensions: true;
+@import "inviteFriends/invite/*.png";
+@include all-invite-sprites();
+
+@import "compass/css3";
+
+$red: #e32b29;
+$yellow: #f8d920;
+
+.colorRed {
+  color: $red !important;;
+}
+
+.colorgreen {
+  color: #84c7a1 !important;
+}
+
+.colorgrey {
+  color: #ccc !important;
+}
+
+.border0 {
+  border-width: 0;
+}
+
+.inviteFriends {
+  max-width: 100%;
+  overflow-x: hidden;
+  // 未登录页面
+  .quick-register-wrap {
+    &.inviteBanner {
+      background: url('/images/inviteFriends/bannerBg.png') center top;
+      min-height: 596px;
+      background-color: #EBF8FF;
+      background-size: cover;
+      .wqq-quick-register-wrap-box {
+        width: 1370px;
+        margin: -66px auto 0;
+        position: relative;
+        z-index: 9;
+      }
+      .invitephone {
+        width: 1218px;
+        margin: 0 auto;
+        text-align: left;
+        padding: 64px 0 0 113px;
+        font-size: 28px;
+        color: #fff;
+        z-index: 999;
+        font-weight: bold;
+        span {
+          color: #fcff00;
+        }
+      }
+    }
+  }
+
+  .chooseReason {
+    float: left;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 82px;
+    background: #f9f9f9;
+    .title {
+      margin: 50px auto 79px;
+
+    }
+    table {
+      width: 70%;
+      margin: 0 auto;
+      td {
+        font-size: 16px;
+        color: #333;
+        text-align: center;
+        span {
+          margin-bottom: 3px;
+          display: inline-block;
+          font-size: 20px;
+        }
+        p {
+          color: #7e7e7e;
+        }
+        i {
+          display: inline-block;
+          margin-bottom: 18px;
+        }
+      }
+    }
+  }
+
+  // 专题页 未登录
+  .cnt {
+    margin: 0 auto;
+    background: #19150d;
+    //background: url("/images/inviteFriends/bg.png") top center repeat-y;
+    .imgs {
+      text-align: center;
+      img {
+        float: left;
+        max-width: 100%;
+        margin: 0 auto;
+        display: inline-block;
+        padding: 0;
+        border: 0;
+      }
+    }
+
+    .peoples {
+      &.noneLogin {
+        .info {
+          .box {
+            padding-top: 22px;
+          }
+        }
+        table {
+          width: 90%;
+          td {
+            width: 50%;
+          }
+        }
+      }
+      &.login {
+        .title {
+          font-size: 22px;
+          background: url("/images/inviteFriends/inviteLogin05.png") center center no-repeat;
+          .ins {
+            width: 590px;
+            div {
+              float: left;
+              span {
+                color: $yellow;
+                font-size: 30px;
+              }
+              &.border1 {
+                width: 1px;
+                height: 27px;
+                border-left: 1px solid #ccc;
+                padding: 0 12px;
+                background: transparent;
+                line-height: 70px;
+                margin-top: 25px;
+                margin-left: 26px;
+              }
+            }
+          }
+        }
+        .info {
+          .box {
+            &.name {
+              height: 60px;
+              padding-top: 22px;
+              table {
+                td {
+                  font-weight: bold;
+                }
+              }
+            }
+            table {
+              width: 100%;
+              td {
+                width: auto;
+                font-size: 19px;
+                span {
+                  font-size: 14px;
+                }
+                &:first-child {
+                  width: 27%;
+                }
+                &:nth-child(2) {
+                  width: 27%;
+                }
+                &:nth-child(3) {
+                  width: 20%;
+                }
+                &:nth-child(4) {
+                  width: 26%;
+                }
+              }
+            }
+          }
+        }
+      }
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      .title {
+        width: 100%;
+        margin: 0 auto;
+        background: url("/images/inviteFriends/invite_05.png") center center no-repeat;
+        padding-left: 45px;
+        font-size: 26px;
+        color: #fff;
+        height: 72px;
+        line-height: 72px;
+        .ins {
+          width: 418px;
+          margin: 0 auto;
+          .fire {
+            float: left;
+            width: 34px;
+            margin-top: 16px;
+          }
+          span {
+            color: $yellow;
+          }
+        }
+      }
+      .info {
+        width: 100%;
+        height: 456px;
+        margin: 0 auto;
+        background: url("/images/inviteFriends/invite_06.png") center center no-repeat;
+        .box {
+          width: 888px;
+          height: 245px;
+          margin: 0 auto;
+          overflow: hidden;
+          table {
+            margin: 0 auto;
+            thead {
+              font-size: 20px;
+              color: #6b3c00;
+            }
+            td {
+              line-height: 60px;
+              font-size: 20px;
+              color: #c6ac85;
+              text-align: center;
+            }
+          }
+        }
+
+      }
+    }
+
+    .ruls {
+      float: left;
+      width: 100%;
+      font-size: 17px;
+      color: #fff;
+      background-color: #3b2f1d ;
+      padding: 60px;
+      .rulswidth {
+        width: 1090px;
+        margin: 0 auto;
+        div {
+          margin: 0 auto;
+        }
+        .title {
+          margin-top: 10px;
+          font-size: 18px;
+          span {
+            color: $yellow;
+          }
+        }
+        .txt {
+          ul {
+            margin-left: 40px;
+            color:#e6d09c;
+            li {
+              text-align: left;
+              white-space: nowrap;
+              line-height: 42px;
+              color: #a99471;
+            }
+          }
+        }
+      }
+    }
+    
+    .toInvite {
+      width: 100%;
+      float: left;
+      text-align: center;
+      color: #ffd62c;
+      font-size: 26px;
+      padding: 26px 0 0px;
+      background-color: #1f1a10;
+      position: fixed;
+      bottom: 0;
+      .ins {
+        width: 70%;
+        margin: 0 auto;
+        float: right;
+        span {
+          float: left;
+          display: inline-block;
+          line-height: 58px;
+          vertical-align: baseline;
+          &.trangle {
+            margin: 0 30px;
+          }
+        }
+      }
+    }
+    
+    
+    .footer {
+      width: 100%;
+      float: left;
+      background: #585858;
+      padding: 30px 0;
+      text-align: center;
+      p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        padding-bottom: 2px;
+      }
+      h4 {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+
+
+  //我的邀请
+  .friCont {
+    width: 88%;
+    margin: 0 auto;
+    .account-common-title {
+      margin-bottom: 30px;
+      margin: 30px 0 30px  0 ;
+      padding: 0;
+      border-bottom: 1px solid #ccc;
+    }
+    .account-common-con {
+      padding: 0;
+      .topCnt {
+        .txt {
+          font-size: 16px;
+          line-height: 26px;
+          color: #666;
+          margin: 25px auto 50px;
+        }
+        img {
+          max-width: 100%;
+          margin: 0 auto;
+        }
+        .prize {
+          text-align: center;
+        }
+      }
+      .task-detail {
+        .titles {
+          border: 1px solid #eee;
+          border-bottom-color: #c3c9d5;
+          background: #fbfbfb;
+          margin-top: 64px;
+          span {
+            display: inline-block;
+            font-size: 14px;
+            color: #555;
+            height: 38px;
+            line-height: 38px;
+            padding: 0 35px;
+            cursor: pointer;
+            &:first-child {
+              border-right: 1px solid #ccc;
+            }
+            &.cur {
+              color: #048eed;
+              border-bottom: 2px solid #048eed;
+            }
+          }
+        }
+        .share-wrap {
+          padding-top: 54px;
+          .share-mode {
+            margin: 0 40px;
+          }
+        }
+
+        .friend-table {
+          th {
+            span {
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+
+    .ruls {
+      float: left;
+      width: 100%;
+      font-size: 16px;
+      color: #fff;
+      background-color: none ;
+      padding: 0px;
+      .rulswidth {
+        margin: 0 auto;
+        div {
+          margin: 0 auto;
+        }
+        .title {
+          margin-top: 10px;
+          font-size: 18px;
+          span {
+            color: $yellow;
+          }
+        }
+        .txt {
+          font-size: 14px;
+          ul {
+            margin-left: 20px;
+            color:#e6d09c;
+            li {
+              text-align: left;
+              white-space: nowrap;
+              line-height: 30px;
+              color: #616161;
+            }
+          }
+        }
+      }
+      &.actRuls {
+        margin-top: 70px;
+      }
+    }
+  }
+
+
+}

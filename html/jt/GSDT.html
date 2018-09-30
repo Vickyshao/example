@@ -1,0 +1,37 @@
+<!-- 公司动态 -->
+<div class="wqq-ysbm-box brief">
+	<div class="content">
+		<div class="content-box">
+			<img class="topImg" src="/images/gsjj/mtdt.png"/>
+		</div>
+	</div>
+</div>
+
+<div class="jt-wrap news-wrap" ng-controller="gsdtCtrl" style="padding: 18px;">
+	<div class="gsdt-box">
+		<ul>
+			<li ng-repeat="item in news">
+				<div class="left">
+					<img src="{{item.litpic}}">
+				</div>
+				<div class="right">
+					<a class="gsdt-title">{{item.title}}</a>
+					<p>{{item.summaryContents}}</p>
+					<a class="ckxq" href="/main/jt/XWXQ?newId={{item.artiId}}&t=0" ng-click="onXWclick(item)">查看详情>></a>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!-- 页码 -->
+	<div class="page-wrap">
+		<div class="page-box">
+			<a href ng-click="onClickPage('beforPage',a)" class="prev">上一页</a>
+			<ul>
+				<li ng-click="onClickPage('currentPage',a)" ng-repeat="a in bill.pages">
+					<a href="" ng-class="{true: 'cur', false: ''}[bill.pageOn == a]">{{a}}</a>
+				</li>
+			</ul>
+			<a href class="next" ng-click="onClickPage('nextPage',a)">下一页</a>
+		</div><span>共{{bill.totalPage}}页</span>
+	</div>
+</div>

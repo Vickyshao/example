@@ -1,0 +1,291 @@
+<!-- 用户注册 -->
+<div ng-controller="zhuceCtrl" class="broadbandnew-wrap broadband-wrap">
+
+    <div class="banner">
+        <div class="quick-register-wrap" style="background: none">
+            <div cl ass="wqq-quick-register-wrap-box">
+                <div class="quick-register-wrapper">
+                    <form class="login_form" ng-model="login" name="loginform">
+                        <input style="display:none">
+                        <input type="password" style="display:none">
+                        <div class="broadbandnew-registertop"></div>
+                        <div class="quick-register-mod" ng-if="!hasLogin">
+                            <div class="quick-register-box">
+                                <div class="input-wrap">
+                                    <div class="input-box">
+                                        <div class="input-mod">
+                                            <input id="mobilephone" type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/" placeholder="请输入手机号码" ng-blur="blurID('focusMobilephone',loginform)" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text" ng-model="login.mobilephone" name="mobilephone"
+                                                required minlength="11" maxlength="11" />
+                                        </div>
+                                        <i ng-show="loginform.mobilephone.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.mobilephone.$valid]"></i>
+                                        <span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+                                    </div>
+                                </div>
+                                <div class="input-wrap">
+                                    <div class="input-box">
+                                        <div class="img-box"><img ng-click="clickInput('changePic',$event)" src="login/validateCode.do"></div>
+                                        <div class="input-mod">
+                                            <input type="text" placeholder="请输入验证码" class="text small-text" ng-model="login.picCode" name="picCode" minlength="4" maxlength="4" required autocomplete="off" />
+                                        </div>
+                                        <i ng-show="loginform.picCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.picCode.$valid]"></i>
+                                        <span class="error" ng-show="loginform.picCode.$valid"><font>{{loginform.picCode | zhuCePicCodeError:serverErrorCode}}</font></span>
+                                    </div>
+                                </div>
+                                <div class="input-wrap">
+                                    <div class="input-box">
+                                        <a href="" ng-if="loginform.mobilephone.$valid" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+
+                                        <a href="" ng-if="!loginform.mobilephone.$valid" ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+                                        <div class="input-mod">
+                                            <input ng-disabled="!loginform.mobilephone.$dirty || !loginform.picCode.$dirty || loginform.mobilephone.$valid || loginform.picCode.$valid" placeholder="请输入短信验证码" type="text" ng-model="login.smsCode" name="smsCode" class="text small-text" maxlength="4"
+                                                required/>
+                                        </div>
+                                        <i ng-show="loginform.smsCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.smsCode.$valid]"></i>
+                                        <span class="error" ng-show="loginform.smsCode.$valid"><font color="red">{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+                                    </div>
+
+                                </div>
+                                <div class="input-wrap">
+                                    <div class="input-box passwd-box">
+                                        <div class="input-mod">
+                                            <input autocomplete="off" ng-show="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" ng-mouseout="showPassword(passwordText)" type="text" ng-model="login.passWord" class="text" name="passWord" required />
+                                            <input autocomplete="off" ng-hide="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" type="passWord" ng-model="login.passWord" class="text" name="passWord" required/>
+                                        </div>
+                                        <i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]" ng-click="showPassword(passwordText)"></i>
+
+                                        <i ng-show="loginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.passWord.$valid]"></i>
+                                        <span class="error" ng-show="loginform.passWord.$valid"><font>{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+                                    </div>
+                                </div>
+                                <div class="agreement-box">
+                                    <label for="agreement">我已阅读并同意<a href="/zc" target="_blank" class="server-agreement">《沪深理财注册协议》</a><input type="checkbox" class="check-box" id="agreement" checked /></label>
+                                </div>
+                                <div class="sub-box" ng-if="!loginform.$invalid" ng-click="LoginClick('zhuCe',loginform)">
+                                    <input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+                                </div>
+                                <div class="sub-box" ng-if="loginform.$invalid">
+                                    <input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+                                </div>
+                                <div class="choose-box">我已注册 <a href="/dl?fromActivity=true" class="change-btn">立即登录</a></div>
+                            </div>
+                        </div>
+                        <div class="login-inner-box" ng-if="hasLogin">
+                            <div class="title">欢迎您，亲爱的客户</div>
+                            <ul>
+                                <li><a href="/main/myAccount/recharge">充值</a>
+                                    <p>账户余额：<span>{{broadbandInfo.balance | currency:''}}</span>元</p>
+                                </li>
+                                <li><a href="/main/myAccount/myCoupon">查看</a>
+                                    <p>我的红包：<i>{{broadbandInfo.redCount}}</i>个</p>
+                                </li>
+                            </ul>
+                            <a href="/main/myAccount/accountHome" class="my">我的账户</a>
+                            <div class="exit"><a href="" ng-click="userOut()">安全退出</a></div>
+                        </div>
+                        <div class="broadbandnew-registerbot"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-wrap">
+        <div class="title"><span>操作流程</span></div>
+        <table>
+            <tr>
+                <td>
+                    <i class="broadbandnew-reg"></i>
+                    <p>注册</p>
+                </td>
+                <td><i class="broadbandnew-next"></i></td>
+                <td>
+                    <i class="broadbandnew-recharge"></i>
+                    <p>充值</p>
+                </td>
+                <td><i class="broadbandnew-next"></i></td>
+                <td>
+                    <i class="broadbandnew-invest"></i>
+                    <p>投资</p>
+                </td>
+                <td><i class="broadbandnew-next"></i></td>
+                <td>
+                    <i class="broadbandnew-invest"></i>
+                    <p>享受宽带<br>补贴和收益</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="pro-wrap">
+        <div class="title">购买沪深理财 享长城宽带费补贴</div>
+        <ul>
+            <li>上海地区用户通过以下入口购买沪深理财——小胜30产品<span>20000</span>元（期限35天）</li>
+            <li><i>1</i><span>宽带需求用户，可享380元宽带费补贴。</span></li>
+            <li><i>2</i><span>无宽带需求用户，可享300元现金返还。</span></li>
+            <li>长宽工作人员将在<span>3</span>个工作日内与成功投资的用户联系安装（续费）宽带并办理返现事宜。</li>
+        </ul>
+        <div class="pro-title">小胜30</div>
+        <div class="table">
+            <table>
+                <tr>
+                    <td width="20%">
+                        <span>6%+4.5%</span>
+                        <p>历史年化收益率</p>
+                    </td>
+                    <td width="25">
+                        <span>35天<i></i></span>
+                        <p>产品期限</p>
+                    </td>
+                    <td width="21%">
+                        <span>1000000元<i></i></span>
+                        <p>产品总额</p>
+                    </td>
+                    <td width="34%">
+                        <a href="" class="broadbandnew-btn" ng-click="getProId(35)"></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <i class="broadbandnew-bg"></i>
+
+    <div class="modec-wrap">
+        <div class="mode modec">
+            <div class="title">沪深理财为你的资金安全合规支持</div>
+            <div class="list">
+                <table>
+                    <tr>
+                        <td><i class="broadbandnew-gqkg"></i></td>
+                        <td>
+                            <div class="t">国企全资控股，雄厚的实力保障</div>
+                            <p>国有资本控股，实缴注册资金1亿</p>
+                        </td>
+                        <td><i class="broadbandnew-lv"></i></td>
+                        <td>
+                            <div class="t">顶级律师事务所护航</div>
+                            <p>确保平台合法经营，保障投资人利益</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="center" colspan="4"></td>
+                    </tr>
+                    <tr>
+                        <td><i class="broadbandnew-san"></i></td>
+                        <td>
+                            <div class="t">第三方专业公司担保</div>
+                            <p>一旦还款出现坏账，将由保障机构对投资人<br>本息进行垫付</p>
+                        </td>
+                        <td><i class="broadbandnew-six"></i></td>
+                        <td>
+                            <div class="t">六重还款来源层层保障</div>
+                            <p>多重还款来源，更有银行千万级存款保障<br>逾期先行垫付</p>
+                        </td>
+                    </tr>
+                </table>
+                <div class="tip">* 本活动规则解释权归沪深理财所有，如有疑问请联系在线客服或拨打400-031-9909</div>
+                <a href="" class="reg-btn" ng-click="focusMobile()">立即注册享宽带补贴</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="footer">
+    <div class="footer-wrapper">
+        <div class="foot-wrap">
+            <div class="foot-nav">
+                <div class="nav-mod">
+                    <!-- <i class="common-fot-home"></i> -->
+                    <p>信息披露</p>
+                    <ul>
+                        <li><a href="{{a|webIE8}}main/jt/JSGK?menuName=JSGK" target="_blank">公司简介</a></li>
+                        <!-- <li><a href="{{a|webIE8}}main/jt/FLFG?menuName=FLFG" target="_blank">法律法规</a></li> -->
+                        <li><a href="{{a|webIE8}}main/jt/LXWM?menuName=LXWM" target="_blank">联系我们</a></li>
+                        <li><a href="{{a|webIE8}}main/guarantee?menuName=guarantee" target="_blank">安全保障</a></li>
+                    </ul>
+                </div>
+                <div class="nav-mod">
+                    <!-- <i class="common-fot-qa"></i> -->
+                    <p>帮助中心</p>
+                    <ul>
+                        <li><a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">常见问题</a></li>
+                        <li><a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a></li>
+                        <li><a href="{{a|webIE8}}main/FLFG" target="_blank">法律保障</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modeline"></div>
+            <div class="foot-code">
+                <div class="mode">
+                    <div class="box"><img src="images/appcode.png" width="100%" height="100%" /></div>
+                    <p>手机客户端<br>APP下载</p>
+                </div>
+                <div class="mode">
+                    <div class="box"><img src="images/weichar-code.png" width="100%" height="100%" /></div>
+                    <p>扫一扫<br />关注官方微信</p>
+                </div>
+            </div>
+            <div class="modeline"></div>
+            <div class="contact-wrap">
+                <div class="title">
+                    <p>客服热线</p>
+                </div>
+                <strong ng-cloak>{{(a | web).phone}}</strong>
+                <span>工作日:9:00-21:00<br />周末及节假日：9:00-18:00<!-- <br>法定节假日除外<br>客服QQ: --></span>
+            </div>
+        </div>
+    </div>
+    <div class="right-wrapper">
+        <div class="foot-right">
+            <div class="right-text">
+                <p>粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司{{v}}</p>
+                <p>温馨提示：市场有风险，投资需谨慎</p>
+            </div>
+            <ul>
+                <!-- <li><a id='___szfw_logo___' href='https://credit.szfw.org/CX20161019026653110332.html' target='_blank'><img width="100" height="35" src='images/cert.png' border='0' /></a></li> -->
+                <li>
+                    <!-- <a id="_pingansec_bottomimagesmall_p2p" target="_blank" href="http://si.trustutn.org/info?sn=458161019000540153872&certType=4"> -->
+                    <img width="100" height="35" src="images/hyrz.png" />
+                    <!-- </a> -->
+                </li>
+                <li>
+                    <!-- <a class="spread-partners" href="http://www.sgs.gov.cn/shaic/" target="_blank"> -->
+                    <img src="/images/spread-partners/gsh.png">
+                    <!-- </a> -->
+                </li>
+                <li>
+                    <!-- <a class="spread-partners" href="http://www.12377.cn/" target="_blank"> -->
+                    <img src="/images/spread-partners/jbao.png">
+                    <!-- </a> -->
+                </li>
+                <li>
+                    <!-- <a class="spread-partners" href="http://www.zx110.org/" target="_blank"> -->
+                    <img src="/images/spread-partners/zxin.png">
+                    <!-- </a> -->
+                </li>
+                <li>
+                    <!-- <a class="spread-partners" href="http://www.jytpay.com/" target="_blank"> -->
+                    <img src="/images/spread-partners/pay.png">
+                    <!-- </a> -->
+                </li>
+                <li>
+                    <!-- <a class="spread-partners" href="https://www.aliyun.com/" target="_blank"> -->
+                    <img src="/images/spread-partners/aliyun.png">
+                    <!-- </a> -->
+                </li>
+                <li>
+                    <!-- <a key="5881d591efbfb01901cd3e3e" logo_size="124x47" logo_type="realname" href="http://v.pinpaibao.com.cn/authenticate/cert/?site=w -->
+                    <!-- ww.hushenlc.cn&amp;at=realname" tar -->
+                    <!-- get= -->
+                    <!-- "_blank"> -->
+                    <img style="background: #fff;" src="//static.anquan.org/static/outer/image/hy_83x30.png" alt="安全联盟认证" height="35">
+                    <!-- </a> -->
+                </li>
+
+
+                <!-- <script type='text/javascript'>(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();</script> -->
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="account-myinvest-wrap" ng-controller="myAccountInvestDetailCtrl">
+	<div class="account-common-title">我的投资明细</div>
+	<div class="account-common-con">
+		<table class="invest-table">
+			<tr>
+				<th width="20%">产品名称</th>
+				<th width="15%">历史年化收益率</th>
+				<th width="15%">期限</th>
+                <th width="20%">投资金额</th>
+                <th width="15%">收益方式</th>
+				<th width="15%">状态</th>
+			</tr>
+			<tr>
+				<td>{{pro.productName}}</td>
+				<td>{{pro.rate}}%<span ng-if="pro.activityRate != undefined && pro.activityRate > 0">+{{pro.activityRate}}%</span></td>
+				<td>{{pro.deadLine}}天</td>
+                <td>{{pro.amount}}元<span ng-if="proType == 5">(体验金)</span></td>
+                <td>{{(pro.repayType | isRepayType).cnvalue}}</td>
+                <td><span ng-if="pro.status==0">募集中</span><span ng-if="pro.status==1">收益中</span><span ng-if="pro.status==3">已到期</span></td>
+			</tr>
+		</table>
+
+        <div class="assets-table" style="padding-top: 30px;">
+            <table class="common-data-table" cellpadding="0" cellspacing="0" border="1" style="width: 100%">
+                <tr>
+                    <th>期数</th>
+                    <th>还款日</th>
+                    <th>应收本金（元）</th>
+                    <th>应收利息（元）</th>
+                    <th>应收总额（元）</th>
+                    <th>剩余本金（元）</th>
+                    <th ng-if="pro.repayType == 3 || pro.repayType == 4">状态</th>
+                </tr>
+
+                <!-- 有结果 -->
+                <tr ng-repeat="item in list">
+                    <td>{{item.index}}</td>
+                    <td>{{item.date | date:'yyyy-MM-dd'}}</td>
+                    <td>{{item.shouldPrincipal}}</td>
+                    <td>{{item.shouldInterest}}</td>
+                    <td>{{item.shouldSum}}</td>
+                    <td>{{item.residualPrincipal}}</td>
+                    <td ng-if="pro.repayType == 3 || pro.repayType == 4"><span ng-if="item.status == 0">待回款</span><span style="color: #ed3334;" ng-if="item.status == 1">已回款</span></td>
+                </tr>
+                <tr>
+                    <td>总计</td>
+                    <td></td>
+                    <td ng-if="proType != 5">{{pro.amount}}</td>
+                    <td ng-if="proType == 5">0</td>
+                    <td>{{pro.interest}}</td>
+                    <td>{{pro.shouldAmount}}</td>
+                    <td></td>
+                    <td ng-if="pro.repayType == 3 || pro.repayType == 4"></td>
+                </tr>
+            </table>
+        </div>
+		<div ng-if="proName != '新手体验标'">
+			<div class="protocol-bot"><a ng-if="pro.deadline != 1 && pro.status != 3" target="_blank" ng-click="gotoPage({pid: pro.pid,uid: pro.uid,investId: pro.id},idx,true,pro)" href="">查看协议</a><b ng-if="pro.deadline != 1 && pro.status != 3" class=""> | </b><a target="_blank" ng-if="pro.deadline != 1 && pro.status != 3" ng-click="gotoPage({pid: pro.pid,uid: pro.uid,investId: pro.id},idx,false)" href="" class="">下载协议</a></div>
+		</div>
+        
+
+        <!-- <a target="_blank" ng-click="gotoPage({pid: pro.pid,uid: pro.uid,investId: id},idx,true)" href="" style="font-size: 14px;color: #2891d6;margin-top: 10px;float: left;" ng-if="pro.deadLine != 1 && pro.status != 3">投资协议</a> -->
+	</div>
+</div>

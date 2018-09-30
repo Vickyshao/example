@@ -1,0 +1,121 @@
+<div class="task-detail-wrap invite-myfriend-wrap inviteFriends" ng-controller="myFriend">
+    <div class="friCont">
+        <div class="account-common-title">
+            <!--<p>累计邀请<span ng-bind="myinvite.total"></span>人</p>-->我的邀请
+        </div>
+
+        <div class="account-common-con">
+            <div class="topCnt">
+                <img src="/images/inviteFriends/topBanner.png">
+                <div class="txt">每邀请一位好友注册，且好友首次投资定期标金额≥1000元，您可获得40元话费，邀请好友人数越多返现越多，奖励无
+                    上限。被邀好友可获得“10元话费+新手福利双重好礼（288红包+12.88%新手标）”。
+                </div>
+                <div class="prize" id="toGetGift">
+                    <img src="/images/inviteFriends/prize.png">
+                </div>
+            </div>
+
+            <div class="task-detail border0">
+                <a href="{{myinvite.jumpUrl}}" target="_blank" ng-if="myinvite.isPut" class="topimg"
+                   style="display: none;">
+                    <img src="{{myinvite.banner}}">
+                </a>
+                <div class="titles">
+                    <span ng-class="{true:'cur'}[method]" ng-init="method=true; record=false" ng-click="method=true; record=false">邀请方式</span>
+                    <span ng-class="{true:'cur'}[record]" ng-click="method=false; record=true">邀请记录（{{myinvite.total}}）</span>
+                </div>
+                <div class="share-wrap" ng-show="method">
+                    <div class="share-mode">
+                        <i class="invite-metha"></i>
+                        <div class="title titlea"><i class="invite-shareicon"></i>邀请码分享</div>
+                        <p>好友注册时，让他填写您的<br>邀请码或已认证的手机号</p>
+                        <div class="invitecode-wrap">
+                            <span>邀请码：</span>
+                            <input value="{{myinvite.recommCodes}}">
+                        </div>
+                    </div>
+                    <div class="share-mode">
+                        <i class="invite-methc"></i>
+                        <i class="invite-methb"></i>
+                        <div class="title titlec"><i class="invite-linkr"></i>链接邀请</div>
+                        <p>打开您的专属邀请链接，<br>将邀请函发送给您的好友</p>
+                        <div class="copy-wrap">
+                            <input value="https://hushenlc.cn/inviteFriendsReg?recommCode={{myinvite.recommCodes}}&mobilephone={{mobilephone}}&realName={{name}}&activityCode={{activityCode}}&teamId={{teamId}}">
+                            <!-- <input value="http://dev.shcen.com/inviteFriendsReg?recommCode={{myinvite.recommCodes}}&mobilephone={{mobilephone}}&realName={{name}}&activityCode={{activityCode}}&teamId={{teamId}}"> -->
+                            <!-- <input value="http://172.16.14.35/inviteFriendsReg?recommCode={{myinvite.recommCodes}}&mobilephone={{mobilephone}}&realName={{name}}&activityCode={{activityCode}}&teamId={{teamId}}"> -->
+                            <a href="" class="copy" ng-click="copyNow()" ng-show="!cpoyFin" id="goToCopy">复制链接</a>
+                            <a href="" class="copy fincopy" ng-if="cpoyFin">复制链接</a>
+                            <div class="fin" ng-if="cpoyFin">链接复制成功</div>
+                            <input id="copyTxt" value="https://hushenlc.cn/inviteFriendsReg?recommCode={{myinvite.recommCodes}}&mobilephone={{mobilephone}}&realName={{name}}&activityCode={{activityCode}}&teamId={{teamId}}" style="margin-top: 80px;">
+                            <!-- <input id="copyTxt" value="http://dev.shcen.com/inviteFriendsReg?recommCode={{myinvite.recommCodes}}&mobilephone={{mobilephone}}&realName={{name}}&activityCode={{activityCode}}&teamId={{teamId}}" style="margin-top: 80px;"> -->
+                            <!-- <input id="copyTxt" value="http://172.16.14.35/inviteFriendsReg?recommCode={{myinvite.recommCodes}}&mobilephone={{mobilephone}}&realName={{name}}&activityCode={{activityCode}}&teamId={{teamId}}" style="margin-top: 80px;"> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="record-wrap" ng-show="record">
+                    <table class="total-table">
+                        <tr>
+                            <td width="50%">
+                                <div class="friend">累积邀请好友：<span ng-bind="myinvite.total">人</span></div>
+                            </td>
+                            <td width="50%">
+                                <div class="invest">已完成投资：<span ng-bind="myinvite.investors">人</span></div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="friend-table">
+                        <tr class="top">
+                            <th width="25%">注册手机号</th>
+                            <th width="25%">姓名</th>
+                            <th width="25%">注册时间</th>
+                            <th width="25%">是否投资<span>　(新手标、体验标除外）</span></th>
+                        </tr>
+                        <tr ng-repeat="item in friend" ng-if="mylistPage.total > 0">
+                            <td>{{item.mobilePhone}}</td>
+                            <td>{{item.realName}}</td>
+                            <td>{{item.regTime | date:'yyyy.MM.dd'}}</td>
+                            <td>{{item.isInvest}}</td>
+                        </tr>
+                        <tr ng-if="mylistPage.total == 0">
+                            <td class="nodata" colspan="4">您还未邀请好友</td>
+                        </tr>
+                    </table>
+
+                    <br/><br/>
+                    <!--页码-->
+                    <div class="page-wrap" ng-if="mylistPage.total > 0">
+                        <div class="page-box">
+                            <a href ng-click="changePage('beforPage',a)" class="prev">上一页</a>
+                            <ul>
+                                <li ng-click="changePage('currentPage',a)" ng-repeat="a in mylistPage.pages"><a href=""
+                                                                                                                ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == a]">{{a}}</a>
+                                </li>
+                            </ul>
+                            <a href class="next" ng-click="changePage('nextPage',a)">下一页</a>
+                        </div>
+                        <span>共{{mylistPage.totalPage}}页</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ruls actRuls">
+                <div class="rulswidth">
+                    <div class="invite-actRuls"></div>
+                    <br/>
+                    <div class="txt">
+                        <ul>
+                            <li>1、活动时间：自2017年10月18日起。</li>
+                            <li>2、好友须通过您提供的专属链接或专属邀请码进行注册并投资，即可建立邀请关系获得话费奖励，本活动与其他形式的首投福利<br/>不可同时享受。</li>
+                            <li>3、好友须首次投资定期标≥1000元，即可获得奖励（投资新手标、体验标则无奖励）。</li>
+                            <li>4、奖励发放：好友首投达标后即赠送您和好友相应话费奖励，奖励将在10个工作日内发放至注册手机号中。</li>
+                            <li>5、如有恶意刷奖行为，一经本平台核实将取消获奖资格。</li>
+                            <li>&nbsp;</li>
+                            <li>* 本活动最终解释权归沪深理财所有，如有疑问请咨询客服：400-031-9909。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

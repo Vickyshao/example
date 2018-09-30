@@ -1,0 +1,82 @@
+<div class="egg-dialog-wrap">
+	<i class="egg-bgtop" ng-if="showEggTag != 3"></i>
+	<i class="egg-bgright" ng-if="showEggTag != 3"></i>
+	<i class="egg-bgbot" ng-if="showEggTag == 1 || showEggTag == 2"></i>
+	<a href="" class="close" ng-show="showEggTag != 3" ng-click="closeEggDialog()">×</a>
+	<div class="fir-dialog dialog-wrap" ng-if="showEggTag == 1">
+		<div class="egg-title"><span class="egg-firtitle"></span></div>
+		<div class="egg-quanbg egg-quan">
+			<div class="data-wrap">
+				<div class="data"><i>+</i><strong>{{newEgg.raisedRates}}</strong><span>%</span></div>
+				<p>限{{newEgg.fullName}}使用</p>
+			</div>
+			<span class="gobtn">加<br>息<br>券</span>
+		</div>
+		<a ng-show="!eggEnrollIsDetail" href="" class="usenow btn" ui-sref="main.billDetail({id: eggPID})" ng-click="closeEggDialogOnly()">立即使用</a>
+		<a ng-show="eggEnrollIsDetail" href="" class="usenow btn" ui-sref="main.billDetail({id: eggPID})" ng-click="closeEggDialog()">立即使用</a>
+		<a href="" class="share btn" ng-click="showEggShare()">分享再砸一次</a>
+		<div class="rules">
+			<p><span>活动说明</span></p>
+			<ul>
+				<li>1. 活动期间，指定标的可享受砸金蛋加息福利；</li>
+				<li>2. 每个标的最多砸2次金蛋，只保留收益率最高的加息券；</li>
+				<li>3. 砸金蛋所得加息券只可用于当前标的，标的满标后，加息券即作废。</li>
+			</ul>
+		</div>
+	</div>
+	<div class="code-dialog dialog-wrap" ng-show="showEggTag == 2">
+		<div class="egg-title"><span class="egg-sharetitle"></span></div>
+		<p class="txt">拿起手机扫一扫二维码</p>
+		<div class="egg-codeborder">
+			<i class="egg-codebg"></i>
+			<div class="eggcode-wrap">
+				<div class="eggcode">
+					<!-- <qrcode version="5" error-correction-level="L" size="170" data="http://m.hushenlc.cn/newcomer?wap=true&toFrom=zjdfxfx&recommCode={{eggMobilePhone}}&fromPcWindow=true"></qrcode> -->
+					<div id="eggqrcode"></div>
+				</div>
+			</div>
+		</div>
+		<a href="" class="btn" ng-show="finishShare" ng-click="showEggTag = 3">完成分享</a>
+		<a href="" class="btn disabled" ng-show="!finishShare">完成分享</a>
+	</div>
+	<div class="sec-dialog dialog-wrap" ng-show="showEggTag == 3">
+		<div class="egg-title"><span class="egg-nexttitle"></span></div>
+		<div class="egg-box">
+			<i class="egg-slight"></i>
+			<i class="egg-secbg"></i>
+			<div class="egg-legg" ng-click="showEggTag = 4;getSecEgg(eggPID);"></div>
+			<i class="egg-stage"></i>
+			<div class="egg-lhammer"></div>
+		</div>
+	</div>
+	<div class="getsec-dialog dialog-wrap" ng-if="showEggTag == 4">
+		<div class="egg-title"><span class="egg-sectitle"></span></div>
+		<div class="new-quan">
+			<div class="egg-quanbg egg-quan">
+				<div class="data-wrap">
+					<div class="data"><i>+</i><strong>{{newEgg.raisedRates}}</strong><span>%</span></div>
+					<p>限{{newEgg.fullName}}使用</p>
+				</div>
+				<span class="gobtn">加<br>息<br>券</span>
+			</div>
+		</div>
+		<div class="egg-quandisabled egg-quan">
+			<div class="data-wrap">
+				<div class="data"><i>+</i><strong>{{oldEgg.raisedRates}}</strong><span>%</span></div>
+				<p>限{{oldEgg.fullName}}使用</p>
+			</div>
+			<span class="gobtn">加<br>息<br>券</span>
+			<i class="egg-unused"></i>
+		</div>
+		<a ng-show="!eggEnrollIsDetail" href="" class="usenow btn" ui-sref="main.billDetail({id: eggPID})" ng-click="closeEggDialogOnly()">立即使用</a>
+		<a ng-show="eggEnrollIsDetail" href="" class="usenow btn" ui-sref="main.billDetail({id: eggPID})" ng-click="closeEggDialog()">立即使用</a>
+		<div class="rules">
+			<p><span>活动说明</span></p>
+			<ul>
+				<li>1. 活动期间，指定标的可享受砸金蛋加息福利；</li>
+				<li>2. 每个标的最多砸2次金蛋，只保留收益率最高的加息券；</li>
+				<li>3. 砸金蛋所得加息券只可用于当前标的，标的满标后，加息券即作废。</li>
+			</ul>
+		</div>
+	</div>
+</div>

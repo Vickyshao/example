@@ -1,0 +1,48 @@
+<div ng-controller="mainCtrl">
+
+    <!-- 欢迎栏 -->
+    <div ng-hide="isLoginPage" class="top-global-wrapper">
+        <div class="top-content">
+            <div class="tel">
+                <i class="global-topphone"></i>
+                <b>客服热线：<span>{{(a | web).phone}}</span>（工作日：09:00-21:00；   周末及节假日：09:00-18:00）</b>
+            </div>
+            <div class="top-nav">
+                <!--<a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a><span style="margin-right: 12px;">|</span>-->
+                <a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">帮助中心</a><span>|</span>
+                <div class="appCode"><a href="{{a|webIE8}}downloadApp" target="_blank"><i>手机APP</i></a>
+                    <div>
+                        <img src="images/global/app.png">
+                        <p>手机客户端<br>APP下载</p>
+                    </div>
+                </div><span style="margin-left: -4px;">|</span>
+                <div class="appCode"><i class="global-topwechat"></i>
+                    <div>
+                        <img src="images/global/wechat.png">
+                        <p>扫一扫<br>关注官方微信</p>
+                    </div>
+                </div>
+                <span ng-if="(a | isRegister).register" style="margin: 0 8px 0 -8px;">|</span>
+                <a ng-if="(a | isRegister).register" href="" ng-click="gotoLoginPage('myAccount')">{{(a | isRegister).user.userName}}</a>
+                <i ng-if="(a | isRegister).register">，</i>
+                <a ng-show="(a | isRegister).register" ng-click="userOut()" href="#" class="top-quit">退出</a>
+            </div>
+        </div>
+    </div>
+    <!-- 欢迎栏结束 -->
+
+
+    <!-- 中间容器 -->
+    <div ui-view="" ng-cloak class='ng-scope ng-cloak'></div>
+    <!-- 中间容器结束 -->
+
+    <div class="special-footer reg-footer">
+        <p class="foot-nav"><a href="{{a|webIE8}}main/jt/JSGK?menuName=JSGK" target="_blank">公司简介</a><span>|</span><a href="{{a|webIE8}}main/jt/LXWM?menuName=LXWM" target="_blank">联系我们</a><span>|</span><a href="{{a|webIE8}}main/guarantee?menuName=guarantee" target="_blank">安全保障</a><span>|</span>
+            <a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">常见问题</a><span>|</span><a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a><span>|</span><a href="{{a|webIE8}}main/FLFG" target="_blank">法律保障</a><i>市场有风险，投资需谨慎</i></p>
+        <div class="right-text">
+            浙ICP备16005329号 Copyright Reserved © 上海协升管理有限公司
+            <p>温馨提示：市场有风险，投资需谨慎</p>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,67 @@
+<div class="account-withdraw-wrap" ng-controller="withdrawCtrl">
+	<div class="account-common-title">提现</div>
+	<div class="account-common-con">
+		<div class="form-wrap">
+			<form name="cashForm" ng-submit="submitForm(cashForm.$valid)" novalidate>
+				<input style="display:none">
+				<input type="password" style="display:none">
+				<dl>
+					<dt>账户可用余额：</dt>
+					<dd><b>{{user.funds | isNumber2}}</b>元</dd>
+				</dl>
+				<dl>
+					<dt>提现银行：</dt>
+					<dd ng-show="user.realFlag">
+						<div class="bank-info">
+							<img src="/images/bank/{{user.bankCode}}.jpg">
+							<p class="last-num">尾号<b>{{user.bankNum}}</b></p>
+						</div>
+					</dd>
+					<dd class="nobind" ng-hide="user.realFlag">
+						<p>未绑定</p>
+						<a href="" ng-click="bindBank()">绑定银行卡<i>+</i></a>
+					</dd>
+				</dl>
+				<dl>
+					<dt>提现金额：</dt>
+					<dd class="input-box">
+						<div class="input-mode">
+							<input type="text" class="text sum" name="cash" ng-model="user.cash" ng-disabled="!user.realFlag" required placeholder="0.00" autocomplete="off" onkeyup="this.value=this.value.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')" ng-blur="setAmount($event)" ng-pattern="/^[0-9]+([.]{1}[0-9]+){0,1}$/" morethan withdrawlimit maxlimit ng-if="user.isChargeFlag == 0"><!--  onfocus="this.removeAttribute('readonly');" readonly -->
+							<input type="text" class="text sum" name="cash" ng-model="user.cash" ng-disabled="!user.realFlag" required placeholder="0.00" autocomplete="off" onkeyup="this.value=this.value.replace(/^\D*(\d*(?:\.\d{0,2})?).*$/g, '$1')" ng-blur="setAmount($event)" ng-pattern="/^[0-9]+([.]{1}[0-9]+){0,1}$/" morethan3 withdrawlimit maxlimit ng-if="user.isChargeFlag == 1">
+							<span>元</span>
+						</div>
+						<i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[cashForm.cash.$valid]" ng-show="cashForm.cash.$dirty"></i><span class="error" ng-show="cashForm.cash.$error.pattern">请输入正确的数值</span><span class="error" ng-show="cashForm.cash.$dirty && cashForm.cash.$error.required">请输入提现金额</span><span ng-if="user.isChargeFlag == 0" class="error" ng-show="cashForm.cash.$error.morethan">提现金额至少为1元</span><span ng-if="user.isChargeFlag == 1" class="error" ng-show="cashForm.cash.$error.morethan3">提现金额至少为3元</span><span class="error" ng-show="cashForm.cash.$error.withdrawlimit && !cashForm.cash.$error.morethan && !cashForm.cash.$error.morethan3">账户余额不足<!-- 提现金额最多为<span>{{user.funds | isNumber2}}</span>元 --></span><span class="error" ng-show="cashForm.cash.$error.maxlimit">提现金额最多为500,000元</span>
+					</dd>
+				</dl>
+				<dl>
+					<dt>提现费用：</dt>
+					<dd>{{user.cost}}.00 元<span class="tip">提现费用将从您的账户余额中扣除</span></dd>
+				</dl>
+				<dl>
+					<dt>预估到账金额：</dt>
+					<dd><strong ng-if="user.cash - user.cost < 0" class="myrest">0.00</strong><strong ng-if="user.cash - user.cost >= 0" class="myrest">{{(user.cash - user.cost) | isNumber2}}</strong> 元<span class="tip">预计1-2个工作日之内到账（如遇节假日顺延）</span></dd>
+				</dl>
+				<dl>
+					<dt>交易密码：</dt>
+					<dd>
+						<div class="input-mode">
+							<input type="password" class="text" name="tradepwd" placeholder="请输入您的交易密码" ng-disabled="!user.tpwFlag" required ng-model="user.tradepwd" autocomplete="off" maxlength="6">
+						</div>
+						<a href="" class="reset-passwd" ng-show="user.tpwFlag" ng-click="forgetTradeCode()">忘记密码？</a>
+						<a href="" class="reset-passwd" ng-hide="user.tpwFlag" ng-click="setTradeCode()">设置交易密码</a>
+						<i ng-class="{true: '', false: 'common-form-error'}[rechargeForm.tradepwd.$valid]" ng-show="rechargeForm.tradepwd.$dirty"></i><span class="error" ng-show="rechargeForm.tradepwd.$dirty && rechargeForm.tradepwd.$error.required">请输入交易密码</span>
+					</dd>
+				</dl>
+				<div class="sub-box"><input type="submit" value="确认提现" class="sub-btn sub" ng-disabled="cashForm.$invalid"/></div>
+			</form>
+		</div>
+		<div class="account-common-tips">
+			<p>友情提示：</p>
+			<p>1. 每位用户每月可享受2次免费提现，超出后提现手续费为{{user.showAmount}}元/笔，手续费将从您的账户余额中扣除；</p>
+			<p>2. 工作日16点前的提现申请当天到账；工作日16点后的提现申请，顺延至下个工作日（具体到账时间以银行处理时间为准）；</p>
+			<p>3. 周末和法定节假日提现，到账时间顺延至下个工作日；</p>
+			<p>4. 体验金收益需完成一次真实投资后才可提现；</p>
+			<p>5. 若提现过程中遇到任何问题，请及时联系我们 400-031-9909。</p>
+		</div>
+	</div>
+</div>

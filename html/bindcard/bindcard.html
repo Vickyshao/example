@@ -1,0 +1,148 @@
+<div class="bindcard-wrap-out" ng-controller="bindcardCtrl">
+	<div class="bindcard-wrap clearfix">
+
+		<!-- 投资信息 -->
+		<div class="investInfo" ng-show="investInfo">
+			<h4>投资信息</h4>
+			<ul class="content">
+				<li>
+					<span class="left">产品名称：</span>
+					<span class="right">{{product.fullName}}</span>
+				</li>
+				<li>
+					<span class="left">历史年化收益率：</span>
+					<span class="right">
+						{{product.rate}}%
+						<i ng-if="product.activityRate>0 && (specialRate == undefined || specialRate == 0) && product.type!=1"> + {{product.activityRate}}%</em></i>		
+						<i ng-if="specialRate != undefined && specialRate > 0"> + {{specialRate+product.activityRate}}%</i>
+					</span>
+				</li>
+				<li>
+					<span class="left">项目期限：</span>
+					<span class="right">{{product.deadline}}天</span>
+				</li>
+				<li>
+					<span class="left">还款方式：</span>
+					<span class="right" ng-if='product.type!=1'><span ng-if="product.repayType==1">到期一次还本付息</span><span ng-if="product.repayType==2">按月付息到期还本</span><span ng-if="product.repayType==3">等本等息 按周回款</span><span ng-if="product.repayType==4">等本等息 按月回款</span><span ng-if="product.repayType==5">其他</span></span>
+					<span class="right" ng-if='product.type==1'><span>到期一次还本付息</span></span>
+				</li>
+				<li>
+					<span class="left">投资总额：</span>
+					<span class="right">{{product.nowNum | isNumber2}}元</span>
+				</li>
+				<li>
+					<span class="left">预计收益：</span>
+					<span class="right" ng-show="exclusiveUser == 2">{{((product.rate/100) * product.nowNum * product.deadline) / 360 | isNumber2}}元</span>
+					<span class="right" ng-show="!ecId && exclusiveUser != 2">{{((product.rate/100 + product.activityRate/100 + product.specialRate/100) / 360 * product.nowNum * product.deadline) | isNumber2}}元</span>
+					<span class="right" ng-show="ecId && exclusiveUser != 2">{{((product.rate/100 + product.activityRate/100 + product.specialRate/100) / 360 * product.maxAmount * product.deadline) | isNumber2}}元</span>
+				</li>
+				<li>
+					<span class="left">奖励收益：</span>
+					<span class="right">{{product.rewardProfit | isNumber2}}元</span>
+				</li>
+			</ul>
+			<div class="down clearfix">
+				<img src="/images/bindcard/service.png" class="left">
+				<div class="wenzi right">
+					<p>如有疑问，请及时联系客服</p>
+					<p class="big">400-031-9909</p>
+					<p>周一至周五&nbsp;&nbsp;&nbsp;09:00-18:00</p>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 实名绑卡，认证充值 -->
+		<div class="bindcard" ng-class="{true: 'sbindcard', false: ''}[investInfo]">
+			<h4 ng-hide="investInfo">实名绑卡</h4>
+			<h4 ng-show="investInfo">认证充值</h4>
+			<div class="accountInfo" ng-show="investInfo">
+				<p>账户余额：{{user.balance | isNumber2}}元</p>
+				<p>实际付款金额：<span>{{product.nowNum | isNumber2}}</span>元</p>
+			</div>
+			<p class="rule">根据互联网金融协会相关规定，需实名认证绑卡后才能进行投资,沪深理财会全面保障您的身份信息安全。</p>
+			<form name="bankInfoForm" novalidate ng-submit="submitForm(bankInfoForm.$valid, $event, 'bankInfoForm')" autocomplete="off" class="bankInfoForm">
+                <input style="display:none">
+                <input type="password" style="display:none">
+                <div class="form-wrap">
+                    <div class="input-box">
+                        <p>真实姓名：</p>
+                        <div class="input-mod">
+                            <input type="text" name="truename" placeholder="请输入真实姓名" ng-model="bank.truename" required autocomplete="off" ng-maxlength="50" ng-pattern="/^[\u4E00-\u9FA5]+$/"><!--  ng-pattern="/^[\u4E00-\u9FA5]+$/" -->
+                            <!-- 验证通过显示对勾勾 -->
+                            <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[bankInfoForm.truename.$valid]" ng-show="bankInfoForm.truename.$dirty"></i>
+                            <!-- <span class="error" ng-show="bankInfoForm.truename.$error.pattern">请输入正确的姓名</span> -->
+                            <span class="error" ng-show="bankInfoForm.truename.$dirty && bankInfoForm.truename.$error.required">请输入真实姓名</span>
+                        </div>
+                    </div>
+	                <div class="input-box">
+	                    <p>身份证号：</p>
+	                    <div class="input-mod">
+	                        <input type="text" name="idcard" ng-model="bank.idcard" placeholder="请输入身份证号码" required ng-minlength="15" ng-maxlength="18" ng-pattern="/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/" autocomplete="off">
+	                        <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[bankInfoForm.idcard.$valid]" ng-show="bankInfoForm.idcard.$dirty"></i>
+	                        <span class="error" ng-show="bankInfoForm.idcard.$error.pattern">请输入正确的身份证号码</span>
+	                        <span class="error" ng-show="bankInfoForm.idcard.$dirty && bankInfoForm.idcard.$error.required">请输入正确的身份证号码</span>
+	                    </div>
+	                </div>
+	                <div class="input-box choose-box">
+	                    <p>选择银行：</p>
+	                    <div class="input-mod">
+	                    	<input type="text" name="" placeholder="请选择绑定银行" autocomplete="off">
+	                        <a href="" class="choose-bank" ng-if="!hasSysBank" ng-click="chooseSysBank()">选择银行</a>
+	                        <a href="" class="choose-bank" ng-if="hasSysBank" ng-click="chooseSysBank()">重新选择</a>
+	                        <div class="bankimg" ng-if="hasSysBank"><img src="/images/sysbank/{{lastActiveBank.id}}.png"></div>
+	                        
+	                    </div>
+	                </div>
+	                <div class="input-box banknum-box">
+	                    <p>银行卡号：</p>
+	                    <div class="input-mod">
+	                        <input type="text" name="bankcardno" ng-model="bank.bankcardno" placeholder="请输入借记卡号" required autocomplete="off" valbankcardno ng-disabled="!hasSysBank">
+	                        <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[bankInfoForm.bankcardno.$valid]" ng-show="bankInfoForm.bankcardno.$dirty"></i>
+	                        <span class="error" ng-show="bankInfoForm.bankcardno.$error.valbankcardno">请输入正确的银行卡号</span>
+	                        <span class="error" ng-show="bankInfoForm.bankcardno.$dirty && bankInfoForm.bankcardno.$error.required">请输入借记卡号</span>
+	                    </div>
+	                    <span class="bank-tip" ng-show="bankInfoForm.bankcardno.$pristine">仅限支持借记卡</span>
+	                </div>
+	                <div class="input-box banknum-box">
+	                    <p>银行预留手机号：</p>
+	                    <div class="input-mod">
+	                        <input type="text" name="bankphone" ng-model="bank.bankphone" placeholder="请输入您的银行预留手机号" required ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/" autocomplete="off">
+	                        <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[bankInfoForm.bankphone.$valid]" ng-show="bankInfoForm.bankphone.$dirty"></i>
+	                        <span class="error" ng-show="bankInfoForm.bankphone.$error.pattern">请输入正确的手机号码</span>
+	                        <span class="error" ng-show="bankInfoForm.bankphone.$dirty && bankInfoForm.bankphone.$error.required">请输入银行预留手机号</span>
+	                    </div>
+						<span class="bank-tip" ng-show="bankInfoForm.bankcardno.$pristine">若忘记预留手机号，请联系开户银行</span>
+	                </div>
+	                <div class="input-box getphonecode-box">
+	                    <p>短信验证码：</p>
+	                    <div class="input-mod"> 
+	                        <input type="text" class="phonecode" name="phonecode" ng-model="bank.phonecode" placeholder="请输入短信验证码" required onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" autocomplete="off">
+	                        <a class="getphonecode" href="javascript:;" ng-class="{'getcode-disabled': bankInfoForm.truename.$invalid || bankInfoForm.idcard.$invalid || bankInfoForm.bankcardno.$invalid || bankInfoForm.bankphone.$invalid || bank.isGetCode || bank.isGetVoice}" ng-click="getPhoneCode(bank.bankphone, bank.bankcardno, $event, bank, false)">{{bank.getCodeText}}</a>
+	                        <div class="phonecodemsg">
+	                            <i class="common-form-error" ng-show="bankInfoForm.phonecode.$dirty && (bankPhoneCodeError || bankInfoForm.phonecode.$invalid)">{{errorMsg}}</i>
+	                            <span class="error" ng-show="bankInfoForm.phonecode.$dirty && bankInfoForm.phonecode.$error.required">请输入验证码</span>
+	                        </div>
+	                    </div>
+	                </div>
+	                
+
+	                <div class="input-box">
+	                	<p></p>
+	                	<div class="input-mod">
+	                		<input class="realname-sub" ng-disabled="bankInfoForm.$invalid" value="提交" type="submit" ng-hide="investInfo">
+	                		<input class="realname-sub" ng-disabled="bankInfoForm.$invalid" value="认证充值" type="submit" ng-show="investInfo">
+	                	</div>
+	                    
+	                </div>
+	            </div>
+	        </form>
+	        <div class="newtips">
+	            <p>友情提示：</p>
+	            <p>1. 浦发银行/邮储银行/上海银行 需要开通银联无卡支付，开通地址：<a target="_blank" href="https://online.unionpay.com/portal/open/init.do?entry=open">https://online.unionpay.com/portal/open/init.do?entry=open</a>，<a href="/main/jt2/YLKT" target="_blank">查看开通演示</a>；</p>
+	            <p>2. 认证前，请确认“您填写银行预留的手机号”与您的银行卡预留的手机号码一致，如果您尚未在银行预留手机号码，建议你去银行柜面进行信息补充；</p>
+	            <p>3. 银行卡快捷充值支付额度请 <a href="../main/jt2/ZFED" target="_blank">点击查看</a> 。</p>
+	        </div>
+		</div>
+
+	</div>
+</div>

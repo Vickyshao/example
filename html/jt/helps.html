@@ -1,0 +1,21 @@
+<div class="wqq-jt-wrap">
+	<!-- <div class="title"><span>常见问题</span></div> -->
+	<!-- <div class="help-name">
+		<div>
+			<h1>常 见 问 题</h1>
+		</div>
+	</div> -->
+	<div ng-controller="helpCtrl" class="list-box">
+		<div ng-repeat="item in helps" class="wqq-helpBox" ng-click="showMyQA(item)">
+		  <div class="wqq-helpBox-titel">
+		  	<!-- <a href="" ng-click="showMyQA(item)">{{item.title}}</a> -->
+		  	<a href=""style="cursor:default;">{{item.title}}</a>
+		  	<div class="wqq-help-sanjiao"></div>
+		  </div><!--  ng-click=" checked ? checked = false : checked = true" -->
+		  <div class="wqq-check-element animate-show helpBox-text" ng-show="item.checked || (item.text[0].stitle != undefined && showQA)">
+		    <span class="glyphicon glyphicon-thumbs-up"></span><div ng-if="item.text[0].stitle != undefined"><div ng-repeat="child in item.text"><p>{{child.stitle}}</p><p>{{child.con}}</p></div></div><p ng-if="item.text[0].stitle == undefined">{{item.text}}</p>
+		  </div>
+		</div>
+	</div>
+	
+</div>

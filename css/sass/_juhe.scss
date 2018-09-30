@@ -1,0 +1,147 @@
+.juhelist{
+	background:#f1f1f1;
+	.juhe-banner{
+		img{
+			max-width: 100%;
+			display: block;
+			margin:0 auto;
+		}
+	}
+	.juhelist-box{
+		width: 1200px;
+		margin:20px auto 0;
+		padding-bottom:20px;
+		.itembox{
+			border:1px solid #dbdbdb;
+			padding:27px 30px 16px;
+			background: #fff;
+			margin-right: -1px;
+			h1{
+				font-size: 18.66px;
+				color: #3e3e3e;
+				font-weight: bold;
+				height: 34px;
+				cursor: pointer;
+			}
+			.star-box{
+				font-size: 13.85px;
+				color: #484848;
+				height: 21px;
+				i{
+					float: left;
+				}
+			}
+			.star{
+				width: 71px;
+				height: 12px;
+				margin-top: 4px;
+				background:url(../../images/juhe/star.png);
+				background-size:auto 100%; 
+				float: left;
+				span{
+					display: block;
+					height: 100%;
+					background:url(../../images/juhe/starx.png);
+					background-size:auto 100%;
+				}
+			}
+			img{
+				width: 100%;
+				display: block;
+				margin: 20px 0 22px;
+				cursor: pointer;
+			}
+			p{
+				font-size:14px;
+				color:#484848;
+				line-height: 28px;
+				cursor: pointer;
+			}
+			a{
+				color:#a8a8a8;
+				font-size: 14px;
+				float: left;
+				margin-top: 10px;
+				&:hover{
+					color: #000;
+				}
+			}
+		}
+	}
+}
+.juheDetail{
+	width:100%;
+	background:#fff;
+	.banner{
+		width: 100%;
+		height: 464px;
+	}
+}
+.juheDetail-cont{
+	width:100%;
+	img{
+		display: block;
+		margin:0 auto;
+	}
+	.img{
+		height: 259px;
+		overflow: hidden;
+		padding-top: 44px;
+	}
+	.info{
+		padding: 44px 0 45px;
+		background: #f5f5f5;
+		&.info4{
+			background: #fcf2ea;
+		}
+		&.info6{
+			background: #fcf2ea;
+		}
+	}
+	.pro{
+		padding: 45px 0 52px;
+	}
+	.bot{
+		padding-top: 46px;
+		&.bot1{
+			background: #ffe5c0;
+		}
+		&.bot2,&.bot7{
+			background: #bef4a6;
+		}
+		&.bot3,&.bot4,&.bot5,&.bot6{
+			background: #a8d2ef;
+		}
+	}
+	p{
+		font-size: 14px;
+		color: #fff;
+		a{
+			font-size: 14px;
+			color:#fff;
+			display: inline-block;
+			margin:0 40px;
+			cursor: pointer;
+		}
+	}
+	.links{
+		position: relative;
+		height: 0px;
+		width: 998px;
+		margin: 0 auto;
+		.video{
+			position: absolute;
+			width: 316px;
+			height: 172px;
+			top: 183px;
+			left: 0;
+		}
+		.link{
+			position: absolute;
+			width: 390px;
+			height: 22px;
+			top: 124px;
+			left: 72px;
+		}
+	}
+}

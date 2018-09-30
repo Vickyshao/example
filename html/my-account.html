@@ -1,0 +1,34 @@
+<div class="bread-nav-wrapper">
+	<div class="bread-nav">
+		<!-- <div class="bread-box"><a href="">首页</a><span>></span><a href="">票据投资</a></div> -->
+	</div>
+</div>
+
+<!-- 紧急通告 -->
+<!--<div class="marqueeInfo" ng-if="summaryContents">-->
+<div ng-controller="sideMenuCtrl">
+	<div class="marqueeInfo" ng-if="summaryContents">
+		<div class="marginIns">
+			<span class="icon"></span>
+			<marquee>{{summaryContents}}</marquee>
+		</div>
+	</div>
+<div class="my-account-wrapper">
+	<div class="my-account-wrap">
+		<div class="my-account-side myAccountMenu">
+			<i class="line"></i>
+			<div class="side-mode-list">
+				<menu></menu>
+			</div>
+			<!--<div class="phone-wrap">
+				<p>{{(a | web).phoneLabel}}<i class="my-side-phone"></i></p>
+				<strong>{{(a | web).phone}}</strong>
+			</div>-->
+		</div>
+		<div class="my-account-content border0">
+			<div ng-cloak class="ng-scope ng-cloak" ui-view=""></div>
+		</div>
+	</div>
+	<float-menu></float-menu>
+</div>
+</div>

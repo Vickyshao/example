@@ -1,0 +1,422 @@
+$liqu-sprite-dimensions: true;
+@import "liquwang/liqu/*.png";
+@include all-liqu-sprites();
+
+@import "compass/css3";
+
+$red: #e32b29;
+$yellow: #ffda15;
+
+.colorRed {
+  color: $red !important;;
+}
+.colorgreen {
+  color: #84c7a1 !important;
+}
+.colorgrey {
+  color: #ccc!important;
+}
+.border0 {
+  border-width: 0;
+}
+
+.liquwang {
+  .container {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    background: #c42627;
+    div {
+      margin: 0 auto;
+    }
+    .zc {
+      height: auto;
+      /* margin-bottom: 30px; */
+      background: #c42627 url('/images/liquwang/bannerBg.png') no-repeat center top;
+      .banner {
+        display: flex;
+        margin: 0 auto;
+        padding-top: 30px;
+      }
+      .cnt {
+        width: 1005px;
+        margin-top: 90px;
+        background: url('/images/liquwang/coin.png') no-repeat 90px bottom;
+      }
+    }
+
+    .reimstyle {
+      margin-top: 20px;
+      .peoples {
+        font-size: 32px;
+        text-align: center;
+        span {
+          color: $red;
+          font-size: 42px;
+          letter-spacing: 4px;
+          font-weight: bold;
+        }
+      }
+      .bxpro {
+        width: 100%;
+        height: 400px;
+        margin: 0 auto;
+        .detail {
+          width: 1062px;
+          margin: 0 auto;
+          thead {
+            td {
+              color: #983205;
+              font-size: 24px;
+            }
+          }
+          td {
+            color: #444;
+            text-align: center;
+            white-space: nowrap;
+          }
+          .l {
+            float: left;
+            width: 618px;
+            height: 317px;
+            padding: 20px;
+            background: url('/images/liquwang/bxpro.png') no-repeat center top;
+            table {
+              width: 88%;
+              margin: 0 auto;
+              tr {
+                height: 92px;
+                line-height: 92px;
+                td {
+                  width: 33.33%;
+                  font-size: 21px;
+                }
+              }
+            }
+          }
+          .r {
+            float: left;
+            width: 363px;
+            height: 317px;
+            padding: 25px;
+            background: url(/images/liquwang/bxpeople.png) no-repeat center top;
+            box-sizing: border-box;
+            .table {
+              .title {
+                font-size: 21px;
+                height: 66px;
+                line-height: 70px;
+                text-align: center;
+                margin-bottom: 12px;
+                color: #983205;
+              }
+              .box {
+                height: 195px;
+                overflow: hidden;
+                margin-top: 1px;
+                table {
+                  height: 203px;
+                  overflow: hidden;
+                  margin: 0 auto;
+                  thead {
+                    tr {
+                      height: 72px;
+                      line-height: 72px;
+                    }
+                  }
+                  tbody {
+                    tr {
+                      float: left;
+                      width: 100%;
+                      height: 35px;
+                      margin-top: 3px;
+                      line-height: 35px;
+                      &:first-child {
+                        margin-top: 12px;
+                      }
+                      td {
+                        float: left;
+                        font-size: 17px;
+                        text-align: left;
+                        &:last-child {
+                          float: right;
+                          text-align: right;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      }
+
+    }
+
+    .says {
+      width: 100%;
+      background: #fffcf2;
+      padding-bottom: 70px;
+      .saysins {
+        height: 595px;
+        width: 1084px;
+        margin: 0 auto;
+      }
+    }
+
+    .ruls {
+      font-size: 22px;
+      color: #fff;
+      background: #b91819;
+      padding: 40px;
+      .rulswidth {
+        width: 640px;
+        margin: 0 auto;
+        .title {
+          margin-top: 10px;
+          font-size: 18px;
+        }
+        .txt {
+          .name {
+            color: #fffbd6;
+            font-size: 40px;
+            font-weight: bold;
+            width: 40%;
+            text-align: center;
+            margin-bottom: 21px;
+            .downArr {
+              float: right;
+              width: 49px;
+              height: 17px;
+              margin-top: 27px;
+              background: url(/images/liquwang/downArr.png) no-repeat 20px center;
+              cursor:pointer;
+              &.downArrOpen {
+                transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                -moz-transform: rotate(180deg);
+              }
+
+            }
+          }
+          ul {
+            margin-left: 15px;
+            li {
+              text-align: left;
+              line-height: 42px;
+              color: #fffbd6;
+              &.last{
+                margin-top:12px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .footer {
+      background: #585858;
+      padding: 30px 0;
+      text-align: center;
+      p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        padding-bottom: 2px;
+      }
+      h4 {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    .imgs {
+      width: 100%;
+      @include inline-block(middle);
+      text-align: center;
+      img {
+        @include inline-block(middle);
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      .gzbj {
+        width: 100%;
+        height: 340px;
+        @include inline-block(middle);
+        text-align: center;
+        background: #c62829;
+          img {
+            max-width: 508px;
+          }
+
+
+      }
+    }
+
+    //两步骤注册
+    .zcSteptwo {
+      width: 655px;
+      height: auto;
+      text-align: center;
+      @include border-radius(6px);
+      .quick-register-wrap {
+        /* height: 275px;
+        min-height: 275px; */
+        background: none;
+        .quick-register-wrapper {
+          width: 100%;
+          overflow-x: visible;
+          .quick-register-mod {
+            width: 100%;
+            border: 0;
+            background: none;
+          }
+          .quick-register-box {
+            padding-top: 20px;
+            .input-wrap {
+              width: 516px;
+              .input-box {
+                margin-bottom: 16px;
+                padding-bottom: 17px;
+                i {
+                  top: 80px;
+                }
+                .input-mod {
+                  &.small-inputmod {
+                    width: 296px;
+                    border-right: none;
+                    border-radius: 3px 0 0 3px;
+                    margin-left: 0;
+                  }
+                  b.icon {
+                    position: absolute;
+                    left: 7px;
+                    top: 17px;
+                    width: 30px;
+                    border-right: 0;
+                    margin-left: 11px;
+                  }
+                  .text {
+                    border: 0;
+                    font-size: 24px;
+                    height: 58px;
+                    line-height: 58px;
+                    width: 90%;
+                    padding-left: 61px;
+                    box-sizing: content-box;
+                    @include border-radius(0);
+                    &::-webkit-input-placeholder {
+                      color: #b6b6b6;
+                    }
+                    &:-moz-placeholder {
+                      color: #b6b6b6;
+                    }
+                  }
+                  .reimBtn {
+                    height: 69px;
+                    width: 491px;
+                  }
+                }
+                .error {
+                  color: $yellow;
+                  top: 78px;
+                  left: 23px;
+                }
+                a.get-code {
+                  float: right;
+                  width: 163px;
+                  height: 72px;
+                  line-height: 72px;
+                  text-align: center;
+                  font-size: 21px;
+                  background: #0694ef;
+                  color: #fff;
+                  margin: 0;
+                  @include border-radius(0);
+                }
+                .img-box {
+                  img {
+                    width: 163px;
+                    height: 72px;
+                  }
+                }
+              }
+              .change-phone {
+                color: #fff;
+                text-align: center;
+                font-size: 14px;
+                margin-bottom: 16px;
+                a {
+                  color: $yellow;
+                  text-decoration: underline;
+                  margin-left: 18px;
+                }
+              }
+            }
+            .agreement-box {
+              font-size: 26px;
+              label.agree {
+                .check-box {
+                  float: left;
+                  margin: 15px 10px 0 0;
+                }
+              }
+              label.agree {
+                .check-box {
+                  float: left;
+                  margin: 10px 0px 0 0;
+                  width: 24px;
+                  height: 23px;
+                  &.checked {
+                    background: url(/images/pullnew/sem2-checked.png) no-repeat center center;
+                    background-size: contain;
+                  }
+                }
+              }
+
+            }
+          }
+
+        }
+      }
+      //input {
+      //  @include border-radius(6px);
+      //}
+      .quick-register-wrap.step1{
+        height:372px;
+      }
+      .quick-register-wrap.step2{
+        height:526px;
+      }
+      div.reim {
+        width: 100%;
+        display: inline-block;
+        margin: 5px auto 40px ;
+        padding-left: 0;
+        .zcBtn {
+          @include inline-block(middle);
+          width: 511px;
+          height: 102px;
+          text-align: center;
+          line-height: 83px;
+          font-size: 34px;
+          color: #fff;
+          background: url("/images/liquwang/zcBg.png") no-repeat center center;
+          background-size: contain;
+          cursor: pointer;
+        }
+        .operate {
+          color: #fff;
+          font-size: 26px;
+          text-align: center;
+          margin-top: 25px;
+          a {
+            color: #ffdc16;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

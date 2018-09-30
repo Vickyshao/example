@@ -1,0 +1,84 @@
+<div class="account-home-wrap cunguan" ng-controller="storageCtrl">
+    <div class="title" style="border: none; height: 30px;">
+        <div ng-if="accuntHome.realName != undefined" class="hello">您好，{{accuntHome.realName}} {{accuntHome.sex | isSex}}！</div>
+        <div ng-if="accuntHome.realName == undefined" class="hello">您好，{{accuntHome.mobilephone | limitTo:3}}*****{{accuntHome.mobilephone | limitTo:-3}}！</div>
+        <div class="msg"><b>{{accuntHome.unReadMsg}}</b><a href="{{hrefUrl}}main/myAccount/myMsg">封未读信息</a><i class="my-msg"></i></div>
+        <div class="icons">
+            <!-- <i ng-class="{1:'my-card-set',0:'my-no-card'}[accuntHome.realVerify]"></i> -->
+            <i ng-class="{1:'my-bank-set',0:'my-no-bank'}[isFuiou]"></i>
+            <i ng-class="{1:'my-phone-set',0:'my-no-phone'}[accuntHome.mobileVerify]" </i>
+        </div>
+    </div>
+    <div class="account-storage-wrapper">
+        <form name="storageForm" id="storageForm" method="POST" style="height: 0;">
+            <!-- <input type="hidden" id="storageJson" name="json" value=""> -->
+        </form>
+        <div class="open-storage-wrapper">
+            <form name="infoForm">
+                <div class="storage-banner">
+                    <p>四川天府银行为沪深理财提供资金存管服务，完全符合监管规定，保证您的资金安全！</p>
+                </div>
+                <div class="form-box">
+                    <div class="centertitle">资金存管机构：四川天府银行股份有限公司（简称：四川天府银行）</div>
+                    <div class="form" ng-if="member.idCards==''">
+
+                        <div class="inputbox">
+                            <p class="fill">真实姓名：</p>
+                            <div class="inputmod">
+                                <input type="text" name="realName" class="text" ng-model="user.realName" required>
+                                <i ng-class="{true: '', false: 'common-form-error'}[infoForm.realName.$valid]" ng-show="infoForm.realName.$dirty"></i>
+                                <span class="error" ng-show="infoForm.realName.$dirty && infoForm.realName.$error.required">请输入真实姓名</span>
+                            </div>
+                        </div>
+                        <div class="inputbox">
+                            <p class="fill">证件号码：</p>
+                            <div class="inputmod">
+                                <input type="text" name="idCards" class="text" ng-model="user.idCards" required ng-minlength="15" ng-maxlength="18" ng-pattern="/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/" maxlength="18" minlength="15">
+                                <i ng-class="{true: '', false: 'common-form-error'}[infoForm.idCards.$valid]" ng-show="infoForm.idCards.$dirty"></i>
+                                <span class="error" ng-show="infoForm.idCards.$error.pattern">请输入正确的证件号码</span>
+                                <span class="error" ng-show="infoForm.idCards.$dirty && infoForm.idCards.$error.required">请输入证件号码</span>
+                            </div>
+                        </div>
+                        <div class="inputbox">
+                            <p>手机号码：</p>
+                            <div class="inputmod">
+                                <span>{{member.phone}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form" ng-if="member.idCards!=''">
+                        <div class="inputbox">
+                            <p>真实姓名：</p>
+                            <div class="inputmod">
+                                <span>{{member.realName}}</span>
+                            </div>
+                        </div>
+                        <div class="inputbox">
+                            <p>证件号码：</p>
+                            <div class="inputmod">
+                                <span>{{member.idCards}}</span>
+                            </div>
+                        </div>
+                        <div class="inputbox">
+                            <p>手机号码：</p>
+                            <div class="inputmod">
+                                <span>{{member.phone}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="" class="open botopen" ng-if="member.idCards!=''" ng-click="storageSubmit()">开通存管账户</a>
+                <input class="open botopen sub" type="submit" ng-if="member.idCards==''" value="开通存管账户" ng-disabled="infoForm.$invalid" ng-click="storageSubmit()">
+            </form>
+        </div>
+        <div class="rules">
+            <ul>
+                <li>友情提示：</li>
+                <li>1. 沪深理财使用的是银行资金存管模式，网贷客户交易结算资金账户是完全属于您个人的独立账户，实现完全的资金隔离，资金上银行存管更加安全，<br>沪深理财会根据您的授权划拨资金给借款人，除此之外无权动用，从而保障资金安全。</li>
+                <li>2. 充值到账时间取决于银行。</li>
+                <li>目前，充值到账时间为T+1个工作日。</li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,409 @@
+/*
+* @Author: Ellie
+* @Date:   2018-02-27 10:20:48
+* @Last Modified by:   Ellie
+* @Last Modified time: 2018-03-07 15:32:38
+*/
+
+$blueColor:#529cf7;
+
+//风险评测
+.riskAssess{
+	width:100%;
+	background:#e9f8ff;
+	padding-bottom:60px;
+	.banner{
+		width:100%;
+		height:512px;
+		position:relative;
+		img{
+			position:absolute;
+			top:0;
+			left:50%;
+			margin-left:-960px;
+		}
+	}
+
+	.content{
+		width:1200px;
+		margin:70px auto 0;
+		border-radius:10px;
+		background:#299de0;
+		padding:20px;
+		.caption{
+			font-size:18px;
+			font-weight:600;
+			color:#fff;
+			padding:10px 100px 20px;
+			line-height:30px;
+			strong{
+				color:#fff000;
+			}
+		}
+		.info{
+			width:100%;
+			background:#fff;
+			border-radius:10px;
+			box-sizing:border-box;
+			-moz-box-sizing:border-box; /* Firefox */
+			-webkit-box-sizing:border-box; /* Safari */
+			padding:20px 88px 78px;
+			h4{
+				font-size:22px;
+				color:#333;
+				height:46px;
+				line-height:46px;
+				padding-left:78px;
+				margin-top:30px;
+				position:relative;
+				i{
+					width:46px;
+					height:46px;
+					line-height:46px;
+					text-align:center;
+					font-size:24px;
+					color:#000;
+					background:#f8f8f8;
+					border-radius:50%;
+					position:absolute;
+					top:0;
+					left:0;
+				}
+
+			}
+			.group{
+				position:relative;
+				// width:520px;
+				padding-left:78px;
+				margin-top:14px;
+				font-size:16px;
+				input{
+					position:absolute;
+					left:210px;
+					top:-55px;
+					opacity:0;
+				}
+				label{
+					display:block;
+					width:520px;
+					height:50px;
+					line-height:50px;
+					color:#666;
+					background:#fff;
+					box-sizing:border-box;
+					-moz-box-sizing:border-box; /* Firefox */
+					-webkit-box-sizing:border-box; /* Safari */
+					padding-left:32px;
+					border:2px solid #9ad5f5;
+					cursor:pointer;
+				}
+			}
+			.group input:checked~label{
+				color:#fff;
+				background:#0295e7;
+				border:0;
+			}
+			.sub-box{
+				margin-top:60px;
+				padding-left:208px;
+				.sub{
+					width:230px;
+					height:50px;
+					line-height:50px;
+					text-align:center;
+					font-size:18px;
+					color:#fff;
+					background:#0295e7;
+					border-radius:2px;
+					border:0;
+					cursor:pointer;
+					&:hover{
+						background:darken(#0295e7, 6%);
+					}
+				}
+			}
+		}
+	}
+}
+
+//首页风险评估提示弹窗
+.risk-assess-tip{
+	width:524px;
+	height:400px;
+	background:#fff url('/images/riskAssess/topBg.png') top center/contain no-repeat;
+	position:relative;
+	font-size:16px;
+	text-align:left;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	padding:130px 50px 0;
+	.top{
+		width:110px;
+		height:110px;
+		background:url('/images/riskAssess/top.png') top center/contain;
+		position:absolute;
+		left:50%;
+		margin-left:-55px;
+		top:-35px;
+	}
+	.icoClose{
+		position:absolute;
+		right:-30px;
+		top:-30px;
+		cursor:pointer;
+	}
+
+	h3{
+		color:#000;
+	}
+	.content{
+		color:#666;
+		text-indent:2em;
+		line-height:28px;
+	}
+	.tip{
+		color:$blueColor;
+		margin:10px 0 60px;
+	}
+	.btn{
+		width:250px;
+		height:38px;
+		display:block;
+		margin:0 auto;
+		line-height:38px;
+		text-align:center;
+		color:#fff;
+		background:$blueColor;
+		text-decoration:none;
+		border-radius:3px;
+		&:hover{
+			background:darken($blueColor, 8%);
+		}
+	}
+	
+}
+
+// 风险评测未完成弹窗
+.risk-assess-undo{
+	width:380px;
+	height:110px;
+	font-size:18px;
+	p{
+		line-height:110px;
+	}
+}
+
+//风险评估结果弹窗
+.risk-assess-result{
+	width:524px;
+	// height:400px;
+	background:#fff url('/images/riskAssess/topBg.png') top center/contain no-repeat;
+	position:relative;
+	font-size:16px;
+	text-align:left;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	padding:120px 50px 26px;
+	.top{
+		width:190px;
+		height:142px;
+		background:url('/images/riskAssess/typeBg.png') top center/contain;
+		position:absolute;
+		left:50%;
+		margin-left:-95px;
+		top:-68px;
+		z-index:1;
+	}
+	.icoClose{
+		position:absolute;
+		right:-30px;
+		top:-30px;
+		cursor:pointer;
+	}
+	h3{
+		width:100%;
+		text-align:center;
+		font-size:22px;
+		color:#076ea7;
+		font-weight:600;
+		line-height:38px;
+		position:absolute;
+		left:0;
+		top:30px;
+		z-index:2;
+	}
+
+	
+	.info1{
+		color:#666;
+		font-size:18px;
+		text-align:center;
+		margin-bottom:10px;
+	}
+	.info2{
+		color:#262626;
+		font-size:16px;
+		line-height:28px;
+	}
+	.tip{
+		color:$blueColor;
+		font-size:14px;
+		margin:8px 0 25px;
+	}
+	.btn1{
+		width:250px;
+		height:38px;
+		display:block;
+		margin:0 auto;
+		line-height:38px;
+		text-align:center;
+		color:#fff;
+		background:$blueColor;
+		text-decoration:none;
+		border-radius:3px;
+		&:hover{
+			background:darken($blueColor, 8%);
+		}
+	}
+	.info3{
+		color:#999;
+		font-size:14px;
+		line-height:24px;
+		margin:15px 0;
+	}
+	.btn2{
+		color:$blueColor;
+		font-size:14px;
+		display:block;
+		text-align:center;
+	}
+	
+}
+
+//投资时超出风险评估结果提示
+.risk-assess-result-tip{
+	width:524px;
+	height:370px;
+	background:#fff url('/images/riskAssess/topBg.png') top center/contain no-repeat;
+	position:relative;
+	font-size:16px;
+	text-align:left;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	padding:130px 50px 0px;
+	.top{
+		width:190px;
+		height:142px;
+		background:url('/images/riskAssess/typeBg.png') top center/contain;
+		position:absolute;
+		left:50%;
+		margin-left:-95px;
+		top:-68px;
+		z-index:1;
+	}
+	.icoClose{
+		position:absolute;
+		right:-30px;
+		top:-30px;
+		cursor:pointer;
+	}
+	h3{
+		width:100%;
+		text-align:center;
+		font-size:22px;
+		color:#076ea7;
+		font-weight:600;
+		line-height:38px;
+		position:absolute;
+		left:0;
+		top:30px;
+		z-index:2;
+	}
+
+	.info4{
+		font-size:16px;
+		color:#000;
+		span{
+			color:#5ea3f8;
+		}
+	}
+	.btn1{
+		width:250px;
+		height:38px;
+		display:block;
+		line-height:38px;
+		text-align:center;
+		color:#fff;
+		background:$blueColor;
+		text-decoration:none;
+		border-radius:3px;
+		position:absolute;
+		left:50%;
+		margin-left:-125px;
+		bottom:50px;
+		&:hover{
+			background:darken($blueColor, 8%);
+		}
+	}
+
+}
+
+//风险提示书与承诺书
+.riskTipOut{
+	background:#f1f1f1;
+	padding-bottom:30px;
+	.navigation{
+		width:1190px;
+		margin:0 auto;
+		height:42px;
+		line-height:42px;
+		font-size:16px;
+		color:#333;
+		a{
+			color:#333;
+		}
+		span{
+			color:#b6b6b6;
+		}
+	}
+	.riskTipPromise{
+		width:1110px;
+		margin:0 auto;
+		background:#fff;
+		font-size:14px;
+		color:#333;
+		padding:40px 40px 90px;
+		h3{
+			font-size:24px;
+			text-align:center;
+		}
+		h4{
+			font-weight:700;
+			line-height:30px;
+			margin:10px 0 10px;
+		}
+		p{
+			color:#414141;
+			text-indent:2em;
+			line-height:28px;
+		}
+		a{
+			width:200px;
+			height:38px;
+			line-height:38px;
+			text-align:center;
+			color:#fff;
+			background:$blueColor;
+			margin:60px auto 0;
+			display:block;
+			text-decoration:none;
+			&:hover{
+				background:darken($blueColor, 8%);
+			}
+		}
+	}
+}
+

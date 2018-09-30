@@ -1,0 +1,33 @@
+<div class="account-mymsg-wrap myPrize">
+    <div class="account-common-title">我的奖品</div>
+    <div class="account-common-con">
+        <div class="coupon-wrap">
+            <div class="winningTab">
+                <div class="winningTab-head"><span class="cloumn1">活动名称</span><span class="cloumn2">投资项目</span><span class="cloumn3">投资金额（元）</span><span class="cloumn4">奖品</span><span class="cloumn5">参加时间</span></div>
+                <div class="winningTab-body">
+                    <div class="winningTab-box" ng-repeat="item in data">
+                        <div class="winningTab-item">
+                            <span class="cloumn1">{{item.activityName}}</span>
+                            <span class="cloumn2">{{item.simpleName}}</span>
+                            <!--<span class="cloumn3">{{item.amount|number:0}}</span>-->
+                            <span class="cloumn3">{{item.amount}}</span>
+                            <span class="cloumn4">{{item.efCode ? '兑换码：'+ item.efCode : item.award_name}}</span>
+                            <span class="cloumn5">{{item.investTime | date:'yyyy.MM.dd'}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tip">如何领取奖品？添加微信公众号: hushenlicai，选择底部菜单栏“活动专区”--“礼品领取“，根据提示绑定地址。同时保持手机畅通！  </div>
+            <div class="page-wrap">
+                <div class="page-box">
+                    <a href ng-click="onClick('beforePage',page.pageOn-1)" class="prev">上一页</a>
+                    <ul>
+                        <li ng-click="onClick('currentPage',a)" ng-repeat="a in totalPage|pageFilter:page.pageOn track by $index"><a href="" ng-class="{true: 'cur', false: ''}[page.pageOn == a]">{{a}}</a></li>
+                    </ul>
+                    <a href class="next" ng-click="onClick('nextPage',page.pageOn+1)">下一页</a>
+                </div><span>共{{totalPage}}页</span>
+            </div>
+        </div>
+    </div>
+</div>
+

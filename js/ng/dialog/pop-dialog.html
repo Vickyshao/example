@@ -1,0 +1,17 @@
+<div class="pop-dialog-box" ng-show="showPop == 1">
+    <div class="invite-red-pop">
+        <div class="total">领取了奖金<br>{{amount}}元</div>
+        <p class="tip">奖金已转入您的账户请及时查收</p>
+        <a href="" class="share" ng-click="share()">分享赚更多</a>
+        <a href="" class="giveup" ng-click="closeDialog()">放弃机会</a>
+    </div>
+</div>
+<div class="pop-dialog-box" ng-show="showPop == 2">
+    <div class="pop-code">
+        <div class="title"><span class="close" ng-click="closeDialog()">×</span>微信扫一扫，好友全知晓</div>
+        <div class="code">
+            <qrcode version="5" error-correction-level="L" size="270" data="https://hushenlc.cn/friendreg?frompc=true&recommCode={{myPhone}}"></qrcode>
+            <div id="codeqrcode"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="newhand-dialog">
+	<div class="giveup-wrap" ng-if="dialogType == 'giveup'">
+		<p>领奖机会仅一次，确定放弃？</p>
+		<a href="" class="giveup-btn" ng-click="closeDialog()" ui-sref="main.billDetail({id:product.id})">放弃机会</a>
+		<a href="" class="think-btn" ng-click="closeDialog()">我再想想</a>
+	</div>
+	<div class="list-wrap" ng-if="dialogType == 'sure'">
+		<a href="" class="close" ng-click="closeDialog()">×</a>
+		<form>
+			<div class="info-box" ng-repeat="item in data" ng-show="deadline == item.deadline">
+				<table>
+					<tr>
+						<td width="28%">
+							<div>{{item.investAmount}}元</div>
+							<p>新手标到期后投资金额</p>
+						</td>
+						<td>
+							<div>{{item.deadline}}天</div>
+							<p>投资期限</p>
+						</td>
+						<td>
+							<div class="data"><i>{{item.rate | currency:''}}</i>%<span ng-if="item.activityRate != undefined && item.activityRate > 0"> +<i>{{item.activityRate | currency:''}}</i>%</span></div>
+							<p>历史年化收益率</p>
+						</td>
+						<td>
+							<div class="data">{{item.profitAmount}}元</div>
+							<p>预计收益</p>
+						</td>
+						<td>
+							<div class="data">{{item.amount}}元</div>
+							<p>现金红包</p>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="label">
+				<label><input type="checkbox" checked="checked" ng-model="sure">我同意1天新手标到期后自动续投以上{{deadline}}天产品</label>
+			</div>
+			<input type="submit" class="sure" value="确认" ng-disabled="sure == false" ng-click="sureNext()">
+			<p class="bot">*续投申请成功即视为您同意续投方案，不可取消。</p>
+		</form>
+	</div>
+	<div class="success-wrap" ng-if="dialogType == 'success'">
+		<div class="top">
+			<i class="new-success"></i>
+			续投成功！
+		</div>
+		<p class="center">{{amount}}元现金已躺在您的账户中！</p>
+		<a href="" class="check" ui-sref="main.myAccount.myAssets" ng-click="closeDialog()">立即查看</a>
+	</div>
+</div>

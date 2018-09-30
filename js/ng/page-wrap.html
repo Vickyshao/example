@@ -1,0 +1,6 @@
+<!-- 页码 -->
+				<div class="page-wrap">
+					<div class="page-box">
+						<a href ng-click="onClickPage('beforPage',a)" class="prev">上一页</a><ul><li ng-click="onClickPage('currentPage',a)" ng-repeat="a in bill.pages"><a href="" ng-class="{true: 'cur', false: ''}[bill.pageOn == a]">{{a}}</a></li></ul><a href class="next" ng-click="onClickPage('nextPage',a)">下一页</a>
+					</div><span>共{{bill.totalPage}}页</span>
+				</div>

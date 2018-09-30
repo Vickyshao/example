@@ -1,0 +1,38 @@
+<div class="wqq-ysbm-box brief">
+	<div class="content">
+		<div class="content-box">
+			<img class="topImg" src="/images/gsjj/JGFG.png"/>
+		</div>
+	</div>
+</div>
+
+<div class="jt-wrap news-wrap" ng-controller="jgfgCtrl" style="padding:18px">
+	<div class="jgfgCnt">
+		<ul>
+			<!--<li ng-repeat="item in notices">-->
+				<!--<span class="date">{{item.createTime | date:"y-M-d"}}</span>-->
+				<!--<a  href="/main/jt/GGXQ?newId={{item.artiId}}&t=2">{{item.title}}</a>-->
+			<!--</li>-->
+			<li ng-repeat="item in regulations">
+				<div class="title" ng-click="OpenShow(item, $event, $index)">{{item.title}}
+					<div class="upArr" ng-class="{true:'downArr'}[item.isOpen]"></div>
+				</div>
+				<div class="detail">
+					<p>{{item.summaryContents}}</p>
+					<p class="more"><a href="/main/jt/GGXQ?newId={{item.artiId}}&t=2">阅读全文</a> | 发布于{{item.createTime | date:"yyyy-MM-dd"}}</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!-- 页码 -->
+	<!-- <div class="page-wrap">
+		<div class="page-box">
+			<a href="" class="prev">上一页</a><ul><li><a href="">1</a></li></ul><a href="" class="next">下一页</a>
+		</div>
+	</div> -->
+	<div class="page-wrap">
+		<div class="page-box">
+			<a href ng-click="onClickPage('beforPage',a)" class="prev">上一页</a><ul><li ng-click="onClickPage('currentPage',a)" ng-repeat="a in bill.pages"><a href="" ng-class="{true: 'cur', false: ''}[bill.pageOn == a]">{{a}}</a></li></ul><a href class="next" ng-click="onClickPage('nextPage',a)">下一页</a>
+		</div><span>共{{bill.totalPage ? bill.totalPage : 1}}页</span>
+	</div>
+</div>

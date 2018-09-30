@@ -1,0 +1,112 @@
+<div class="reim" ng-controller="myAccountReimCtrl">
+    <div class="account-common-title">我要报销
+        <span class="subtitle">每位用户仅可报销一次哦</span>
+        <a class="bxgl" ui-sref="eCommerceGl" target="_blank"><div class="ico ecommer-bxgl"></div> 报销攻略</a>
+    </div>
+
+    <!--报销金额-->
+    <div class="bxje">
+        <ul>
+            <li>
+                <div class="txt">报销总额 <span>{{totalReimburseAmount}}<em>元</em></span></div>
+                <div class="ico ecommer-reimtotal"></div>
+            </li>
+            <li>
+                <div class="txt">已报销金额 <span>{{reimbursedAmount}}<em>元</em></span></div>
+                <div class="ico ecommer-reimed"></div>
+            </li>
+            <li>
+                <div class="txt">剩余报销金额 <span class="colorRed">{{remainReimburseAmount}}<em>元</em></span></div>
+                <div class="ico ecommer-reimrest"></div>
+            </li>
+        </ul>
+    </div>
+
+    <!--报销任务-->
+    <div class="bxrw">
+        <div class="dividLine"></div>
+        <div class="title">报销任务</div>
+        <div class="tasks" ng-show="!isUserCarried">
+            <div class="item">
+                <div class="price">
+                    <div class="ico" ng-if="type == 1"><span>10</span>元</div>
+                    <div class="ico" ng-if="type == 2"><span>50</span>元</div>
+                    <div class="ico" ng-if="type == 3"><span>100</span>元</div>
+                </div>
+                <ul class="ins">
+                    <li>任务一</li>
+                    <li ng-if="type == 1">首笔报销，10元已发放，可提现。</li>
+                    <li ng-if="type == 2">首笔报销，50元已发放，可提现。</li>
+                    <li ng-if="type == 3">首笔报销，100元已发放，可提现。</li>
+                    <li>报销金额已发放至账户余额</li>
+                </ul>
+                <div class="btns" style="height: 76px;">
+                    <!--去提现-->
+                    <div class="price">
+                        <div class="accbaoxiao">
+                            <div class="baoxiao" ui-sref="main.myAccount.Withdraw">去提现</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="price">
+                    <div class="ico" ng-if="type == 1"><span>40</span>元</div>
+                    <div class="ico" ng-if="type == 2"><span>450</span>元</div>
+                    <div class="ico" ng-if="type == 3"><span>4900</span>元</div>
+                </div>
+                <ul class="ins">
+                    <li>任务二<span ng-show="isProcessing">进行中</span></li>
+                    <li>分期报销，每7天可领一次，完成即可提现。</li>
+                    <li>完成分期任务后立马发放至账户余额</li>
+                </ul>
+                <div class="btns">
+                    <div class="price">
+                        <div class="accbaoxiao">
+                            <div class="baoxiao" ui-sref="main.myAccount.reim">去报销</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tasks" ng-show="isUserCarried">
+            <div class="item">
+                <div class="price">
+                    <div class="ico" ng-if="type == 1"><span>40</span>元</div>
+                    <div class="ico" ng-if="type == 2"><span>450</span>元</div>
+                    <div class="ico" ng-if="type == 3"><span>4900</span>元</div>
+                </div>
+                <ul class="ins">
+                    <li>任务二<span ng-show="isProcessing">进行中</span></li>
+                    <li>分期报销，每7天可领一次，完成即可提现。</li>
+                    <li>完成分期任务后立马发放至账户余额</li>
+                </ul>
+                <div class="btns">
+                    <div class="price">
+                        <div class="accbaoxiao">
+                            <div class="baoxiao" ui-sref="main.myAccount.reim">去报销</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="price">
+                    <div class="ico" ng-if="type == 1"><span>10</span>元</div>
+                    <div class="ico" ng-if="type == 2"><span>50</span>元</div>
+                    <div class="ico" ng-if="type == 3"><span>100</span>元</div>
+                </div>
+                <ul class="ins">
+                    <li>任务一</li>
+                    <li ng-if="type == 1">首笔报销，10元已发放，可提现。</li>
+                    <li ng-if="type == 2">首笔报销，50元已发放，可提现。</li>
+                    <li ng-if="type == 3">首笔报销，100元已发放，可提现。</li>
+                    <li>报销金额已发放至账户余额</li>
+                </ul>
+                <div class="btns" style="height: 76px;">
+                    <!--已报销-->
+                    <div class="ecommer-ybx" style="margin-top: 8px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

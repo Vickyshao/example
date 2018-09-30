@@ -1,0 +1,734 @@
+$newYear-sprite-dimensions: true;
+@import "chunjie/newYear/*.png";
+@include all-newYear-sprites();
+
+.chunjie {
+  $colorYellow: #febd0e;
+  $colorRed: #ba1a1f;
+  background: #ba1a1f;
+  width: 100%;
+  display: inline-block;
+  .borderRadius4 {
+    @include border-radius(4px);
+  }
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  input {
+    outline: none;
+    &:focus, &:hover {
+      outline: none;
+    }
+  }
+  &.backgNone {
+    background: #fff;
+    @include border-radius(10px);
+  }
+  .topBanner {
+    background: url('/images/chunjie/bannerBg.png') no-repeat top center/cover;
+    .banner {
+      @include inline-block(middle);
+      width: 100%;
+      height: 682px;
+      margin: 0 auto;
+      background: url('/images/chunjie/banner.png') no-repeat top center/cover;
+    }
+  }
+
+  .ins {
+    width: 966px;
+    margin: 0 auto 30px;
+    overflow: hidden;
+    div {
+      box-sizing: border-box;
+    }
+    .sameBtn {
+      @include inline-block();
+      width: 264px;
+      height: 59px;
+      line-height: 54px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      background: url("/images/chunjie/btnBg.png") no-repeat top center/cover;
+    }
+    .investedAmount {
+      width: 100%;
+      border: 16px solid #d3885d;
+      background: #fff1e0;
+      margin: 10px 0 0 ;
+      color: #c50c11;
+      font-size: 20px;
+      text-align: center;
+      padding-top: 30px;
+      .amount {
+        font-size: 18px;
+        color: #565656;
+      }
+      li {
+        margin-bottom: 30px;
+        span {
+          font-size: 36px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    //已投资人
+    .investedPeople {
+      min-width: 5000px;
+      //width: 999px;
+      height: 23px;
+      line-height: 23px;
+      margin-top: 20px;
+      font-size: 18px;
+      position: relative;
+      text-align: center;
+      overflow-x: visible;
+      overflow-y: hidden;
+      .investedCnt {
+        //width: 100%;
+        margin: 0 auto;
+        overflow-x: visible;
+        overflow-y: hidden;
+        position: absolute;
+        //height: 87px;
+      }
+      marquee {
+        height: 27px;
+        font-size: 100%;
+      }
+      span {
+        float: left;
+        //@include inline-block();
+        //width: 480px;
+        //width: 360px;
+        text-align: right;
+        padding: 0 80px;
+        font-size: 18px;
+        color: #ffcc1c;
+      }
+      /*ul {
+        li {
+          font-size: 18px;
+          color: #ffcc1c;
+          display: flex;
+          span {
+            width: 500px;
+            text-align: center;
+          }
+     !*   }
+      }*!*/
+    }
+
+    //才高八斗
+    .cgbdCnt {
+      margin: 30px 0;
+      .title {
+        text-align: center;
+        font-size: 20px;
+        color: #f6dfc5;
+        margin: 20px 0;
+        span {
+          color: #febd0e;
+        }
+      }
+      .ins {
+        padding: 42px 0;
+        height: 791px;
+        background: url("/images/chunjie/cgbdBg.png") repeat-x top center/contain;
+        ul {
+          width: 830px;
+          height: 641px;
+          margin: 0 auto;
+          li {
+            float: left;
+            width: 229px;
+            height: 279px;
+            margin: 0 71px 50px 0;
+            text-align: center;
+            color: $colorRed;
+            font-size: 18px;
+            background: url('/images/chunjie/prizeBg.png') no-repeat center/contain;
+            cursor: pointer;
+            position: relative;
+            .alreadyReceived {
+              width: 229px;
+              height: 279px;
+              background: url('/images/chunjie/received.png') no-repeat center/contain;
+              position: absolute;
+              left: 0;
+              display: none;
+              .show {
+                display: block;
+              }
+            }
+            &:nth-child(3n) {
+              margin-right: 0;
+            }
+            div {
+              margin: 0 auto;
+            }
+            .img {
+              height: 107px;
+              max-width: 114px;
+              max-height: 107px;
+              margin: 28px auto 17px;
+              line-height: 172px;
+              overflow: hidden;
+              img {
+                width: 100%;
+                max-width: 100%;
+              }
+            }
+            .amount {
+              height: 36px;
+              line-height: 19px;
+              font-weight: bold;
+            }
+            .receive {
+              width: 36px;
+              height: 36px;
+              line-height: 33px;
+              font-size: 20px;
+              color: #ffd512;
+              background: #ba1a1f;
+              margin: 9px auto 3px;
+              @include border-radius(50px);
+              &.received {
+                background: #c7c7c7;
+                color: #fff;
+              }
+            }
+            .name {
+              color: #fef1e3;
+              font-size: 22px;
+              font-weight: bold;
+            }
+
+
+
+
+          }
+        }
+        .txt {
+          white-space: nowrap;
+          display: inline-block;
+          width: 100%;
+          font-size: 20px;
+          color: #f6dfc5;
+          text-align: center;
+        }
+      }
+    }
+
+    //节节高升
+    .jjgsCnt {
+      width: 100%;
+      margin: 10px 0 0;
+      color: #c50c11;
+      font-size: 20px;
+      text-align: center;
+      padding-top: 8px;
+      .title {
+        text-align: center;
+        font-size: 20px;
+        color: #fff1e0;
+        margin: 17px auto 38px;
+        span {
+          color: $colorYellow;
+        }
+      }
+      .ins {
+        display: inline-block;
+        padding-bottom: 12px;
+        background: #fff1e0;
+        border: 16px solid #d3885d;
+        .top3 {
+          ul {
+            padding: 40px 0;
+            margin-top: 44px;
+            display: flex;
+            li {
+              flex: 1;
+              height: 309px;
+              color: #fff4e9;
+              font-size: 14px;
+              line-height: 20px;
+              background: url("/images/chunjie/topBg.png") no-repeat center bottom;
+              &:first-child {
+                .img {
+                  height: 177px;
+                  max-height: 177px;
+                  img {
+                    margin-top: -9px;
+                  }
+                }
+              }
+              div {
+                margin-bottom: 2px;
+              }
+              .img {
+                height: 177px;
+                max-height: 177px;
+                img {
+                  margin-top: 33px;
+                }
+              }
+              .investAmount {
+                font-size: 18px;
+                font-weight: bold;
+                color: $colorYellow;
+              }
+              .numInfo {
+                height: 64px;
+                background: #ea3c40;
+                width: 200px;
+                margin: 0 auto;
+                overflow: hidden;
+                //line-height: 54px;
+              }
+              .proInfo {
+                font-size: 16px;
+                text-align: center;
+                margin-top: 8px;
+                .name {
+                  display: block;
+                }
+              }
+              .ranking {
+                color: $colorYellow;
+                font-size: 22px;
+                font-weight: bold;
+                margin-top: 40px;
+                .ownPos {
+                  font-weight: normal;
+                  font-size: 19px;
+                  color: $colorRed;
+                }
+              }
+              &:nth-child(2) {
+                margin-top: -44px;
+              }
+            }
+          }
+          ul {
+            &.info {
+              li {
+                &:nth-child(2) {
+                  margin-left: -48px;
+                }
+              }
+            }
+          }
+
+
+        }
+        //排名
+        .ranking {
+          width: 91%;
+          display: table;
+          margin: 30px auto 35px;
+          ul {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            li {
+              float: left;
+              color: #333;
+              text-align: center;
+              height: 52px;
+              line-height: 52px;
+              white-space: nowrap;
+            }
+            &.title {
+              background: #ffc268;
+              display: flex;
+              li {
+                float: left;
+                flex: 1;
+              }
+            }
+            &.rank {
+              li {
+                width: 100%;
+                &:nth-child(2n) {
+                  background: #fff1e0;
+                }
+                &:nth-child(2n + 1) {
+                  background: #f9e3c9;
+                }
+                .info {
+                  display: flex;
+                  li {
+                    @include inline-block();
+                    flex: 1;
+                    background: transparent;
+                    font-size: 18px;
+                    color: #333;
+                    &:first-child {
+                      color: $colorRed;
+                      text-align: left;
+                      padding-left: 47px;
+                      span {
+                        @include inline-block();
+                        &.pos {
+                          width: 38px;
+                        }
+                        &.rankNum {
+                          width: 30px;
+                          color: #fff;
+                          line-height: 30px;
+                          text-align: center;
+                          background: url('/images/chunjie/circle.png') no-repeat center center;
+                        }
+                      }
+                    }
+                    &:nth-child(2) {
+                      margin-left: -50px;
+                    }
+                  }
+                  &.Red {
+                    color: $colorRed;
+                    li {
+                      color: $colorRed;
+                    }
+                    .rankNum, span, * {
+                      color: $colorRed!important;
+                    }
+                  }
+                }
+              }
+              &:last-child {
+                border-bottom: 1px solid #f9e3c9;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //活动格则
+  .rules{
+    float: left;
+    width: 100%;
+    background: #c92e32;
+    padding-top: 44px;
+    .ins {
+      width: 966px;
+      margin: 0 auto;
+      .name {
+        text-align: center;
+        color: #fff4e9;
+        font-size: 30px;
+        font-weight: bold;
+        width: 764px;
+        margin: 0 auto 40px;
+        position: relative;
+          &:before {
+            content: '';
+            border-top: 1px solid #fff4e9;
+            width: 764px;
+            margin: 0 auto;
+            background: #fff;
+            display: inline-block;
+
+          }
+        span {
+          position: absolute;
+          text-align: center;
+          left: calc((100% - 182px)/2);
+          height: 34px;
+          width: 182px;
+          background: #c92e32;
+          line-height: 35px;
+          top: 13px;
+        }
+      }
+      .rule {
+        margin: 0 auto;
+        ul.act{
+          margin: 0 auto 52px;
+          li{
+            width: 100%;
+            line-height: 37px;
+            font-size: 18px;
+            position: relative;
+            color: #fff4e9;
+            text-align: justify;
+            i{
+              position: absolute;
+              left: 0;
+              top: -5px;
+              font-weight: bold;
+            }
+            &.bot{
+              padding-left: 0;
+              padding-top: 27px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    height: auto;
+    float: left;
+    width: 100%;
+    font-size: 16px;
+
+    background: #585858;
+    color: #fff;
+    text-align: center;
+    p.right {
+      width: 100%;
+      font-weight: normal;
+      line-height: 30px;
+      font-size: 13px;
+      padding: 10px 0;
+      color: #cacaca;
+    }
+  }
+
+  //投资领取抽奖码弹窗
+  .toInvestGet {
+    width: 550px;
+    height: 351px;
+    background: #fff;
+    @include border-radius(10px);
+    .title {
+      color: #666;
+      height: 136px;
+      line-height: 136px;
+      font-size: 34px;
+      letter-spacing: 1px;
+      padding-top: 30px;
+    }
+    .toInvestGetBtn {
+      background: $colorDYellow;
+      border-radius: 6px;
+      border: none;
+      font-size: 24px;
+      color: #fff;
+      width: 70%;
+      height: 80px;
+      line-height: 80px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .closeDialog {
+      position: absolute;
+      right: 15px;
+      top: 14px;
+      cursor: pointer;
+    }
+  }
+
+  div[class^='newYear-'] {
+    margin: 0 auto;
+  }
+
+  .myCalc {
+    position: fixed;
+    top: 49%;
+    right: 9%;
+    cursor: pointer;
+    z-index: 99;
+    cursor: pointer;
+  }
+
+
+}
+
+//春节奖品弹窗
+.chunjiePrize {
+  width: 366px;
+  height: 401px;
+  position: relative;
+  background: url('/images/chunjie/dialogPrizeBg.png') no-repeat center/contain;
+  div {
+    margin: 0 auto;
+  }
+  .close {
+    position: absolute;
+    right: -50px;
+    top: -30px;
+  }
+  .topPro {
+    padding-top: 43px;
+    .proName {
+      height: 39px;
+      line-height: 29px;
+      font-size: 27px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .img {
+      margin: 30px auto;
+    }
+  }
+  .info {
+    font-size: 22px;
+    color: #333;
+  }
+  .btns {
+    margin-top: 8px;
+    a {
+      font-size: 24px;
+      color: #b31118;
+      font-weight: bold;
+      height: 60px;
+      line-height: 60px;
+    }
+  }
+}
+
+//春节年化收益计算器弹窗
+.chunjieIncomeCalc {
+  width: 488px;
+  height: 525px;
+  div {
+    margin: 0 auto;
+    text-align: justify;
+  }
+  .close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 22px;
+    color: #fff;
+  }
+  .title {
+    height: 64px;
+    line-height: 64px;
+    background: #fe9e0e;
+    font-size: 26px;
+    color: #fff;
+    text-align: center;
+    border-top-left-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+  }
+  .investInfo {
+    padding: 32px 0 0px;
+    .input-wrap {
+      width: 343px;
+      line-height: 42px;
+      margin-bottom: 20px;
+      span {
+        float: left;
+        width: 101px;
+        text-align: left;
+        font-size: 18px;
+      }
+      .input-text {
+        @include inline-block();
+        width: 239px;
+        text-align: center;
+        font-size: 18px;
+        input {
+          width: 216px;
+          height: 42px;
+          line-height: 44px;
+          text-align: right;
+          font-size: 18px;
+          padding: 0 10px;
+          background: #fff;
+          @include border-radius(4px);
+          background: transparent;
+          border: 1px solid #ccc;
+          &:-ms-input-placeholder {
+          }
+        }
+        .term {
+          text-align: right;
+          div {
+            @include inline-block();
+            @include border-radius(4px);
+            width: 67px;
+            height: 42px;
+            line-height: 43px;
+            border:1px solid #dbdbdb;
+            position: relative;
+            text-align: center;
+            margin-right: 10px;
+            cursor: pointer;
+            &:focus, &:active {
+              background: url('/images/chunjie/termAct.png') no-repeat right bottom;
+            }
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+          &.time30 {
+            div {
+              &:first-child {
+                border: 1px solid #fe9e0e;
+                background: url('/images/chunjie/termAct.png') no-repeat right bottom;
+              }
+            }
+          }
+          &.time60 {
+            div {
+              &:nth-child(2){
+                border: 1px solid #fe9e0e;
+                background: url('/images/chunjie/termAct.png') no-repeat right bottom;
+              }
+            }
+          }
+          &.time90 {
+            div {
+              &:last-child {
+                border: 1px solid #fe9e0e;
+                background: url('/images/chunjie/termAct.png') no-repeat right bottom;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .goInvestBtn {
+    width: 339px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background: #fe9e0e;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 auto 20px;
+    @include border-radius(4px);
+    a {
+      color: #fff;
+    }
+
+
+  }
+
+  .explain {
+    width: 413px;
+    text-align: left;
+    font-size: 14px;
+    color: #666;
+    line-height: 28px;
+    border: 1px dashed #ccc;
+    padding: 10px 10px 4px;
+    box-sizing: border-box;
+    .calcMethod {
+      border-bottom: 1px dashed #ccc;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+
+
+
+
+}

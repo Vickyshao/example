@@ -1,0 +1,41 @@
+<div class="account-home-wrap" ng-controller="storageCtrl">
+	<div class="title" style="border: none;">
+		<div class="msg"><b>{{accuntHome.unReadMsg}}</b><a href="{{hrefUrl}}main/myAccount/myMsg">封未读信息</a><i class="my-msg"></i></div>
+		<div ng-if="accuntHome.realName != undefined" class="hello">您好，{{accuntHome.realName}} {{accuntHome.sex | isSex}}！</div>
+		<div ng-if="accuntHome.realName == undefined" class="hello">您好，{{accuntHome.mobilephone | limitTo:3}}*****{{accuntHome.mobilephone | limitTo:-3}}！</div>
+		<div class="icons">
+			<!-- <i ng-class="{1:'my-card-set',0:'my-no-card'}[accuntHome.realVerify]"></i> -->
+			<i ng-class="{1:'my-bank-set',0:'my-no-bank'}[isFuiou]"></i>
+			<i ng-class="{1:'my-phone-set',0:'my-no-phone'}[accuntHome.mobileVerify]"</i>
+		</div>
+	</div>
+	<div class="account-storage-wrapper" ng-if="successType">
+		<div class="open-storage-wrapper">
+			<div class="form-box success-formbox error-formbox">
+				<div class="centertitle">资金存管机构：四川天府银行股份有限公司（简称：四川天府银行）</div>
+				<table>
+					<tr>
+						<td class="l"><i class="storage-success"></i></td>
+						<td class="r">银行存管已开户</td>
+					</tr>
+				</table>
+				<p class="bot"><a href="/main/myAccount/accountHome" class="open">查看我的账户</a></p>
+			</div>
+			
+		</div>
+	</div>
+	<div class="account-storage-wrapper" ng-if="!successType">
+		<div class="open-storage-wrapper">
+			<div class="form-box success-formbox error-formbox">
+				<div class="centertitle">资金存管机构：四川天府银行股份有限公司（简称：四川天府银行）</div>
+				<table>
+					<tr>
+						<td class="l"><i class="storage-error"></i></td>
+						<td class="r">{{errorMsg}}</td>
+					</tr>
+				</table>
+				<p class="bot">您可以查看<a href="/main/jt2/YHCG?menuName=YHCG">银行存管账户开通指南</a>，或联系客服400-031-9909</p>
+			</div>
+		</div>
+	</div>
+</div>

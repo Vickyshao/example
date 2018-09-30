@@ -1,0 +1,103 @@
+<style type="text/css">
+	.closeHB{
+		background: rgba(189, 181, 182, 0.39); 
+		color: #2A6505;
+		width: 155px;
+		height: 77px;
+		margin-top: 5px;
+		position: absolute;
+		font-size: 15px;
+		text-align: center;
+	}
+</style>
+<div class="account-mymsg-wrap" ng-controller="myFinanceCtrl" ng-init="action=1">
+	<div class="account-common-title">我的体验金</div>
+	<div class="account-common-con" >
+	
+		<div class="coupon-wrap">
+			<!-- tab -->
+			<div class="account-top-box">
+		    	<p ng-click="action=1" ng-class="{1:'top-list',3:'',2:''}[action]">可使用</p>
+		    	<p ng-click="action=2" ng-class="{1:'',2:'top-list',3:''}[action]">已使用</p>
+		        <p ng-click="action=3" ng-class="{3:'top-list',1:'',2:''}[action]" style="border-right: 1px solid #ECECEC;">已失效</p>
+		    </div>
+			<div class="coupon-box" ng-if="tyj.length > 0">
+
+			<div class="coupon-mode" ng-show="action==1">
+				<ul>
+					<li>体验金 {{activeLength}} 张</li> 
+				</ul>
+				<div class="icons coupons">
+					<div ng-repeat="item in tyj | filterCoupon:0" class="icon-con icon-conn" ng-class="{0: 'my-active-tyj',1: 'my-used-tyj',2: 'my-disable-tyj'}[item.status]">
+						<p class="title tyjtitle">
+							<span class="lj-btn jihuo" ui-sref="main.financeDetail" ng-if="item.source!=100">立即<br>投资</span>
+							<span class="lj-btn jihuo" ui-sref="main.bankBillList" ng-if="item.source==100">立即<br>激活</span>
+							<strong class="mytyj">￥<b>{{item.amount}}</b></strong>
+						</p>
+						<p class="content tyjcon">
+							<span ng-if="item.source != 100 && item.source != 99">投资期限：仅限体验标使用</span>
+							<span ng-if="item.source == 100 || item.source == 99">投资条件：投资≥5000</span>
+							<span>有效期至：{{item.expireDate| date:'yyyy.MM.dd'}}</span>
+							<span ng-if="item.source != 100 && item.source != 99">体验金类型：普通体验金</span>
+							<span ng-if="item.source == 100 || item.source == 99">体验金类型：新手体验金（除新手标）</span>
+						</p>
+					</div>
+				</div>
+			</div>
+
+
+
+<!-- 已使用 -->
+	        
+			<div class="coupon-mode" ng-show="action==2">
+				<ul>
+					<li>体验金 {{usedLength}} 张</li> 
+				</ul>
+				<div class="icons coupons">
+					<div ng-repeat="item in tyj | filterCoupon:1" class="icon-con" ng-class="{0: 'my-active-tyj',1: 'my-used-tyj',2: 'my-disable-tyj'}[item.status]">
+						<p class="title tyjtitle">
+							<span class="lj-btn"></span>
+							<strong class="mytyj">￥<b>{{item.amount}}</b></strong>
+						</p>
+						<p class="content tyjcon">
+							<span ng-if="item.source != 100 && item.source != 99">投资期限：仅限体验标使用</span>
+							<span ng-if="item.source == 100 || item.source == 99">投资条件：投资≥5000</span>
+							<span>有效期至：{{item.expireDate| date:'yyyy.MM.dd'}}</span>
+							<span ng-if="item.source != 100 && item.source != 99">体验金类型：普通体验金</span>
+							<span ng-if="item.source == 100 || item.source == 99">体验金类型：新手体验金</span>
+						</p>
+					</div>
+				</div>
+			</div>
+
+
+
+<!-- 已失效 -->
+	        
+			<div class="coupon-mode" ng-show="action==3">
+				<ul>
+					<li>体验金 {{disabledLength}} 张</li> 
+				</ul>
+				<div class="icons coupons">
+					<div ng-repeat="item in tyj | filterCoupon:2" class="icon-con" ng-class="{0: 'my-active-tyj',1: 'my-used-tyj',2: 'my-disable-tyj'}[item.status]">
+						<p class="title tyjtitle">
+							<span class="lj-btn"></span>
+							<strong class="mytyj">￥<b>{{item.amount}}</b></strong>
+						</p>
+						<p class="content tyjcon">
+							<span ng-if="item.source != 100 && item.source != 99">投资期限：仅限体验标使用</span>
+							<span ng-if="item.source == 100 || item.source == 99">投资条件：投资≥5000</span>
+							<span>有效期至：{{item.expireDate| date:'yyyy.MM.dd'}}</span>
+							<span ng-if="item.source != 100 && item.source != 99">体验金类型：普通体验金</span>
+							<span ng-if="item.source == 100 || item.source == 99">体验金类型：新手体验金</span>
+						</p>
+					</div>
+				</div>
+			</div>
+			
+			</div>
+			<p class="my-notyj" ng-if="tyj.length<1"></p>
+		</div>
+
+	</div>
+</div>

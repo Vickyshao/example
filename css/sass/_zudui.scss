@@ -1,0 +1,427 @@
+// $draw-sprite-dimensions: true;
+// @import "zudui/*.png";
+// @include all-zudui-sprites();
+
+$colorDYellow: #ffa04a;
+
+.zudui {
+  background:#fff3d1;
+
+  .banner{
+    width:100%;
+    height:641px;
+    overflow:hidden;
+    text-align:center;
+    position:relative;
+    img{
+      position:absolute;
+      top:0px;
+      left:50%;
+      margin-left:-960px;
+    }
+    .logo{
+      width:220px;
+      height:62px;
+      display:inline-block;
+      position:absolute;
+      top:30px;
+      left:50%;
+      margin-left:-600px;
+    }
+  }
+  
+  img{
+    display:inline-block;
+    outline:none;
+  }
+  .title{
+    width:1200px;
+    margin:50px auto 40px;
+    text-align:center;
+    color:#642f02;
+    font-size:22px;
+    p{
+      height:22px;
+      line-height:22px;
+      margin-top:20px;
+    }
+  }
+
+  .invgift{
+    width:1200px;
+    margin:0 auto;
+    position:relative;
+    .inviteBtn{
+      width:260px;
+      height:73px;
+      position:absolute;
+      left:50%;
+      margin-left:-136px;
+      bottom:62px;
+    }
+  }
+  .teamgiftno{
+    width:1200px;
+    height:455px;
+    padding-top:65px;
+    box-sizing:border-box;
+    text-align: center;
+    margin:0 auto;
+    background:url('/images/zudui/teamnoBg.png') center center no-repeat;
+    .players{
+      width:1020px;
+      margin:0 auto 55px;
+      // height:250px;
+      .noplayer{
+        font-size:30px;
+        color:#e38b03;
+        text-align:center;
+        height:178px;
+        line-height:178px;
+      }
+    }
+  }
+  .teamgift{
+    width:1200px;
+    height:799px;
+    box-sizing:border-box;
+    padding-top:65px;
+    margin:0 auto;
+    background:url('/images/zudui/teamBg.png') center center no-repeat;
+    .players{
+      width:1020px;
+      margin:0 auto;
+      height:295px;
+      text-align: center;
+      .noplayer{
+        font-size:30px;
+        color:#e38b03;
+        text-align:center;
+        height:295px;
+        line-height:295px;
+      }
+
+      .left{
+        float:left;
+        width:412px;
+        padding-left:20px;
+        text-align:center;
+        img{
+          margin-top:48px;
+        }
+        p{
+          line-height:36px;
+          font-size:18px;
+          color:#c96106;
+        }
+      }
+      .right{
+        float:left;
+        font-size:16px;
+        color:#c96106;
+        h5{
+          padding-top:20px;
+          height:42px;
+          line-height:42px;
+          color:#d86908;
+          text-align:center;
+          font-size:22px;
+          font-weight:700;
+          span{
+            font-size:16px;
+            font-weight:normal;
+            strong{
+              color:#c53514;
+            }
+          }
+        }
+        .member{
+          width:410px;
+          height:195px;
+          border:1px solid #e2ad60;
+          /* overflow-x: hidden;
+          overflow-y: scroll;
+          //滚动条样式
+          &::-webkit-scrollbar {
+            width: 3px;
+          }
+          &::-webkit-scrollbar-button:vertical:start:increment,
+          &::-webkit-scrollbar-button:vertical:end:decrement{
+            display: none;
+          }
+          &::-webkit-scrollbar-thumb:vertical {
+            background-color: #c86f06;
+            border-radius: 1px;
+          }
+          &::-webkit-scrollbar-track:vertical {
+            background-color: transparent;
+            border-radius: 1px;
+          }
+          &::-webkit-scrollbar-track-piece {
+            background-color: transparent;
+            border-radius: 1px;
+          } */
+          li{
+            height:65px;
+            padding:0 30px 0 20px;
+            overflow:hidden;
+            zoom:1;
+            &:nth-child(odd){
+              background:#f7cd90;
+            }
+            &:nth-child(even){
+              background:#ffd9a1;
+            }
+            .up{
+              float:left;
+              text-align:center;
+              width:54px;
+              height:65px; 
+              background:url('/images/zudui/player2.png') center center  no-repeat;
+            }
+            .middle{
+              float:left;
+              margin-left:15px;
+              padding:10px 0;
+              line-height:24px;
+              .small{
+                font-size:14px;
+              }
+            }
+            .down{
+              float:right;
+              color:#ba2604;
+              line-height:65px;
+            }
+            &:first-child{
+              .up{
+                background:url('/images/zudui/captain2.png') center center  no-repeat;
+              } 
+            }
+          }
+        }
+      }
+
+    }
+    .centerTip{
+      text-align:center;
+      color:#fff3d1;
+      font-size:18px;
+      line-height:80px;
+    }
+    .info{
+      width:1025px;
+      margin:45px auto 85px;
+      display:flex;
+      display:-webkit-flex;
+      justify-content:space-between;
+      li{
+        width:250px;
+        text-align:center;
+        .names{
+          font-size:18px;
+          color:#642f02;
+          line-height:44px;
+        }
+        .money{
+          font-size:22px;
+          color:#c53614;
+          line-height:38px;
+          font-weight:700;
+        }
+      }
+    }
+
+    .btns1{
+      text-align:center;
+      a{
+        display:inline-block;
+      }
+    }
+    .btns2{
+      width:645px;
+      margin:0 auto;
+      display:flex;
+      display:-webkit-flex;
+      justify-content:space-between;
+    }
+
+  }
+
+  .news{
+    height:85px;
+    line-height:85px;
+    text-align:center;
+    font-size:24px;
+    color:#d47e00;
+    background:#ffd9a1;
+    margin-top:38px;
+    overflow:hidden;
+  }
+  
+  .ranklist{
+    width:1200px;
+    height:652px;
+    padding-top:120px;
+    margin:0 auto;
+    background:url('/images/zudui/listBg.jpg') center center no-repeat;
+    .content{
+      // padding:120px 0 0 215px;
+      width:983px;
+      margin:0 auto;
+      height:470px;
+      li{
+        height:47px;
+        color:#653702;
+        font-size:16px;
+        padding-left:60px;
+        overflow:hidden;
+        zoom:1;
+        &.highLightShow{
+          color: #c53614;
+          font-weight: 700;
+        }
+        &:nth-child(odd){
+          background: url(/images/zudui/lineBg.png) center center no-repeat;
+        }
+        &:nth-child(even){
+          background:#ffd9a1;
+        }
+        p{
+          float:left;
+          line-height:47px;
+          margin-right:50px;
+          &.one{
+            width:200px;
+          }
+          &.two{
+            width:200px;
+          }
+          &.three{
+            width:135px;
+          }
+          &.four{
+            width:150px;
+          }
+          .num{
+            display: inline-block;
+            width: 30px;
+            height: 47px;
+            margin-right: 15px;
+            text-align: center;
+            vertical-align: middle;
+            font-size:16px;
+          }
+          .num1{
+            background: url(/images/zudui/top1.png) center center no-repeat;
+          }
+          .num2{
+            background: url(/images/zudui/top2.png) center center no-repeat;
+          }
+          .num3{
+            background: url(/images/zudui/top3.png) center center no-repeat;
+          }
+          .nums{
+            width:26px;
+            height:26px;
+            line-height:26px;
+            background: #e38b03;
+            border-radius:50%;
+            color: #ffd9a1;
+            margin:0 17px 0 2px;
+            
+          }
+        }
+      }
+
+      li.nolist{
+        height:430px;
+        line-height:430px;
+        font-size:30px;
+        color:#e38b03;
+        text-align:center;
+        background:#ffd9a1;
+        padding-left:0px;
+      }
+
+    }
+    .tip{
+      font-size:18px;
+      line-height:30px;
+      color:#653702;
+      padding-left:100px;
+      margin-top:38px;
+    }
+  }
+  
+  .center{
+    text-align:center;
+    .toInvest{
+      margin:55px 0 60px;
+      display:inline-block;
+    }
+  }
+  
+  .ruleOut{
+    width:100%;
+    height:653px;
+    background:url('/images/zudui/ruleBg.jpg') center center no-repeat;
+    .rule{
+      width:1200px;
+      margin:0 auto;
+      padding:135px 0 0 90px;
+      p{
+        height:40px;
+        line-height:40px;
+        font-size:18px;
+        color:#fff3d1;
+      }
+    }
+
+  }
+
+
+  .footer {
+    width: 100%;
+    font-size: 14px;
+    text-align: center;
+    line-height:28px;
+    background: #585858;
+    color: #cacaca;
+    padding:30px 0;
+  }
+
+}
+
+//恭喜成为队长弹窗
+  .zudui-modal {
+    width: 540px;
+    height: 340px;
+    padding-top:40px;
+    background: #fff5e5;
+    font-size: 28px;
+    position:relative;
+    text-align:center;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    -ms-border-radius:8px;
+    -o-border-radius:8px;
+    .closeDialog {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      cursor: pointer;
+    }
+    p{
+      font-size:22px;
+      color:#ca6206;
+      height:22px;
+      line-height:22px;
+      margin:10px 0 25px;
+    }
+    .modalBtn {
+      display:inline-block;
+    }
+    
+  }

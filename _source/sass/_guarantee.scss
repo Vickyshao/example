@@ -1,0 +1,440 @@
+.guarantee-body{
+	background: #faf6f2;
+	.title{
+		height: rem-calc(128px,1080);
+		line-height: rem-calc(150px,1080);
+		font-size: rem-calc(44px,1080);
+		color: #333;
+		background: #f5e9dd;
+		span{
+			width: rem-calc(14px,1080);
+			height: rem-calc(46px,1080);
+			background: #dba869;
+			margin: rem-calc(56px 25px 0 56px,1080);
+			float: left;
+		}
+	}
+	.app1{
+		width: 100% !important;
+		// @include rem-sprite("safetysapp/*.png",home,$spacing:4px,$rem-base:1080px);
+		background: url('../../images/safetysapp/home.png') center center no-repeat;
+		background-size: cover !important;
+		img{
+			width: 100%;
+		}
+	}
+	.app2{
+		p{
+			padding: rem-calc(60px 56px 0,1080);
+			font-size: rem-calc(40px,1080);
+			color: #666;
+		}
+		.mod{
+			width: rem-calc(856px,1080);
+			height: rem-calc(291px,1080);
+			margin: rem-calc(123px 0 0 132px,1080);
+			background: #f7efe7;
+			border: 1px solid #dba869;
+			border-radius: rem-calc(40px,1080);
+			position: relative;
+			i{
+				position: absolute;
+				left: rem-calc(-64px,1080);
+				top: rem-calc(-65px,1080);
+				&.iconhome{
+					@include rem-sprite("safetysapp/*.png",iconhome,$spacing:4px,$rem-base:1080px);
+				}
+				&.iconum{
+					@include rem-sprite("safetysapp/*.png",iconum,$spacing:4px,$rem-base:1080px);
+					top: rem-calc(-46px,1080);
+				}
+			}
+			span{
+				display: block;
+				padding: rem-calc(70px 0 10px 172px,1080);
+				font-size: rem-calc(48px,1080);
+				color: #8d6449;
+				&.top{
+					padding-top: rem-calc(50px,1080);
+				}
+			}
+			p{
+				padding-left: rem-calc(172px,1080);
+				padding-top: 0;
+			}
+		}
+	}
+	.app4{
+		@extend .app2;
+		ul{
+			li{
+				padding: rem-calc(110px 0 0 96px,1080);
+				height: rem-calc(160px,1080);
+				line-height: rem-calc(160px,1080);
+				font-size: rem-calc(48px,1080);
+				color: #8d654a;
+				i{
+					float: left;
+					margin-right: rem-calc(57px,1080);
+					&.risk{
+						@include rem-sprite("safetysapp/*.png",risk,$spacing:4px,$rem-base:1080px);
+					}
+					&.zero{
+						@include rem-sprite("safetysapp/*.png",zero,$spacing:4px,$rem-base:1080px);
+					}
+					&.chengdui{
+						@include rem-sprite("safetysapp/*.png",chengdui,$spacing:4px,$rem-base:1080px);
+					}
+				}
+			}
+		}
+	}
+	.app5{
+		.mode{
+			width: rem-calc(949px,1080);
+			margin: rem-calc(79px 0 0 58px,1080);
+			background: #fcf0e2;
+			border: 1px solid #efd4b4;
+			border-radius: rem-calc(38px,1080);
+			p{
+				padding-left: rem-calc(118px,1080);
+				height: rem-calc(126px,1080);
+				line-height: rem-calc(126px,1080);
+				font-size: rem-calc(48px,1080);
+				color: #8d654a;
+				font-weight: bold;
+				position: relative;	
+				i{
+					position: absolute;
+					left: rem-calc(35px,1080);
+					top: rem-calc(30px,1080);
+					&.check{
+						@include rem-sprite("safetysapp/*.png",check,$spacing:4px,$rem-base:1080px);
+					}
+					&.background{
+						@include rem-sprite("safetysapp/*.png",background,$spacing:4px,$rem-base:1080px);
+					}
+					&.shidi{
+						@include rem-sprite("safetysapp/*.png",shidi,$spacing:4px,$rem-base:1080px);
+					}
+				}
+			}
+			div{
+				padding: rem-calc(30px 0 0 120px,1080);
+				overflow: hidden;
+				span{
+					float: left;
+					padding: rem-calc(0 0 30px 0);
+					width: rem-calc(230px,1080);
+					text-align: center;
+					font-size: rem-calc(40px,1080);
+					color: #333;
+				}
+			}
+		}
+	}
+	.app6{
+		@extend .app2;
+		overflow: auto !important;
+		p{
+			padding: rem-calc(60px 56px 0,1080);
+		}
+		.con{
+			padding: rem-calc(30px 56px 0 56px,1080);
+			b{
+				display: block;
+				font-size: rem-calc(40px,1080);
+				color: #333;
+				font-weight: bold;
+				padding: rem-calc(0 0 8px 40px,1080);
+			}
+			li{
+				position: relative;
+				padding-left: rem-calc(40px,1080);
+				line-height: rem-calc(65px,1080);
+				font-size: rem-calc(40px,1080);
+				color: #666;
+				i{
+					position: absolute;
+					width: rem-calc(16px,1080);
+					height: rem-calc(16px,1080);
+					left: 0;
+					top: rem-calc(26px,1080);
+					background: #dba869;
+					border-radius: rem-calc(20px,1080);
+					&.gou{
+						@include rem-sprite("safetysapp/*.png",gou,$spacing:4px,$rem-base:1080px);
+					}
+				}
+			}
+		}
+	}
+	.app7{
+		@extend .app2;
+		p{
+			padding-top: rem-calc(40px,1080);
+		}
+		.tu{
+			@include rem-sprite("safetysapp/*.png",tu,$spacing:4px,$rem-base:1080px);
+			margin: rem-calc(20px auto 30px,1080);
+			// background-size: rem-calc(820px 600px,1080);
+		}
+		.contract{
+			background: #f5f0ea;
+			width: 100%;
+			div{
+				padding: rem-calc(68px 0 68px,1080);
+				text-align: center;
+				margin-right: rem-calc(-80px,1080);
+			}
+			img{
+				width: rem-calc(258px,1080);
+				height: rem-calc(366px,1080);
+				box-shadow: rem-calc(0 0 30px #ccc,1080);
+				margin-right: rem-calc(80px,1080);
+				vertical-align: top;
+			}
+		}
+	}
+	.app8{
+		@extend .app2;
+		.honor{
+			background: #f7efe7;
+			width: rem-calc(954px,1080);
+			margin: rem-calc(70px auto 0,1080);
+			border: 1px solid #eacfad;
+			border-radius: rem-calc(30px,1080);
+			.t{
+				font-size: rem-calc(44px,1080);
+				color: #333;
+				height: rem-calc(138px,1080);
+				line-height: rem-calc(138px,1080);
+				padding-left: rem-calc(46px,1080);
+			}
+			table{
+				width: 100%;
+				td{
+					text-align: center;
+					div{
+						font-size: rem-calc(32px,1080);
+						color: #666;
+						padding: rem-calc(20px 0 35px,1080);
+					}
+				}
+				img{
+					width: rem-calc(380px,1080);
+					height: rem-calc(204px,1080);
+					border-radius: rem-calc(12px,1080);
+				}
+			}
+		}
+	}
+	.app9{
+		// @include rem-sprite("safetysapp/*.png",last,$spacing:4px,$rem-base:1080px);
+		background: url('../../images/safetysapp/last.png') center top no-repeat;
+		width: 100% !important;
+		background-size: cover !important;
+		position: relative;
+		.title{
+			background: none;
+		}
+		img{
+			width: 90%;
+			position: absolute;
+			bottom: rem-calc(40px,1080);
+			left: 50%;
+			margin-left: -45%;
+			max-height: 80%;
+		}
+	}
+	.app3{
+		@extend .app2;
+		p{
+			padding-top: 0;
+			padding-bottom: rem-calc(60px,1080);
+		}
+		.stitle{
+			padding: rem-calc(40px 0 40px 135px,1080);
+			height: rem-calc(120px,1080);
+			line-height: rem-calc(120px,1080);
+			font-size: rem-calc(40px,1080);
+			color: #666;
+			span{
+				color: #333;
+			}
+			i{
+				float: left;
+				margin-right: rem-calc(35px,1080);
+				&.yin{
+					@include rem-sprite("safetysapp/*.png",yin,$spacing:4px,$rem-base:1080px);
+				}
+				&.shang{
+					@include rem-sprite("safetysapp/*.png",shang,$spacing:4px,$rem-base:1080px);
+				}
+			}
+		}
+		table{
+			width: 100%;
+			td{
+				background: #f5f0ea;
+				vertical-align: top;
+				&.left{
+					border-right: rem-calc(10px solid #faf6f2,1080);
+				}
+				&.right{
+					border-left: rem-calc(10px solid #faf6f2,1080);
+				}
+				img{
+					display: block;
+					width: rem-calc(340px,1080);
+					height: rem-calc(190px,1080);
+					box-shadow: rem-calc(0 0 30px #999,1080);
+					position: relative;
+					z-index: 100000000;
+					margin: rem-calc(0 auto 50px,1080);
+				}
+				.line-title{
+					margin-top: rem-calc(57px,1080);
+					width: 100%;
+				    border-top: 1px solid #fadbb9;
+				    text-align: center;
+					div{
+						width: rem-calc(245px,1080);
+						height: rem-calc(120px,1080);
+						line-height: rem-calc(120px,1080);
+						margin: rem-calc(-60px auto 0,1080);
+						position: relative;
+						text-align: center;
+						font-size: rem-calc(36px,1080);
+						color: #966642;
+						background: #f5f0ea;
+						i{
+							width: rem-calc(6px,1080);
+							height: rem-calc(6px,1080);
+							position: absolute;
+							top: rem-calc(57px,1080);
+							border-radius: rem-calc(50px,1080);
+							background: #ffc480;
+							&.left{
+								left: 0;
+							}
+							&.right{
+								right: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.check-img-wrap{
+		position: fixed;
+		top: 0;
+		background: rgba(0,0,0,.8);
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+		max-width: 750px;
+		display: none;
+		z-index: 30;
+	}
+	.check-img-wrap .img{
+		display: table-cell;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		vertical-align: middle;
+		max-width: 750px;
+	}
+	.check-img-wrap img{
+		max-width: 100%;
+		max-height: 100%;
+	}
+	.swiper-container{
+		width: 100%;
+		height: 100%;
+	}
+	.swiper-slide{
+		width: 100%;
+		overflow: hidden;
+	}
+	.pagination {
+		position: absolute;
+		z-index: 20;
+		right: rem-calc(24px,1080);
+		// top: 50% !important;
+		// margin-top: rem-calc(-328px,1080) !important;
+		.swiper-pagination-bullet{
+		    display: block;
+		    width: rem-calc(24px,1080);
+		    height: rem-calc(24px,1080);
+		    border-radius: 30px;
+		    background: #b99e8d;
+		    margin-bottom: rem-calc(56px,1080);
+		    cursor: pointer;
+		    opacity: 1;
+		    &.swiper-pagination-bullet-active{
+		    	background: #5f493b;
+		    }
+		}
+	}
+}
+
+@media screen and (max-width: 330px) {
+	.guarantee-body .app2 p{
+		padding-top: rem-calc(20px,1080);
+	}
+	.guarantee-body .app2 .mod{
+		margin-top: rem-calc(100px,1080);
+	}
+	.guarantee-body .app3{
+		overflow: scroll !important;
+	}
+	.guarantee-body .app3 .stitle{
+		padding: rem-calc(10px 0 10px 135px,1080);
+	}
+	.guarantee-body .app3 p{
+		padding-top: 0;
+		padding-bottom: rem-calc(10px,1080);
+	}
+	.guarantee-body .app5 .mode{
+		margin-top: rem-calc(50px,1080);
+	}
+	.guarantee-body .app5 .mode div{
+		padding-top: 0;
+	}
+	.guarantee-body .app5 .mode div span{
+		padding-bottom: rem-calc(40px,1080);
+	}
+	.guarantee-body .app6 .con{
+		padding-top: rem-calc(20px,1080);
+	}
+	.guarantee-body .app6 .con li{
+		line-height: rem-calc(60px,1080);
+	}
+	.guarantee-body .app6 .con li i{
+		top: rem-calc(16px,1080);
+	}
+	.guarantee-body .app7 .tu{
+		background: url('../../images/safetysapp/tu.png') center top no-repeat;
+		height: rem-calc(460px,1080);
+		width: 100%;
+		background-size: contain;
+	}
+	.guarantee-body .app8 .honor{
+		margin-top: rem-calc(30px,1080);
+	}
+	.guarantee-body .app8 .honor .t{
+		height: rem-calc(100px,1080);
+		line-height: rem-calc(100px,1080);
+	}
+	.guarantee-body .app8 .honor table td div{
+		padding: rem-calc(10px 0 20px,1080);
+	}
+	.guarantee-body .title span{
+		margin-top: rem-calc(50px,1080);
+	}
+	.guarantee-body .app9 img{
+		max-height: 76%;
+	}
+}

@@ -1,0 +1,197 @@
+<div ng-controller="mainCtrl">
+    <div class="sem-finance-wrapper" ng-controller="sitefinanceCtrl">
+        {{listDatas}}
+        <!-- 欢迎栏 -->
+        <div ng-hide="isLoginPage" class="top-global-wrapper">
+            <div class="top-content">
+                <div class="tel">
+                    <i class="global-topphone"></i>
+                    <b>客服热线：<span>{{(a | web).phone}}</span>（工作日：09:00-21:00；   周末及节假日：09:00-18:00）</b>
+                </div>
+                <div class="top-nav">
+                    <a href="{{a|webIE8}}main/home" target="_blank">首页</a><span style="margin-right: 12px;">|</span><a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a><span style="margin-right: 12px;">|</span><a href="{{a|webIE8}}main/jt2/help?menuName=help"
+                        target="_blank">帮助中心</a><span>|</span>
+                    <div class="appCode"><a href="{{a|webIE8}}downloadApp" target="_blank"><i>手机APP</i></a>
+                        <div>
+                            <img src="images/global/app.png">
+                            <p>手机客户端<br>APP下载</p>
+                        </div>
+                    </div><span style="margin-left: -4px;">|</span>
+                    <div class="appCode"><i class="global-topwechat"></i>
+                        <div>
+                            <img src="images/global/wechat.png">
+                            <p>扫一扫<br>关注官方微信</p>
+                        </div>
+                    </div>
+                    <span ng-if="(a | isRegister).register" style="margin: 0 8px 0 -8px;">|</span>
+                    <a ng-if="(a | isRegister).register" href="" ng-click="gotoLoginPage('myAccount')">{{(a | isRegister).user.userName}}</a>
+                    <i ng-if="(a | isRegister).register">，</i>
+                    <a ng-show="(a | isRegister).register" ng-click="userOut()" href="#" class="top-quit">退出</a>
+                </div>
+            </div>
+        </div>
+        <div class="regsem-wrapper semfinance-wrapper">
+            <i class="semfinance-bga sem-finance-a"></i>
+            <i class="semfinance-bga sem-finance-b"></i>
+            <i class="semfinance-bga sem-finance-c"></i>
+            <i class="semfinance-bgb sem-finance-d"></i>
+            <i class="semfinance-bgb sem-finance-e"></i>
+            <i class="semfinance-bgb sem-finance-f"></i>
+            <div class="banner sitebanner">
+                <div class="quick-register-wrap" style="background: none">
+                    <div class="quick-register-wrapper">
+                        <a href="/main/home" class="mainhome"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="semfinance-list">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><i class="finance-icona"></i></td>
+                            <td><i class="finance-iconb"></i></td>
+                            <td><i class="finance-iconc"></i></td>
+                            <td><i class="finance-icond"></i></td>
+                        </tr>
+                        <tr>
+                            <td width="25%">
+                                <span>国企全资控股</span>
+                                <p>强大的国资背景<br>实缴1亿注册资金</p>
+                            </td>
+                            <td width="25%">
+                                <span>资金安全保障</span>
+                                <p>六大还款来源，保证资金安全<br>专业保理担保</p>
+                            </td>
+                            <td width="25%">
+                                <span>专业律师合规支持</span>
+                                <p>两大国内顶级律所<br>全程法律支持</p>
+                            </td>
+                            <td width="25%">
+                                <span>合规监管</span>
+                                <p>根据最新监管细则<br>合规合法经营</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mode semfinance-mode">
+                <div class="semfinance-titlea"></div>
+                <div class="tip">注册即送<span>10</span>万元体验金+<span>666</span>元现金红包</div>
+                <div class="con">
+                    <div class="tear">
+                        <div class="semfinance-send">
+                            <!--  ng-if="!isLogin" -->
+                        </div>
+                        <!-- <div class="semfinance-sendgo" ng-if="isLogin">
+				</div> -->
+                        <div class="semfinance-bag">
+                            <!--  ng-if="!isLogin" -->
+                            <div>注册送<br>大礼包</div>
+                            <p>小手一点，红包到手</p>
+                            <a href="/zhuce" ng-if="!isLogin"></a>
+                            <a href="/main/myAccount/accountHome" ng-if="isLogin"></a>
+                        </div>
+                        <!-- <div class="semfinance-baggo" ng-if="isLogin">
+					<a href="/main/bankBillList"></a>
+				</div> -->
+                    </div>
+                    <div class="list-wrap">
+                        <div class="title"><span>他们都在领红包</span></div>
+                        <div class="table">
+                            <table>
+                                <tr>
+                                    <th width="50%">用户</th>
+                                    <th width="50%">领取时间</th>
+                                </tr>
+                            </table>
+                            <div class="box">
+                                <table>
+                                    <tr ng-repeat="item in financeList" repeat-finish="setTable()">
+                                        <td width="50%">{{item.mobilePhone}}</td>
+                                        <td width="50%">{{item.regdate}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mode modeb">
+                <div class="semfinance-titleb"></div>
+                <div class="tip">强大的国资背景，实缴1亿注册资金</div>
+                <div class="parttwo">
+                    <!-- <div class="box">
+				<div class="title"><i class="semfinance-zhuan"></i>新手专享标</div>
+				<div class="data">
+					<div>12%<i class="finance-bag bag" style="top: -20px;left: 95px;"></i><i>+3%</i></div>
+					<p>历史年化收益率</p>
+				</div>
+				<div class="deadline">起投金额：100元<span>1天</span></div>
+				<a href="" ng-click="alertRegDialog()">立即抢购</a>
+			</div> -->
+                    <div class="box">
+                        <div class="title"><i class="semfinance-shang"></i>小胜30</div>
+                        <div class="data">
+                            <div>6%+4.5%<i></i></div>
+                            <p>历史年化收益率</p>
+                        </div>
+                        <div class="deadline">100元起投<span>35天</span></div>
+                        <a href="/zhuce" ng-if="!isLogin">立即抢购</a>
+                        <a href="/main/bankBillList" ng-if="isLogin">立即抢购</a>
+                    </div>
+                    <div class="box">
+                        <div class="title"><i class="semfinance-shang"></i>中胜60</div>
+                        <div class="data">
+                            <!--  -->
+                            <div>7.5%+3.8%<i></i></div>
+                            <p>历史年化收益率</p>
+                        </div>
+                        <div class="deadline">100元起投<span>60天</span></div>
+                        <a href="/zhuce" ng-if="!isLogin">立即抢购</a>
+                        <a href="/main/bankBillList" ng-if="isLogin">立即抢购</a>
+                    </div>
+                    <div class="box">
+                        <div class="title"><i class="semfinance-shang"></i>中胜180</div>
+                        <div class="data">
+                            <!--  -->
+                            <div>10.5%+1.5%<i></i></div>
+                            <p>历史年化收益率</p>
+                        </div>
+                        <div class="deadline">100元起投<span>180天</span></div>
+                        <a href="/zhuce" ng-if="!isLogin">立即抢购</a>
+                        <a href="/main/bankBillList" ng-if="isLogin">立即抢购</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rules">
+                <div class="rule">
+                    <div class="semfinance-titled"></div>
+                    <ul>
+                        <li><i>1.</i>活动时间：2017年3月17日起，本活动仅针对活动期间内注册的新用户；</li>
+                        <li><i>2.</i>活动期间，新用户注册即送100000元体验金，再送总额666元返现红包，请前往PC端“我的账户-我的福利”或App端“我的账户-我的红包”查看；</li>
+                        <li><i>3.</i>注册送的体验金可通过投资任意标的≥5000元激活（活动标除外），体验金为投资本金，可用于投资体验标，到期本金回收，所获得收益归用户，可随时提现；</li>
+                        <li><i>4.</i>每个身份证仅限参加一次，刷奖及冒用他人身份证、银行卡者一经核实，取消活动资格，所得奖励不予承兑。</li>
+                        <li class="bot">
+                            <p>* 本活动由沪深理财发起并就活动内容作出解释和说明，如有疑问请联系客服 400-031-9909</p>
+                        </li>
+                    </ul>
+                    <div class="step">
+                        <div class="finance-step"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="special-footer reg-footer">
+            <p class="foot-nav"><a href="{{a|webIE8}}main/jt/JSGK?menuName=JSGK" target="_blank">公司简介</a><span>|</span><a href="{{a|webIE8}}main/jt/LXWM?menuName=LXWM" target="_blank">联系我们</a><span>|</span><a href="{{a|webIE8}}main/guarantee?menuName=guarantee" target="_blank">安全保障</a><span>|</span>
+                <a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">常见问题</a><span>|</span><a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a><span>|</span><a href="{{a|webIE8}}main/FLFG" target="_blank">法律保障</a><i>市场有风险，投资需谨慎</i></p>
+            <p class="right">
+
+                沪ICP备15011372号-1 Copyright Reserved © 深圳前海云轩互联网金融服务有限公司 {{v}}</p>
+        </div>
+
+    </div>
+</div>

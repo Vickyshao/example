@@ -1,0 +1,201 @@
+<div ng-controller="mainCtrl">
+    <zt-header></zt-header>
+</div>
+<div class="conference" ng-controller="conferenceCtrl">
+    <div class="pic pic1">
+        <img src="/images/conference/img1.jpg">
+        <a href="main.home" class="logo"></a>
+    </div>
+    <div class="pic pic2">
+        <img src="/images/conference/img2.jpg">
+        <div class="info">
+            <p class="Countdown" ng-if="!theDay">距离发布会现场直播倒计时<span>{{day}}</span>天</p>
+            <p class="Countdown" ng-if="theDay">视频回顾</p>
+            <!--<div class="dianji" ng-click="getVideo()">-->
+            <div class="dianji">
+                <div class="video">
+                    <iframe frameborder="0" width="712" height="422"
+                            src="https://v.qq.com/iframe/player.html?vid=r0548jo5l7v&tiny=0&auto=0"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+               <!-- <embed src="https://imgcache.qq.com/tencentvideo_v1/playerv3/TPout.swf?max_age=86400&v=20161117&vid=r0548jo5l7v&auto=0"
+                       allowFullScreen="true" quality="high" width="480" height="400" align="middle"
+                       allowScriptAccess="always" type="application/x-shockwave-flash">
+                </embed>-->
+            </div>
+            <!-- <video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" data-setup='{}' width="712" height="422" ng-if="video!=undefined && video!=''">
+                <source src="{{video}}" type="application/x-mpegURL">
+            </video> -->
+            <video id="my_video_1" class="video-js vjs-default-skin" controls autoplay="autoplay" data-setup=""
+                   ng-if="showVideo">
+                <source ng-src="{{video}}" type="application/x-mpegURL">
+            </video>
+        </div>
+    </div>
+    <!--图片轮播-->
+    <div class="imgRoundPlay">
+        <div class="ins">
+            <ul class="titles">
+                <li ng-class="{1: 'act'}[playTitle]" ng-click="changePlayTitle(1)">发布会现场</li>
+                <li ng-class="{2: 'act'}[playTitle]" ng-click="changePlayTitle(2)">沪深行政总裁发言</li>
+                <li ng-class="{3: 'act'}[playTitle]" ng-click="changePlayTitle(3)">泰和小贷副总经理发言</li>
+                <li ng-class="{4: 'act'}[playTitle]" ng-click="changePlayTitle(4)">沪深首席市场官发言</li>
+                <li ng-class="{5: 'act'}[playTitle]" ng-click="changePlayTitle(5)">合作仪式</li>
+            </ul>
+
+            <div class="imgs" ng-show="playTitle == 1">
+                <article class="jq22-container">
+                    <div class="caroursel poster-main" data-setting='{ "width":1000, "height":408, "posterWidth":640, "posterHeight":408, "scale":0.8,  "dealy":"5000", "algin":"middle"}'>
+                        <ul class="poster-list">
+                            <li class="poster-item"><img src="/images/conference/11.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/12.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/13.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/14.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/15.jpg" width="100%" height="388"></li>
+                        </ul>
+                        <div class="poster-btn poster-prev-btn">
+                            <img class="leftIcon" ng-click="prev1()" src="/images/conference/leftIcon.png"/>
+                        </div>
+                        <div class="poster-btn poster-next-btn">
+                            <img class="rightIcon" ng-click="next()" src="/images/conference/rightIcon.png"/>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="imgs" ng-show="playTitle == 2">
+                <article class="jq22-container">
+                    <div class="caroursel poster-main" data-setting='{ "width":1000, "height":408, "posterWidth":640, "posterHeight":408, "scale":0.8,  "dealy":"5000", "algin":"middle"}'>
+                        <ul class="poster-list">
+                            <li class="poster-item"><img src="/images/conference/31.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/32.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/33.jpg" width="100%" height="388"></li>
+                        </ul>
+                        <div class="poster-btn poster-prev-btn">
+                            <img class="leftIcon" ng-click="prev1()" src="/images/conference/leftIcon.png"/>
+                        </div>
+                        <div class="poster-btn poster-next-btn">
+                            <img class="rightIcon" ng-click="next()" src="/images/conference/rightIcon.png"/>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="imgs" ng-show="playTitle == 3">
+                <article class="jq22-container">
+                    <div class="caroursel poster-main" data-setting='{ "width":1000, "height":408, "posterWidth":640, "posterHeight":408, "scale":0.8,  "dealy":"5000", "algin":"middle"}'>
+                        <ul class="poster-list">
+                            <li class="poster-item"><img src="/images/conference/41.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/42.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/43.jpg" width="100%" height="388"></li>
+                        </ul>
+                        <div class="poster-btn poster-prev-btn">
+                            <img class="leftIcon" ng-click="prev1()" src="/images/conference/leftIcon.png"/>
+                        </div>
+                        <div class="poster-btn poster-next-btn">
+                            <img class="rightIcon" ng-click="next()" src="/images/conference/rightIcon.png"/>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="imgs" ng-show="playTitle == 4">
+                <article class="jq22-container">
+                    <div class="caroursel poster-main" data-setting='{ "width":1000, "height":408, "posterWidth":640, "posterHeight":408, "scale":0.8,  "dealy":"5000", "algin":"middle"}'>
+                        <ul class="poster-list">
+                            <li class="poster-item"><img src="/images/conference/51.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/52.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/53.jpg" width="100%" height="388"></li>
+                        </ul>
+                        <div class="poster-btn poster-prev-btn">
+                            <img class="leftIcon" ng-click="prev1()" src="/images/conference/leftIcon.png"/>
+                        </div>
+                        <div class="poster-btn poster-next-btn">
+                            <img class="rightIcon" ng-click="next()" src="/images/conference/rightIcon.png"/>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="imgs" ng-show="playTitle == 5">
+                <article class="jq22-container">
+                    <div class="caroursel poster-main" data-setting='{ "width":1000, "height":408, "posterWidth":640, "posterHeight":408, "scale":0.8,  "dealy":"5000", "algin":"middle"}'>
+                        <ul class="poster-list">
+                            <li class="poster-item"><img src="/images/conference/61.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/62.jpg" width="100%" height="388"></li>
+                            <li class="poster-item"><img src="/images/conference/63.jpg" width="100%" height="388"></li>
+                        </ul>
+                        <div class="poster-btn poster-prev-btn">
+                            <img class="leftIcon" ng-click="prev1()" src="/images/conference/leftIcon.png"/>
+                        </div>
+                        <div class="poster-btn poster-next-btn">
+                            <img class="rightIcon" ng-click="next()" src="/images/conference/rightIcon.png"/>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+
+            <!--<div class="imgs" ng-show="playTitle == 1">-->
+                <!--<img class="leftIcon" ng-click="prev1()" src="/images/conference/leftIcon.png"/>-->
+                <!--<ul>-->
+                    <!--<li ng-class="{true:'cur'}[step1 == item.index]" ng-repeat="item in playTitle1" ng-show="step1 == item.index">-->
+                        <!--<div><img ng-src="{{item.picUrl}}"/> </div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<img class="rightIcon" ng-click="next()" src="/images/conference/rightIcon.png"/>-->
+            <!--</div>-->
+
+            <!--<div class="imgs" ng-show="playTitle == 2">-->
+                <!--<img class="leftIcon" ng-click="prev()" src="/images/conference/leftIcon.png"/>-->
+                <!--<ul>-->
+                    <!--<li ng-class="{true:'cur'}[step == item.index]" ng-repeat="item in playTitle2" ng-show="step == item.index">-->
+                        <!--<div><img ng-src="{{item.picUrl}}"/> </div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<img class="rightIcon" ng-click="nextSame()" src="/images/conference/rightIcon.png"/>-->
+            <!--</div>-->
+            <!--<div class="imgs" ng-show="playTitle == 3">-->
+                <!--<img class="leftIcon" ng-click="prev()" src="/images/conference/leftIcon.png"/>-->
+                <!--<ul>-->
+                    <!--<li ng-class="{true:'cur'}[step == item.index]" ng-repeat="item in playTitle3" ng-show="step == item.index">-->
+                        <!--<div><img ng-src="{{item.picUrl}}"/> </div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<img class="rightIcon" ng-click="nextSame()" src="/images/conference/rightIcon.png"/>-->
+            <!--</div>-->
+            <!--<div class="imgs" ng-show="playTitle == 4">-->
+                <!--<img class="leftIcon" ng-click="prev()" src="/images/conference/leftIcon.png"/>-->
+                <!--<ul>-->
+                    <!--<li ng-class="{true:'cur'}[step == item.index]" ng-repeat="item in playTitle4" ng-show="step == item.index">-->
+                        <!--<div><img ng-src="{{item.picUrl}}"/> </div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<img class="rightIcon" ng-click="nextSame()" src="/images/conference/rightIcon.png"/>-->
+            <!--</div>-->
+            <!--<div class="imgs" ng-show="playTitle == 5">-->
+                <!--<img class="leftIcon" ng-click="prev()" src="/images/conference/leftIcon.png"/>-->
+                <!--<ul>-->
+                    <!--<li ng-class="{true:'cur'}[step == item.index]" ng-repeat="item in playTitle5" ng-show="step == item.index">-->
+                        <!--<div><img ng-src="{{item.picUrl}}"/> </div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<img class="rightIcon" ng-click="nextSame()" src="/images/conference/rightIcon.png"/>-->
+            <!--</div>-->
+
+        </div>
+    </div>
+
+
+    <div class="pic pic3"><img src="/images/conference/img3.jpg"></div>
+    <div class="pic pic4"><img src="/images/conference/img4.jpg"></div>
+    <div class="pic pic5"><img src="/images/conference/img5.png"></div>
+    <!--footer部分-->
+    <div class="footer">
+        <p>粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司v1.0.0</p>
+        <h4>温馨提示：市场有风险，投资需谨慎</h4>
+    </div>
+</div>
+
+

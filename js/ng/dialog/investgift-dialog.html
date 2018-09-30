@@ -1,0 +1,139 @@
+<div class="dialog invest-dialog invest-success-dialog" ng-if="investGiftDialog == 'sure'"><!--  ng-if="showDialog == ''" -->
+	<div class="title">确认投资</div>
+	<div class="dialog-content">
+		<p class="stitle">产品信息</p>
+		<div class="con">
+			<dl>
+				<dt>产品名称：</dt>
+				<dd>{{product.fullName}}</dd>
+			</dl>
+			<dl>
+				<dt>项目期限：</dt>
+				<dd><b>{{product.deadline}}</b>天</dd>
+			</dl>
+			<dl>
+				<dt>还款方式：</dt>
+				<dd>{{product.refundType}}到期还本付息</dd>
+			</dl>
+			<dl>
+				<dt>投资金额：</dt>
+				<dd><b>{{product.nowNum | currency:'' }}</b> 元</dd>
+			</dl>
+			<dl>
+				<dt>投资有礼：</dt>
+				<dd>{{prize.name}} {{prize.simpleName}}</dd>
+			</dl>
+		</div> 
+	</div>
+	<div class="dialog-content quan-box">
+		<p class="stitle"></p>
+		<div class="con special-con">
+			<dl>
+				<dt>历史年化收益率：</dt>
+				<dd><b>{{product.rate}}</b>%</dd>
+				<dd ng-if="product.activityRate>0"> + <b>{{product.activityRate}}</b>%</dd>
+			</dl>
+			<dl>
+				<dt>预计收益：</dt>
+				<dd>
+					<strong ng-class="{true: 'oldrate'}[product.activityRate>0]">
+						{{((product.rate)/100 / 360 * product.nowNum * product.deadline) | isNumber2 }} 
+						<font style="color: #555">元</font>
+					</strong>
+					<strong ng-if="product.activityRate>0">
+						{{((product.rate + product.activityRate)/100 / 360 * product.nowNum * product.deadline) | isNumber2 }}
+						<font style="color: #555">元</font>
+					</strong>
+				</dd>
+			</dl>
+			<dl>  
+				<dt>实际付款金额：</dt>
+				<dd>
+					<strong>
+						{{product.nowNum | isNumber2}}
+					</strong> 
+					元
+				</dd>
+			</dl>
+		</div>
+	</div>
+	<form name="payFrom" class="tradepwd-box">
+		<input style="display:none">
+		<input type="password" style="display:none">
+
+        <!-- 交易密码未设置时，显示此dl -->
+		<dl ng-if="!XQ.tpwdFlag"><!--  && isAuth -->
+		    <dt></dt>
+	        <dd>
+	            <div class="input-mod">
+	            	<input ng-if="!XQ.tpwdFlag" class="sub invest-btn mimawei" value="交易密码未设置" ng-disabled="true" />
+	                <div class="qianqushezhi">
+	                    <a ng-click="setTradeCode()" ui-sref="main.myAccount.security">前去设置</a>
+	                </div>
+	            </div>
+	        	
+	        </dd>
+		</dl>
+        
+        <!-- 交易密码已设置，显示此dl -->
+		<dl ng-if="XQ.tpwdFlag"><!--  && isAuth -->
+			<dt>交易密码</dt>
+			<dd>
+				<div class="input-mod">
+					<input class="text" type="password" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'') " ng-model="product.tpwd" name="tpwd"  maxlength="6" minlength="6" required autocomplete="off">
+					<a ng-if="product.type != 4"href="" ng-click="forgetTradeCode()" class="forget">忘记密码？</a>
+					<a ng-if="product.type == 4" href="{{a|webIE8}}main/myAccount/security" target="_blank" class="forget">忘记密码？</a>
+				</div>
+                
+				<input ng-click="onClick('确认投资')" ng-disabled="payFrom.$invalid" type="submit" class="sub" value="确认投资">
+				<a style="margin-left:10px; color:#17a9ef;cursor: pointer;" ng-click="closeDialog()">取消投资</a>
+			</dd>
+		</dl>
+
+		<!-- 存管未授权 -->
+		<!-- <dl ng-if="!isAuth">
+			<dt></dt>
+			<dd>
+				<input ng-click="onClick('确认投资')" ng-disabled="payFrom.$invalid" type="submit" class="sub" value="确认投资">
+				<a style="margin-left:10px; color:#17a9ef;cursor: pointer;" ng-click="closeDialog()">取消投资</a>
+			</dd>
+		</dl> -->
+	</form>
+</div>
+<div class="investgift-dialog-wrapper dialog invest-success-dialog next-invest-dialog" ng-if="investGiftDialog == 'success'">
+	<p class="successtitle">恭喜您！投资成功！</p>
+	<div class="check">免费获得年末豪礼<a href="" ui-sref="main.myAccount.investgift" ng-click="closeDialog()">查看我的豪礼</a></div>
+	<div class="con">投资豪礼 {{prize.name}} {{prize.simpleName}}</div>
+	<div class="address"><!--  ng-if="address == undefined || address == ''" -->
+		<a href="" class="fillin" ui-sref="main.myAccount.investgift" ng-click="closeDialog()">填写收货地址</a>
+		<!-- <div class="myaddress" ng-if="address != undefined && address != ''">
+			<p><span class="name">{{address.name}}</span><span class="phone">{{address.phone}}</span></p>
+			<p class="address">{{address.address}}</p>
+			<a href="" class="change" ui-sref="main.myAccount.investgift" ng-click="closeDialog()">修改收货地址</a>
+		</div> -->
+	</div>
+	<div class="process">
+		<div class="process-line"><img src="images/bill/process-line.png"></div>
+		<div class="process-text">
+			<div><span>投资成功</span><p>{{investTime | date:'yyyy.MM.dd'}}</p></div>
+			<div class="center"><span>产品成立</span><p>{{product.establish | date:'yyyy.MM.dd'}}</p></div>
+			<div><span>产品到期</span><p>{{product.expireDate | date:'yyyy.MM.dd'}}</p></div>
+		</div>
+	</div>
+
+</div>
+
+<div class="dialog invest-success-dialog" ng-if="investGiftDialog == 'error'">
+	<div class="success-content">
+		<i class="dialog-error"></i>
+		<div class="error-text">
+			<span>投资信息</span>
+			<p>{{pText}}<b ng-show="showForgetPwd == true">，请一小时后再试，或<a href="" ng-click="forgetTradeCode()">找回密码</a>解锁</b></p>
+		</div>
+	</div>
+	<div class="process">
+	</div>
+	<a class="invest-btn" href="" ng-click="onReturn()">返回</a>
+</div>
+
+

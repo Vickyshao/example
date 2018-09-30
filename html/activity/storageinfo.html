@@ -1,0 +1,213 @@
+<div ng-controller="mainCtrl">
+    <div class="activity-storageinfo-wrapper" ng-controller="actstorageinfoCtrl">
+        <div ng-hide="isLoginPage" class="top-global-wrapper">
+            <div class="top-content">
+                <div class="tel">
+                    <i class="global-topphone"></i>
+                    <b>客服热线：<span>{{(a | web).phone}}</span>（工作日：09:00-21:00；   周末及节假日：09:00-18:00）</b>
+                </div>
+                <div class="top-nav">
+                    <a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a><span style="margin-right: 12px;">|</span><a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">帮助中心</a><span>|</span>
+                    <div class="appCode"><a href="{{a|webIE8}}downloadApp"><i>手机APP</i></a>
+                        <div>
+                            <img src="images/global/app.png">
+                            <p>手机客户端<br>APP下载</p>
+                        </div>
+                    </div><span style="margin-left: -4px;">|</span>
+                    <div class="appCode"><i class="global-topwechat"></i>
+                        <div>
+                            <img src="images/global/wechat.png">
+                            <p>扫一扫<br>关注官方微信</p>
+                        </div>
+                    </div>
+                    <span ng-if="(a | isRegister).register" style="margin: 0 8px 0 -8px;">|</span>
+                    <a ng-if="(a | isRegister).register" href="" ng-click="gotoLoginPage('myAccount')">{{(a | isRegister).user.userName}}</a>
+                    <i ng-if="(a | isRegister).register">，</i>
+                    <a ng-show="(a | isRegister).register" ng-click="userOut()" href="#" class="top-quit">退出</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="banner"></div>
+        <div class="why-wrap">
+            <div class="title"><i class="storageinfo-tl"></i><span>为什么要银行存管？</span><i class="storageinfo-tr"></i></div>
+            <div class="con">
+                <div class="storageinfo-icon"></div>
+                <div class="content">
+                    <p>依据银监会、工信部、公安部、网信办联合公布的《网络借贷信息中介机构业务活动管理暂行办法》要求，需要互联网金融平台与银行业金融机构对接，对平台资金进行银行存管，具体做法是互联网金融平台在银行业金融机构开设独立账户，用于存放用户的交易资金，银行业金融机构根据用户的指令、合同内容，对用户的交易与资金流水进行划拨和簿记，以保障用户的资金安全。</p>
+                    <p>自上线以来，沪深理财一直主动拥抱监管，此次与四川天府银行合作的银行存管系统正式直连，成为国内少数几家真正意义上实现资金存管的平台之一。</p>
+                </div>
+            </div>
+        </div>
+        <div class="map-wrap">
+            <div class="inner">
+                <div class="title"><i class="storageinfo-tl"></i><span>一张图了解银行存管模式</span><i class="storageinfo-tr"></i></div>
+                <p>存管模式，为投资人资金安全保驾护航</p>
+                <div class="storageinfo-process"></div>
+            </div>
+        </div>
+        <div class="good-wrap">
+            <div class="inner">
+                <div class="title"><i class="storageinfo-wl"></i><span style="color: #fff;">接入银行存管对用户有什么好处？</span><i class="storageinfo-wr"></i></div>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="txt">
+                                <i class="storageinfo-bga"></i>
+                                <p>资金隔离<br>拒绝资金池</p>
+                                <div>接入银行存管后，能有效的将平台运营资金和用户资金进行隔离，避免平台接触用户资金，避免出现资金池。</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="txt">
+                                <i class="storageinfo-bgb"></i>
+                                <p>授权交易<br>资金更安全</p>
+                                <div>接入银行存管后，用户需要单独设立交易密码保障账户安全，资金交易均由用户授权银行操作执行。</div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="txt">
+                                <i class="storageinfo-bgc"></i>
+                                <p>流水可查<br>财富更清晰</p>
+                                <div>接入银行存管后，银行对交易流程进行管理并记录用户资金流水，用户可查询每一笔资金流水的交易记录。</div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="info-wrap">
+            <div class="title"><i class="storageinfo-tl"></i><span>为什么选择四川天府银行？</span><i class="storageinfo-tr"></i></div>
+            <table>
+                <tr>
+                    <td>
+                        <div class="t"><i class="storageinfo-fa"></i>
+                            <p>竞争力强<br>收益率排名靠前</p>
+                        </div>
+                        <div class="c">2017年在英国《银行家》发布的<br>Top 1000 World Banks Year 2016 排行榜上<br>资本收益率排行中国地区银行业第三名</div>
+                    </td>
+                    <td>
+                        <div class="t"><i class="storageinfo-fb"></i>
+                            <p>战略步骤清晰<br>发展成果显著</p>
+                        </div>
+                        <div class="c">2005年成功引进德国战略投资者<br>是中国第一家二级城市引进外资的银行<br>是第一家二级城市跨区域在省会设立分行的银行</div>
+                    </td>
+                    <td>
+                        <div class="t"><i class="storageinfo-fc"></i>
+                            <p>自成立以来<br>创建多项标杆</p>
+                        </div>
+                        <div class="c">自2001年12月成立以来<br>已建设成为有国际金融背景<br>跨区域、有特色的现代精品银行</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="bot-wrap">
+            <div class="inner">
+                <a href="/main/myAccount/accountHome" class="btn" ng-if="isFuiou && isLogin">立即开通银行存管</a>
+                <a href="/main/myAccount/openStorage" class="btn" ng-if="!isFuiou && isLogin">立即开通银行存管</a>
+                <a href="/dl?fromActivity=true" class="btn" ng-if="!isLogin">立即开通银行存管</a>
+                <div class="con">
+                    开通银行存管账户，资金安全系数更高
+                    <div><i class="storageinfo-qa"></i><a href="/main/jt2/YHCG?menuName=YHCG" target="_blank">银行存管常见问题</a></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="footer">
+            <div class="footer-wrapper">
+                <div class="foot-wrap">
+                    <div class="foot-nav">
+                        <div class="nav-mod">
+                            <!-- <i class="common-fot-home"></i> -->
+                            <p>信息披露</p>
+                            <ul>
+                                <li><a href="{{a|webIE8}}main/jt/JSGK?menuName=JSGK" target="_blank">公司简介</a></li>
+                                <!-- <li><a href="{{a|webIE8}}main/jt/FLFG?menuName=FLFG" target="_blank">法律法规</a></li> -->
+                                <li><a href="{{a|webIE8}}main/jt/LXWM?menuName=LXWM" target="_blank">联系我们</a></li>
+                                <li><a href="{{a|webIE8}}main/guarantee?menuName=guarantee" target="_blank">安全保障</a></li>
+                            </ul>
+                        </div>
+                        <div class="nav-mod">
+                            <!-- <i class="common-fot-qa"></i> -->
+                            <p>帮助中心</p>
+                            <ul>
+                                <li><a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">常见问题</a></li>
+                                <li><a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a></li>
+                                <li><a href="{{a|webIE8}}main/FLFG" target="_blank">法律保障</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modeline"></div>
+                    <div class="foot-code">
+                        <div class="mode">
+                            <div class="box"><img src="images/appcode.png" width="100%" height="100%" /></div>
+                            <p>手机客户端<br>APP下载</p>
+                        </div>
+                        <div class="mode">
+                            <div class="box"><img src="images/weichar-code.png" width="100%" height="100%" /></div>
+                            <p>扫一扫<br />关注官方微信</p>
+                        </div>
+                    </div>
+                    <div class="modeline"></div>
+                    <div class="contact-wrap">
+                        <div class="title">
+                            <p>客服热线</p>
+                        </div>
+                        <strong ng-cloak>{{(a | web).phone}}</strong>
+                        <span>工作日:9:00-21:00<br />周末及节假日：9:00-18:00<!-- <br>法定节假日除外<br>客服QQ: --></span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-wrapper">
+                <div class="foot-right">
+                    <div class="right-text"><span>温馨提示：市场有风险，投资需谨慎</span>
+                        <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action" target="_blank" style="color:#b4b4b4;text-decoration:none;"> 	沪ICP备15011372号-1
+				</a>
+                        <!-- Copyright Reserved © 深圳前海云轩互联网金融服务有限公司 {{v}}</div> -->
+                        <ul>
+                            <!-- <li><a id='___szfw_logo___' href='https://credit.szfw.org/CX20161019026653110332.html' target='_blank'><img width="100" height="35" src='images/cert.png' border='0' /></a></li> -->
+                            <li>
+                                <a id="_pingansec_bottomimagesmall_p2p" target="_blank" href="http://si.trustutn.org/info?sn=458161019000540153872&certType=4"><img width="100" height="35" src="images/hyrz.png" /></a>
+                            </li>
+                            <li>
+                                <!-- <a class="spread-partners" href="http://www.sgs.gov.cn/shaic/" target="_blank"> -->
+                                <img src="/images/spread-partners/gsh.png">
+                                <!-- </a> -->
+                            </li>
+                            <li>
+                                <!-- <a class="spread-partners" href="http://www.12377.cn/" target="_blank"> -->
+                                <img src="/images/spread-partners/jbao.png">
+                                <!-- </a> -->
+                            </li>
+                            <li>
+                                <!-- <a class="spread-partners" href="http://www.zx110.org/" target="_blank"> -->
+                                <img src="/images/spread-partners/zxin.png">
+                                <!-- </a> -->
+                            </li>
+                            <li>
+                                <!-- <a class="spread-partners" href="http://www.jytpay.com/" target="_blank"> -->
+                                <img src="/images/spread-partners/pay.png">
+                                <!-- </a> -->
+                            </li>
+                            <li>
+                                <!-- <a class="spread-partners" href="https://www.aliyun.com/" target="_blank"> -->
+                                <img src="/images/spread-partners/aliyun.png">
+                                <!-- </a> -->
+                            </li>
+                            <li>
+                                <!-- <a key="5881d591efbfb01901cd3e3e" logo_size="124x47" logo_type="realname" href="http://v.pinpaibao.com.cn/authenticate/cert/?site=www.hushenlc.cn&amp;at=realname" target="_blank"> -->
+                                <img style="background: #fff;" src="//static.anquan.org/static/outer/image/hy_83x30.png" alt="安全联盟认证" height="35">
+                                <!-- </a> -->
+                            </li>
+
+
+                            <!-- <script type='text/javascript'>(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();</script> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,184 @@
+<div class="liquwang" ng-controller="liquwangCtrl">
+    <div ng-controller="mainCtrl">
+        <zt-header></zt-header>
+    </div>
+
+    <div class="container">
+        <!--logo-->
+        <div class="zc">
+            <img class="banner" src="/images/liquwang/banner.png"/>
+            <!--注册两步-->
+            <div class="cnt">
+                <div class="zcSteptwo">
+                    <div class="quick-register-wrap step1">
+                        <div class="quick-register-wrapper">
+                            <form class="login_form" ng-model="login" name="loginform">
+                                <input style="display:none">
+                                <input type="password" style="display:none">
+                                <div class="quick-register-mod step11">
+                                    <div class="quick-register-box">
+                                        <div class="input-wrap">
+                                            <div class="input-box">
+                                                <div class="input-mod">
+                                                    <b class="icon liqu-phone"></b>
+                                                    <input id="mobilephone" ng-blur="blurID('focusMobilephone',loginform)"
+                                                           ng-change="setMobilephone()"
+                                                           type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/"
+                                                           placeholder="请输入手机号码"
+                                                           onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text"
+                                                           ng-model="login.mobilephone" name="mobilephone" required
+                                                           minlength="11" maxlength="11"/>
+                                                </div>
+                                                <span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone.valid}}{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="reim">
+                                            <a>
+                                                <div class="zcBtn"  ng-click="gostep2(zcMP,loginform)">立即注册 领取新年大礼</div>
+                                            </a>
+                                            <!--<a ng-show="loginform.$valid">-->
+                                                <!--<div class="liqu-reimBtn" ng-click="gostep2($event)"></div>-->
+                                                <!--<div class="liqu-reimBtnHover" ng-click="gostep2($event)"></div>-->
+                                            <!--</a>-->
+                                            <div class="operate">
+                                                已有账号？<a ui-sref="{{hrefUrl}}dl({fromEc: true})" class="">立即登录</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quick-register-mod step22 hide">
+                                    <div class="quick-register-box">
+                                        <!--<div class="input-wrap">
+                                            <div class="change-phone">
+                                                短信验证码已发送至{{login.mobilephone}}，注意查收<a ng-click="gostep1()">更换号码</a>
+                                            </div>
+                                        </div>-->
+                                        <div class="input-wrap" ng-show="showPic">
+                                            <div class="input-box">
+                                                <div class="img-box"><img ng-click="clickInput('changePic',$event)" src="login/validateCode.do"></div>
+                                                <div class="input-mod small-inputmod">
+                                                    <b class="icon liqu-code"></b>
+                                                    <input type="text" placeholder="请输入图形验证码" class="text small-text"
+                                                           ng-model="login.picCode" name="picCode" minlength="4" maxlength="4"
+                                                           required autocomplete="off"/>
+                                                </div>
+                                                <i ng-show="loginform.picCode.$valid"
+                                                   ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.picCode.$valid]"></i>
+                                                <span class="error" ng-show="loginform.picCode.$valid"><font>{{loginform.picCode | zhuCePicCodeError:serverErrorCode}}</font></span>
+                                            </div>
+                                        </div>
+                                        <div class="input-wrap">
+                                            <div class="input-box">
+                                                <!--ng-if="!loginform.mobilephone.$valid"-->
+                                                <a href="" ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)"
+                                                   class="get-code">{{nowTimer ? nowTimer : '获取验证码'}}</a>
+                                                <div class="input-mod small-inputmod">
+                                                    <b class="icon liqu-dx"></b>
+                                                    <input placeholder="请输入短信验证码" type="text" ng-model="login.smsCode"
+                                                           name="smsCode" class="text small-text" maxlength="4"
+                                                           required/>
+                                                </div>
+                                                <span class="error" ng-show="loginform.smsCode.$valid"><font>{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+                                            </div>
+                                        </div>
+                                        <div class="input-wrap">
+                                            <div class="input-box passwd-box">
+                                                <div class="input-mod">
+                                                    <b class="icon liqu-pwd"></b>
+                                                    <input autocomplete="off" ng-show="passwordText" style="width: 446px;"
+                                                           placeholder="设置6-16位登录密码"
+                                                           ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/"
+                                                           ng-mouseout="showPassword(passwordText)" type="text"
+                                                           ng-model="login.passWord" class="text" name="passWord"
+                                                           required/>
+                                                    <input autocomplete="off" ng-hide="passwordText" style="width: 446px;"
+                                                           placeholder="登录密码为6-16位字母数字混合"
+                                                           ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/"
+                                                           type="passWord" ng-model="login.passWord" class="text" maxlength="16"
+                                                           name="passWord" required/>
+                                                </div>
+                                                <i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]"
+                                                   ng-click="showPassword(passwordText)"></i>
+                                                <span class="error" ng-show="loginform.passWord.$valid"><font>{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+                                            </div>
+                                        </div>
+                                        <div class="agreement-box" style="width:516px">
+                                            <label class="agree" for="agreement">我已阅读并同意<a href="/zc" target="_blank" class="server-agreement">《沪深理财注册协议》</a>
+                                                <i ng-model="login.checkbox" class="check-box" id="agreement" ng-click="agree=!agree" ng-class="{checked:agree}" ng-init="agree=true"></i>
+                                            </label>
+                                        </div>
+
+                                        <div class="reim" style="margin-top: 25px;">
+                                            <div ng-disabled="loginform.$invalid">
+                                                <a>
+                                                    <div class="zcBtn" ng-show="agree" ng-disabled="loginform.mobilephone.$invalid" ng-click="LoginClick('zhuCe',loginform)">立即注册 领取新年大礼</div>
+                                                    <div class="zcBtn" ng-show="!agree || loginform.mobilephone.$valid">立即注册 领取新年大礼</div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- <div class="quick-register-wrap step2 hide">
+                        <div class="quick-register-wrapper">
+                            <form class="login_form" ng-model="login" name="loginform">
+                                <input style="display:none">
+                                <input type="password" style="display:none">
+                                
+                            </form>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="imgs">
+            <img src="/images/liquwang/liqu_02.png"/>
+            <img src="/images/liquwang/liqu_03.png"/>
+            <img src="/images/liquwang/liqu_04.png"/>
+            <img src="/images/liquwang/liqu_05.png"/>
+            <img src="/images/liquwang/liqu_06.png"/>
+            <!-- <div class="gzbj">
+                <img src="/images/liquwang/gzbj.png"/>
+            </div> -->
+        </div>
+
+        <!--活动规则-->
+        <div class="ruls">
+            <div class="rulswidth">
+                <div class="liqu-ruls"></div>
+                <br/>
+                <div class="txt">
+                    <div class="name">活动规则
+                        <div class="downArr" ng-class="{true:'downArrOpen'}[downArrIsOpen]" ng-click="openRuls()"></div>
+                    </div>
+                    <ul ng-show="!downArrIsOpen">
+                        <li>1. 活动时间：2018年2月27日-3月28日；</li>
+                        <li>2. 活动对象：活动期间内通过此活动页面注册并投资的新用户；</li>
+                        <li>3. 新用户首投金额满足奖励条件即可获得相应奖励，每人限领一档奖励（新手标及活动标不参与本活动）；</li>
+                        <li>4. 领奖方式：现金奖励将于10个工作日内发放至您的沪深理财账户内（奖励将以红包形式发放，只需投100即可激活变现，可提现可投资）；</li>
+                        <li>5. 每个身份证仅限参加一次，刷奖及冒用他人身份证、银行卡者一经核实，取消活动资格，所得奖励不予承兑；</li>
+                        <li>6. 此活动不与平台其他活动同享。</li>
+                        <li class="last">* 本活动规则解释权归沪深理财所有，如有疑问请联系在线客服或拨打400-031-9909。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--footer部分-->
+        <div class="footer">
+            <p>粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司v1.0.0</p>
+            <h4>温馨提示：市场有风险，投资需谨慎</h4>
+        </div>
+
+        <!--报销攻略-->
+    </div>
+
+    <!--滚动-->
+    <div class="baoxiao">
+        <a ui-sref="liquwangGl" target="_blank"><div class="liqu-baoxiao"></div></a>
+    </div>

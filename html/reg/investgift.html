@@ -1,0 +1,227 @@
+<div class="regsem-wrapper semlist-wrapper semhold-wrapper sem-finance-wrapper seminvest-wrapper" ng-controller="regCtrl">
+	<div class="banner">
+		<div class="quick-register-wrap" style="background: none" ng-controller="zhuceCtrl">
+			<i class="regiphone-banner"></i>
+			<div class="investtotal">已有<span>{{investgiftCount}}</span>人免费领取</div>
+			<div class="quick-register-wrapper">
+				<a href="/main/home" target="_blank" class="mainhome"></a>
+				<form class="login_form" ng-model="login" name="loginform">
+					<input style="display:none">
+					<input type="password" style="display:none">
+					<div class="quick-register-mod">
+						<div class="quick-top">注册领10万元体验金+666元红包</div>
+						<div class="quick-register-box">
+							<div class="input-wrap">
+								<div class="input-box">
+									<div class="input-mod">
+										<b class="icon finance-phone"></b>
+										<input id="mobilephone" type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/"  placeholder="请输入手机号码" ng-blur="blurID('focusMobilephone',loginform,$event)" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text semmobilephone"  ng-model="login.mobilephone" name="mobilephone" required minlength="11" maxlength="11" />
+									</div>
+									<i ng-show="loginform.mobilephone.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.mobilephone.$valid]"></i>
+			                		<span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box semimg-box">
+									<div class="img-box"><img ng-click="clickInput('changePic',$event)" src="login/validateCode.do"></div>
+									<div class="input-mod small-inputmod">
+										<b class="icon finance-code"></b>
+										<input type="text" placeholder="请输入验证码" class="text small-text" ng-model="login.picCode" name="picCode" minlength="4" maxlength="4" required autocomplete="off"/>
+									</div>
+									<i ng-show="loginform.picCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.picCode.$valid]"></i>
+									<span class="error" ng-show="loginform.picCode.$valid"><font>{{loginform.picCode | zhuCePicCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box">
+									<a href="" ng-if="loginform.mobilephone.$valid" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+
+									<a href="" ng-if="!loginform.mobilephone.$valid" ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+									<div class="input-mod small-inputmod">
+										<b class="icon finance-code"></b>
+										<input ng-disabled="!loginform.mobilephone.$dirty || !loginform.picCode.$dirty || loginform.mobilephone.$valid || loginform.picCode.$valid" placeholder="手机验证码"  type="text" ng-model="login.smsCode"  name="smsCode" class="text small-text" maxlength="4" required/>
+									</div>
+									<i ng-show="loginform.smsCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.smsCode.$valid]"></i>
+									<span class="error" ng-show="loginform.smsCode.$valid"><font color="red">{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box passwd-box">
+									<div class="input-mod">
+										<b class="icon finance-mycode"></b>
+										<input autocomplete="off" ng-show="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" ng-mouseout="showPassword(passwordText)" type="text" ng-model="login.passWord" class="text" name="passWord" required />
+										<input autocomplete="off" ng-hide="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" type="passWord" ng-model="login.passWord" class="text" name="passWord" required/>
+									</div>
+									<i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]" ng-click="showPassword(passwordText)" ></i>
+					
+									<i ng-show="loginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.passWord.$valid]"></i>
+									<span  class="error" ng-show="loginform.passWord.$valid"><font>{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="agreement-box">
+								<label for="agreement">我已阅读并同意<a href="/zc" target="_blank" class="server-agreement">《沪深理财注册协议》</a><input type="checkbox" ng-model="login.checkbox" class="check-box" id="agreement" checked /></label>
+							</div>
+							<div class="sub-box" ng-if="!loginform.$invalid" ng-click="LoginClick('zhuCe',loginform)">
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+							</div>
+							<div class="sub-box" ng-if="loginform.$invalid" >
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+							</div>
+
+
+						</div>
+						<div class="choose-box bottom-choose">已有账号？ 
+							<a href="{{hrefUrl}}dl" target="_blank" class="change-btn">【请登录】</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="investbox">
+		<div class="title">
+			<span>好礼钜献</span>
+			<p>单笔投资满一定金额<i> + 0元 </i>即可获得 超值豪礼!</p>
+			<i class="seminvest-linea"></i>
+		</div>
+		<div class="investpro">
+			<div class="detail">
+				<div class="detail-t">好礼钜献专享标</div>
+				<div class="info">
+					<i class="seminvest-add"></i>
+					<table>
+						<tr>
+							<td>
+								<div><span>9</span>%+<span>2.8</span>%<strong>平台贴息</strong></div>
+								<p>历史年化收益率</p>
+							</td>
+							<td>
+								<div><span>150</span><i>天</i></div>
+								<p>产品期限</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div class="line"><i></i><b>投资后</b><i></i></div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="strong"><i class="seminvest-cash"></i></div>
+								<p style="padding-left: 20px;">投资收益</p>
+							</td>
+							<td>
+								<div><i class="seminvest-gift"></i></div>
+								<p style="padding-left: 44px;">超值好礼</p>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<a href="" class="btn" ng-click="alertRegLoginDialog()">立即投资领</a>
+			</div>
+			<div class="pro">
+				<i class="seminvest-jiao"></i>
+				<div class="slide-mode">
+					<div class="slide">
+						<table>
+							<tr>
+								<td><img src="images/sempros/8.png"><a href="" ng-click="alertRegLoginDialog()"></a></td>
+								<td><img src="images/sempros/7.png"><a href="" ng-click="alertRegLoginDialog()"></a></td>
+								<td><img src="images/sempros/6.png"><a href="" ng-click="alertRegLoginDialog()"></a></td>
+								<td><img src="images/sempros/2.png"><a href="" ng-click="alertRegLoginDialog()"></a></td>
+							</tr>
+							<tr>
+								<td><img src="images/sempros/5.png"><a href="" ng-click="alertRegLoginDialog()"></a></td>
+								<td><img src="images/sempros/4.png"><a href="" ng-click="alertRegLoginDialog()"></a></td>
+								<td><img src="images/sempros/3.png"><a href="" ng-click="alertRegLoginDialog()"></a></td>
+								<td><img src="images/sempros/1.png"><a href="" ng-click="alertRegLoginDialog()"></a></td>
+							</tr>
+						</table>
+					</div>
+					<div class="bot">
+						<i class="left" ng-class="{true:'active'}[showLeft]" ng-click="slidePro('left')"></i><i ng-class="{false:'active'}[showLeft]" ng-click="slidePro('right')"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="record-wrap">
+			<div class="record-t">已有{{investgiftCount}}位用户白拿了好礼</div>
+			<div class="listwrap">
+				<table class="table-title">
+					<tr>
+						<th width="27%">用户名</th>
+						<th width="24%">投资金额（元）</th>
+						<th width="23%">投资时间</th>
+						<th width="26%">获得礼品</th>
+					</tr>
+				</table>
+				<div class="list">
+					<table>
+						<tr ng-repeat="item in investList">
+							<td width="27%">{{item.mobilePhone}}</td>
+							<td width="24%"><p>{{item.amount}}</p></td>
+							<td width="23%">{{item.investTime | date:'MM.dd HH:mm:ss'}}</td>
+							<td width="26%" class="gift"><p>{{item.name}}</p></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="icon-wrap">
+		<div class="title">国企全资控股平台 雄厚的实力保障</div>
+		<i class="seminvest-lineb"></i>
+		<div class="icons">
+			<table>
+				<tbody><tr>
+					<td>
+						<div class="con">
+							<p><i class="regiphone-icona"></i></p>
+							<span>国企全资控股</span>
+							<div>强大的国资背景<br>实缴1亿注册资金</div>
+						</div>
+					</td>
+					<td>
+						<div class="con">
+							<p><i class="regiphone-iconb"></i></p>
+							<span>资金安全保障</span>
+							<div>六大还款来源，保证资金安全<br>专业保理担保</div>
+						</div>
+					</td>
+					<td>
+						<div class="con">
+							<p><i class="regiphone-iconc"></i></p>
+							<span>专业律师合规支持</span>
+							<div>两大国内顶级律所<br>全程法律支持</div>
+						</div>
+					</td>
+					<td>
+						<div class="con">
+							<p><i class="regiphone-icond"></i></p>
+							<span>合规监管</span>
+							<div>根据最新监管细则<br>合规合法经营</div>
+						</div>
+					</td>
+				</tr>
+			</tbody></table>
+		</div>
+		<!-- <p class="bot">
+			<a href="/reg/reglist" target="_blank" class="more">了解详情 ＞</a>
+		</p> -->
+	</div>
+	<div class="rules">
+		<div class="rule">
+			<div class="title">活动规则</div>
+			<div class="seminvest-linec"></div>
+			<ul>
+				<li><i>1.</i>本活动专属标为“好礼钜献专享标”。投资本标的单笔满足礼品对应的金额即可免费领取该礼品，同时还额外获得投资收益。</li>
+				<li><i>2.</i>投资本活动标不享受红包等平台其他任何福利。</li>
+				<li><i>3.</i>礼品领取方式：投资成功后，请务必填写正确的收货人姓名、地址及联系方式，平台将按您填写的收货信息寄出礼品，预计投资后15个工作日内可到货。</li>
+				<li class="bot">*   本活动由沪深理财发起并就活动内容作出解释和说明，任何疑问请咨询沪深理财客服：400-031-9909</li>
+			</ul>
+		</div>
+	</div>
+</div> 

@@ -1,0 +1,149 @@
+<div class="pullnewcnt">
+    <div ng-controller="mainCtrl">
+        <zt-header></zt-header>
+    </div>
+
+    <div class="container pullNewSem2 pullNewJd" ng-controller="financeCtrl">
+        <zc-stepone></zc-stepone>
+
+        <div class="gift1 gift">
+            <div class="money02" class="money02"><img src="/images/pullnew/money02.png" ></div>
+            <div class="leftup">
+                <p>好礼一</p>
+                <span>GIFT <br/>ONE</span>
+            </div>
+            <div class="title">新手福利  壕礼多多</div>
+            <div class="info clearfix">
+                <div class="left">
+                    <img src="/images/pullnew/chai.png">
+                    <a ng-click="tomodal()" class="toreceive" ng-if="!isLogin"></a>
+                </div>
+                <div class="right">
+                    <h5>他们都在领红包</h5>
+                    <div class="first clearfix">
+                        <span>用户</span>
+                        <span>领取时间</span>
+                    </div>
+                    <div class="out">
+                        <ul class="userlist">
+                            <li ng-repeat="item in userList" class="clearfix">
+                                <span>{{item.mobilePhone}}</span>
+                                <span>{{item.regdate}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="gift2 gift">
+            <div class="money03" class="money03"><img src="/images/pullnew/money03.png" ></div>
+            <div class="money04" class="money04"><img src="/images/pullnew/money04.png" ></div>
+            <div class="money05" class="money05"><img src="/images/pullnew/money05.png" ></div>
+            <div class="leftup">
+                <p>好礼二</p>
+                <span>GIFT <br/>TWO</span>
+            </div>
+            <div class="title">新手专享标 <br/><span>100元起投，每位用户仅限投一次新手标，机不可失</span></div>
+            <div class="info">
+                <div class="sem2-excu"></div>
+                <div class="text">
+                    <ul>
+                        <li><span>历史年化收益率</span></li>
+                        <li><span>投资期限</span></li>
+                        <li><span>可用新手红包哦</span></li>
+                    </ul>
+                    <ul class="nums">
+                        <li class="rate"><i>12.88{{rate}}</i>%</li>
+                        <li class="days"><i>5{{deadline}}</i>天</li>
+                        <li><img src="images/pullnew/pullnew.png"/></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="btn">
+                <a ng-click="tomodal()" class="toreceive" ng-if="!isLogin"></a>
+                <a ui-sref="main.billDetail({ id: newhand.id })" class="toreceive" ng-if="isLogin"></a>
+                <p>偷偷告诉你，只要未投资过新手标，老用户也能投哦</p>
+            </div>
+        </div>
+        <div class="gift3 gift">
+            <div class="money06" class="money06"><img src="/images/pullnew/money06.png" ></div>
+            <div class="money07" class="money07"><img src="/images/pullnew/money07.png" ></div>
+            <div class="leftup">
+                <p>好礼三</p>
+                <span>GIFT <br/>THREE</span>
+            </div>
+            <div class="title">超值好礼  投即送</div>
+            <div class="info">
+                <div class="clearfix mb54">
+                    <img src="/images/pullnew/jd50.png" class="left">
+                    <img src="/images/pullnew/jd100.png" class="right">
+                </div>
+                <div class="clearfix c_txt_center">
+                    <img src="/images/pullnew/jd300.png">
+                    <!--<img src="/images/pullnew/jd200.png" class="right">-->
+                </div>
+                <div class="clearfix" style="border-top: 1px dashed #ccc; padding-top: 57px; margin-top: 57px;">
+                    <img src="/images/pullnew/JD_200.png" class="left">
+                    <img src="/images/pullnew/JD_1300.png" class="right">
+                </div>
+            </div>
+            <div class="btn">
+                <a ng-click="tomodal()" class="toreceive" ng-if="!isLogin"></a>
+                <a ui-sref="main.bankBillList" class="toreceive" ng-if="isLogin"></a>
+            </div>
+        </div>
+
+
+        <div class="select-out">
+            <div class="select clearfix">
+                <div class="money08" class="money08"><img src="/images/pullnew/money08.png" ></div>
+                <div class="money09" class="money09"><img src="/images/pullnew/money09.png" ></div>
+                <div class="left">
+                    <img src="/images/pullnew/hushen30.png">
+                    <a ng-click="tomodal()" class="toreceive" ng-if="!isLogin"></a>
+                    <a ui-sref="main.bankBillList" class="toreceive" ng-if="isLogin"></a>
+                </div>
+                <div class="right">
+                    <img src="/images/pullnew/hushen60.png">
+                    <a ng-click="tomodal()" class="toreceive" ng-if="!isLogin"></a>
+                    <a ui-sref="main.bankBillList" class="toreceive" ng-if="isLogin"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 活动规则 -->
+        <div class="rule-out">
+            <div class="rule">
+                <div class="title"><img src="/images/pullnew/ruletitle.png"></div>
+                <div class="txt">
+                    <p>1、活动时间：自2017年12月7日起；</p>
+                    <p>2、此活动仅限于本页面完成注册并首次投资的新用户，首次投资成功后即送规则内对应奖励；</p>
+                    <p>3、用户成功注册后，系统将自动发放288元注册红包，请前往PC端“我的账户>我的福利>我的优惠券”或APP端“我的-优惠券”查看；</p>
+                    <p>4、投资时可根据投资金额使用相应红包获得返现，注册红包需在有效期内进行兑现；</p>
+                    <p>5、京东卡（电子卡）将在首次投资成功后，10个工作日内发放至您的注册手机号中；</p>
+                    <p>6、每个身份证仅限参与一次，刷奖及冒用他人身份证、银行卡者一经核实，将会取消其活动资格，所有奖励不予兑换；</p>
+                    <p>7、此活动不与平台其他活动同享（且新手标及活动标不参与本活动）。</p>
+                    <p class="last">* 本活动最终解释权归沪深理财所有，如有疑问请咨询客服：400-031-9909。</p>
+                </div>
+                <img src="/images/pullnew/investflow.png" class="investflow">
+            </div>
+        </div>
+
+        <!-- 体验投资 -->
+        <div class="experience">
+            <div class="inner clearfix">
+                <span>体验投资乐趣 坐享投资收益</span>
+                <a ng-click="toTop()" class="toreceive" ng-if="!isLogin"></a>
+                <a ui-sref="main.bankBillList" class="toreceive" ng-if="isLogin"></a>
+            </div>
+        </div>
+
+        <!--footer部分-->
+        <div class="footer">
+            <p>粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司v1.0.0</p>
+            <h4>温馨提示：市场有风险，投资需谨慎</h4>
+        </div>
+    </div>
+</div>
+
+

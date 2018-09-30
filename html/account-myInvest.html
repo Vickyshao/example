@@ -1,0 +1,308 @@
+<div class="account-myinvest-wrap" ng-controller="myAccountmyInvestCtrl">
+	<div class="account-common-title">我的投资</div>
+	<div class="account-common-con">
+		<table class="invest-table">
+			<tr>
+				<th width="25%">投资总额</th>
+				<th width="25%">已收收益</th>
+				<th width="25%">待收本金总额</th>
+				<th width="25%">待收收益总额</th>
+			</tr>
+			<tr>
+				<td><b>{{userInvest.investAmount}}</b>元</td>
+				<td><b>{{userInvest.profit}}</b>元</td>
+				<td><b>{{userInvest.wprincipal}}</b>元</td>
+                <td><b>{{(userInvest.collectAmount - userInvest.wprincipal)|isNumber2}}</b>元</td>
+			</tr>
+		</table>
+
+		<div class="invest-search">
+        	<div class="trigger">
+                <p ng-click="isActive=0;goPG();" ng-class="{3:'',1:'',0:'active'}[isActive]">募集中的产品<t ng-if="isActive==0">（{{total}}）</t></p><span>|</span>
+           	 	<p ng-click="isActive=1;goPG();" ng-class="{1:'active',0:'',3:''}[isActive]">收益中的产品<t ng-if="isActive==1">（{{total}}）</t></p><span>|</span>
+                <p ng-click="isActive=3;goPG();" ng-class="{3:'active',1:'',0:''}[isActive]">已到期的产品<t ng-if="isActive==3">（{{total}}）</t></p>
+            </div>
+            <div class="invest-list">
+
+                <!-- 募集中的产品 -->
+                <div ng-class="{0:'invest-list-mod active-mod',3:'invest-list-mod',1:'invest-list-mod'}[isActive]">
+                    <!-- 投资 -->
+                    <div class="search-box">
+                        <div class="search-mod active-mod">
+                            <form action="" class="nice-validator n-default" novalidate="novalidate">
+                                <div class="input-box" >
+                                    <p class="tou">投资类型：</p>
+                                    <select ng-model="page.type" ng-options="item.cnvalue for item in types">
+                                        <option value="">全部</option>
+                                        <!-- <option ng-repeat="item in types" value="{{item.code}}">{{item.cnvalue}}</option> -->
+                                    </select>
+                                </div>
+                                <div class="input-box calendar-wrapper">
+                                    <div class="ebcs-calendar">
+                                        <p class="input-group tou">
+                                          <input type="date"  cs-date-to-iso  class="form-control" current-text="今天" clear-text="清空" close-text="关闭" uib-datepicker-popup="{{format}}" ng-model="page.startDate" is-open="popup1.opened" min-date="minDate" max-date="page.endDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"/><span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                          </span>
+                                        </p>
+                                    </div>
+                                    <div class="to">至</div>
+                                    <div class="ebcs-calendar">
+                                        <p class="input-group tou">
+                                          <input type="date"  cs-date-to-iso  class="form-control" current-text="今天" clear-text="清空" close-text="关闭" uib-datepicker-popup ng-model="page.endDate" is-open="popup2.opened" min-date="page.startDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" /><span class="input-group-btn">
+                                          <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                          </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <input class="search-btn" type="button" ng-click="onClick('收益中查询')" value="查询">
+                           </form>
+                        </div>
+                    </div>
+                    
+                    <div class="table-list">
+                        <table class="data-table">
+                            <tr>
+                                <th class="first" width="22%"><div class="title">产品名称</div></th>
+                                <th width="10%">投资日期</th>
+                                <th width="14%">投资金额</th>
+                                <th width="14%">预计收益</th>
+                                <th width="14%">优惠券</th>
+                                <th width="18%">回款方式</th>
+                                <th width="10%">投资状态</th>
+                            </tr>
+                            <tr ng-repeat="item in inProfitProductList">
+                                <td ng-if="item.fullName!='恩弗教育' && item.type!=5" class="first next" style="color: #529cf7;" ui-sref="main.billDetail({ id: item.pid })">{{item.fullName}}<i class="tip" ng-if="item.continuePeriod != undefined">到期续投{{item.continuePeriod}}天标</i></td>
+                                <td ng-if="item.fullName=='恩弗教育' && item.type!=5" class="first next" style="color: #529cf7;" ui-sref="main.enfu({ id: item.pid })">{{item.fullName}}<i class="tip" ng-if="item.continuePeriod != undefined">到期续投{{item.continuePeriod}}天标</i></td>
+                                <td ng-if="item.type==5" class="first next" style="color: #529cf7;" ui-sref="main.financeDetail">{{item.fullName}}<i class="tip" ng-if="item.continuePeriod != undefined">到期续投{{item.continuePeriod}}天标</i></td>
+                                <td>{{item.investTime | date:'yyyy-MM-dd'}}</td>
+                                <td>{{item.amount}}元</td>
+                                <td ng-if="item.status==0"><b>{{item.interest | isNumber2}}</b>元</td>
+                                <td ng-if="item.status!=0"><b>{{item.factInterest | isNumber2}}</b>元</td>
+                                <td>{{!!item.couponValue ? item.couponValue : '未使用'}}</td>
+                                <!--<td>{{(item.repayType | isRepayType).cnvalue}}</td>-->
+                                <td>{{item.returnType}}</td>
+                                <td>{{item.investTime | isInvestTime}}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- 页码 -->
+                    <!-- <div class="page-wrap">
+                        <div class="page-box">
+                            <a href="" class="prev" ng-click="onClick('beforePage',item)">上一页</a><ul><li ng-repeat="item in pages"><a ng-class="{true: 'cur', false: ''}[page.pageOn == item]" ng-click="onClick('currentPage',item)" href="">{{$index + 1 }}</a></li></ul><a href="" class="next" ng-click="onClick('nextPage',item)">下一页</a>
+                        </div>
+                    </div> -->
+                    <div class="page-wrap" ng-if="page.totalPage < 7">
+                        <div class="page-box">
+                            <a href ng-click="onClick('beforePage',a)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',a)" ng-repeat="a in pages"><a href="" ng-class="{true: 'cur', false: ''}[page.pageOn == a]">{{a}}</a></li></ul><a href class="next" ng-click="onClick('nextPage',a)">下一页</a>
+                        </div><span>共{{page.totalPage}}页</span>
+                    </div>
+                    <div ng-if="page.totalPage >= 7">
+                        <div class="page-wrap" ng-if="page.pageOn <= 5">
+                            <div class="page-box">
+                                <a href ng-click="onClick('beforePage',a)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 1]" href="">1</a></li><li ng-click="onClick('currentPage',2)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 2]" href="">2</a></li><li ng-click="onClick('currentPage',3)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 3]" href="">3</a></li><li ng-click="onClick('currentPage',4)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 4]" href="">4</a></li><li ng-click="onClick('currentPage',5)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 5]" href="">5</a></li><li ng-if="page.pageOn == 5" ng-click="onClick('currentPage',6)"><a href="">6</a></li><li ng-if="page.pageOn == 5" ng-click="onClick('currentPage',7)"><a href="">7</a></li><li ng-if="page.totalPage != 0"><span>...</span></li></ul><a href class="next" ng-click="onClick('nextPage',a)">下一页</a>
+                            </div><span>共{{page.totalPage}}页</span>
+                        </div>
+                        <div class="page-wrap" ng-if="page.pageOn > 5 && page.pageOn <= (page.totalPage - 4)">
+                            <div class="page-box">
+                                <a href ng-click="onClick('beforePage',page.pageOn)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a href="">1</a></li><li ng-click="onClick('currentPage',2)"><a href="">2</a></li><li><span>...</span></li><li ng-click="onClick('currentPage',page.pageOn-2)"><a href="">{{page.pageOn-2}}</a></li><li ng-click="onClick('currentPage',page.pageOn-1)"><a href="">{{page.pageOn-1}}</a></li><li ng-click="onClick('currentPage',page.pageOn)"><a href="" class="cur">{{page.pageOn}}</a></li><li ng-click="onClick('currentPage',page.pageOn+1)"><a href="">{{page.pageOn+1}}</a></li><li ng-click="onClick('currentPage',page.pageOn+2)"><a href="">{{page.pageOn+2}}</a></li><li><span>...</span></li></ul><a href class="next" ng-click="onClick('nextPage',page.pageOn)">下一页</a>
+                            </div><span>共{{page.totalPage}}页</span>
+                        </div>
+                        <div class="page-wrap" ng-if="page.pageOn > 5 && page.pageOn > (page.totalPage - 4)">
+                            <div class="page-box">
+                                <a href ng-click="onClick('beforePage',page.pageOn)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a href="">1</a></li><li ng-click="onClick('currentPage',2)"><a href="">2</a></li><li><span>...</span></li><li ng-click="onClick('currentPage',page.totalPage-4)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 4)]" href="">{{page.totalPage-4}}</a></li><li ng-click="onClick('currentPage',page.totalPage-3)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 3)]" href="">{{page.totalPage-3}}</a></li><li ng-click="onClick('currentPage',page.totalPage-2)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 2)]" href="">{{page.totalPage-2}}</a></li><li ng-click="onClick('currentPage',page.totalPage-1)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 1)]" href="">{{page.totalPage-1}}</a></li><li ng-click="onClick('currentPage',page.totalPage)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage)]" href="">{{page.totalPage}}</a></li></ul><a href class="next" ng-click="onClick('nextPage',page.pageOn)">下一页</a>
+                            </div><span>共{{page.totalPage}}页</span>
+                        </div>
+                    </div>
+                                    
+                </div>
+
+            	<!-- 收益中的项目 -->
+            	<div ng-class="{1:'invest-list-mod active-mod',0:'invest-list-mod',3:'invest-list-mod'}[isActive]">
+                    <!-- 投资 -->
+                	<div class="search-box">
+                        <div class="search-mod active-mod">
+                            <form action="" class="nice-validator n-default" novalidate="novalidate">
+                                <div class="input-box" >
+                                    <p class="tou">投资类型：</p>
+                                    <select ng-model="page.type" ng-options="item.cnvalue for item in types">
+                                        <option value="">全部</option>
+                                        <!-- <option ng-repeat="item in types" value="{{item.code}}">{{item.cnvalue}}</option> -->
+                                    </select>
+                                </div>
+                                <div class="input-box calendar-wrapper">
+                                    <div class="ebcs-calendar">
+                                        <p class="input-group tou">
+                                          <input type="date"  cs-date-to-iso  class="form-control" current-text="今天" clear-text="清空" close-text="关闭" uib-datepicker-popup="{{format}}" ng-model="page.startDate" is-open="popup1.opened" min-date="minDate" max-date="page.endDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" /><span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                          </span>
+                                        </p>
+                                    </div>
+                                    <div class="to">至</div>
+                                    <div class="ebcs-calendar">
+                                        <p class="input-group tou">
+                                          <input type="date"  cs-date-to-iso  class="form-control" current-text="今天" clear-text="清空" close-text="关闭" uib-datepicker-popup ng-model="page.endDate" is-open="popup2.opened" min-date="page.startDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" /><span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                          </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <input class="search-btn" type="button" ng-click="onClick('收益中查询')" value="查询">
+                           </form>
+                        </div>
+                    </div>
+                    
+                    <div class="table-list">
+                        <table class="data-table">
+                            <tr>
+                                <th class="first" width="24%"><div class="title">产品名称</div></th>
+                                <th width="11%">投资日期</th>
+                                <th width="11%">投资金额</th>
+                                <th width="10%">待收本息</th>
+                                <th width="10%">优惠券</th>
+                                <th width="10%">尾标奖</th>
+                                <th width="11%">下次回款日期</th>
+                                <th width="18%">操作</th>
+                            </tr>
+                            <tr ng-repeat="item in inProfitProductList">
+                                <td class="first next" style="color: #529cf7;" ui-sref="main.myAccount.investDetail({id: item.id,idx: $index})">{{item.fullName}}<i class="tip" ng-if="item.continuePeriod != undefined">到期续投{{item.continuePeriod}}天标</i></td>
+                                <td>{{item.investTime | date:'yyyy-MM-dd'}}</td>
+                                <td>{{item.factAmount}}元</td>
+                                <td>{{item.collectAmount}}元</td>
+                                <td>{{!!item.couponValue ? item.couponValue : '未使用'}}</td>
+                                <td>{{!!item.bountry ? item.bountry +'元' : '无'}}</td>
+                                <td>{{item.expireDate | date:'yyyy-MM-dd'}}</td>
+                                <td><a href="" ui-sref="main.myAccount.investDetail({id: item.id,idx: $index})">查看明细</a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- 页码 -->
+					<!-- <div class="page-wrap">
+						<div class="page-box">
+                            <a href="" class="prev" ng-click="onClick('beforePage',item)">上一页</a><ul><li ng-repeat="item in pages"><a ng-class="{true: 'cur', false: ''}[page.pageOn == item]" ng-click="onClick('currentPage',item)" href="">{{$index + 1 }}</a></li></ul><a href="" class="next" ng-click="onClick('nextPage',item)">下一页</a>
+                        </div>
+					</div> -->
+                    <div class="page-wrap" ng-if="page.totalPage < 7">
+                        <div class="page-box">
+                            <a href ng-click="onClick('beforePage',a)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',a)" ng-repeat="a in pages"><a href="" ng-class="{true: 'cur', false: ''}[page.pageOn == a]">{{a}}</a></li></ul><a href class="next" ng-click="onClick('nextPage',a)">下一页</a>
+                        </div><span>共{{page.totalPage}}页</span>
+                    </div>
+                    <div ng-if="page.totalPage >= 7">
+                        <div class="page-wrap" ng-if="page.pageOn <= 5">
+                            <div class="page-box">
+                                <a href ng-click="onClick('beforePage',a)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 1]" href="">1</a></li><li ng-click="onClick('currentPage',2)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 2]" href="">2</a></li><li ng-click="onClick('currentPage',3)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 3]" href="">3</a></li><li ng-click="onClick('currentPage',4)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 4]" href="">4</a></li><li ng-click="onClick('currentPage',5)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 5]" href="">5</a></li><li ng-if="page.pageOn == 5" ng-click="onClick('currentPage',6)"><a href="">6</a></li><li ng-if="page.pageOn == 5" ng-click="onClick('currentPage',7)"><a href="">7</a></li><li ng-if="page.totalPage != 0"><span>...</span></li></ul><a href class="next" ng-click="onClick('nextPage',a)">下一页</a>
+                            </div><span>共{{page.totalPage}}页</span>
+                        </div>
+                        <div class="page-wrap" ng-if="page.pageOn > 5 && page.pageOn <= (page.totalPage - 4)">
+                            <div class="page-box">
+                                <a href ng-click="onClick('beforePage',page.pageOn)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a href="">1</a></li><li ng-click="onClick('currentPage',2)"><a href="">2</a></li><li><span>...</span></li><li ng-click="onClick('currentPage',page.pageOn-2)"><a href="">{{page.pageOn-2}}</a></li><li ng-click="onClick('currentPage',page.pageOn-1)"><a href="">{{page.pageOn-1}}</a></li><li ng-click="onClick('currentPage',page.pageOn)"><a href="" class="cur">{{page.pageOn}}</a></li><li ng-click="onClick('currentPage',page.pageOn+1)"><a href="">{{page.pageOn+1}}</a></li><li ng-click="onClick('currentPage',page.pageOn+2)"><a href="">{{page.pageOn+2}}</a></li><li><span>...</span></li></ul><a href class="next" ng-click="onClick('nextPage',page.pageOn)">下一页</a>
+                            </div><span>共{{page.totalPage}}页</span>
+                        </div>
+                        <div class="page-wrap" ng-if="page.pageOn > 5 && page.pageOn > (page.totalPage - 4)">
+                            <div class="page-box">
+                                <a href ng-click="onClick('beforePage',page.pageOn)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a href="">1</a></li><li ng-click="onClick('currentPage',2)"><a href="">2</a></li><li><span>...</span></li><li ng-click="onClick('currentPage',page.totalPage-4)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 4)]" href="">{{page.totalPage-4}}</a></li><li ng-click="onClick('currentPage',page.totalPage-3)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 3)]" href="">{{page.totalPage-3}}</a></li><li ng-click="onClick('currentPage',page.totalPage-2)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 2)]" href="">{{page.totalPage-2}}</a></li><li ng-click="onClick('currentPage',page.totalPage-1)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 1)]" href="">{{page.totalPage-1}}</a></li><li ng-click="onClick('currentPage',page.totalPage)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage)]" href="">{{page.totalPage}}</a></li></ul><a href class="next" ng-click="onClick('nextPage',page.pageOn)">下一页</a>
+                            </div><span>共{{page.totalPage}}页</span>
+                        </div>
+                    </div>
+                                    
+                </div>          
+                
+                <!-- 已到期的项目 -->
+                <div  ng-class="{3:'invest-list-mod active-mod',1:'invest-list-mod',0:'invest-list-mod'}[isActive]">
+                	
+                    <!-- 投资 -->
+                    <div class="search-box">
+                        <div class="search-mod active-mod">
+                            <form action="" class="nice-validator n-default" novalidate="novalidate">
+                                <div class="input-box" >
+                                    <p class="tou">投资类型：</p>
+                                    <select ng-model="page.type" ng-options="item.cnvalue for item in types">
+                                        <option value="">全部</option>
+                                        <!-- <option ng-repeat="item in types" value="{{item.code}}">{{item.cnvalue}}</option> -->
+                                    </select>
+                                </div>
+                                <div class="input-box calendar-wrapper">
+                                    <div class="ebcs-calendar">
+                                        <p class="input-group tou">
+                                          <input type="date" class="form-control" uib-datepicker-popup="{{format}}" ng-model="page.startDate" is-open="popup1.opened" min-date="minDate" max-date="page.endDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"  /><span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                          </span>
+                                        </p>
+                                    </div>
+                                    <div class="to">至</div>
+                                    <div class="ebcs-calendar">
+                                        <p class="input-group tou">
+                                          <input type="date" class="form-control" uib-datepicker-popup ng-model="page.endDate" is-open="popup2.opened" min-date="page.startDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" /><span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                          </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <input class="search-btn" type="button" ng-click="onClick('收益中查询')" value="查询">
+                           </form>
+                        </div>
+                    </div>
+                    
+                    <div class="table-list">
+                        <table class="data-table">
+                            <tr>
+                                <th class="first" width="25%"><div class="title">产品名称</div></th>
+                                <th width="14%">投资日期</th>
+                                <th width="14%">投资金额</th>
+                                <th width="14%">已收本息</th>
+                                <th width="18%">回款方式</th>
+                                <th width="14%">回款时间</th>
+                            </tr>
+                            <tr ng-repeat="item in inProfitProductList">
+                                <td class="first next" style="color: #529cf7;" ui-sref="main.myAccount.investDetail({id: item.id,idx: $index})">{{item.fullName}}<i class="tip" ng-if="item.continuePeriod != undefined">到期续投{{item.continuePeriod}}天标</i></td>
+                                <td>{{item.investTime | date:'yyyy-MM-dd'}}</td>
+                                <td>{{item.factAmount}}元</td>
+                                <td>{{item.receivedAmount}}元</td>
+                                <!-- <td><a ng-if="item.deadline != 1" target="_blank" ng-click="gotoPage({pid: item.pid,uid: item.uid,investId: item.id},$index,true,item)" href="">查看合同</a><b ng-if="item.deadline != 1" class=""> | </b><a target="_blank" ng-if="item.deadline != 1" ng-click="gotoPage({pid: item.pid,uid: item.uid,investId: item.id},$index,false)" href="" class="">下载合同</a></td> -->
+                                <!--<td>{{(item.repayType | isRepayType).cnvalue}}</td>-->
+                                <td>{{item.returnType}}</td>
+                                <td>{{item.expireDate | date:'yyyy-MM-dd'}}</td>
+
+
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- 页码 -->
+                    <!-- <div class="page-wrap">
+                        <div class="page-box">
+                            <a href="" class="prev" ng-click="onClick('beforePage',item)">上一页</a><ul><li ng-repeat="item in pages"><a ng-class="{true: 'cur', false: ''}[page.pageOn == item]" ng-click="onClick('currentPage',item)" href="">{{$index + 1 }}</a></li></ul><a href="" class="next" ng-click="onClick('nextPage',item)">下一页</a>
+                        </div>
+                    </div> -->
+
+                    <div class="page-wrap" ng-if="page.totalPage < 7">
+                        <div class="page-box">
+                            <a href ng-click="onClick('beforePage',a)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',a)" ng-repeat="a in pages"><a href="" ng-class="{true: 'cur', false: ''}[page.pageOn == a]">{{a}}</a></li></ul><a href class="next" ng-click="onClick('nextPage',a)">下一页</a>
+                        </div><span>共{{page.totalPage}}页</span>
+                    </div>
+
+                    <div ng-if="page.totalPage >= 7">
+                        <div class="page-wrap" ng-if="page.pageOn <= 5">
+                            <div class="page-box">
+                                <a href ng-click="onClick('beforePage',a)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 1]" href="">1</a></li><li ng-click="onClick('currentPage',2)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 2]" href="">2</a></li><li ng-click="onClick('currentPage',3)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 3]" href="">3</a></li><li ng-click="onClick('currentPage',4)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 4]" href="">4</a></li><li ng-click="onClick('currentPage',5)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == 5]" href="">5</a></li><li ng-if="page.pageOn == 5" ng-click="onClick('currentPage',6)"><a href="">6</a></li><li ng-if="page.pageOn == 5" ng-click="onClick('currentPage',7)"><a href="">7</a></li><li ng-if="page.totalPage != 0"><span>...</span></li></ul><a href class="next" ng-click="onClick('nextPage',a)">下一页</a>
+                            </div><span>共{{page.totalPage}}页</span>
+                        </div>
+                        <div class="page-wrap" ng-if="page.pageOn > 5 && page.pageOn <= (page.totalPage - 4)">
+                            <div class="page-box">
+                                <a href ng-click="onClick('beforePage',page.pageOn)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a href="">1</a></li><li ng-click="onClick('currentPage',2)"><a href="">2</a></li><li><span>...</span></li><li ng-click="onClick('currentPage',page.pageOn-2)"><a href="">{{page.pageOn-2}}</a></li><li ng-click="onClick('currentPage',page.pageOn-1)"><a href="">{{page.pageOn-1}}</a></li><li ng-click="onClick('currentPage',page.pageOn)"><a href="" class="cur">{{page.pageOn}}</a></li><li ng-click="onClick('currentPage',page.pageOn+1)"><a href="">{{page.pageOn+1}}</a></li><li ng-click="onClick('currentPage',page.pageOn+2)"><a href="">{{page.pageOn+2}}</a></li><li><span>...</span></li></ul><a href class="next" ng-click="onClick('nextPage',page.pageOn)">下一页</a>
+                            </div><span>共{{page.totalPage}}页</span>
+                        </div>
+                        <div class="page-wrap" ng-if="page.pageOn > 5 && page.pageOn > (page.totalPage - 4)">
+                            <div class="page-box">
+                                <a href ng-click="onClick('beforePage',page.pageOn)" class="prev">上一页</a><ul><li ng-click="onClick('currentPage',1)"><a href="">1</a></li><li ng-click="onClick('currentPage',2)"><a href="">2</a></li><li><span>...</span></li><li ng-click="onClick('currentPage',page.totalPage-4)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 4)]" href="">{{page.totalPage-4}}</a></li><li ng-click="onClick('currentPage',page.totalPage-3)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 3)]" href="">{{page.totalPage-3}}</a></li><li ng-click="onClick('currentPage',page.totalPage-2)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 2)]" href="">{{page.totalPage-2}}</a></li><li ng-click="onClick('currentPage',page.totalPage-1)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage - 1)]" href="">{{page.totalPage-1}}</a></li><li ng-click="onClick('currentPage',page.totalPage)"><a ng-class="{true: 'cur', false: ''}[page.pageOn == (page.totalPage)]" href="">{{page.totalPage}}</a></li></ul><a href class="next" ng-click="onClick('nextPage',page.pageOn)">下一页</a>
+                            </div><span>共{{page.totalPage}}页</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+	</div>
+</div>

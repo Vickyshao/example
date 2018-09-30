@@ -1,0 +1,17 @@
+<div class="side-mode" ng-model="invests">
+    <div class="side-title">
+        <a href="" class="more">更多</a>{{invests.investTitle}}
+    </div>          
+	<div class="invest-side-list">
+		<div class="invest-title">
+			<p class="name">用户名</p>
+			<p class="num">投资金额</p>
+		</div>
+		<ul>
+			<li  ng-repeat="item in invests.listDatas">
+				<span class="name">{{item.mobilephone | limitTo:3}}*****{{item.mobilephone | limitTo:-3}}</span>
+				<span class="num"><b>{{item.amount | currency:'￥'}}</b></span>
+			</li>
+		</ul>
+	</div>
+</div>

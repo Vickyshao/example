@@ -1,0 +1,186 @@
+<div class="finance-wrapper poster-wrapper" ng-controller="financeCtrl">
+	<div class="banner">
+		<div class="quick-register-wrap" style="background: none">
+			<div class="quick-register-wrapper">
+				<form class="login_form" ng-model="login" name="loginform">
+					<input style="display:none">
+					<input type="password" style="display:none">
+					<div class="quick-register-mod">
+						<div class="quicktop">注册领10万元体验金+666元红包</div>
+						<div class="quick-register-box">
+							<div class="input-wrap">
+								<div class="input-box">
+									<div class="input-mod">
+										<b class="icon finance-phone"></b>
+										<input id="mobilephone" type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/"  placeholder="请输入手机号码" ng-blur="blurID('focusMobilephone',loginform)" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text"  ng-model="login.mobilephone" name="mobilephone" required minlength="11" maxlength="11" />
+									</div>
+									<i ng-show="loginform.mobilephone.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.mobilephone.$valid]"></i>
+			                		<span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box">
+									<div class="img-box"><img ng-click="clickInput('changePic',$event)" src="login/validateCode.do"></div>
+									<div class="input-mod small-inputmod">
+										<b class="icon finance-code"></b>
+										<input type="text" placeholder="请输入验证码" class="text small-text" ng-model="login.picCode" name="picCode" minlength="4" maxlength="4" required autocomplete="off"/>
+									</div>
+									<i ng-show="loginform.picCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.picCode.$valid]"></i>
+									<span class="error" ng-show="loginform.picCode.$valid"><font>{{loginform.picCode | zhuCePicCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box">
+									<a href="" ng-if="loginform.mobilephone.$valid" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+
+									<a href="" ng-if="!loginform.mobilephone.$valid" ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+									<div class="input-mod small-inputmod">
+										<b class="icon finance-code"></b>
+										<input ng-disabled="!loginform.mobilephone.$dirty || !loginform.picCode.$dirty || loginform.mobilephone.$valid || loginform.picCode.$valid" placeholder="手机验证码"  type="text" ng-model="login.smsCode"  name="smsCode" class="text small-text" maxlength="4" required/>
+									</div>
+									<i ng-show="loginform.smsCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.smsCode.$valid]"></i>
+									<span class="error" ng-show="loginform.smsCode.$valid"><font color="red">{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box passwd-box">
+									<div class="input-mod">
+										<b class="icon finance-mycode"></b>
+										<input autocomplete="off" ng-show="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" ng-mouseout="showPassword(passwordText)" type="text" ng-model="login.passWord" class="text" name="passWord" required />
+										<input autocomplete="off" ng-hide="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" type="passWord" ng-model="login.passWord" class="text" name="passWord" required/>
+									</div>
+									<i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]" ng-click="showPassword(passwordText)" ></i>
+					
+									<i ng-show="loginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.passWord.$valid]"></i>
+									<span  class="error" ng-show="loginform.passWord.$valid"><font>{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="agreement-box">
+								<label for="agreement">我已阅读并同意<a href="/zc" target="_blank" class="server-agreement">《沪深理财注册协议》</a><input type="checkbox" ng-model="login.checkbox" class="check-box" id="agreement" checked /></label>
+							</div>
+							<div class="sub-box" ng-if="!loginform.$invalid" ng-click="LoginClick('zhuCe',loginform)">
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即领取" />
+							</div>
+							<div class="sub-box" ng-if="loginform.$invalid" >
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即领取" />
+							</div>
+						</div>
+							<div class="bot">已有账号，【 <a href="/dl">请登录</a> 】</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="featuremode">
+		<table>
+			<tr class="top">
+				<td><i class="poster-icona"></i></td>
+				<td><i class="poster-iconb"></i></td>
+				<td><i class="poster-iconc"></i></td>
+				<td><i class="poster-icond"></i></td>
+			</tr>
+			<tr>
+				<td>
+					<span>国企全资控股</span>
+					<p>强大的国资背景<br>实缴1亿注册资金</p>
+				</td>
+				<td>
+					<span>资金安全保障</span>
+					<p>六大还款来源，保证资金安全<br>专业保理担保</p>
+				</td>
+				<td>
+					<span>专业律师合规支持</span>
+					<p>两大国内顶级律所<br>全程法律支持</p>
+				</td>
+				<td>
+					<span>合规监管</span>
+					<p>根据最新监管细则<br>合规合法经营</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="new-wrapper">
+		<div class="new-mode">
+			<div class="mode">
+				<div class="title"><i class="poster-newicon"></i><span>新手专享标</span></div>
+				<div class="list">
+					<div class="data">
+						<div class="mod left">
+							<span>12<b>%</b>+3<b>%</b></span>
+							<p>历史年化收益率</p>
+						</div>
+						<div class="mod">
+							<span>1<i>天</i></span>
+							<p>投资期限</p>
+						</div>
+					</div>
+					<i class="poster-add"></i>
+					<div class="reinvest">
+						<i class="poster-bag"></i>
+						<p>续投红包</p>
+					</div>
+				</div>
+				<a href="" class="btn" ng-click="focusMobile()">立即抢购</a>
+				<p class="bot">仅限未投资过任何标的的用户购买（体验标除外），限投一次</p>
+			</div>
+			<div class="invest">
+				<div class="title"><span>{{xsCount}}</span>人已参与</div>
+				<div class="box">
+					<ul>
+						<li ng-repeat="item in xsInvestList"><span>投资了{{item.amount}}元</span>{{item.mobilephone}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="pink">
+		<div class="center-wrap centera">
+			<div class="txt">
+				<span>产品描述</span>
+				<div class="con">针对人群：针对在沪深理财注册的新用户<br>产品特点：周期短、收益高，续投还可领大红包！<br>参与规则：起投金额100元，仅能购买1次</div>
+			</div>
+			<i class="poster-bga"></i>
+		</div>
+	</div>
+	<div class="center-wrap centerb">
+		<div class="txt">
+			<span>回款方式</span>
+			<div class="con">新手标1天到期，到期后本金<br>收益返回到个人账户，可随时随地提现、再投资<br>*注：1.选择续投的用户1天后只返还收益，本金续投。<br>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;2.现金红包投资成功后即可提现。</div>
+		</div>
+		<i class="poster-bgb"></i>
+	</div>
+	<div class="pink">
+		<div class="center-wrap centerc">
+			<div class="txt">
+				<span>计算收益</span>
+				<div class="con">以100,000元举例：<br>12%+3%收益，1天后就到手！<br>收益多赚35.4元</div>
+			</div>
+			<i class="poster-bgc"></i>
+		</div>
+	</div>
+	<div class="center-wrap centerd">
+		<div class="txt">
+			<span>资金安全</span>
+			<div class="con">整个交易流程，沪深理财不触碰用户资金，严格的风<br>控体系确保票据真实、合法、有效<br>六重还款来源，保证资金安全</div>
+		</div>
+		<i class="poster-bgd"></i>
+	</div>
+	<div class="pink">
+		<div class="partfour">
+			<div class="finance-titlethings poster-title"></div>
+			<div class="fourbox">
+				<div class="device">
+					<!-- <a class="arrow-left" href="#"></a>  -->
+					<!-- <a class="arrow-right" href="#"></a> -->
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide"><img src="images/financeimg/d.jpg"></div>
+							<!-- <div class="swiper-slide"><img src="images/financeimg/c.jpg"></div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="poster-totop" ng-click="toTop()"></div>
+</div>

@@ -1,0 +1,11 @@
+
+<!-- 投资时超出风险评估结果提示 -->
+<div class="risk-assess-result-tip">
+	<i class="top"></i>
+	<img class="icoClose" src="/images/riskAssess/close.png" ng-click="closeDialog()"/>
+	<h3>{{product.riskname}}</h3>
+	
+	<p class="info4">该标的风险评测类型为<span>{{product.riskname}}</span>，您的评测类型为<span>{{myType}}</span>，还不能进行投资。您可以重新评测，符合标的的风险评测类型后可以进行投资。</p>
+	<a class="btn1" ng-click="closeDialog()" ui-sref="main.riskAssess">立即评测</a>
+
+</div>

@@ -1,0 +1,365 @@
+@import "global/*.png";
+$global-sprite-dimensions: true;
+@include all-global-sprites();
+
+html,body {
+	outline: none;
+}
+.top-global-wrapper{
+	width: 100%;
+	height: 39px;
+	line-height: 39px;
+	background: #f5f5f5;
+	font-size: 12px;
+	.top-content{
+		@include modestyle;
+		height: 40px;
+		.tel{
+			float: left;
+			height: 40px;
+			color: #000;
+			i{
+				float: left;
+				margin: 12px 6px 0 16px;
+			}
+			b{
+				float: left;
+				color: #000;
+				span{
+					font-weight: bold;
+				}
+			}
+			.appCode{
+				display: inline-block;
+				height: 38px;
+				position: relative;
+				cursor: pointer;
+				div{
+					position: absolute;
+					top: 39px;
+					right: -1px;
+					width: 105px;
+					border:1px solid #f5f5f5;
+					border-top: none;
+					background: #fff;
+					z-index: 9999;
+					text-align: center;
+					display: none;
+					img{
+						display: block;
+						margin: 12px auto 0;
+					}
+					p{
+						line-height:20px;
+						color: #8d8d8d;
+						padding: 5px 0;
+					}
+				}
+				.global-topwechat{
+					display: inline-block;
+					vertical-align: top;
+					margin-top: 13px;
+				}
+				&:hover{
+					text-decoration: none;
+					background:#fff;
+					i{
+						text-decoration: underline;
+					}
+					div{
+						display: block;
+					}
+				}
+			}
+		}
+		.top-nav{
+			float: right;
+			span{
+				margin: 0 -3px 0 12px;
+				font-family: '宋体';
+				color: #ccc;
+				&.verLine {
+					margin-left: -4px;
+					margin-right: 4px;
+				}
+			}
+			a{
+				color: #444242;
+				span.verLine {
+					margin-right: 12px;
+				}
+				&:hover{
+					color: $common-blue;
+				}
+				&.pad12 {
+					padding: 0 12px;
+				}
+				&.padR0 {
+					padding-right: 0;
+				}
+			}
+			.appCode{
+				display: inline-block;
+				height: 100%;
+				position: relative;
+				cursor: pointer;
+				margin: 0 7px;
+				&.pad12 {
+					padding: 0 12px;
+				}
+				&.padR0 {
+					padding-right: 0;
+				}
+				div{
+					position: absolute;
+					top: 39px;
+					right: -1px;
+					width: 105px;
+					border:1px solid #f5f5f5;
+					border-top: none;
+					background: #fff;
+    				z-index: 9999;
+    				text-align: center;
+					display: none;
+					img{
+						display: block;
+						margin: 12px auto 0;
+					}
+					p{
+						line-height:20px;
+						color: #8d8d8d;
+						padding: 5px 0;
+					}
+				}
+				.global-topwechat{
+					display: inline-block;
+					vertical-align: top;
+					margin-top: 13px;
+				}
+				&:hover{
+					text-decoration: none;
+					background:#fff;
+					i{
+						text-decoration: underline;
+					}
+					div{
+						display: block;
+					}
+				}
+			}
+			.global-gift {
+				@include inline-block(top);
+				margin-top: 11px;
+				margin-right: 6px;
+			}
+		}
+	}
+}
+
+// 导航
+.globalheader-wrapper{
+	width: 100%;
+	background: #fff;
+}
+.globalheader-wrap{
+	@include modestyle;
+	height: 80px;
+	clear: both;
+	zoom: 1;
+	position: relative;
+	.christmaslogo{
+		position: absolute;
+		left: 389px;
+		top: 1px;
+		width: 70px;
+		height: 79px;
+		background: image-url('christmaslogo.png') no-repeat;
+		z-index: 10;
+	}
+	.logo-wrap{
+		float: left;
+		padding-top: 23px;
+		cursor: pointer;
+		img{
+			float: left;
+			margin-top: -5px;
+			width: 157px;
+			height: auto;
+			&.slogo {
+				width: 99px;
+				height:auto;
+			}
+		}
+		span{
+			width: 1px;
+			height: 33px;
+			font-size: 0;
+			line-height: 0;
+			background: #ccc;
+			float: left;
+			margin: 0 15px 0 16px;
+		}
+		.gzkgLogo {
+			float: left;
+			width: 99px;
+			height: auto;
+			i{
+				float: left;
+				margin-top: -7px;
+
+			}
+		}
+	}
+	.nav-box{
+		float: right;
+		padding-top: 28px;
+		ul{
+			float: left;
+			@include horizontal-list(24px);
+			overflow: visible;
+			li {
+				padding-top: 5px;
+				line-height: 24px;
+				box-sizing: border-box;
+			}
+			a{
+				font-size: 16px;
+				color: #565656;
+				.drop{
+					float: right;
+					width: 9px;
+					height: 5px;
+					background: image-url('drop-icons.png') no-repeat 0 0;
+					//margin: 15px 22px 0 6px;
+					margin: 11px 21px 0 6px;
+				}
+				&:hover,
+				&.active {
+					color: $common-blue;
+					text-decoration: none;
+					.drop {
+						//background: image-url('up-icons.png') no-repeat 0 0;
+						transform: rotate(180deg);
+					}
+				}
+			}
+			li.account{
+				position: relative;
+				height: 33px;
+				padding-right: 0;
+				width: 124px;
+				box-sizing: border-box;
+				/*  菜单栏信息披露hover样式
+				&:hover{
+					max-width: 124px;
+					background: #fff;
+					border: 1px solid #eaeaea;
+					border-bottom-width: 0;
+					box-sizing: border-box;
+					a{
+						color: $common-blue;
+					}
+					.con{
+						display: block;
+						a{
+							color: #666;
+							&:hover{
+								color: #fff;
+							}
+						}
+					}
+					.drop{
+						//background-position: 0 -7px;
+						transform: rotate(180deg);
+					}
+				}*/
+			}
+			.con{
+				display: none;
+				position: absolute;
+				width: 122px;
+				height: 135px;
+				background: #fff;
+				z-index: 110;
+				overflow: hidden;
+				border-top: 1px solid #529cf7;
+				right: 0;
+				top: 31px;
+				border: 1px solid #eaeaea;
+				padding-top: 20px;
+				left: -1px;
+				border-top-width: 0;
+				div{
+					margin-bottom: -1px;
+				}
+				a{
+					display: block;
+					width: 100%;
+					height: 32px;
+					line-height: 32px;
+					text-align: center;
+					font-size: 14px;
+					color: #666;
+					//border-bottom: 1px solid #dedede;
+					margin: 0 auto;
+					&:hover{
+						color: #fff;
+						background: $common-blue;
+
+					}
+				}
+			}
+		}
+		.nologin{
+			float: left;
+			padding-left: 20px;
+			.login{
+				height: 31px;
+				width: 57px;
+				text-align: center;
+				font-size: 14px;
+				color: $common-blue;
+				border-radius: 5px;
+				border: 1px solid $common-blue;
+				float: left;
+				line-height: 31px;
+				transition: all .1s ease;
+				&:hover{
+					background: $common-blue;
+					color: #fff;
+					text-decoration: none;
+				}
+			}
+			.register-btn {
+				background: red;
+				padding: 0 10px;
+				font-size: 12px;
+				color: #fff;
+
+			}
+			.register{
+				padding: 0 15px;
+				text-align: center;
+				font-size: 14px;
+				color: #fff;
+				border-radius: 5px;
+				float: left;
+				line-height: 34px;
+				background: $common-blue;
+				margin-left: 13px;
+				&:hover{
+					background: darken($common-blue,5%);
+					text-decoration: none;
+				}
+			}
+		}
+	}
+	
+	//绑卡无菜单时
+	.nonav{
+		float:right;
+		img{
+			margin-top:18px;
+		}
+	}
+}

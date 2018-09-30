@@ -1,0 +1,59 @@
+/* Welcome to Compass. Use this file to write IE specific override styles.
+ * Import this file using the following HTML or equivalent:
+ * <!--[if IE]>
+ *   <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+ * <![endif]--> */
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+
+
+
+
+.menu{
+	@include border-radius(1px);
+}
+
+body{
+	background: $background
+}
+.overflow {
+    overflow: hidden;
+};
+/* 容器背景 */
+@mixin container($w,$h,$mag,$c){
+	width: $w;
+	height: $h;
+	margin: $mag;
+	background: $c;
+};
+/* 窗体 */
+@mixin window($w,$h,$mag,$p,$c,$b){
+	width: $w;
+	height: $h;
+	margin: $mag;
+	padding: $p;
+	background: $c;
+	border: $b;
+};
+
+.log-all {
+    @include container(100%,395px,0 auto,#fff);
+    overflow:hidden;
+};
+.login-all {
+    @include window(80%,300px,20px auto,20px,#fff,#acacac 1px solid);
+};
+
+.input-box .in-text {
+    font-size: 15px;
+    width: 321px;
+    height: 24px;
+    border: #aeaeae 1px solid;
+    padding-left: 5px;
+    line-height: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+};

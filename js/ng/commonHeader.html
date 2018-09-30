@@ -1,0 +1,36 @@
+<!-- 欢迎栏 -->
+<div ng-hide="isLoginPage" class="top-global-wrapper">
+    <div class="top-content">
+        <div class="tel">
+            <i class="global-topphone"></i>
+            <b>客服热线：<span>{{(a | web).phone}}</span> (周一至周五 09:00-18:00）</b>
+            <div class="appCode"><i class="global-topwechat"></i>
+                <div>
+                    <img src="images/global/wechat.png">
+                    <p>扫一扫<br>关注官方微信</p>
+                </div>
+            </div>
+        </div>
+        <div class="top-nav">
+            <!--<a href="{{a|webIE8}}main/home" target="_blank">首页</a><span class="verLine">|</span>-->
+            <a class="pad12" href="{{a|webIE8}}inviteFriends" target="_blank"><i class="global-gift"></i>邀请有礼</a><span class="verLine pad12">|</span>
+            <a class="pad12 padR0" href="{{a|webIE8}}main/guide" target="_blank">新手指引</a><span>|</span>
+            <a class="pad12 padR0" href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">帮助中心</a><span>|</span>
+            <div class="appCode pad12" style="margin-right: -4px;"><a href="{{a|webIE8}}downloadApp"><i>APP下载</i></a>
+                <div>
+                    <img src="images/global/app.png">
+                    <p>手机客户端<br>APP下载</p>
+                </div>
+            </div>
+            <!--<span>|</span>-->
+            <!--<a ng-if="!(a | isRegister).register" href="/dl" class="register">　登录</a>-->
+            <span ng-if="(a | isRegister).register" style="margin: 0 8px 0 -8px;">|</span>
+
+            <a ng-if="(a | isRegister).register" href="" ng-click="gotoLoginPage('myAccount')">{{(a |
+                isRegister).user.userName}}</a>
+            <i ng-if="(a | isRegister).register">，</i>
+            <a ng-show="(a | isRegister).register" ng-click="userOut()" href="#" class="top-quit">退出</a>
+        </div>
+    </div>
+</div>
+<!-- 欢迎栏结束 -->

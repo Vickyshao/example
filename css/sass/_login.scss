@@ -1,0 +1,696 @@
+$login-icons-sprite-dimensions: true;
+@import "login-icons/*.png";
+@include all-login-icons-sprites();
+$login-spacing:3px;
+
+.loginpage{
+	width: 100%;
+	height: 101px;
+	position: relative;
+	background: #fff;
+	.bot{
+		bottom: 0;
+		width: 100%;
+		height: 1px;
+		font-size: 0;
+		line-height: 0;
+		background: $globalColor;
+		border-top: 1px solid #ffbfa0;
+		border-bottom: 1px solid #feb693;
+		display: block;
+		position: absolute;
+	}
+	.top-content-wrapper{
+		display: none;
+	}
+	.header-wrap{
+		.logo-wrap{
+			padding-top: 17px;
+		}
+		.nav-box{
+			display: none;
+		}
+		.feature-list{
+			padding: 21px 0 0 56px;
+			float: left;
+			width: auto;
+			display: block;
+			ul{
+				@include horizontal-list(10px);
+				li{
+					white-space: normal;
+					width: 192px;
+					i{
+						width: 60px;
+						height: 60px;
+					}
+					div{
+						padding-left: 66px;
+						span{
+							font-size: 16px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+.quick-register-wrap{
+	margin: 0 auto;
+	min-height: 576px;
+	background: image-url('loginbg.png') no-repeat center top;
+	&.quick-register-wrap-old{
+		background:#F3FBFF image-url('invitelinkbg.png') no-repeat center top;
+	}
+	&.invite-register-wrap{
+		background: image-url('invitelinkbg.png') no-repeat center top;
+	}
+	.common-form-ok{
+		top: 13px;
+		left: 334px;
+	}
+	.error{
+		position: absolute;
+		top: 41px;
+		left: 19px;
+	}
+	/* .wqq-quick-register-wrap{
+		width:1200px;
+		height:1000px;
+		margin:0 auto;
+		position:relative;
+    } */
+    /* 登录的背景暂时和背景色合并 */
+	// i.register-banner{
+	// 	width: 646px;
+	// 	height: 492px;
+	// 	position: absolute;
+	// 	left:0;
+	// 	top: 22px;
+	// 	background: image-url('register-bannerx.png');
+	// }
+	i.register-banner2{
+		width: 728px;
+		height: 561px;
+		position: absolute;
+		left:0;
+		top: 4px;
+		background: image-url('register-bannernew.png');
+	}
+	.quick-register-wrapper{
+	    padding: 20px 0 20px;
+		float:right;
+	}
+	.quick-register-mod{
+		width: 388px;
+		border: 1px solid #dcdcdc;
+		border-radius: 3px;
+		background:#fff;
+		.title{
+		    height: 37px;
+		    padding-top: 47px;
+			.throung{
+			    width:100%;height:1px;
+			    background:#dedede;
+		    }
+			.p-box{
+				width:109px;height:auto;
+				background:#fff;
+				margin-left:26px;
+				margin-top:-20px;
+				p{  
+					display:block;
+					font-size: 22px;
+					color: $globalColor;
+					text-align:center;
+			    }
+			}
+		}
+		.quick-register-box{
+		    margin: 0 30px;
+		    padding-top: 20px;
+		}
+	}
+	.quick-login-mod{
+		width: 421px;
+		border: 1px solid #dcdcdc;
+		background:#fff;
+		margin-top: 45px;
+		.title{
+				height: 46px;
+			    padding-top: 35px;
+			    padding-bottom: 21px;
+				.throung{
+				    width:100%;height:1px;
+				    background:#dedede;
+			    }
+				.p-box{
+					width:109px;height:auto;
+					background:#fff;
+					margin-left:26px;
+					margin-top:-20px;
+					p{  
+						display:block;
+						font-size: 22px;
+						color: $globalColor;
+						text-align:center;
+				    }
+				}
+		}
+		.quick-register-box{
+			padding: 0 50px 0 51px;
+			
+			.text{
+				width: 298px !important;
+				&.small-text{
+					width: 192px !important;
+				}
+			}
+		}
+		.sub-box{
+			.sub-btn{
+				width: 320px !important;
+			}
+		}
+
+	}
+	.quick-register-box{
+
+		.title{
+			height: 46px;
+			border-bottom: 1px solid #eaeaea;
+			padding-top: 20px;
+			p{
+				font-size: 22px;
+				color: #45abf9;
+			}
+
+		}
+		.input-box{
+			padding-bottom: 24px;
+			position: relative;
+			&.voice-box{
+				padding-bottom: 10px;
+				margin-top: -10px;
+				.error{
+					position: relative;
+				    vertical-align: top;
+				    margin-right: -28px !important;
+				    top: inherit;
+				    left: inherit;
+				    padding-left: 16px;
+				    background-position: 1px 2px;
+				}
+			}
+			.common-form-error,
+			.common-form-ok,
+			i{
+				position: absolute;
+				top: 43px;
+				left: 0;
+				margin: 0;
+			}
+			&.recommend-box{
+				.common-form-error{
+					top: 64px;
+				}
+				.error{
+					top: 62px;
+				}
+			}
+			.text{
+				border-radius: 2px;
+				width: 306px;
+				height: 24px;
+				line-height: 24px;
+				padding: 7px 10px;
+				border: 1px solid #ccc;
+				font-size: 14px;
+				color: #666;
+				&.small-text{
+					width: 200px;
+					border-radius: 2px 0  0 2px;
+				}
+			}
+			&.passwd-box{
+				i.login-icons-eye,i.login-icons-eyehide{
+					position: absolute;
+					right: 6px;
+					top: 9px;
+					cursor: pointer;
+					height: 22px;
+    				width: 26px;
+    				margin: 0;
+    				left: auto;
+				}
+			}
+			.get-code{
+				float: right;
+				width: 105px;
+				height: 40px;
+				background: #5db9f2;
+				line-height: 40px;
+				text-align: center;
+				color: #fff;
+				font-size: 14px;
+				&:hover{
+					background: darken(#5db9f2, 10%);
+					text-decoration: none;
+				}
+				&.nouse-btn{
+					background: grayscale(#f9af45);
+					cursor: default;
+				}
+			}
+			.img-box{
+				float: right;
+				img{
+					width: 105px;
+					height: 40px;
+				}
+			}
+			.show-mod{
+				position: relative;
+				margin-bottom: 3px;
+				a{
+					color: #87bef6;
+					i{
+						float: left;
+						margin: 3px 1px 0 0;
+						height: 11px;
+						position: static;
+						&.login-icons-rotriangle{
+							margin-top: 6px;
+							height: 6px;
+						}
+					}
+				}
+			}
+		}
+		.sub-box{
+			.sub-btn{
+				display: block;
+				width: 328px;
+				height: 40px;
+				line-height: 38px;
+				background: #45abf9;
+				font-size: 18px;
+				font-weight: bold;
+				cursor: pointer;
+				border: none;
+				outline:none;
+				border-radius: 2px;
+				color: #fff;
+				&:hover{
+					background: #6cbdfb;
+				}
+			}
+		}
+		.agreement-box{
+			padding: 10px 0 32px 2px;
+			label{
+				color: #acacac;
+				display: block;
+				padding-bottom: 8px;
+				.check-box{
+					// float: left;
+					margin: 3px 5px 0 0;
+					margin-top: -1px \9;
+					vertical-align: top;
+				}
+			}
+			.server-agreement{
+				color: #3a97de;
+			}
+			.forget{
+				font-size: 14px;
+				padding-top: 2px;
+				.choose-box{
+				    color: #acacac;
+				    margin-top: 11px;
+				    margin-right: 5px;
+				    float: left;
+				    padding-right: 5px;
+				    border-right: 2px solid #acacac;
+					.change-btn{
+						color: #004EFF;
+					}
+				}
+			}
+			.reset-passwd{
+				color: #004EFF;
+				display: block;
+                padding-top: 10px;
+			}
+
+			label.agree {
+				color: #fff;
+				.check-box {
+					display: inline-block;
+					width: 14px;
+					height: 14px;
+					background: url(/images/pullnew/sem2-check.png) no-repeat;
+					background-size: 100% 100%;
+					cursor: pointer;
+					&.checked {
+						background: url(/images/pullnew/sem2-checked.png) no-repeat;
+						background-size: 100% 100%;
+					}
+				}
+				a {
+					color: #f9a448;
+				}
+			}
+		}
+	}
+}
+
+.success-wrap{
+	.tips-wrap{
+		padding: 0 0 30px 135px;
+		position: relative;
+		i{
+			position: absolute;
+			left: 64px;
+			top: 0;
+		}
+		b{
+			font-size: 24px;
+			display: block;
+			height: 51px;
+			line-height: 51px;
+			color: #555;
+		}
+		p{
+			color: #999;
+			&.tip{
+				font-size: 14px;
+				color: #ff7373;
+				padding-top: 15px;
+			}
+		}
+	}
+}
+
+// 实名认证--交易密码
+.tradepasswd-wrapper{
+	background: #b8e3fe;
+	overflow: hidden;
+}
+.tradepasswd-wrap{
+	width: 912px;
+	margin: 30px auto 43px;
+	min-height: 400px;
+	background: #fff;
+	// overflow: hidden;
+	position: relative;
+	.realname-wrap, .tradepasswd{
+		padding-top: 18px;
+		position: relative;
+		z-index: 2;
+		background: #fff;
+	}
+	.shadow{
+		width: 1120px;
+		height: 690px;
+		background: image-url('setpasswd-shadow.png');
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+	}
+	// &:after{
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	content: '';
+	// 	background: #000;
+	// 	transform: skew(30deg, 10deg);
+	// 	position: absolute;
+	// }
+	// box-shadow: 100px 100px 0 #96cef1;
+	.setp-icon{
+		margin: 0 auto 1px;
+	}
+	.wqq-new-tishitext{
+		width:100%;height:auto;
+		margin:0 auto;
+		text-align:center;
+		line-height:50px;
+	}
+	.form-box{
+		padding-left: 172px;
+		min-height: 235px;
+	}
+	.skip-wrap{
+		padding: 16px 28px 12px;
+		font-size: 14px;
+		text-align: right;
+		a{
+			color: #17a9ef;
+		}
+		span{
+			color: #dedede;
+			font-family: '宋体';
+			margin: 0 10px;
+		}
+	}
+	.input-box{
+		@include clearfix;
+		&.voice-box{
+			padding-left: 152px;
+			.error{
+				display: none;
+			}
+		}
+		padding-bottom: 16px;
+		p{
+			width: 140px;
+			float: left;
+			height: 40px;
+			line-height: 40px;
+			text-align: right;
+			font-size: 16px;
+			color: #555;
+		}
+		&.banknum-box{
+			position: relative;
+			.bank-tip{
+				position: absolute;
+				top: 10px;
+				left: 434px;
+				color: #ea3030;
+			}
+		}
+		.input-mod{
+			float: left;
+			margin-left: 12px;
+			.text{
+				width: 248px;
+				height: 24px;
+				line-height: 24px;
+				padding: 7px 10px;
+				@include border-radius(1px);
+				border: 1px solid #d9d9d9;
+				font-size: 14px;
+				color: #555;
+				&.phonecode{
+					width: 134px;
+					float: left;
+				}
+			}
+			.getphonecode{
+				float: left;
+			    width: 104px;
+			    height: 40px;
+			    line-height: 40px;
+			    text-align: center;
+			    font-size: 14px;
+			    color: #fff;
+			    margin-left: 10px;
+			    position: static;
+			    background: #5db9f2;
+			    &:hover{
+			    	background: darken(#5db9f2, 10%);
+			    	text-decoration: none;
+			    }
+			    &.getcode-disabled{
+			    	background: #bbb;
+				    color: #ededed;
+				    cursor: default;
+				    &:hover{
+				    	background: #bbb;
+					    cursor: default;
+				    }
+			    }
+			}
+			.phonecodemsg{
+				float: left;
+				line-height: 40px;
+				margin-left: 3px;
+			}
+		}
+	}
+	.sub-box{
+		padding-left: 152px;
+		.sub-btn{
+			width: 202px;
+			height: 39px;
+			line-height: 38px;
+			text-align: center;
+			background: $globalColor;
+			color: #fff;
+			font-weight: bold;
+			font-size: 18px;
+			display: block;
+			border: none;
+			cursor: pointer;
+			&:hover{
+				background: darken(#30a1e8, 10%);
+			}
+			&.bind-card{
+				background: #ff7373;
+				margin-top: -10px;
+			}
+			&.bind-card:hover{
+				background: darken(#ff7373, 5%);
+				text-decoration: none;
+			}
+			&[disabled="disabled"]{
+				border: none;
+				background: grayscale(#00e165);
+				cursor: default;
+				color: #fff !important;
+			}
+		}
+	}
+	.bot-tips{
+		padding: 8px 0 0 152px;
+		color: #ea3030;
+	}
+}
+
+.reset-passwd .reset-title{font-size: 24px;color: #666;line-height: 64px;border-bottom:3px solid #e4e4e4;}
+.reset-passwd .reset-box{padding:85px 0 0 355px;overflow: hidden;}
+.reset-passwd .input-box{position: relative;height: 43px;clear: both;zoom: 1;
+	.msg-box{
+		position: absolute;
+		top: 67px;
+	}
+	&.voice-box{
+		padding-left: 126px;
+		.error{
+			// display: none;
+			vertical-align: top;
+		}
+	}
+}
+.staticPhone {
+	font-size: 18px;
+	line-height: 40px;
+	color: #999;
+	span {
+		display: inline-block;
+		line-height: 50px;
+		padding-right: 10px;
+	}
+}
+.reset-passwd .input-box p{width: 115px;line-height: 42px;font-size: 16px;color: #575757;margin-right: 10px;float: left;text-align: right;}
+.reset-passwd .input-box .input-mod{float: left;/*height: 74px\9;*/}
+.reset-passwd .input-box div.myplaceholder{/*height: 74px\9 !important;*/}
+.reset-passwd .input-mod .text{width:468px;height: 60px;line-height: 60px;border: 1px solid #afafaf;border-radius:5px;font-size: 18px;color: #666;display: block;margin-bottom:33px;padding-left: 10px;}
+.reset-passwd .input-mod .text1{width:326px;height: 60px;border: 1px solid #afafaf;border-radius:5px;font-size: 18px;color: #666;display: block;margin-bottom:33px;margin-right:9px;padding-left: 10px;}
+.reset-passwd .input-box .get-btn{
+	position: absolute;
+	top: 0;
+	left: 346px;
+    border-radius: 5px;
+    color: $globalColor;
+    font-size: 16px;
+    width: 133px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    border: 1px solid $globalColor;
+}
+.reset-passwd .input-box .get-btn:hover{text-decoration: none;color: $globalColor;}
+.reset-passwd .sub-box{text-align: center;padding: 0 0 70px 355px;}
+.reset-passwd .sub-box .sub-btn,
+.reset-complete .sure-btn{
+	@extend .invest-btn;
+	width: 480px;
+	height:60px;
+	line-height: 60px;
+    font-size: 24px;
+	border: none;
+	cursor: pointer;
+}
+.reset-passwd .sub-box .sub-btn:hover,
+.reset-complete .sure-btn:hover{background: #ffa800;text-decoration: none;}
+.reset-passwd{
+	.sub-box{
+		.sub{
+			background:#f0f0f0!important;
+			border:1px solid #DEDEDE;
+			color:#ccc!important;
+		}
+	}
+}
+.jindutiao-box{
+	width:1198px;height:153px;
+    background: image-url('forgetpassone.png');
+}
+// 忘记密码
+.resetpasswd-wrapper{
+	padding: 30px 0 43px;
+	width: 100%;
+	background: #f4f4f4;
+	.reset-passwd{
+		.lijidl{
+		    width: 480px;
+			height: 60px;
+			margin: 0 auto;
+			position: relative;
+			top: -100px;
+			cursor: pointer;
+		}
+	}
+	.resetpasswd-wrap{
+		width: 1200px;
+		// height: 484px;
+		background: #fff;
+		margin: 0 auto;
+        border: 1px solid #E4E4E4;
+	}
+	.success-wrap{
+		padding: 120px 0 0 0;
+		p.tip{
+			font-size: 14px;
+			color: #555;
+			padding: 7px 0 0 72px;
+		}
+		.return{
+			padding: 44px 0 30px 180px;
+			a{
+				font-size: 14px;
+				color: #47abff;
+			}
+			span{
+				color: #c7c7c7;
+				margin: 0 11px;
+				font-family: "宋体";
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+

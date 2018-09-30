@@ -1,0 +1,154 @@
+<div class="pullnewcnt" ng-controller="financeCtrl">
+    <div ng-controller="mainCtrl">
+        <!-- 欢迎栏 -->
+        <div ng-hide="isLoginPage" class="top-global-wrapper">
+            <div class="top-content">
+                <div class="tel">
+                    <i class="global-topphone"></i>
+                    <b>客服热线：<span>{{(a | web).phone}}</span> (周一至周五 09:00-18:00）</b>
+                </div>
+                <div class="top-nav">
+                    <a href="{{a|webIE8}}main/home" target="_blank">首页</a><span style="margin-right: 12px;">|</span><!--<a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a><span style="margin-right: 12px;">|</span>--><a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">帮助中心</a><span>|</span>
+                    <div class="appCode"><a href="{{a|webIE8}}downloadApp"><i>手机APP</i></a>
+                        <div>
+                            <img src="images/global/app.png">
+                            <p>手机客户端<br>APP下载</p>
+                        </div>
+                    </div><span style="margin-left: -4px;">|</span>
+                    <div class="appCode"><i class="global-topwechat"></i>
+                        <div>
+                            <img src="images/global/wechat.png">
+                            <p>扫一扫<br>关注官方微信</p>
+                        </div>
+                    </div>
+                    <a ng-if="!(a | isRegister).register" href="/dl" class="register">登录</a>
+                    <span ng-if="(a | isRegister).register" style="margin: 0 8px 0 -8px;">|</span>
+
+                    <a ng-if="(a | isRegister).register" href="" ng-click="gotoLoginPage('myAccount')">{{(a | isRegister).user.userName}}</a>
+                    <i ng-if="(a | isRegister).register">，</i>
+                    <a ng-show="(a | isRegister).register" ng-click="userOut()" href="#" class="top-quit">退出</a>
+                </div>
+            </div>
+        </div>
+        <!-- 欢迎栏结束 -->
+
+        <!-- 导航 -->
+        <!--<div class="globalheader-wrapper">-->
+            <!--<div class="globalheader-wrap">-->
+                <!--<div ng-click="$state.go('main.home');" class="logo-wrap">-->
+                    <!--<img src="/images/global/logo.png">-->
+                    <!--<span></span>-->
+                    <!--<i class="global-slogo"></i>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+
+    <div class="container">
+        <!--logo-->
+        <!--<div class="logo"><a href="/main/home" class="topic-logo"></a></div>-->
+
+        <div style="height: 700px;">&nbsp;</div>
+
+        <div class="infocnt">
+        <!--  1 -->
+        <div class="pullnew-first"></div>
+        <div class="pullnew-redpacket"></div>
+        <div class="alignCenter">
+            <a ng-if="!(a | isRegister).register" ui-sref="zhuce" class="toreceive">注册领取</a>
+            <a ng-if="(a | isRegister).register" ui-sref="main.myAccount.myCoupon" class="toreceive">立即使用</a>
+            <!--<a ng-if="(a | isRegister).register" href="/mian/myCoupon#coupon" class="toreceive">立即使用</a>-->
+            <!--<img src="/images/pullnew/receiveBtn.png" />-->
+            <p>注册后立即到账户-我的优惠券</p>
+        </div>
+        <div class="pullnew-di"></div>
+
+        <!--2-->
+        <div class="pullnew-second"></div>
+        <!--<p>只要<span>注册</span>沪深理财会员，每位用户<span>仅限一次</span>投资机会</p>-->
+        <div class="newhand">
+            <!--<img class="newhandBg" src="/images/pullnew/newhandBg.png" />-->
+            <!--<div class="newhandBg"></div>-->
+            <div class="info">
+                <div class="text">
+                    <ul>
+                        <li><span>历史年化收益率</span></li>
+                        <li><span>投资期限</span></li>
+                        <li><span>可用新手红包哦</span></li>
+                    </ul>
+                    <ul class="nums">
+                        <li class="rate"><i>12.88{{rate}}</i>%</li>
+                        <li class="days"><i>5{{deadline}}</i>天</li>
+                        <li><img src="images/pullnew/pullnew.png" /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="alignCenter">
+            <!--<img src="/images/pullnew/investBtn.png" />  href="/dl" -->
+            <a ng-if="!(a | isRegister).register" ui-sref="zhuce" class="toreceive">立即投资</a>
+            <a ng-if="(a | isRegister).register" ui-sref="main.billDetail({ id: newhand.id })" class="toreceive">立即投资</a>
+            <p>偷偷告诉你，只要未投资过新手标，老用户也能投哦</p>
+        </div>
+        <div class="pullnew-di2"></div>
+
+        <!--3-->
+        <div class="pullnew-third"></div>
+        <div class="ins intros">
+            <div class="item">
+                <ul>
+                    <li class="pullnew-intro1"></li>
+                    <li class="title">实力雄厚</li>
+                    <li class="des">实缴1亿<br/>注册资金</li>
+                </ul>
+            </div>
+            <div class="item">
+                <ul>
+                    <li class="pullnew-intro2"></li>
+                    <li class="title">合规经营</li>
+                    <li class="des">专业级律所<br/>法律支持</li>
+                </ul>
+            </div>
+            <div class="item">
+                <ul>
+                    <li class="pullnew-intro3"></li>
+                    <li class="title">风险保障</li>
+                    <li class="des">精准风控<br/>优先垫付</li>
+                </ul>
+            </div>
+            <div class="item">
+                <ul>
+                    <li class="pullnew-intro4"></li>
+                    <li class="title">银行存管</li>
+                    <li class="des">正式签约<br/>存管协议</li>
+                </ul>
+            </div>
+        </div>
+
+    <!--领取-->
+    <div class="ruls">
+        <div class="rulswidth">
+            <span class="title">活动规则</span><br/>
+            <div class="txt">
+                <ul>
+                    <li>活动时间：2017年10月18日起，本活动仅针对活动期间内注册的新用户；
+                    <li>活动期间，新用户注册即送288元新手红包，请前往“我的账户>我的福利”查看；</li>
+                    <li>新手红包领取后需在有效期内进行使用，逾期作废,不补发；</li>
+                    <li>新手红包适用投资项目以实际使用为准,可在投资时勾选使用；</li>
+                    <li>请用户仔细阅读本规则并依照本规则参与活动,如有违反或超出本规则的情形,或者因用户本人操作不当无法参与活动,将不能依照本规则享受相关权益。</li></li>
+                </ul>
+                <span>* 本活动由沪深理财发起并就活动内容作出解释和说明，如有疑问请联系客服 400-031-9909</span>
+            </div>
+            <br/>
+            <a><div ui-sref="zhuce" class="pullnew-receivePacket"></div></a>
+        </div>
+    </div>
+     </div>
+
+    <!--footer部分-->
+    <div class="footer">
+        <p>粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司v1.0.0</p>
+        <h4>温馨提示：市场有风险，投资需谨慎</h4>
+    </div>
+    </div>
+</div>

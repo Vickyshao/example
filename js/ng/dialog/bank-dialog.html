@@ -1,0 +1,28 @@
+<div class="bank-dialog-wrapper">
+	<a href="" class="close" ng-click="closeDialog()">×</a>
+	<div class="title"><span>充值/提现银行</span></div>
+	<div class="banklist" ng-class="{true:'error-banklist'}[bankNumError]">
+		<p class="top">请选择银行：</p>
+		<div class="banks" ng-class="{true:'spread-banks'}[spreadBank]">
+			<div class="bank" ng-class="{true:'activebank'}[item.id == activeSysBank.id]" ng-repeat="item in sysBankList" ng-click="changeSysBank($index)">
+				<i><b></b></i>
+				<div class="img"><img src="/images/sysbank/{{item.id}}.png"></div>
+			</div>
+			<div class="choose-box">	
+				<span class="choose-other" ng-click="spreadBank = !spreadBank"><i ng-class="{false:'down',true:'up'}[spreadBank]"></i>选择其他银行</span>
+			</div>
+		</div>
+	</div>
+	<div class="limit">
+		<table>
+			<tr>
+				<td class="img" rowspan="2"><img src="/images/sysbank/{{activeSysBank.id}}.png"></td>
+				<td><p>单笔额度：{{activeSysBank.singleQuota | currency:''}}</p></td>
+			</tr>
+			<tr>
+				<td><p>单日额度：{{activeSysBank.dayQuota | currency:''}}</p></td>
+			</tr>
+		</table>
+	</div>
+	<div class="btns"><a href="" class="cancel" ng-click="closeDialog()">取消</a><a href="" class="sure" ng-click="sureSysBank()">确定</a></div>
+</div>

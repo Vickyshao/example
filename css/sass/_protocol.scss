@@ -1,0 +1,138 @@
+.protocol-box {
+	max-width: 1140px;
+	margin: 0 auto;
+	padding: 0 20px;
+	width: 80%;
+	.webapp-title{
+		height: 3.40741rem;
+	    background: $globalColor;
+	    color: #fff;
+	    width: 100%;
+	    max-width: 750px;
+	    position: relative;
+	    padding: 0 !important;
+	    display: block;
+	    i{
+	    	width: 0.74074rem;
+    		height: 1.35802rem;
+    		background: image-url('webapp-return.png');
+    		background-size: contain;
+    		background-repeat: no-repeat;
+    		position: absolute;
+		    left: 1.38272rem;
+		    top: 0.93827rem;
+	    }
+	    p{
+	    	text-align: center;
+		    font-size: 1.7284rem !important;
+		    line-height: 3.40741rem;
+		    position: absolute;
+		    width: 100%;
+	    }
+	}
+	h1{
+		font-size: 28px;
+		font-weight: bold;
+		text-align: center;
+		padding-top: 50px;
+		color: #454545;
+	}
+	h2{
+		font-size: 20px;
+		font-weight: bold;
+		color: #454545 !important;
+		padding: 8px 0;
+	}
+	div{
+		font-size: 16px;
+		color: #454545;
+		padding:20px 0; 
+		overflow: hidden;
+		p{
+			line-height: 2;
+			b{
+				font-size: 18px;
+			}
+		}
+	}
+	table{
+		width: 100%;
+		margin: 10px 0;
+		th{
+			border: 1px solid #ddd;
+			background: #ddd9C3;
+			text-align: center;
+			padding: 10px;
+			color: #454545;
+		}
+		td{
+			border: 1px solid #ddd;
+			text-align: center;
+			height: 45px;
+		}
+	}
+	.bh{
+		float: right;
+		clear: both;
+		span{
+			display: inline-block;
+			width: 146px;
+		}
+	}
+	.tip{
+		color: #cf711f;
+		// text-decoration: underline;
+		min-width: 5em;
+		border-bottom: 1px solid #000;
+		display: inline-block;
+		padding: 0 10px;
+		&.noline{
+			border: none;
+			width: auto;
+			display: inline;
+			padding: 0;
+		}
+	}
+	&.loan-protocol{
+		background: image-url('protocolbg.png') 128px 384px no-repeat;
+		h1{
+			padding-bottom: 20px;
+		}
+		b{
+			margin-right: 5px;
+		}
+		.kong{
+			width: 5em;
+			border-bottom: 1px solid #000;
+			display: inline-block;
+			vertical-align: bottom;
+		}
+	}
+	&.transfer-protocol{
+		h1{
+			text-align: left;
+			padding-bottom: 20px;
+			&.toph1{
+				text-align: center; 
+			}
+		}
+		p{
+			padding-left: 56px;
+			position: relative;
+			b{
+				position: absolute;
+				left: 30px;
+				top: -2px;
+			}
+		}
+		div.top{
+			padding: 0;
+		}
+	}
+	&.pay-protocol-box{
+		p{
+			padding-bottom: 10px;
+			text-indent: 2em;
+		}
+	}
+}

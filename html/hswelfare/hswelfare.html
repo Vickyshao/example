@@ -1,0 +1,39 @@
+<div class="hswelfare-wrapper" ng-controller="hswelfareCtrl">
+
+	<div class="banner"></div>
+	<div class="listOut">
+			<div class="list-wrap">
+			<div class="inner clearfix" ng-repeat="item in dataList">
+				<div class="imgout"><img src="{{item.pcPictureUrlA}}" class="imgs" alt="图片" ></div>
+				<div class="info">
+					<h4>{{item.title}}</h4>
+					<p class="wenzi">{{item.summary}}</p>
+					<div class="down clearfix">
+						<div class="left">
+							<!-- <span>{{item.address}}</span> -->
+							<span>{{item.activityTime | date:"yyyy-MM-dd" }}</span>
+						</div>
+						<a class="todetail" target="_blank" href="/main/hswelfareDetail?id={{item.id}}">详情</a>
+					</div>
+				</div>
+				<!-- <div class="imgout"><img src="/images/hswelfare/slip01.png" class="imgs"></div>
+				<div class="info">
+					<h4>徐汇街道之行--让爱传递</h4>
+					<p class="wenzi">上海市有近7万名智障人士，由于认知水平有限，他们的社会交往能力受到一定限制，一直是残疾人教育、培训、就业的难点。一些接受过九年制义务教育的智障孩子，初中毕业后无处可去，只能待在家里，导致认知水平和社会适应能力明显退化，给家庭带来了沉重的负担。</p>
+					<div class="down clearfix">
+						<div class="left">
+							<span>徐汇街道 </span>
+							<span>2017-11-11</span>
+						</div>
+						<a class="todetail" href="/main/hswelfareDetail?id={{item.id}}">详情</a>
+					</div>
+				</div> -->
+			</div>
+			<div class="more" ng-click="more()" ng-show="showmore">
+				更多精彩
+				<span class="triangle"></span>
+			</div>
+		</div>
+	</div>
+	
+</div>

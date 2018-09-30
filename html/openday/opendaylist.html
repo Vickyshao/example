@@ -1,0 +1,14 @@
+<div class="opendaylist-wrapper" ng-controller="opendayCtrl">
+	<div class="bread"><a href="/main/home">首页</a><span>></span><a href="/main/openday">开放日</a><span>></span>往期回顾</div>
+	<div class="list">
+		<div class="info" ng-repeat="item in openlist" ui-sref="main.opendaydetail({id:item.id})">
+			<dl>
+				<dt><img src="{{item.imgUrl}}"></dt>
+				<dd>
+					<div class="t"><span>{{item.openDayDate | date:'yyyy-MM-dd'}}</span>{{item.openDayName}}</div>
+					<div class="con">{{item.summaryContents}}</div>
+				</dd>
+			</dl>
+		</div>
+	</div>
+</div>

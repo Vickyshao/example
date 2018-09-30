@@ -1,0 +1,329 @@
+<meta charset="utf-8">
+<div class="jt-wrap" ng-controller='zfedCtrl'>
+	<!-- <div class="title"><span>支付额度</span></div> -->
+	<div class="list-box">
+		<div class="banklist-title">支持银行快捷支付额度表</div>
+		<table class="payment-table" border="1">
+			<tr style="font-size: 16px">
+				<td style="text-align: center">银行名称</td>
+				<td style="text-align: center">单笔限额</td>
+				<td style="text-align: center">单日限额</td>
+				<td style="text-align: center">单月限额</td>
+				<td style="text-align: center">备注</td>
+			</tr>
+			<tr>
+				<td>中国工商银行</td>
+				<td>5万</td>
+				<td>5万</td>
+				<td>无</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>中国农业银行</td>
+				<td>2万</td>
+				<td>2万</td>
+				<td>无</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>中国建设银行</td>
+				<td>5万</td>
+				<td>20万</td>
+				<td>无</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>中国银行</td>
+				<td>5万</td>
+				<td>20万</td>
+				<td>无</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>交通银行</td>
+				<td>9,999.99</td>
+				<td>2万</td>
+				<td>无</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>兴业银行</td>
+				<td>10万</td>
+				<td>20万</td>
+				<td>无</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>中国光大银行</td>
+				<td>2万</td>
+				<td>5万</td>
+				<td>无</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>广发银行</td>
+				<td>2万</td>
+				<td>10万</td>
+				<td>无</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>平安银行</td>
+				<td>5万</td>
+				<td>5万</td>
+				<td>无</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>中信银行</td>
+				<td>0.5万</td>
+				<td>0.5万</td>
+				<td>1万</td>
+				<td>&nbsp;</td>
+			</tr>
+			<!-- <tr>
+				<td>中国民生银行</td>
+				<td>50万</td>
+				<td>无限额</td>
+				<td>无</td>
+				<td>银行维护，暂不支持</td>
+			</tr> -->
+			<tr>
+				<td>浦发银行</td>
+				<td>0.5万</td>
+				<td>0.5万</td>
+				<td>无</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>中国邮政储蓄银行</td>
+				<td>0.5万</td>
+				<td>0.5万</td>
+				<td>无</td>
+				<td>需开通银联在线支付</td>
+			</tr>
+			
+			
+			<!-- <tr>
+				<td>上海银行</td>
+				<td>0.5万</td>
+				<td>5万</td>
+				<td>无</td>
+				<td>需开通银联在线支付</td>
+			</tr>
+			<tr>
+				<td>北京银行</td>
+				<td>0.5万</td>
+				<td>0.5万</td>
+				<td></td>
+				<td></td>
+			</tr> -->
+		</table>
+		<div class="banklist-title">支持银行网银支付额度表</div>
+		<table class="payment-table online-table">
+			<tbody>
+				<tr>
+					<td>银行名称</td>
+					<td>卡类型</td>
+					<td>支付方式</td>
+					<td>单笔限额</td>
+					<td>日累计限额</td>
+				</tr>
+				<tr>
+					<td rowspan="3">工商银行</td>
+					<td rowspan="3">借记卡</td>
+					<td rowspan="1">办理电子口令卡（无需开通短信认证）</td>
+					<td rowspan="1">500</td>
+					<td rowspan="1">1000</td>
+				</tr>
+				<tr>
+					<td rowspan="1">办理电子口令卡（无需开通短信认证）</td>
+					<td rowspan="1">2000</td>
+					<td rowspan="1">5000</td>
+				</tr>
+				<tr>
+					<td rowspan="1">办理U盾</td>
+					<td rowspan="1">100万</td>
+					<td rowspan="1">1000万</td>
+				</tr>
+				<tr>
+					<td rowspan="4">农业银行</td>
+					<td rowspan="4">借记卡</td>
+					<td rowspan="1">动态口令卡</td>
+					<td rowspan="1">1000</td>
+					<td rowspan="1">3000</td>
+				</tr>
+				<tr>
+					<td rowspan="1">农行K宝个人版</td>
+					<td rowspan="1">无限额</td>
+					<td rowspan="1">无限额</td>
+				</tr>
+				<tr>
+					<td rowspan="1">农行K宝企业版</td>
+					<td rowspan="1">无限额</td>
+					<td rowspan="1">无限额</td>
+				</tr>
+				<tr>
+					<td rowspan="1">企业版K宝</td>
+					<td rowspan="1">自行设置</td>
+					<td rowspan="1">自行设置</td>
+				</tr>
+				<tr>
+					<td rowspan="2">中国银行</td>
+					<td rowspan="2">借记卡</td>
+					<td rowspan="1">开通中银快付</td>
+					<td rowspan="1">1000</td>
+					<td rowspan="1">5000</td>
+				</tr>
+				<tr>
+					<td rowspan="1">办理U-KEY和动态口令卡</td>
+					<td rowspan="1">50万</td>
+					<td rowspan="1">350万</td>
+				</tr>
+				<tr>
+					<td rowspan="3">建设银行</td>
+					<td rowspan="3">借记卡</td>
+					<td rowspan="1">1、账号支付，无需办理网银，需要预留的手机号接收验证码<br>2、无网银盾的网银用户（如办理短信动态口令、刮刮卡）</td>
+					<td rowspan="1">5000</td>
+					<td rowspan="1">5000</td>
+				</tr>
+				<tr>
+					<td rowspan="1">一代网银盾用户</td>
+					<td rowspan="1">5万</td>
+					<td rowspan="1">10万</td>
+				</tr>
+				<tr>
+					<td rowspan="1">二代网银盾用户</td>
+					<td rowspan="1">50万</td>
+					<td rowspan="1">50万</td>
+				</tr>
+				<tr>
+					<td rowspan="2">招商银行</td>
+					<td rowspan="2">借记卡</td>
+					<td rowspan="1">开通大众版网上银行</td>
+					<td rowspan="1">500</td>
+					<td rowspan="1">500</td>
+				</tr>
+				<tr>
+					<td rowspan="1">开通专业版网上银行</td>
+					<td rowspan="1">无限额</td>
+					<td rowspan="1">无限额</td>
+				</tr>
+				<!--光大银行-->
+				<tr>
+					<td rowspan="3">光大银行</td>
+					<td rowspan="3">借记卡</td>
+					<td rowspan="1">办理手机动态密码</td>
+					<td rowspan="1">1万</td>
+					<td rowspan="1">1万</td>
+				</tr>
+				<tr>
+					<td rowspan="1">办理阳光网盾</td>
+					<td rowspan="1">50万</td>
+					<td rowspan="1">50万</td>
+				</tr>
+				<tr>
+					<td rowspan="1">办理令牌动态密码</td>
+					<td rowspan="1">100万</td>
+					<td rowspan="1">100万</td>
+				</tr>
+				<!--中国邮政储蓄银行-->
+				<tr>
+					<td rowspan="3">邮储银行</td>
+					<td rowspan="3">借记卡</td>
+					<td rowspan="1">个人网银，开通银行手机短信服务</td>
+					<td rowspan="1">5万</td>
+					<td rowspan="1">5万</td>
+				</tr>
+				<tr>
+					<td rowspan="1">个人网银，办理电子令牌+手机短信</td>
+					<td rowspan="1">20万</td>
+					<td rowspan="1">20万</td>
+				</tr>
+				<tr>
+					<td rowspan="1">个人网银，办理USB-KEY及开通短信服务</td>
+					<td rowspan="1">200万</td>
+					<td rowspan="1">200万</td>
+				</tr>
+				<!--平安银行-->
+				<tr>
+					<td rowspan="1">平安银行</td>
+					<td rowspan="1">借记卡</td>
+					<td rowspan="1">开通大众版网上银行</td>
+					<td rowspan="1">5万</td>
+					<td rowspan="1">5万</td>
+				</tr>
+				<!--浦发中信银行银行-->
+				<tr>
+					<td rowspan="2">中信银行</td>
+					<td rowspan="2">借记卡</td>
+					<td rowspan="1">办理文件证书</td>
+					<td rowspan="1">1000</td>
+					<td rowspan="1">5000</td>
+				</tr>
+				<tr>
+					<td rowspan="1">办理移动证书</td>
+					<td rowspan="1">100万</td>
+					<td rowspan="1">100万</td>
+				</tr>
+				<tr>
+					<td rowspan="2">浦发银行</td>
+					<td rowspan="2">借记卡</td>
+					<td rowspan="1">开通动态密码版网上银行</td>
+					<td rowspan="1">20万</td>
+					<td rowspan="1">20万</td>
+				</tr>
+				<tr>
+					<td rowspan="1">开通数字证书版网上银行</td>
+					<td rowspan="1">自行设置</td>
+					<td rowspan="1">自行设置</td>
+				</tr>
+				<tr>
+					<td rowspan="2">交通银行</td>
+					<td rowspan="2">借记卡</td>
+					<td rowspan="1">开通短信密码版网上银行</td>
+					<td rowspan="1">5万</td>
+					<td rowspan="1">5万</td>
+				</tr>
+				<tr>
+					<td rowspan="1">开通证书认证版网上银行</td>
+					<td rowspan="1">100万</td>
+					<td rowspan="1">100万</td>
+				</tr>
+				<tr>
+					<td rowspan="1">上海银行</td>
+					<td rowspan="1">借记卡</td>
+					<td rowspan="1">开通网上支付功能</td>
+					<td rowspan="1">50万</td>
+					<td rowspan="1">50万</td>
+				</tr>
+				<!--北京银行-->
+				<tr>
+					<td rowspan="2">北京银行</td>
+					<td rowspan="2">借记卡</td>
+					<td rowspan="1">开通动态密码版网上支付功能</td>
+					<td colspan="1">1000</td>
+					<td colspan="1">5000</td>
+				</tr>
+				<tr>
+					<td rowspan="1">开通证书版网上支付功能</td>
+					<td rowspan="1">100万</td>
+					<td rowspan="1">100万</td>
+				</tr>
+				<tr>
+					<td rowspan="2">广发银行</td>
+					<td rowspan="2">借记卡</td>
+					<td rowspan="1">办理手机动态验证码</td>
+					<td rowspan="1">3000</td>
+					<td rowspan="1">3000</td>
+				</tr>
+				<tr>
+					<td rowspan="1">办理key盾</td>
+					<td rowspan="1">30万</td>
+					<td rowspan="1">30万</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+</div>

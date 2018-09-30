@@ -1,0 +1,52 @@
+{"result":[
+    {
+        "memnTitle": "信息披露",
+         "children": [
+        {
+            "memnTitle": "沪深概况",
+            "url":"main.jt.JSGK"
+        },{
+            "memnTitle": "法律法规",
+            "url":"main.jt.FLFG"
+        },{
+            "memnTitle": "联系我们",
+            "url":"main.jt.LXWM"
+        }]
+    },{
+        "memnTitle": "安全保障",
+        "children": [
+        {
+            "memnTitle": "投资安全",
+            "url":"main.jt.AQBZ"
+        }]
+    },{
+        "memnTitle": "帮助中心",
+         "children": [
+        {
+            "memnTitle": "常见问题",
+            "url":"main.jt.help"
+        },{
+            "memnTitle": "投资知识",
+            "url":"main.jt.LCZS"
+        },{
+            "memnTitle": "新手指引",
+             "url":"main.jt.XSZY"
+        },{
+            "memnTitle": "支付额度",
+             "url":"main.jt.ZFED"
+        },{
+            "memnTitle": "银联开通",
+             "url":"main.jt.YLKT"
+        }]
+    },{
+        "memnTitle": "沪深新闻",
+         "children": [
+        {
+            "memnTitle": "公司新闻",
+            "url":"main.jt.GSXW"
+        },{
+            "memnTitle": "公司动态",
+            "url":"main.jt.GSDT"
+        }]
+    }
+]}

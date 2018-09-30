@@ -1,0 +1,43 @@
+
+<!-- 风险评测 -->
+<div class="riskAssess" ng-controller="riskAssessCtrl">
+
+	<div class="banner"><img src="/images/riskAssess/banner.png"></div>
+
+	<!-- 内容 -->
+	<div class="content">
+		<!-- 说明 -->
+		<div class="caption">
+			<p>	1.根据国家政策要求，在投资前，建议您先根据自身实际情况填写问卷，以便您更好的了解自身风险承受力。</p>
+			<p>2.评测结果分为五类：</p>
+			<p><strong>保守型：风险承担能力水平比较低；稳健型：有限的风险承受能力；平衡型：中等的风险承受能力；</strong></p>
+			<p><strong>成长型：中高的风险承受能力；进取型：较高的风险承受能力。</strong></p>
+			<p>3.本问卷最终解释权归沪深理财所有，您若对问卷内容有疑问，可向客服咨询。</p>
+		</div>
+
+		<div class="info">
+			<!-- 评测内容 -->
+			<form class="assess" ng-model="assess" name="assessForm">
+				<div class="input-box" ng-repeat="topic in list" id="locate{{$index}}">
+					<h4><i>{{$index+1}}</i>{{topic.subject}}</h3>
+					<div class="group" ng-repeat="item in topic.listOptions">
+						<input id="radio{{item.oid}}" name="question{{topic.id}}" type="radio" ng-checked="false" ng-value="item.oid" ng-model="$parent.answer[$parent.$index]" ng-change="optionItem(topic.id,item.oid)" /> 
+	    				<label for="radio{{item.oid}}">{{item.subjectOption}}</label> 
+					</div>
+					
+				</div>
+				<!-- <div class="input-box" ng-repeat="topic in list">
+					<h4><i>{{$index+1}}</i>{{topic.subject}}</h3>
+					<div class="group" >
+	    				<li ng-repeat="item in topic.listOptions" ng-click="optionItem($event,this)">{{item.subjectOption}}</li> 
+					</div>
+					
+				</div> -->
+				
+				<div class="sub-box" ng-click="subClick('sub',assessForm)">
+					<input class="sub" type="submit" value="提交"/>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

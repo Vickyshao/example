@@ -1,0 +1,24 @@
+<div class="welfarelist-wrapper" ng-controller="welfareCtrl">
+	<div class="banner"></div>
+	<div class="list-wrap" ng-repeat="item in welfareList">
+		<div class="inner">
+			<div class="title">
+				<i class="l"></i>
+				<i class="r"></i>
+				<div class="t">{{item.title}}</div>
+				<p>活动时间：{{item.activityTime}}</p>
+			</div>
+			<div class="imgs" ng-if="item.imgUrls.length>0">
+				<table>
+					<tr>
+						<td ng-repeat="img in item.imgUrls track by $index"><img src="{{img}}"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="con">{{item.summary}}</div>
+			<div class="bot"><a href="/main/welfaredetail?id={{item.id}}">查看活动详情   ></a></div>
+		</div>
+	</div>
+	<div class="pages-wrapper"><dr-pg></dr-pg></div>
+	
+</div>

@@ -1,0 +1,620 @@
+// 实名绑卡
+.left{
+	float:left;
+}
+.right{
+	float:right;
+}
+.bindcard-wrap-out{
+	background:#f1f1f1;
+	padding:36px 0 30px;
+	.bindcard-wrap{
+		width:1200px;
+		margin:0 auto;
+
+		//绑卡
+		.bindcard{
+			width:740px;
+			background:#fff;
+			padding:6px 32px 56px;
+			margin:0 auto;
+			h4{
+				font-size:20px;
+				color:#555;
+				height:80px;
+				line-height:80px;
+			}
+			.suc {
+				font-size: 18px;
+				color: #3b3b3b;
+				text-align: center;
+				margin-bottom: 48px;
+				img {
+					vertical-align: text-bottom;
+				}
+			}
+			.rule{
+				font-size:12px;
+				color:#888;
+				height:40px;
+				line-height:40px;
+				text-align: center;
+				background:#fffae0;
+			}
+			.bankInfoForm{
+				.form-wrap {
+					padding: 30px 0 45px 60px;
+					font-size: 14px;
+					color: #888;
+					.input-box {
+						padding-bottom: 20px;
+						height: 40px;
+						overflow: visible;
+						p {
+							width: 155px;
+							float: left;
+							text-align: right;
+							padding-right: 4px;
+							font-size: 16px;
+							line-height: 38px;
+							height: 38px;
+						}
+
+						.input-mod {
+							float: left;
+							position: relative;
+							width: 520px;
+							line-height: 40px;
+						}
+
+						input {
+							// color: #666;
+							width: 290px;
+							height: 30px;
+							line-height: 30px;
+							border: 1px solid #e3e3e3;
+							padding: 5px 10px;
+							// color: #c5c5c5;
+							font-size:14px;
+							outline:none;
+						}
+						
+						&.usedpasswd-box{
+							height: auto;
+							overflow: hidden;
+						}
+						.errormsg{
+							margin-bottom: -20px;
+						}
+						.error{
+							line-height: normal;
+							margin-left: -5px;
+				    		// width: 190px;	
+						}
+						i{
+							margin-left: 4px;
+						}
+						&.banknum-box{
+							position: relative;
+							padding-bottom:36px;
+							.bank-tip{
+								position: absolute;
+								bottom: 11px;
+								left: 170px;
+								color: #929292;
+								font-size: 12px;
+							}
+						}
+						&.choose-box{
+							.choose-bank{
+								width: 70px;
+								height: 42px;
+								line-height: 42px;
+								position: absolute;
+								left:242px;
+								top:0px;
+								font-size: 12px;
+								color: #fff;
+								background: #23a5ff;
+								text-align: center;
+								outline: none;
+								color: #fff;
+								border: 0;
+								&:hover{
+									background: darken(#23a5ff,6%);
+									text-decoration: none;
+								}
+							}
+							.bankimg{
+								width: 151px;
+								height: 38px;
+								text-align: center;
+								vertical-align: middle;
+								position: absolute;
+								left:10px;
+								top:2px;
+								img{
+									max-width: 151px;
+									max-height: 38px;
+								}
+							}
+						}
+						.phonecode{
+							width:156px;
+						}
+						.getphonecode{
+							width: 80px;
+							height: 42px;
+							line-height: 42px !important;
+							text-align: center;
+							font-size: 12px;
+							color: #fff !important;
+							background: #5db9f2;
+							position:absolute !important;
+							left:156px;
+							top:0;
+							&.set-info-btn{
+								width: 97px;
+								height: 35px;
+								line-height: 35px !important;
+								margin-top: 2px;
+							}
+							&:hover{
+								background: darken(#5db9f2, 10%);
+								text-decoration: none;
+							}
+							&.getcode-disabled{
+								background: #bbb;
+								color: #ededed !important;
+								cursor: default;
+								&:hover{
+									background: #bbb;
+								}
+							}
+						}
+						.realname-sub{
+							color:#fff;
+							background:#ed714e;
+							height:42px;
+							line-height:42px;
+							text-align:center;
+							padding:0;
+							font-size:16px;
+							margin-top:20px;
+							cursor:pointer;
+							&:hover{
+								background: darken(#ed714e, 10%);
+							}
+							&:disabled{
+								cursor:default;
+							}
+						}
+					}
+					
+				}
+
+			}
+			.newtips{
+				margin:0 auto;
+			}
+
+			&.account-security-wrap {
+				.set-success{
+					display: none;
+					padding: 30px 0 30px 276px;
+					font-size: 16px;
+					color: #666;
+					@include clearfix;
+					i{
+						float: left;
+						width: 53px;
+						height: 53px;
+					}
+					p{
+						height: 53px;
+						line-height: 53px;
+						padding-left: 18px;
+						float: left;
+					}
+				}
+				.set-box{
+					overflow: hidden;
+					.getphonecode-box{
+						.phonecode{
+							float: left;
+							width: 164px;
+						}
+						.phonecodemsg{
+							float: left;
+							margin-left: 4px;
+						}
+					}
+				}
+				.set-pwd h3.my-title{height: 69px;margin-bottom: -1px;border-bottom: 1px solid #fff;position: relative;z-index: 2;}
+				.set-pwd .set-trigger{height: 69px;border-bottom: 1px solid #d9d9d9;border-top: 1px solid #d9d9d9;line-height: 69px;font-size: 16px;color: #666;}
+				.set-pwd .set-trigger p{float: left;}
+				.set-pwd .set-trigger p.icon{margin: 23px 11px 0 9px;}
+
+				.set-pwd .set-trigger p.title{width: 180px;}
+				.set-pwd .set-trigger p.info{width: 500px;
+					img{
+						vertical-align: middle;
+						margin-right: 10px;
+					}
+					b{
+						font-weight: bold;
+					}
+				}
+				.set-pwd .set-trigger{
+					position: relative;
+					strong.finance{
+						font-size: 14px;
+						color: #ff8d2d;
+						top: 0;
+						position: absolute;
+						left: 328px;
+					}
+				}
+				.set-pwd p.info span{margin-right: 28px;}
+				.set-pwd .set-trigger p.btn{float: right;padding-right: 18px;color: #0ca5d3;}
+				.set-pwd a{color: #0ca5d3;}
+				.set-pwd .form-wrap {
+					padding: 20px 0 34px 140px;
+					font-size: 16px;
+					color: #666;
+					.input-box {
+						&.voice-box{
+							padding-left: 159px;
+							.error{
+								display: none;
+								vertical-align: top;
+							}
+						}
+						p {
+							float: left;
+							width: 100px;
+							text-align: left;
+							padding-right: 4px;
+							font-size: 14px;
+							line-height: 38px;
+							color: #888;
+						}
+						.input-mod {
+							//position: relative;
+							//width: 520px;
+							line-height: 40px;
+							.findPwd {
+								font-size: 14px;
+								color: #048eed;
+							}
+						}
+						input {
+							color: #666;
+							width: 278px;
+							height: 30px;
+							line-height: 30px;
+							border: 1px solid #dbdbdb;
+							padding: 4px 10px;
+							font-size: 16px;
+							color: #666;
+							&.confirmBtn {
+								width: 301px;
+								height: 42px;
+								line-height: 34px;
+								background: #ed714e;
+								color: #fff;
+								border: 0;
+								cursor: pointer;
+							}
+						}
+						.error {
+							display: inline;
+						}
+						padding-bottom: 20px;height: 40px;overflow: visible;
+						&.usedpasswd-box{
+							height: auto;
+							overflow: hidden;
+						}
+						.errormsg{
+							margin-bottom: -20px;
+						}
+						.error{
+							line-height: normal;
+							margin-left: -5px;
+							width: 190px;
+						}
+						i{
+							margin-left: 4px;
+						}
+						&.banknum-box{
+							position: relative;
+							.bank-tip{
+								position: absolute;
+								top: 10px;
+								left: 470px;
+								color: #df1414;
+								font-size: 12px;
+							}
+						}
+						&.choose-box{
+							.choose-bank{
+								width: 97px;
+								height: 36px;
+								display: block;
+								position: static;
+								border-radius: 5px;
+								font-size: 16px;
+								color: #bcbcbc;
+								background: #f1f1f1;
+								border: 1px solid #dbdbdb;
+								text-align: center;
+								line-height: 36px;
+								outline: none;
+
+								background: #008be6;
+								color: #fff;
+								border: 0;
+								&:hover{
+									background: darken(#008be6,3%);
+									text-decoration: none;
+								}
+							}
+							.bankimg{
+								float: left;
+								width: 151px;
+								height: 38px;
+								border: 1px solid #dbdbdb;
+								.img{
+									width: 151px;
+									height: 38px;
+									display: table-cell;
+									text-align: center;
+									vertical-align: middle;
+									img{
+										max-width: 151px;
+										max-height: 38px;
+									}
+								}
+							}
+							.reselect{
+								position: static;
+								float: left;
+								margin: 12px 0 0 13px;
+								font-size: 12px;
+								color: #2ab8dd;
+								outline: none;
+							}
+						}
+					}
+				}
+				.set-wrap .sub-wrap{
+					padding-left: 159px;
+					.suberror{
+						color: #e8592d;
+						font-size: 12px;
+						padding-bottom: 10px;
+						margin-top: -10px;
+						i{
+							width: 14px;
+							height: 14px;
+							float: left;
+							margin: 2px 5px 0 0;
+						}
+					}
+				}
+				.set-wrap .sub-wrap input,
+				.set-wrap .sub-wrap a{height: 40px;/* padding: 0 31px; */text-align: center;width: 98px;line-height: 38px;background: $globalColor;border-radius: 5px;cursor: pointer;border: none;font-size: 18px;color: #fff;display: inline-block;}
+				.set-wrap .sub-wrap input:hover,
+				.set-wrap .sub-wrap a:hover{background: darken($globalColor,5%);text-decoration: none;}
+				.set-wrap .sub-wrap input[disabled="disabled"]{
+					background: #bbb;
+					color: #ededed;
+					cursor: default;
+					&:hover{
+						background: #bbb;
+					}
+				}
+				.set-wrap .tip{font-size: 16px;color: #ccccd5;text-align: center;padding-top: 16px;margin-bottom: -5px;}
+				.set-wrap .input-mod a{position: absolute;left: 320px;top: 10px;line-height: normal;font-size: 14px;}
+				.set-wrap .step-wrap{width: 585px;margin: 0 auto;padding: 30px 0 21px;}
+				.set-wrap .step-wrap p{margin: 0 auto;}
+				.set-wrap .step-wrap ul{padding-top: 6px;overflow: hidden;zoom: 1;clear: both;}
+				.set-wrap .step-wrap li{float: left;width: 195px;text-align: center;font-size: 14px;color: #666;}
+				.set-wrap .input-mod .get-btn{padding: 0 9px;height: 40px;line-height: 40px;color: #fff;font-size: 16px;background: #00c2de;border-radius: 5px;top: 0;}
+				.set-wrap .input-mod .get-btn:hover{background: #00d3f1;text-decoration: none;}
+				.set-success .success-wrap i{width: 63px;height: 63px;float: left;background: url(../../images/myaccount/success-icon.png) no-repeat;}
+				.set-success .success-wrap p{float: left;margin: 8px 0 0 20px;color: #00c2de;font-size: 30px;}
+				.set-success .success-wrap{clear: both;zoom: 1;overflow: hidden;padding: 37px 0 134px 263px;}
+				//.set-wrap .set-mod{display: none;}
+				.active-wrap .set-mod{display: block;}
+				.set-wrap{margin-top: -1px;}
+				//.set-wrap .form-mod{display: none;}
+				// .set-wrap .set-before{display: block;}
+
+				.set-wrap .msg-box{font-size: 14px;*margin-top: -12px;*line-height: normal;}
+				.set-wrap .n-default .n-icon{margin-top: 3px;}
+				.set-wrap .special-mod .msg-box{display: block;margin: 0;}
+				// .reset-trade-box{display: none;}
+				.set-wrap .n-default .n-ok{display: none;}
+				.set-wrap .input-mod .nouse-btn,
+				.set-wrap .input-mod .nouse-btn:hover{background: #999;color: #fff;}
+				.set-wrap.set-storage{
+					.set-trigger{
+						.storage-icon{
+							margin-top: 28px;
+						}
+						p.info{
+							width: 470px;
+						}
+						a.goopen{
+							color: #ed3334;
+						}
+					}
+				}
+			}
+		}
+
+		//绑卡成功（失败）
+		.result{
+			.content{
+				width:438px;
+				height:266px;
+				margin:0 auto 40px;
+				border:1px solid #eee;
+				border-radius:10px;
+				-webkit-border-radius:10px;
+				-moz-border-radius:10px;
+				-ms-border-radius:10px;
+				-o-border-radius:10px;
+				.successinfo{
+					padding:22px 15px 22px 0px;
+					.left{
+						float:left;
+						width:197px;
+						height:45px;
+					}
+					.right{
+						float:right;
+						height:45px;
+						line-height:45px;
+						font-size:16px;
+						color:#888;
+					}
+				}
+				.successnum{
+					height:56px;
+					line-height:56px;
+					color:#333;
+					background:#fff4f1;
+					font-size:24px;
+					text-align:center;
+					margin-bottom:38px;
+				}
+				.successimg{
+					text-align:center;	
+				}
+				.failinfo{
+					padding:22px 15px;
+				}
+				.failimg{
+					background:#fff4f1;
+					text-align:center;
+					margin-bottom:38px;
+					padding:13px 0;
+				}
+				.failtip{
+					width:276px;
+					height:38px;
+					margin:0 auto;
+					line-height:38px;
+					text-align: center;
+					font-size:14px;
+					color:#d81e06;
+					border:1px dashed #fff4f1;
+					border-radius:4px;
+					-webkit-border-radius:4px;
+					-moz-border-radius:4px;
+					-ms-border-radius:4px;
+					-o-border-radius:4px;
+				}
+
+
+			}
+			.resultBtn{
+				display: block;
+				margin:0 auto;
+				width:312px;
+				height:42px;
+				line-height:42px;
+				text-align:center;
+				color:#fff;
+				font-size:16px;
+				background:#ed714e;
+				border-radius:2px;
+				-webkit-border-radius:2px;
+				-moz-border-radius:2px;
+				-ms-border-radius:2px;
+				-o-border-radius:2px;
+				&:hover{
+					background: darken(#ed714e,10%);
+					text-decoration: none;
+				}
+			}
+		}
+		
+		//投资信息
+		.investInfo{
+			background:#fff url('/images/bindcard/infoBottom.png') left bottom no-repeat;
+			padding:6px 30px 36px;
+			float:left;
+			h4{
+				font-size:20px;
+				color:#555;
+				height:80px;
+				line-height:80px;
+			}
+			.content{
+				li{
+					width:340px;
+					border-bottom:1px dashed #eee;
+					height:50px;
+					span{
+						display:inline-block;
+						height:50px;
+						line-height:50px;
+						color:#888;
+						font-size:14px;
+					}
+				}
+			}
+			.down{
+				margin-top:28px;
+				img{
+					margin-top:10px;
+				}
+				.wenzi{
+					line-height:34px;
+					text-align:right;
+					color:#c0c0c0;
+					font-size:14px;
+					.big{
+						font-size:26px;
+						color:#048eed;
+					}
+				}
+			}
+
+		}
+		//投资绑卡
+		.sbindcard{
+			width:720px;
+			float:right;
+			.bankInfoForm .form-wrap{
+				padding: 30px 0 45px 40px;
+			}
+			.accountInfo{
+				padding:12px 120px;
+				margin-bottom:28px;
+				background:#f9f9f9;
+				border:1px solid #eee;
+				p{
+					color:#666767;
+					font-size:16px;
+					height:34px;
+					line-height:34px;
+					span{
+						color:#ed714e;
+						font-weight:700;
+					}
+					em {
+						color: #048eed;
+						font-size: 16px;
+						margin-left: 64px;
+					}
+				}
+			}
+		}
+		
+	}
+
+}

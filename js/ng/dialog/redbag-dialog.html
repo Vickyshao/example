@@ -1,0 +1,64 @@
+<!-- <div class="redbag-dialog-wrap">
+	促复投第一期
+	文案1：有回款
+	<div class="dtitle" ng-if="promoteHasReturn && !promoteGetCashFrom">
+		<div class="mytitle">红包奉上，你开心就好！</div>
+		<p class="tip">时间有限，请尽快变现！</p>
+	</div>
+	文案2：无回款
+	<div class="dtitle" ng-if="!promoteHasReturn && !promoteGetCashFrom">
+		<div class="mytitle">钱都给你了，还不提走</div>
+		<p class="tip">还有现金红包未变现哦！</p>
+	</div> -->
+
+<!--文案3：提现-->
+<!--<div class="dtitle redbag-dialog-wrap" ng-if="promoteGetCashFrom">-->
+    <!--<div class="mytitle">红包都不要了？</div>-->
+    <!--<p class="tip">还有现金红包未变现哦！</p>-->
+    <!--<div class="bag-wrap">-->
+        <!--<table>-->
+            <!--<tr>-->
+                <!--<td ng-repeat="item in promoteRedbags">-->
+                    <!--<div class="bag-box">-->
+                        <!--<div class="title"><i>￥</i>{{item.amount}}元</div>-->
+                        <!--<ul>-->
+                            <!--<li>投资金额：单笔满{{item.enableAmount}}元</li>-->
+                            <!--<li>投资期限：≥{{item.productDeadline}}天<span style="font-size: 12px;">（活动标除外）</span></li>-->
+                            <!--<li>有效期至：{{item.expireDate | date:'yyyy.MM.dd'}}</li>-->
+                        <!--</ul>-->
+                        <!--<a href="" ng-click="promoteGoToUse(item)" class="btn">立即变现</a>-->
+                    <!--</div>-->
+                <!--</td>-->
+            <!--</tr>-->
+        <!--</table>-->
+    <!--</div>-->
+    <!--<div class="bot">-->
+        <!--<div class="giveup-box" ng-if="promoteGetCashFrom">-->
+            <!--<a href="" class="giveup" ng-click="promoteCloseDialog()">放弃机会，继续提现</a>-->
+        <!--</div>-->
+        <!--<div class="more-box" ng-if="!promoteGetCashFrom">-->
+            <!--<a href="" class="more" ng-click="promoteGoCoupon()">更多红包>></a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="redbag-dialog-wrap">
+    <img src="images/redbag/futoubg.png" ng-show="promoteHasReturn && !promoteGetCashFrom" class="bg">
+    <img src="images/redbag/zhucebg.png" ng-show="!promoteHasReturn && !promoteGetCashFrom" class="bg">
+    <!--<img src="images/redbag/zhucebg.png" ng-show="promoteGetCashFrom" class="bg">-->
+    <div class="bag-wrap">
+        <ul class="bag" ng-repeat="item in promoteRedbags">
+            <li class="first"><i>￥</i>{{item.amount}}</li>
+            <li class="second">有效期至：{{item.expireDate | date:'yyyy.MM.dd'}}</li>
+            <li class="third"><img src="images/redbag/line.png"></li>
+            <li class="fourth">单笔满{{item.enableAmount}}元</li>
+            <li class="fifth">{{item.productDeadline}}天以上(含{{item.productDeadline}}天)</li>
+            <li class="sixth">
+                <a href="" ng-click="promoteGoToUse(item)" class="btn">立即变现</a>
+            </li>
+        </ul>
+    </div>
+    <div class="giveupBox">
+        <a href="" class="giveup" ng-click="promoteCloseDialog()"></a>
+    </div>
+</div>

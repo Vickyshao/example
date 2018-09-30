@@ -1,0 +1,324 @@
+.welfarelist-wrapper{
+	.banner{
+		width: 100%;
+		height: 420px;
+		background: #f9f9f9 image-url('welfare/banner.png') center top no-repeat;
+	}
+	.list-wrap{
+		width: 100%;
+		// height: 564px;
+		overflow: hidden;
+		padding-bottom: 31px;
+		&:nth-child(even){
+			background: image-url('welfare/wall.png') center top;
+		}
+		.inner{
+			width: 943px;
+			margin: 61px auto 0;
+			.title{
+				width: 865px;
+				height: 90px;
+				border: 2px solid #d4c5bf;
+				border-radius: 2px;
+				padding: 0 37px;
+				position: relative;
+				i{
+					position: absolute;
+					background: #e23f45;
+					&.l{
+						width: 38px;
+						height: 40px;
+						left: -21px;
+						top: -18px;
+					}
+					&.r{
+						width: 31px;
+						height: 32px;
+						right: -11px;
+						bottom: -11px;
+					}
+				}
+				.t{
+					border-bottom: 1px solid #b3b3b3;
+					height: 51px;
+					line-height: 52px;
+					font-size: 22px;
+					color: #333;
+					width: 100%;
+				    overflow: hidden;
+				    white-space: nowrap;
+				    text-overflow: ellipsis;
+				}
+				p{
+					font-size: 14px;
+					color: #333;
+					line-height: 37px;
+				}
+			}
+			.imgs{
+				overflow: hidden;
+				padding-top: 43px;
+				table{
+					width: 960px;
+					margin-left: -9px;
+					// overflow: hidden;
+					// @include inline-block-list(9px);
+					// li{
+					// 	width: 300px;
+					// 	height: 189px;
+						// float: left;
+						// margin-right: 18px;
+						td{
+							text-align: center;
+						}
+						img{
+							border: 1px solid #cda79c;
+							border-radius: 1px;
+							width: 300px;
+							height: 218px;
+							vertical-align: top;
+							background: #fff;
+						}
+					// }
+				}
+			}
+			.con{
+				font-size: 16px;
+				color: #555;
+				line-height: 24px;
+				padding: 26px 22px 0;
+				text-indent: 2em;
+			}
+			.bot{
+				height: 45px;
+				line-height: 32px;
+				text-align: right;
+				border-bottom: 1px solid #aeaeae;
+				a{
+					font-size: 16px;
+					color: #f96466;
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	.pages-wrapper{
+		padding-top: 40px;
+		background: #f1f1f1;
+		height: 116px;
+	}
+}
+.welfaredetail-wrapper{
+	background: #f1f1f1;
+	.bread-wrap{
+		height: 34px;
+		line-height: 38px;
+		background: #f2f2f2;
+		width: 100%;
+		.bread{
+			width: 1150px;
+			margin: 0 auto;
+			font-size: 14px;
+			color: #666;
+			a{
+				font-size: 14px;
+				color: #666;
+			}
+			i{
+				display: inline-block;
+				vertical-align: top;
+				margin: 0 8px;
+			}
+		}
+	}
+	.banner{
+		width: 100%;
+		text-align: center;
+		overflow: hidden;
+		border-bottom: 1px solid #dedede;
+		img{
+			vertical-align: top;
+			opacity: 0;
+		}
+	}
+	.title{
+		text-align: center;
+		width: 586px;
+		font-size: 30px;
+		line-height: 42px;
+		color: #121212;
+		margin: 0 auto;
+		padding-top: 48px;
+		span{
+			display: block;
+			width: 200px;
+			height: 2px;
+			line-height: 0;
+			font-size: 0;
+			margin: 15px auto 0;
+			background: #f85f61;
+		}
+	}
+	.content{
+		width: 1194px;
+		margin: 0 auto;
+		padding-bottom: 54px;
+		.info{
+			padding: 40px 30px 35px;
+			line-height: 36px;
+			color: #555;
+			font-size: 16px;
+			text-indent: 2em;
+		}
+		.detail{
+			padding: 30px 38px;
+			border: 1px solid #d3d3d3;
+			background: #fff;
+			font-size: 16px;
+			line-height: 36px;
+			// text-indent: 2em;
+			overflow: hidden;
+			font-family: "Microsoft Yahei", arial, tahoma, "Hiragino Sans GB", \5b8b\4f53 !important;
+			span,p,div{
+				font-family: "Microsoft Yahei", arial, tahoma, "Hiragino Sans GB", \5b8b\4f53 !important;
+				color: #555 !important;
+			}
+			.video{
+				float: left;
+				margin: 10px 40px 5px 0;
+				background-size: contain;
+				a{
+					display:block;
+					background: image-url('welfare/start.png') center center no-repeat;
+				}
+				img{
+					display: block;
+					vertical-align: top;
+					max-width: 530px;
+					&.hide{
+						opacity: 0;
+					}
+				}
+			}
+		}
+	}
+	.live-wrap{
+		width: 100%;
+		height: 663px;
+		background: #fcfcfc image-url('welfare/bot.png') center bottom no-repeat;
+		.title{
+			padding-top: 33px;
+		}
+		.stage{
+			width: 1200px;
+			margin: 0 auto;
+			-webkit-perspective: 800px;
+	   		-moz-perspective: 800px;
+            perspective: 800px;
+            position: relative;
+            padding-top: 75px;
+            .container{
+            	width: 533px;
+            	height: 380px;
+            	position: absolute;
+				-webkit-transition: -webkit-transform 1s;
+				-moz-transition: -moz-transform 1s;
+				transition: transform 1s;
+
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+				position: absolute;
+				left: 50%;
+				margin-left: -266px;
+				.piece{
+					width: 533px;
+					height: 380px;
+					-webkit-transition: opacity 1s, -webkit-transform 1s;
+					-moz-transition: opacity 1s, -moz-transform 1s;
+					transition: opacity 1s, transform 1s;
+
+					position: absolute;
+					bottom: 0;
+					z-index: 3;
+					img{
+						width: 533px;
+						height: 380px;
+					}
+					div{
+						background: rgba(76,76,76,.5);
+						position: absolute;
+						left: 0;
+						top: 0;
+						width: 533px;
+						height: 380px;
+					}
+					&.piece1{
+						div{
+							display: none;
+						}
+						border: 1px solid #e7e7e7;
+						box-shadow: 0 0 13px rgba(79,79,79,.35);
+					}
+					&.piece2{
+						transform: translate3d(300px,50px,-200px);
+						z-index: 2;
+					}
+					&.piece3{
+						transform: translate3d(600px, 106px, -400px);
+						z-index: 1
+					}
+					&.piece4{
+						transform: translate3d(-600px, 106px, -400px);
+						z-index: 1
+					}
+					&.piece5{
+						transform: translate3d(-300px, 50px, -200px);
+						z-index: 2
+					}
+				}
+            }
+		}
+		.mystage{
+			width: 1200px;
+			margin: 0 auto;
+			padding-top: 75px;
+			.poster-main{ position:relative;width:1200px;height:380px;}
+			.poster-main a,.poster-main img{display:block;}
+			.poster-main .poster-list{width:1200px;height:380px;}
+			.poster-main .poster-list .poster-item{ position:absolute;left:0;top:0;
+				border: 1px solid #e7e7e7;
+				box-shadow: 0 0 13px rgba(79,79,79,.35);
+				background: #fff;
+			}
+			.poster-main .poster-list i{
+				display: block;
+				background: rgba(76,76,76,.7);
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 0;
+			}
+			.prev-btn{
+				width: 28px;
+				height: 42px;
+				background: image-url('welfare/prev.png') no-repeat;
+				position: absolute;
+				top: 170px;
+				left: 20px;
+				z-index: 10;
+				cursor: pointer;
+			}
+			.next-btn{
+				width: 28px;
+				height: 42px;
+				background: image-url('welfare/next.png') no-repeat;
+				position: absolute;
+				top: 170px;
+				right: 20px;
+				z-index: 10;
+				cursor: pointer;
+			}
+		}
+	}
+}

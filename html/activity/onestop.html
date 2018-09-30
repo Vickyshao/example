@@ -1,0 +1,145 @@
+<div class="onestop-wrapper" ng-controller="mainCtrl">
+    <div ng-hide="isLoginPage" class="top-global-wrapper">
+        <div class="top-content">
+            <div class="tel">
+                <i class="global-topphone"></i>
+                <b>客服热线：<span>{{(a | web).phone}}</span>（工作日：09:00-21:00；   周末及节假日：09:00-18:00）</b>
+            </div>
+            <div class="top-nav">
+                <a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a><span style="margin-right: 12px;">|</span><a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">帮助中心</a><span>|</span>
+                <div class="appCode"><a href="{{a|webIE8}}downloadApp"><i>手机APP</i></a>
+                    <div>
+                        <img src="images/global/app.png">
+                        <p>手机客户端<br>APP下载</p>
+                    </div>
+                </div><span style="margin-left: -4px;">|</span>
+                <div class="appCode"><i class="global-topwechat"></i>
+                    <div>
+                        <img src="images/global/wechat.png">
+                        <p>扫一扫<br>关注官方微信</p>
+                    </div>
+                </div>
+                <span ng-if="(a | isRegister).register" style="margin: 0 8px 0 -8px;">|</span>
+                <a ng-if="(a | isRegister).register" href="" ng-click="gotoLoginPage('myAccount')">{{(a | isRegister).user.userName}}</a>
+                <i ng-if="(a | isRegister).register">，</i>
+                <a ng-show="(a | isRegister).register" ng-click="userOut()" href="#" class="top-quit">退出</a>
+            </div>
+        </div>
+    </div>
+    <div class="modea-wrap">
+        <a href="{{a|webIE8}}main/home" class="onestop-logo"></a>
+        <div class="onestop-theme"></div>
+        <div class="onestop-sub"></div>
+    </div>
+    <div class="modeb-wrap">
+        <div class="onestop-titlea"></div>
+        <div class="con">供应链金融模式是围绕核心企业，管理上下游中小企业的资金流和物流，并把单个企业的不可控风险转变为<br>供应链企业整体的可控风险，通过立体获取各类信息，将风险控制在最低的金融服务。<br><strong>（担保机构同事对于上下游供应商申请的应收、应付账款融资进行担保。）</strong></div>
+        <div class="onestop-ours"></div>
+    </div>
+    <div class="modec-wrap">
+        <div class="onestop-titleb"></div>
+        <div class="con">实现企业商流、物流、资金流的有效统一，更好的将企业、金融机构、投资个体之间的资源完美整合，<br>从而进一步提高资金的使用效率及安全性，为投资人及企业带来最大的收益。</div>
+        <div class="model">
+            <div class="onestop-model"></div>
+            <div class="onestop-modelside"></div>
+        </div>
+    </div>
+    <div class="moded-wrap">
+        <div class="onestop-titlec"></div>
+        <div class="con">沪深致力于解决“中小微企业融资难题和贸易服务”，通过我们的银行级大数据智能风控模型的评分体系，<br>成功帮助以曼宝为例的企业解决了融资问题，帮助其扩大生产。</div>
+        <div class="onestop-example"></div>
+    </div>
+
+    <div id="footer">
+        <div class="footer-wrapper">
+            <div class="foot-wrap">
+                <div class="foot-nav">
+                    <div class="nav-mod">
+                        <!-- <i class="common-fot-home"></i> -->
+                        <p>信息披露</p>
+                        <ul>
+                            <li><a href="{{a|webIE8}}main/jt/JSGK?menuName=JSGK" target="_blank">公司简介</a></li>
+                            <!-- <li><a href="{{a|webIE8}}main/jt/FLFG?menuName=FLFG" target="_blank">法律法规</a></li> -->
+                            <li><a href="{{a|webIE8}}main/jt/LXWM?menuName=LXWM" target="_blank">联系我们</a></li>
+                            <li><a href="{{a|webIE8}}main/guarantee?menuName=guarantee" target="_blank">安全保障</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-mod">
+                        <!-- <i class="common-fot-qa"></i> -->
+                        <p>帮助中心</p>
+                        <ul>
+                            <li><a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">常见问题</a></li>
+                            <li><a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a></li>
+                            <li><a href="{{a|webIE8}}main/FLFG" target="_blank">法律保障</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modeline"></div>
+                <div class="foot-code">
+                    <div class="mode">
+                        <div class="box"><img src="images/appcode.png" width="100%" height="100%" /></div>
+                        <p>手机客户端<br>APP下载</p>
+                    </div>
+                    <div class="mode">
+                        <div class="box"><img src="images/weichar-code.png" width="100%" height="100%" /></div>
+                        <p>扫一扫<br />关注官方微信</p>
+                    </div>
+                </div>
+                <div class="modeline"></div>
+                <div class="contact-wrap">
+                    <div class="title">
+                        <p>客服热线</p>
+                    </div>
+                    <strong ng-cloak>{{(a | web).phone}}</strong>
+                    <span>工作日:9:00-21:00<br />周末及节假日：9:00-18:00<!-- <br>法定节假日除外<br>客服QQ: --></span>
+                </div>
+            </div>
+        </div>
+        <div class="right-wrapper">
+            <div class="foot-right">
+                <div class="right-text"><span>温馨提示：市场有风险，投资需谨慎</span> 沪ICP备15011372号-1 Copyright Reserved © 深圳前海云轩互联网金融服务有限公司 {{v}}</div>
+                <ul>
+                    <!-- <li><a id='___szfw_logo___' href='https://credit.szfw.org/CX20161019026653110332.html' target='_blank'><img width="100" height="35" src='images/cert.png' border='0' /></a></li> -->
+                    <li>
+                        <!-- <a id="_pingansec_bottomimagesmall_p2p" target="_blank" href="http://si.trustutn.org/info?sn=458161019000540153872&certType=4"> -->
+                        <img width="100" height="35" src="images/hyrz.png" />
+                        <!-- </a> -->
+                    </li>
+                    <li>
+                        <!-- <a class="spread-partners" href="http://www.sgs.gov.cn/shaic/" target="_blank"> -->
+                        <img src="/images/spread-partners/gsh.png">
+                        <!-- </a> -->
+                    </li>
+                    <li>
+                        <!-- <a class="spread-partners" href="http://www.12377.cn/" target="_blank"> -->
+                        <img src="/images/spread-partners/jbao.png">
+                        <!-- </a> -->
+                    </li>
+                    <li>
+                        <!-- <a class="spread-partners" href="http://www.zx110.org/" target="_blank"> -->
+                        <img src="/images/spread-partners/zxin.png">
+                        <!-- </a> -->
+                    </li>
+                    <li>
+                        <!-- <a class="spread-partners" href="http://www.jytpay.com/" target="_blank"> -->
+                        <img src="/images/spread-partners/pay.png">
+                        <!-- </a> -->
+                    </li>
+                    <li>
+                        <!-- <a class="spread-partners" href="https://www.aliyun.com/" target="_blank"> -->
+                        <img src="/images/spread-partners/aliyun.png">
+                        <!-- </a> -->
+                    </li>
+                    <li>
+                        <!-- <a key="5881d591efbfb01901cd3e3e" logo_size="124x47" logo_type="realname" href="http://v.pinpaibao.com.cn/authenticate/cert/?site=www.hushenlc.cn&amp;at=realname" target="_blank"> -->
+                        <img style="background: #fff;" src="//static.anquan.org/static/outer/image/hy_83x30.png" alt="安全联盟认证" height="35">
+                        <!-- </a> -->
+                    </li>
+
+
+                    <!-- <script type='text/javascript'>(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();</script> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

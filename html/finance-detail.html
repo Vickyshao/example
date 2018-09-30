@@ -1,0 +1,115 @@
+<div ng-controller="financeDetailCtrl" class="newhand-detail finance-detail-wrapper">
+<float-menu></float-menu>
+	<div class="bread-nav-wrapper new-bread-wrapper">
+		<div class="bread-nav">
+			<div class="bread-box"><span ng-repeat="item in path"><a href="{{item.url}}">{{item.pathName}}</a> > </span>{{title}}</div>
+		</div>
+	</div>
+
+	<div class="bill-detail-wrap">
+		<div class="bill-detail-content">
+			<div class="bill-detail-box">
+				<div class="bill-detail">
+					<div class="detail-box">
+						<div class="title">
+							<i class="bill-newhand"></i>
+							<div class="feature-box">
+	                            <p class="feature">
+	                                <span class="ng-binding" style="color:#bfd1e2">投资成功次日计息</span>
+	                            </p>
+								<b>
+									{{product.fullName}}
+								</b>
+								<strong>体验投资乐趣，享受投资收益</strong>
+	                        </div>
+							<i class="bill-detail-bao"></i>
+						</div>
+						<div class="list-wrap" ng-class="{6: 'end-list',7: 'end-list',8: 'end-list',9: 'end-list'}[product.status]">
+							<ul>
+								<li class="rate-mod" style="width:188px">
+									<div class="rate"><b>{{product.rate}}%
+									</b><b ng-if="product.activityRate != undefined && product.activityRate > 0">+{{product.activityRate}}%
+									</b></div>
+									<p>历史年化收益率</p>
+								</li>
+								<li class="deadline">
+									<div><b>{{product.deadline}}</b><span>天</span></div>
+									<p>投资期限</p>
+								</li>
+								<li>
+									<div><i>{{investCount}}</i></div>
+									<p>已体验人数</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="bill-form-wrap">
+					<div class="rest-wrap">
+						<div class="rest-box">
+							<i class="finance-ing"></i>
+							<div class="finance-rest">可用体验金余额<span ng-class="{true:'active'}[isLogin]">{{experienceAmount.experAmount}}</span>元</div>
+						</div>
+					</div>
+					<div class="form-box">
+						<form>
+							<input style="display:none">
+							<input type="password" style="display:none">
+							<div class="input-box">
+								<ul>
+									<li>
+										<input ng-if="isLogin" disabled="disabled" class="text" type="text" value="可投金额 {{experienceAmount.experAmount}} 元" />
+										<input ng-if="!isLogin" disabled="disabled" class="text" type="text" placeholder="请登录后查看可投金额" />
+									</li>
+								</ul>
+							</div>
+
+							<div>
+								<div class="profit">预计利息收益：<b ng-class="{true:'active'}[isLogin]">{{(((product.rate + product.activityRate)/100) / 360 * experienceAmount.experAmount * product.deadline) | isNumber2}}</b> 元</div>
+							</div>
+
+							<div class="sub-box">
+								<input ng-if="isLogin" type="submit" ng-disabled="experienceAmount.experAmount <= 0" ng-click="onClick('立即投资')" class="sub invest-btn" value="立即投资" />
+
+								<a ng-if="!isLogin" href="/dl?fromActivity=true" class="sub invest-btn">立即登录</a>
+					
+							</div>
+							<div class="bot">
+								*体验金不可与其他优惠同时使用，支付后扣除
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="newhand-detail-info">
+			<div class="newhand-new-wrap">
+				<div class="newhand-mode">
+					<div class="newwrap-title">产品描述</div>
+					<div class="finance-con">
+						<div class="top">
+							<b>举个栗子：</b>
+							<b>小明有50000元体验金,那么他的到期收益为</b>
+							<p>50000*5%/360*1=<span>6.94元</span></p>
+						</div>
+						<div class="bot">
+							<div class="title"><i class="finance-tip"></i>体验标说明：</div>
+							<ul>
+								<li><i class="finance-dot"></i>仅限使用沪深理财体验金进行投资，标的为虚拟体验，可产生投资收益；</li>
+								<li><i class="finance-dot"></i>投资体验标无需实名认证，投资次日计息；</li>
+								<li><i class="finance-dot"></i>体验标投资到期后，所得收益以现金形式存入用户的平台账户，归用户所有，可提现；</li>
+								<li><i class="finance-dot"></i>体验金收益需完成一次真实投资后才可提现；</li>
+								<li><i class="finance-dot"></i>投资后体验金本金会由平台收回。 本规则解释权归沪深理财所有；</li>
+								<li><i class="finance-dot"></i>如有疑问请拨打客服热线：400-031-9909</li>
+							</ul>
+						</div>
+						<i class="finance-detailicon"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

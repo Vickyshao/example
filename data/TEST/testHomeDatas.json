@@ -1,0 +1,39 @@
+{   "result":{
+        "newUser":{
+            "cash":"1",
+            "buyPeople":"1254",
+            "interestRate":"12",
+            "endDate":"24",
+            "totalCash":"35",
+            "plan":"12"
+        },
+        "hotSales":[{
+            "title":"票据安选 - 5天",
+            "cash":"1234",
+            "interestRate":"12",
+            "plan":"12",
+            "productId":"1283947583", 
+            "endDate":"24",
+            "startDate":"5日",
+            "endTimer":"203453253425",
+            "refundType":"0",
+            "totalCash":"12313",
+            "keTouCash":"300000",
+            "num":"1223"
+        },{
+            "title":"票据安选 - 6天",
+            "refundType":"0",
+            "keTouCash":"300000",
+            "cash":"1",
+            "interestRate":"12",
+            "productId":"1345435585",
+            "endDate":"24",
+            "totalCash":"12313",
+            "endTimer":"203453253425",
+            "startDate":"5日",
+            "plan":"12",
+            "num":"12285"
+        }]
+    },
+    "success":"true"
+}

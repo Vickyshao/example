@@ -1,0 +1,60 @@
+.wqq-body{
+	background: #faf6f2;
+	.wqq-header{
+		img{
+            width: 100%;
+			margin:0;
+			display: block;
+		}
+	}
+	.wqq-tap-box{
+		width:100%;
+		height: auto;
+		.wqq-tap-list-box{
+			width: 100%;
+			height:rem-calc(128px,1080);
+			background: #cfa972;
+			.wqq-tap-list{
+				height:rem-calc(122px,1080);
+				padding:0 rem-calc(34px,1080);
+				background: #cfa972;
+				.wqq-tap-item{
+					font-size:rem-calc(48px,1080);
+					line-height:rem-calc(122px,1080);
+					text-align: center;
+					float: left;
+					font-weight:bold;
+                    border-bottom:rem-calc(6px,1080) solid #6c4409;
+					color: #6c4409;
+					margin-right:rem-calc(76px,1080);
+				}
+				.wqq-tap-item-1{
+					font-size:rem-calc(48px,1080);
+					line-height:rem-calc(122px,1080);
+					text-align: center;
+					float: left;
+					cursor:pointer;
+					border-bottom:none;
+					color: #fff;
+					margin-right:rem-calc(76px,1080);
+				}
+			}
+		}
+		.wqq-tap-list-img{
+			img{
+				width:100%;
+				height:100%;
+				margin:0;
+				display: block;
+			}
+		}
+	}
+	.wqq-footer{
+		img{
+			width:100%;
+			height:100%;
+			margin:0;
+			display: block;
+		}
+	}
+}

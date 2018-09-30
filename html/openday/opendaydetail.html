@@ -1,0 +1,70 @@
+<div class="opendaylist-wrapper opendaydetail-wrapper" ng-controller="opendayCtrl">
+	<div class="bread"><a href="/main/home">首页</a><span>></span><a href="/main/openday">开放日</a><span>></span>开放日详情</div>
+	<div class="detail-wrap">
+		<div class="detail">
+			<div class="open-title">
+				<table>
+					<tr>
+						<td colspan="2" class="t"><strong>{{openDetail.title}}</strong></td>
+					</tr>
+					<tr class="bot">
+						<td>活动时间：{{openDetail.createTime | date:'yyyy-MM-dd'}}</td>
+						<td class="p">发布人：{{openDetail.writer}}</td>
+					</tr>
+				</table>
+			</div>
+			<div class="content"></div><!-- {{openDetail.content}} -->
+			<div class="open-change">
+				<table>
+					<tr>
+						<td ng-if="upOpenDayId != undefined"><a href="/main/opendaydetail?id={{upOpenDayId}}">< 上一期</a></td>
+						<td class="next" ng-if="downOpenDayId != undefined"><a href="/main/opendaydetail?id={{downOpenDayId}}">下一期  ></a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="step">
+			<div class="icons">
+				<div class="icon">
+					<i class="openday-stepa"></i>
+				</div>
+			</div>
+			<p>签到</p>
+			<span class="openday-dot"></span>
+			<div class="icons">
+				<div class="icon">
+					<i class="openday-stepb"></i>
+				</div>
+			</div>
+			<p>公司概况讲解</p>
+			<span class="openday-dot"></span>
+			<div class="icons">
+				<div class="icon">
+					<i class="openday-stepc"></i>
+				</div>
+			</div>
+			<p>参观公司各部门</p>
+			<span class="openday-dot"></span>
+			<div class="icons">
+				<div class="icon">
+					<i class="openday-stepd"></i>
+				</div>
+			</div>
+			<p>茶歇点心</p>
+			<span class="openday-dot"></span>
+			<div class="icons">
+				<div class="icon">
+					<i class="openday-stepe"></i>
+				</div>
+			</div>
+			<p>公司平台深度介绍</p>
+			<span class="openday-dot"></span>
+			<div class="icons">
+				<div class="icon">
+					<i class="openday-stepf"></i>
+				</div>
+			</div>
+			<p>领取随手礼</p>
+		</div>
+	</div>
+</div>

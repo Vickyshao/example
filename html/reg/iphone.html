@@ -1,0 +1,355 @@
+<div class="regsem-wrapper semiphone-wrapper" ng-controller="regCtrl">
+	<div class="globalheader-wrapper">
+		<div class="globalheader-wrap">
+			<a href="/main/home" target="_blank">
+				<div class="logo-wrap">
+					<img src="/images/global/logo.png">
+					<span></span>
+					<!--<i class="global-slogo"></i>-->
+					<img class="slogo" src="/images/global/slogo.png">
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="banner">
+		<div class="quick-register-wrap" style="background: none" ng-controller="zhuceCtrl">
+			<i class="regiphone-banner"></i>
+			<div class="quick-register-wrapper">
+				<form class="login_form" ng-model="login" name="loginform">
+					<input style="display:none">
+					<input type="password" style="display:none">
+					<div class="quick-register-mod">
+						<div style="color:#FD5357;height:47px;line-height:47px;font-size:20px;text-align:center;">注册领10万元体验金+666元红包</div>
+						<div class="quick-register-box" style="padding-top:0;">
+							<div class="input-wrap">
+								<div class="input-box">
+									<div class="input-mod">
+										<b class="icon finance-phone"></b>
+										<input id="mobilephone" type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/"  placeholder="请输入手机号码" ng-blur="blurID('focusMobilephone',loginform,$event)" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text semmobilephone"  ng-model="login.mobilephone" name="mobilephone" required minlength="11" maxlength="11" />
+									</div>
+									<i ng-show="loginform.mobilephone.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.mobilephone.$valid]"></i>
+			                		<span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box semimg-box">
+									<div class="img-box"><img ng-click="clickInput('changePic',$event)" src="login/validateCode.do"></div>
+									<div class="input-mod small-inputmod">
+										<b class="icon finance-code"></b>
+										<input type="text" placeholder="请输入验证码" class="text small-text" ng-model="login.picCode" name="picCode" minlength="4" maxlength="4" required autocomplete="off"/>
+									</div>
+									<i ng-show="loginform.picCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.picCode.$valid]"></i>
+									<span class="error" ng-show="loginform.picCode.$valid"><font>{{loginform.picCode | zhuCePicCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box">
+									<a href="" ng-if="loginform.mobilephone.$valid" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+
+									<a href="" ng-if="!loginform.mobilephone.$valid" ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+									<div class="input-mod small-inputmod">
+										<b class="icon finance-code"></b>
+										<input ng-disabled="!loginform.mobilephone.$dirty || !loginform.picCode.$dirty || loginform.mobilephone.$valid || loginform.picCode.$valid" placeholder="手机验证码"  type="text" ng-model="login.smsCode"  name="smsCode" class="text small-text" maxlength="4" required/>
+									</div>
+									<i ng-show="loginform.smsCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.smsCode.$valid]"></i>
+									<span class="error" ng-show="loginform.smsCode.$valid"><font color="red">{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box passwd-box">
+									<div class="input-mod">
+										<b class="icon finance-mycode"></b>
+										<input autocomplete="off" ng-show="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" ng-mouseout="showPassword(passwordText)" type="text" ng-model="login.passWord" class="text" name="passWord" required />
+										<input autocomplete="off" ng-hide="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" type="passWord" ng-model="login.passWord" class="text" name="passWord" required/>
+									</div>
+									<i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]" ng-click="showPassword(passwordText)" ></i>
+					
+									<i ng-show="loginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.passWord.$valid]"></i>
+									<span  class="error" ng-show="loginform.passWord.$valid"><font>{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="agreement-box">
+								<label for="agreement">我已阅读并同意<a href="/zc" target="_blank" class="server-agreement">《沪深理财注册协议》</a><input type="checkbox" ng-model="login.checkbox" class="check-box" id="agreement" checked /></label>
+							</div>
+							<div class="sub-box" ng-if="!loginform.$invalid" ng-click="LoginClick('zhuCe',loginform)">
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+							</div>
+							<div class="sub-box" ng-if="loginform.$invalid" >
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+							</div>
+
+							<div class="choose-box bottom-choose">已有账号？ 
+								<a href="{{hrefUrl}}dl" target="_blank" class="change-btn">立即登录</a>
+							</div>
+
+						</div>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+	<div class="people-wrapper">
+		<div class="people-wrap">
+			<i class="regiphone-jiaoa"></i>
+			<div class="title">累计参与用户<span>{{investCount}}</span>人，已送出<span>{{prizeCount-1}}</span>台<i>白送你不要？</i></div>
+			<div class="list">
+				<i class="regiphone-prev"></i>
+				<div class="container-wrap">
+					<div class="container">
+						<div class="slide">
+							<ul>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/1.png">
+									<p>感谢沪深公司的运营负责人...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/2.png">
+									<p>抽到了一个iPhone 7！下次...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/3.png">
+									<p>在这里跟大家分享一下这个平...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/4.png">
+									<p>我会继续信任沪深理财，介绍...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/5.png">
+									<p>我非常高兴！以后还会继续...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/6.png">
+									<p>意外地抽到了一个iPhone 7...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/7.png">
+									<p>手机拿到的速度非常快，颜色...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/8.png">
+									<p>幸运地抽到了大奖iPhone 7...</p>
+								</li>
+							</ul>
+						</div>
+						<div class="slide">
+							<ul>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/9.png">
+									<p>又好拿手机又好拿利息，下...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/10.png">
+									<p>沪深是一个非常可靠的平台...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/11.png">
+									<p>国企控股平台，所以比较放心...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/12.png">
+									<p>既能拿到收益，还能够拿手机...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/13.png">
+									<p>让我有机会获得了手机大奖...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/14.png">
+									<p>投资产品收益很可观，希望...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/15.png">
+									<p>真的很开心，希望沪深理财...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/16.png">
+									<p>经亲友介绍，认识了沪深理财...</p>
+								</li>
+							</ul>
+						</div>
+						<div class="slide">
+							<ul>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/17.png">
+									<p>投30万包标可以送iPhone 7...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/18.png">
+									<p>第一反应有点懵，觉得自己很...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/19.png">
+									<p>赢到了iPhone 7，下次我还...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/20.png">
+									<p>颜色可自选，内存128G，好看...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/21.png">
+									<p>新年之初喜中iPhone 7头奖...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/22.png">
+									<p>获得了苹果7大奖，还可以选...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/23.png">
+									<p>投资了8000元，抽到了128G...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/24.png">
+									<p>投资获收益，还有奖品可拿...</p>
+								</li>
+							</ul>
+						</div>
+						<div class="slide">
+							<ul>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/1.png">
+									<p>感谢沪深公司的运营负责人...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/2.png">
+									<p>抽到了一个iPhone 7！下次...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/3.png">
+									<p>在这里跟大家分享一下这个平...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/4.png">
+									<p>我会继续信任沪深理财，介绍...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/5.png">
+									<p>我非常高兴！以后还会继续...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/6.png">
+									<p>意外地抽到了一个iPhone 7...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/7.png">
+									<p>手机拿到的速度非常快，颜色...</p>
+								</li>
+								<li ng-click="alertRegLoginDialog()">
+									<img src="images/semiphones/8.png">
+									<p>幸运地抽到了大奖iPhone 7...</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<i class="regiphone-next"></i>
+			</div>
+			<a href="" class="btn" ng-click="alertRegLoginDialog()">我也要拿iPhone7</a>
+		</div>
+	</div>
+	<div class="product-wrapper">
+		<div class="product-wrap">
+			<i class="regiphone-jiaod"></i>
+			<div class="title">
+				投即享8.5%+3%高收益，还有机会白拿iPhone 7！
+			</div>
+			<div class="list-box-shadow">
+				<i class="shadow"></i>
+				<div class="list-box">
+					<div class="special-box">
+						<div class="btn-box">
+							<i class="regiphone-iphone"></i>
+							<a href="" ng-click="alertRegLoginDialog()">立即抢购</a>
+						</div>
+						<div class="show-wrap">
+			                <div class="top">
+			                    <p class="total"><i>{{investCount}}</i>人已参与</p><div class="bill-name ng-binding">财胜90<span>拼人品，抽iPhone7</span></div>
+			                </div>
+			                <div class="product-table">
+			                    <table>
+			                        <tbody><tr class="data">
+			                            <td width="165" class="rate">
+			                                <span><b class="ng-binding">{{semIphoneInfo.rate}}</b>%<i ng-if="semIphoneInfo.activityRate!=undefined && semIphoneInfo.activityRate!=0">+{{semIphoneInfo.activityRate}}%</i></span>
+			                            </td>
+			                            <td width="155">
+			                                <span><b class="ng-binding">{{semIphoneInfo.deadline}}</b>天</span>
+			                            </td>
+			                            <td width="164" class="total">
+			                                <span><b class="ng-binding">{{semIphoneInfo.leastaAmount}}</b>元</span>
+			                            </td>
+			                        </tr>
+			                        <tr class="bot">
+			                            <td><p>历史年化收益</p></td>
+			                            <td><p style="padding-left: 2px;">产品期限</p></td>
+			                            <td><p style="padding-left: 20px;">起投金额</p></td>
+			                        </tr>
+			                    	</tbody>
+			                    </table>
+			                </div>
+			                <div class="bot">预投12万赚3450元收益，再获100次白抢iPhone7的机会</div>
+						</div>
+						
+
+		            </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="icon-wrap">
+		<i class="regiphone-jiaob"></i>
+		<div class="title">国企全资控股平台 雄厚的实力保障</div>
+		<div class="icons">
+			<table>
+				<tr>
+					<td>
+						<div class="con">
+							<p><i class="regiphone-icona"></i></p>
+							<span>国企全资控股</span>
+							<div>强大的国资背景<br>实缴1亿注册资金</div>
+						</div>
+					</td>
+					<td>
+						<div class="con">
+							<p><i class="regiphone-iconb"></i></p>
+							<span>资金安全保障</span>
+							<div>六大还款来源，保证资金安全<br>专业保理担保</div>
+						</div>
+					</td>
+					<td>
+						<div class="con">
+							<p><i class="regiphone-iconc"></i></p>
+							<span>专业律师合规支持</span>
+							<div>两大国内顶级律所<br>全程法律支持</div>
+						</div>
+					</td>
+					<td>
+						<div class="con">
+							<p><i class="regiphone-icond"></i></p>
+							<span>合规监管</span>
+							<div>根据最新监管细则<br>合规合法经营</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<p class="bot">
+			<!-- <a href="/reg/reglist" target="_blank" class="more">了解详情 ＞</a> -->
+		</p>
+	</div>
+	<div class="rule-wrapper">
+		<div class="rule-wrap">
+			<i class="regiphone-jiaoa"></i>
+			<div class="title">活动规则</div>
+			<div class="center">
+				<ul>
+					<li><span>1.</span>本活动专属标为财胜90，期限90天，每期总金额36万。投资除获得收益以外还有机会抽取iphone7大奖。每期抽取1部iphone7，颜色可任意选择；</li>
+					<li><span>2.</span>每投资1200元即可获得一个“字母+数字”组合的抽奖号码，也可以一次性投资1200元的倍数获得多个抽奖号码，每期共300个抽奖号码；</li>
+					<li><span>3.</span>投资本活动标不享受红包等平台其他任何福利；</li>
+					<li><span>4.</span>开奖方式及中奖结果：活动遵循公开公平公正的原则，每期活动标满后5个工作日内进行开奖，每周三下午视频直播开奖全程，直播平台为“一直播”,搜索“沪深理财”即可进入直播间查看。</li>
+					<li>*本活动由沪深理财发起并就活动内容作出解释和说明，任何疑问请联系客服：400-031-9909</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

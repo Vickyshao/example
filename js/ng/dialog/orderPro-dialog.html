@@ -1,0 +1,42 @@
+<div class="luckyDraw backgNone">
+    <div class="orderPro">
+        <div class="title">
+            <div class="name">预约商品</div>
+            <img class="closeDialog" src="/images/whiteClose.png" ng-click="closeDialog()"/>
+        </div>
+
+        <div class="cnt">
+            <div class="proList">
+                <div class="proListIcon">
+                    <img src="/images/luckyDraw/proListIcon.png" ng-click="closeDialog()"/>
+                </div>
+                <div class="info">
+                    <div class="proName">{{curAwards.name}}</div>
+                    <div class="price">市场价：<span class="colorRed"> {{curAwards.marketPrice}}元</span></div>
+                </div>
+            </div>
+
+            <div class="nums">
+                <div class="minusPlus">
+                    <a class="minus" ng-click="minus()"><img src="/images/minus.png"/></a>
+                    <!--<a ng-show="isMinimum" class="minus"><img src="/images/minusGrey.png"/></a>-->
+                    <!--<input class="num" id="orderNum" type="text" ng-model="pro.orderNum" ng-blur="changeOrderNum(this.value)" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')"/>-->
+                    <input class="num" id="orderNum" type="text" ng-model="pro.orderNum" ng-change="changeOrderNum()" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')"/>
+                    <a ng-show="!isMaximum"class="minus plus" ng-click="plus()"><img src="/images/plus.png"/></a>
+                    <a ng-show="isMaximum" class="minus plus"><img src="/images/plusGrey.png"/></a>
+                </div>
+                <div class="cjm">个抽奖码</div>
+            </div>
+
+            <div class="txt">
+                预约总金额(元)：<span class="colorRed"> {{pro.orderNum * curAwards.unitPrice}}</span>
+            </div>
+
+            <div class="btns">
+                <input class="" type="button" value="取消" ng-click="closeDialog()"/>
+                <input class="sub" type="button" value="确认预约" ng-click="sureToOrder()"/>
+            </div>
+            <div class="txt">预约后不会花费您的余额</div>
+        </div>
+    </div>
+</div>

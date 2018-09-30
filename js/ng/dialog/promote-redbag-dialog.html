@@ -1,0 +1,51 @@
+<div class="promote-dialog-wrapper">
+
+	<!-- 拆 -->
+	<div class="redbag-openbg" ng-if="showBagType == 'showTear'">
+		<a href="" class="close" ng-click="promoteCloseDialog(true)">×</a>
+		<p>给您发了一个红包，金额随机<br>目测您有土豪气质,小手一抖红包到手！</p>
+		<a href="" class="tear" ng-click="tearBag()"></a>
+	</div>
+
+	<!-- 红包 -->
+	<div class="redbag-dialog-wrap" ng-if="showBagType == 'showRedBag'" style="margin-top: -110px;">
+		<a href="" class="close" ng-click="promoteCloseDialog()">×</a>
+		<div class="dtitle promotetitle">
+			<div class="mytitle">小聚说您是土豪吧</div>
+			<p class="tip">红包都比别人大！</p>
+		</div>
+		<div class="bag-wrap">
+			<table>
+				<tr>
+					<td ng-repeat="item in accountpromoteRedbags">
+						<div class="bag-box">
+							<div class="title"><i>￥</i>{{item.amount}}元</div>
+							<ul>
+								<li>投资金额：单笔满{{item.enableAmount}}元</li>
+								<li>投资期限：{{item.productDeadline}}天以上(含{{item.productDeadline}}天)</li>
+								<li>有效期至：{{item.expireDate | date:'yyyy.MM.dd'}}</li>
+							</ul>
+							<a href="" ng-click="promoteGoToUse(item)" class="btn">立即变现</a>
+						</div> 
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="bot">
+			<div class="more-box">
+				<a href="" class="more" ng-click="promoteGoCoupon()">更多红包>></a>
+			</div>
+		</div>
+		<div class="botlist" ng-show="personList != undefined">
+			<p class="top"><span>大家都在领红包</span></p>
+			<div class="listbox">
+				<ul class="promotelist">
+					<li ng-repeat="item in personList" ng-if="item.status == 1">
+						<p><span>已变现</span>{{item.mobilePhone}}</p>
+						<p><span>{{item.addtime | date: 'yyyy.MM.dd'}}</span>刚刚领取了{{item.amount}}元现金红包</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

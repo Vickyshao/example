@@ -1,0 +1,237 @@
+<div class="inviteFriends" ng-controller="inviteFriendsCtrl">
+    <div class="globalheader-wrapper">
+        <div class="globalheader-wrap">
+            <div ng-click="$state.go('main.home');" class="logo-wrap">
+                <img src="/images/global/logo.png">
+                <span></span>
+                <!--<i class="global-slogo"></i>-->
+                <img class="slogo" src="/images/global/slogo.png">
+            </div>
+            <!-- <i class="christmaslogo"></i> -->
+        </div>
+    </div>
+
+    <div class="quick-register-wrap inviteBanner">
+        <div class="invitephone">您的好友<span>{{userInfo}}</span>邀请您</div>
+        <div class="wqq-quick-register-wrap-box">
+            <!--<i class="register-banner2" style="left:0"></i>-->
+            <div class="quick-register-wrapper" style="padding: 20px 0 0 1140px;float: left;position: absolute;right: 20px;">
+                <form class="login_form" ng-model="login" name="loginform">
+                    <input style="display:none">
+                    <input type="password" style="display:none">
+                    <div class="quick-register-mod" style="width: 420px;">
+                        <div class="title">
+                            <div class="throung"></div>
+                            <div class="p-box">
+                                <p ng-cloak class="ng-cloak">会员注册</p>
+                            </div>
+                        </div>
+                        <div class="quick-register-box" style="padding:20px 16px 0 16px;">
+                            <!-- 注册登录名 -->
+                            <div class="input-box" style="padding-bottom: 20px;">
+                                <div class="input-mod">
+                                    <input id="userphone" ng-blur="blurID('focusMobilephone',loginform)" name="mobilephone" type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/" placeholder="请输入手机号码" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text"  ng-model="login.mobilephone" required minlength="11" maxlength="11" />
+                                    <i ng-show="loginform.mobilephone.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.mobilephone.$valid]"></i>
+                                    <span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+                                </div>
+                            </div>
+                            <!-- 图文验证 -->
+                            <div class="input-box" style="padding-bottom: 20px;">
+                                <div class="img-box" style="width: 32%;"><img ng-click="clickInput('changePic',$event)" src="login/validateCode.do"></div>
+                                <div class="input-mod" style="width:63%;">
+                                    <input id="imgcode" type="text" placeholder="请输入验证码" class="text small-text" ng-model="login.picCode" name="picCode" minlength="4" maxlength="4" required autocomplete="off"/>
+                                </div>
+                                <i ng-show="loginform.picCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.picCode.$valid]"></i>
+                                <span class="error" ng-show="loginform.picCode.$valid"><font color="red">{{loginform.picCode | zhuCePicCodeError:serverErrorCode}}</font></span>
+                            </div>
+                            <!-- 短信验证 -->
+                            <div class="input-box" style="padding-bottom: 20px;">
+                                <a href="" ng-if="loginform.mobilephone.$valid" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]" style="width: 32%;">{{nowTimer}}获取验证码</a>
+                                <a href="" ng-if="!loginform.mobilephone.$valid" ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]" style="width: 32%;">{{nowTimer}}获取验证码</a>
+
+                                <div class="input-mod" style="width:63%;">
+                                    <input ng-disabled="!loginform.mobilephone.$dirty || !loginform.picCode.$dirty || loginform.mobilephone.$valid || loginform.picCode.$valid" placeholder="请输入短信验证码"  type="text" ng-model="login.smsCode"  name="smsCode" class="text small-text border-right0" maxlength="4" required/>
+                                </div>
+                                <i ng-show="loginform.smsCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.smsCode.$valid]"></i>
+                                <span class="error" ng-show="loginform.smsCode.$valid"><font color="red">{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+                            </div>
+
+
+                            <!-- 密码 -->
+                            <div class="input-box passwd-box"  style="padding-bottom: 20px;">
+                                <div class="input-mod">
+                                    <input autocomplete="off" ng-show="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" ng-mouseout="showPassword(passwordText)" type="text" ng-model="login.passWord" class="text border-right0" name="passWord" required />
+                                    <input autocomplete="off" ng-hide="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" type="passWord" ng-model="login.passWord" class="text border-right0" name="passWord" required/>
+                                </div>
+                                <i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]" ng-click="showPassword(passwordText)" ></i>
+
+                                <i ng-show="loginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.passWord.$valid]"></i>
+                                <span  class="error" ng-show="loginform.passWord.$valid"><font color="red">{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+                            </div>
+                            <!-- 推荐人 -->
+                            <!--<div class="input-box recommend-box" style="padding-bottom: 20px;" ng-show="showRecommend">-->
+                                <!--<div class="show-mod" ng-click="onClickReferee()">-->
+                                    <!--<a href="">推荐人（选填）<i ng-class="{true: 'login-icons-rotriangle', false: 'login-icons-triangle'}[isShowReferee]"></i></a>-->
+                                <!--</div>-->
+                                <!--<div class="input-mod">-->
+                                    <!--<input ng-disabled="isDisabledRecomm" ng-value='login.recommPhone' ng-show="isShowReferee" placeholder="请输入推荐人手机号码/推荐码" type="text" class="text" ng-model="login.recommPhone" name="recommPhone" autocomplete="off" maxlength="11" />-->
+                                <!--</div>-->
+                                <!--<i ng-show="loginform.recommPhone.$valid && isShowReferee" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.recommPhone.$valid]||{false: '', true: 'ng-hide'}[isZhuCe]"></i>-->
+                                <!--<span  class="error" ng-show="loginform.recommPhone.$valid && isShowReferee"><font color="red">{{loginform.recommPhone | zhuCeRefereeError:serverErrorCode}}</font></span>-->
+                            <!--</div>-->
+
+                            <!-- 登录/注册 按钮 -->
+                            <div class="sub-box" ng-click="LoginClick('zhuCe',loginform)">
+                                <input style="background:#ed3334;" ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册"/>
+                            </div>
+                            <!-- 服务条款/切换状态 -->
+                            <div class="agreement-box">
+                                <label for="agreement"><input type="checkbox" ng-model="login.checkbox" ng-true-value="true" name="checkbox" id="agreement" class="check-box" checked />我已阅读并同意<a href="/zc" target="_blank" class="server-agreement">《沪深理财注册协议》</a>
+                                </label>
+                                <div class="choose-box" style="font-size: 14px;">我已注册
+                                    <a href="{{hrefUrl}}dl"  class="change-btn" style="color: #004eff;">立即登录</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="semfinance-list chooseReason">
+        <div class="invite-chooseTitle title"></div>
+        <table>
+            <tbody>
+            <tr>
+                <td><i class="invite-gzbj"></i></td>
+                <td><i class="invite-yyzj"></i></td>
+                <td><i class="invite-zjtg"></i></td>
+                <td><i class="invite-hegj"></i></td>
+            </tr>
+            <tr>
+                <td width="25%">
+                    <span>国资背景</span>
+                    <p>实缴1亿注册资金</p>
+                </td>
+                <td width="25%">
+                    <span>风险保障</span>
+                    <p>精准风控优先垫付</p>
+                </td>
+                <td width="25%">
+                    <span>资金托管</span>
+                    <p>三方支付资金托管</p>
+                </td>
+                <td width="25%">
+                    <span>合规经营</span>
+                    <p>顶级律所法律支持</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 底部 -->
+    <div id="footer">
+        <div class="footer-wrapper">
+            <div class="foot-wrap">
+                <div class="foot-nav">
+                    <div class="nav-mod">
+                        <!-- <i class="common-fot-home"></i> -->
+                        <p>信息披露</p>
+                        <ul>
+                            <li><a href="{{a|webIE8}}main/jt/JSGK?menuName=JSGK" target="_blank">公司简介</a></li>
+                            <!-- <li><a href="{{a|webIE8}}main/jt/FLFG?menuName=FLFG" target="_blank">法律法规</a></li> -->
+                            <li><a href="{{a|webIE8}}main/jt/LXWM?menuName=LXWM" target="_blank">联系我们</a></li>
+                            <li><a href="{{a|webIE8}}main/guarantee?menuName=guarantee" target="_blank">安全保障</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-mod">
+                        <!-- <i class="common-fot-qa"></i> -->
+                        <p>帮助中心</p>
+                        <ul>
+                            <li><a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">常见问题</a></li>
+                            <li><a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a></li>
+                            <li><a href="{{a|webIE8}}main/FLFG" target="_blank">法律保障</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--<div class="modeline"></div>-->
+                <div class="foot-code">
+                    <div class="mode">
+                        <div class="box">
+                            <img src="images/appcode.png" width="100%" height="100%" />
+                        </div>
+                        <p>
+                            手机客户端<br>APP下载
+                        </p>
+                    </div>
+                    <div class="mode">
+                        <div class="box">
+                            <img src="images/weichar-code.png" width="100%" height="100%" />
+                        </div>
+                        <p>
+                            扫一扫<br />关注官方微信
+                        </p>
+                    </div>
+                </div>
+                <!--<div class="modeline"></div>                                                                -->
+                <div class="contact-wrap">
+                    <div class="title">
+                        <p>客服热线</p>
+                    </div>
+                    <strong ng-cloak>{{(a | web).phone}}</strong>
+                    <span class="serviceTime">周一至周五 09:00-18:00<!-- <br>法定节假日除外<br>客服QQ: --></span>
+                    <div class="footerqq">
+                        <div class="ico qqblue"><a href="http://wpa.b.qq.com/cgi/wpa.php?ln=1&key=XzgwMDgyMjQxMV80NzQ2ODdfODAwODIyNDExXw" target="_blank"><span class="text">客服QQ</span></a></div>
+                        <!--<div class="ico emailblue" ng-focus="count=1" ng-mouseover="count=1" ng-mouseleave="count=0" ng-init="count=0"><span class="text">客服邮箱</span></div>-->
+                        <div class="ico emailblue" ng-mouseover="mouseover()" ng-mouseout="mouseout()"><span class="text">客服邮箱</span></div>
+                        <div class="emailhover" ng-if="count">
+                            <a href="mailto:kefu@hsh-yx.com"><i>客服邮箱：</i><i>kefu@hsh-yx.com</i></a>
+                            <!--<a href="mailto:kefu@hsh-yx.com"><div class="common-emailhover"></div> </a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-wrapper">
+            <div class="foot-right">
+                <ul>
+                    <!-- <li><a id='___szfw_logo___' href='https://credit.szfw.org/CX20161019026653110332.html' target='_blank'><img width="100" height="35" src='images/cert.png' border='0' /></a></li> -->
+                    <!--<li><a id="_pingansec_bottomimagesmall_p2p" target="_blank" href="http://si.trustutn.org/info?sn=458161019000540153872&certType=4"><img width="100" height="35" src="images/hyrz.png"/></a></li>-->
+                    <li>
+                        <!--<a class="spread-partners" href="http://www.sgs.gov.cn/shaic/" target="_blank">-->
+                        <img src="/images/spread-partners/gsh.png">
+                        <!--</a>-->
+                    </li>
+                    <li>
+                        <!--<a class="spread-partners" href="http://www.12377.cn/" target="_blank">-->
+                        <img src="/images/spread-partners/jbao.png">
+                        <!--</a>-->
+                    </li>
+                    <li>
+                        <!--<a class="spread-partners" href="http://www.zx110.org/" target="_blank">-->
+                        <img src="/images/spread-partners/zxin.png">
+                        <!--</a>-->
+                    </li>
+                    <li>
+                        <!--<a class="spread-partners" href="http://www.jytpay.com/" target="_blank">-->
+                        <img src="/images/spread-partners/pay.png">
+                        <!--</a>-->
+                    </li>
+                    <li>
+                        <!--<a class="spread-partners" href="https://www.aliyun.com/" target="_blank">-->
+                        <img src="/images/spread-partners/aliyun.png">
+                        <!--</a>-->
+                    </li>
+                    <!-- <script type='text/javascript'>(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();</script> -->
+                </ul>
+
+                <div class="right-text"><p  >粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司{{v}}</p>
+                    <p>温馨提示：市场有风险，投资需谨慎</p></div>
+
+            </div>
+        </div>
+    </div>
+    <!-- 底部结束 -->
+</div>

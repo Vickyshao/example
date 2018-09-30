@@ -1,0 +1,144 @@
+<div class="regsem-wrapper semlist-wrapper semhold-wrapper sem-finance-wrapper" ng-controller="regCtrl">
+	<div class="banner">
+		<div class="quick-register-wrap" style="background: none" ng-controller="zhuceCtrl">
+			<i class="regiphone-banner"></i>
+			<div class="quick-register-wrapper">
+				<form class="login_form" ng-model="login" name="loginform">
+					<input style="display:none">
+					<input type="password" style="display:none">
+					<div class="quick-register-mod">
+						<div class="quick-top">注册领10万元体验金+666元现金红包</div>
+						<div class="quick-register-box">
+							<div class="input-wrap">
+								<div class="input-box">
+									<div class="input-mod">
+										<b class="icon finance-phone"></b>
+										<input id="mobilephone" type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/"  placeholder="请输入手机号码" ng-blur="blurID('focusMobilephone',loginform,$event)" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text semmobilephone"  ng-model="login.mobilephone" name="mobilephone" required minlength="11" maxlength="11" />
+									</div>
+									<i ng-show="loginform.mobilephone.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.mobilephone.$valid]"></i>
+			                		<span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box semimg-box">
+									<div class="img-box"><img ng-click="clickInput('changePic',$event)" src="login/validateCode.do"></div>
+									<div class="input-mod small-inputmod">
+										<b class="icon finance-code"></b>
+										<input type="text" placeholder="请输入验证码" class="text small-text" ng-model="login.picCode" name="picCode" minlength="4" maxlength="4" required autocomplete="off"/>
+									</div>
+									<i ng-show="loginform.picCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.picCode.$valid]"></i>
+									<span class="error" ng-show="loginform.picCode.$valid"><font>{{loginform.picCode | zhuCePicCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box">
+									<a href="" ng-if="loginform.mobilephone.$valid" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+
+									<a href="" ng-if="!loginform.mobilephone.$valid" ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+									<div class="input-mod small-inputmod">
+										<b class="icon finance-code"></b>
+										<input ng-disabled="!loginform.mobilephone.$dirty || !loginform.picCode.$dirty || loginform.mobilephone.$valid || loginform.picCode.$valid" placeholder="手机验证码"  type="text" ng-model="login.smsCode"  name="smsCode" class="text small-text" maxlength="4" required/>
+									</div>
+									<i ng-show="loginform.smsCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.smsCode.$valid]"></i>
+									<span class="error" ng-show="loginform.smsCode.$valid"><font color="red">{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="input-wrap">
+								<div class="input-box passwd-box">
+									<div class="input-mod">
+										<b class="icon finance-mycode"></b>
+										<input autocomplete="off" ng-show="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" ng-mouseout="showPassword(passwordText)" type="text" ng-model="login.passWord" class="text" name="passWord" required />
+										<input autocomplete="off" ng-hide="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" type="passWord" ng-model="login.passWord" class="text" name="passWord" required/>
+									</div>
+									<i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]" ng-click="showPassword(passwordText)" ></i>
+					
+									<i ng-show="loginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.passWord.$valid]"></i>
+									<span  class="error" ng-show="loginform.passWord.$valid"><font>{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<div class="agreement-box">
+								<label for="agreement">我已阅读并同意<a href="/zc" target="_blank" class="server-agreement">《沪深理财注册协议》</a><input type="checkbox" ng-model="login.checkbox" class="check-box" id="agreement" checked /></label>
+							</div>
+							<div class="sub-box" ng-if="!loginform.$invalid" ng-click="LoginClick('zhuCe',loginform)">
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+							</div>
+							<div class="sub-box" ng-if="loginform.$invalid" >
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+							</div>
+
+
+						</div>
+						<div class="choose-box bottom-choose">已有账号？ 
+							<a href="{{hrefUrl}}dl" target="_blank" class="change-btn">【请登录】</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+		<div class="holdbox">
+			<div class="title">
+				<i class="reghpys-titlea"></i>
+			</div>
+			<div class="con">
+				<div class="text">
+					<p>第一财经：2017年1月4日，沪深理财成功在上海外滩华尔道夫酒店召开《国资互金平台创新发展之路暨上海和平影视企业公司(集团)垂直管理沪深理财媒体通告会》，开启历史的新篇章。<br> &nbsp; &nbsp; &nbsp; 上海和平影视企业公司(集团)正式宣布，对集团直属的沪深理财进行穿透式的垂直化管理。这是和平影视集团进行垂直管理的首家互金平台。</p>
+				</div>
+				<div class="img">
+					<div class="video reghpys-videoa" ng-click="showVideo=true"></div>
+					<div class="video reghpys-videob" ui-sref="main.conference({showVideo:3})"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="holdbox-wrapper">
+		<i class="reghpys-bga"></i>
+		<div class="holdbox">
+			<div class="title">
+				<i class="reghpys-titleb"></i>
+			</div>
+			<div class="box reghpys-bgb">
+				<div class="blue">
+					<span>上海和平影视企业公司</span>
+					<p>“和平影视”于1992年8月经上级批准以非公司企业法人（全民所有制性质）， 在上海市工商行政管理局注册设立“上海和平影视企业公司”独立法 人单位的企事业公司，简称“和平影视”。1996年中央实行专业行政管理属地化，“和平影视”业务归上海市文化广播影视管理局及中共上海市委宣传部领导。</p>
+				</div>
+				<div class="center">垂直管理</div>
+				<div class="red">
+					<img src="images/reghpys/logo.png">
+					<p>深圳前海云轩互联网金融服务有限公司</p>
+				</div>
+				<div class="txt">
+					<span>财务管理方面</span>
+					<p>集团将指派专人定期对沪深理财的财务报表进行审计，并建立起对平台的第三方资金存管、银行存管、平台自有运营资金的日常巡查与监管制度。</p>
+				</div>
+				<div class="txt txtb">
+					<span>人事管理方面</span>
+					<p>和平影视集团将在沪深理财内建立党支部，直接管理平台的高管团队，将其人事关系纳入到国有企业编制。</p>
+				</div>
+				<div class="txt txtc">
+					<span>业务管理方面</span>
+					<p>要求沪深理财严格按照网贷管理办法，以国有企业标准制定并向集团提交开展相关业务的制度、流程和标准，经集团批准后执行。</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="mod-wrapper modb-wrapper holdboxc-wrapper">
+		<div class="mod">
+			<div class="title">
+				<i class="reghpys-titlec"></i>
+			</div>
+			<div class="semlist-line"></div>
+			<a href="" class="btn" ng-click="alertRegLoginDialog()">立即赚钱</a>
+		</div>
+	</div>
+
+	<div class="home-video-wrap" ng-click="closeVideo()" ng-if="showVideo==true">
+	    <div class="video" ng-click="noGoDetail($event)">
+	        <span ng-click="closeVideo()">×</span>
+	        <video src="https://www.hushenlc.cn/images/shipin/hepingjusheng.mp4" controls="controls" width="800" height="450" poster="images/pc-d1cj.png">您的浏览器不支持该视频播放。</video>
+	    </div>
+	</div>
+
+</div>

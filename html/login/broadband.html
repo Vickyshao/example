@@ -1,0 +1,173 @@
+<!-- 用户注册 -->
+<div ng-controller="zhuceCtrl" class="broadband-wrap">
+
+	<div class="banner">
+		<div class="quick-register-wrap" style="background: none">
+			<i class="broadband-top"></i>
+		  <div cl ass="wqq-quick-register-wrap-box">
+			<div class="quick-register-wrapper">
+				<form class="login_form" ng-model="login" name="loginform">
+					<input style="display:none">
+					<input type="password" style="display:none">
+					<div class="quick-register-mod">
+						<div class="quick-register-box">
+
+							<div class="newtitle">
+								长城宽带用户专属通道
+							</div>
+							
+							<!-- 注册登录名 -->
+							<div class="input-wrap">
+								<!-- <div class="name">手机号码:</div> -->
+								<div class="input-box">
+									<div class="input-mod">
+										<input type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/"  placeholder="请输入手机号码" ng-blur="blurID('focusMobilephone',loginform)" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text" ng-model="login.mobilephone" name="mobilephone" required minlength="11" maxlength="11" id="mobilephone" />
+										<i ng-show="loginform.mobilephone.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.mobilephone.$valid]"></i>
+						                <span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+									</div>
+								</div>
+							</div>	
+							<!-- 图文验证 -->
+							<div class="input-wrap">
+								<!-- <div class="name">验 证 码:</div> -->
+								<div class="input-box">
+									<div class="img-box"><img ng-click="clickInput('changePic',$event)" src="login/validateCode.do"></div>
+									<div class="input-mod">
+										<input type="text" placeholder="请输入验证码" class="text small-text" ng-model="login.picCode" name="picCode" minlength="4" maxlength="4" required autocomplete="off"/>
+									</div>
+									<i ng-show="loginform.picCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.picCode.$valid]"></i>
+									<span class="error" ng-show="loginform.picCode.$valid"><font color="red">{{loginform.picCode | zhuCePicCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<!-- 短信验证 -->
+							<div class="input-wrap">
+								<!-- <div class="name">手机验证:</div> -->
+								<div class="input-box">
+									<a href="" ng-click="clickInput('phonecodeMSG',$event,null,loginform,0)" class="get-code">{{nowTimer}}获取验证码</a><!--  nouse-btn -->
+									<div class="input-mod">
+										<input ng-disabled="!loginform.mobilephone.$dirty || !loginform.picCode.$dirty || loginform.mobilephone.$valid || loginform.picCode.$valid" placeholder="请输入短信验证码"  type="text" ng-model="login.smsCode"  name="smsCode" class="text small-text" maxlength="4" required/>
+									</div>
+									<i ng-show="loginform.smsCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.smsCode.$valid]"></i>
+									<span class="error" ng-show="loginform.smsCode.$valid"><font color="red">{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<!-- 密码 -->
+							<div class="input-wrap">
+								<!-- <div class="name">设置密码:</div> -->
+								<div class="input-box passwd-box">
+									<div class="input-mod">
+										<input autocomplete="off" ng-show="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" ng-mouseout="showPassword(passwordText)" type="text" ng-model="login.passWord" class="text" name="passWord" required />
+										<input autocomplete="off" ng-hide="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" type="passWord" ng-model="login.passWord" class="text" name="passWord" required/>
+									</div>
+									<i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]" ng-click="showPassword(passwordText)" ></i>
+
+									<i ng-show="loginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.passWord.$valid]"></i>
+									<span  class="error" ng-show="loginform.passWord.$valid"><font color="red">{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+								</div>
+							</div>
+							<!-- 登录/注册 按钮 -->
+							<div class="sub-box" ng-if="!loginform.$invalid" ng-click="LoginClick('zhuCe',loginform)">
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+							</div><!-- 登录/注册 按钮 -->
+							<div class="sub-box" ng-if="loginform.$invalid" >
+								<input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+							</div>
+							<div class="agreement-box">
+								<label for="agreement">我已阅读并同意<a href="/zc" target="_blank" class="server-agreement">《沪深理财注册协议》</a><input type="checkbox" class="check-box" id="agreement" checked /></label>
+								<div class="choose-box">我已注册 <a href="dl" class="change-btn" style="color: #004eff;">立即登录</a></div>
+							</div>
+							<div class="gotolog"><!-- 已有账号 <a href="/dl" target="_blank">请登录</a> --></div>
+						</div>
+					</div>
+				</form>
+			</div>
+		  </div>
+		</div>
+	</div>
+	
+	<div class="modea-wrap">
+		<div class="mode">
+			<div class="title">简单几步完成投资</div>
+			<div class="broadband-step"></div>
+			<a href="" class="goreg" ng-click="focusMobile()">现在就注册领礼包</a>
+		</div>
+	</div>
+	
+	<i class="broadband-line"></i>
+
+	<div class="modeb-wrap">
+		<div class="mode">
+			<div class="title">购买沪深理财，享免费宽带</div>
+			<div class="stitle">购买20000元/30天包，可<span>免费安装50M</span>长城宽带；<br>购买20000元/60天包，可<span>免费安装100M</span>长城宽带。<br>我们将在3个工作日内与符合要求的用户进行联系。<i class="broadband-fir"></i></div>
+			<div class="box">
+				<div class="mod rightmod">
+					<div class="top">长宽沪深2号<br>送100M</div>
+					<div class="data">
+						<p>7.5%</p>
+						<ul>
+							<li><i>60天</i>产品期限：</li>
+							<li>还款方式：到期一次还本付息</li>
+						</ul>
+					</div>
+					<div class="btn-box">
+						<a href="" class="btn" ng-click="getProId(60)">快捷购买20000元</a>
+					</div>
+				</div>
+				<div class="mod">
+					<div class="top">长宽沪深1号<br>送50M</div>
+					<div class="data">
+						<p>6%</p>
+						<ul>
+							<li><i>30天</i>产品期限：</li>
+							<li>还款方式：到期一次还本付息</li>
+						</ul>
+					</div>
+					<div class="btn-box">
+						<a href="" class="btn" ng-click="getProId(30)">快捷购买20000元</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<i class="broadband-linebg"></i>
+	
+	<div class="modec-wrap">
+		<div class="mode modec">
+			<div class="title">沪深理财为你的资金安全合规支持</div>
+			<div class="list">
+				<table>
+					<tr>
+						<td><i class="broadband-gqkg"></i></td>
+						<td>
+							<div class="t"><span class="broadband-tip"></span>国企控股，实力雄厚</div>
+							<p>国有资本控股，实缴注册资金1亿；</p>
+						</td>
+						<td><i class="broadband-lv"></i></td>
+						<td>
+							<div class="t"><span class="broadband-tip"></span>顶级律师事务所护航</div>
+							<p>确保平台合法经营，保障投资人利益；</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="center" colspan="4"></td>
+					</tr>
+					<tr>
+						<td><i class="broadband-bao"></i></td>
+						<td>
+							<div class="t"><span class="broadband-tip"></span>第三方专业公司担保</div>
+							<p>一旦还款出现坏账，将由保障机构对投资人<br>本息进行垫付；</p>
+						</td>
+						<td><i class="broadband-huan"></i></td>
+						<td>
+							<div class="t"><span class="broadband-tip"></span>六重还款来源层层保障</div>
+							<p>多重还款来源，更有银行千万级存款保障<br>逾期先行垫付。</p>
+						</td>
+					</tr>
+				</table>
+				<div class="tip">* 本活动规则解释权归沪深理财所有，如有疑问请联系在线客服或拨打400-031-9909</div>
+			</div>
+		</div>
+	</div>
+
+</div>

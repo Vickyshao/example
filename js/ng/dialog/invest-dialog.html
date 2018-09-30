@@ -1,0 +1,432 @@
+<div ng-if="isShowOver" ng-init="changeIMGCode()" class="dialog invest-dialog">
+	<div class="title">确认投资<!-- <span class="fr" ng-click="closeDialog()">x</span> --></div>
+		<div class="dialog-content">
+			<p class="stitle">产品信息</p>
+			<div class="con">
+				<dl>
+					<dt>产品名称：</dt>
+					<dd>{{product.fullName}}</dd>
+				</dl>
+				<dl>
+					<dt>项目期限：</dt>
+					<dd><b>{{product.deadline}}</b>天</dd>
+				</dl>
+				<dl>
+					<dt>还款方式：</dt>
+					<dd ng-if="product.repayType!=3 && product.repayType!=4">{{product.refundType}}到期还本付息</dd>
+					<dd ng-if="product.repayType == 3">等本等息 按周回款</dd>
+					<dd ng-if="product.repayType == 4">等本等息 按月回款</dd>
+				</dl>
+				<dl ng-show="!isReimPro">
+					<dt>投资总额：</dt>
+					<dd ng-show="!exclusiveUser && !ecId"><b>{{pro.nowNum | currency:'' }}</b> 元</dd>
+					<dd ng-show="!exclusiveUser && ecId"><b>{{maxAmount | currency:'' }}</b> 元</dd>
+					<!--专属用户-->
+					<dd ng-show="exclusiveUser == 1"><b>{{pro.nowNum | currency:'' }}</b> 元</dd>
+					<!--恩福投资-->
+					<dd ng-show="exclusiveUser == 2"><b>{{product.amount | currency:'' }}</b> 元</dd>
+					<!-- 新手表去掉体验金 -->
+					<!-- <dd ng-if="product.type == 1"><t> + (体验金<font style="color: red;">{{TYJ.amount | currency:''}}</font>元 )</t></dd> -->
+					<dd ng-if="product.type == 1 && Nhb.type == 1"><t> + (返现券<font style="color: red;">{{Nhb.amount | currency:''}}</font>元 )</t></dd>
+					<dd ng-if="product.type != 1 && hb.type == 1"><t> + (返现券<font style="color: red;">{{hb.amount | currency:''}}</font>元 )</t></dd>
+					</dd>
+				</dl>
+
+				<!--报销专属标-->
+				<dl ng-show="isReimPro">
+					<dt>投资总额：</dt>
+					<dd><b>{{reimAmount | currency:'' }}</b> 元</dd>
+					<!-- 新手表去掉体验金 -->
+					<!-- <dd ng-if="product.type == 1"><t> + (体验金<font style="color: red;">{{TYJ.amount | currency:''}}</font>元 )</t></dd> -->
+					<dd ng-if="product.type == 1 && Nhb.type == 1"><t> + (返现券<font style="color: red;">{{Nhb.amount | currency:''}}</font>元 )</t></dd>
+					<dd ng-if="product.type != 1 && hb.type == 1"><t> + (返现券<font style="color: red;">{{hb.amount | currency:''}}</font>元 )</t></dd>
+					</dd>
+				</dl>
+
+
+			</div>
+		</div>
+		<!-- 优惠券 --><!-- product.type != 1 && 去掉不是新手标的判断-->
+
+		<!--  不用
+		<div class="dialog-content quan-box" ng-if="HBList.length>0 || QList.length>0 ||FBQList.length>0">
+			<p class="stitle">使用优惠信息</p>
+			<div class="con">
+			&lt;!&ndash; 红包 &ndash;&gt;
+				<div ng-show="HBList.length>0" ng-class="{0:'selected-box',1:'selected-box closed',2:'selected-box closed'}[clickBox]" ng-click="clickBox=0">
+					<i ng-class="{0:'select bill-selected',1:'select bill-noselected',2:'select bill-noselected'}[clickBox]"></i>
+					<div class="box">
+						<p class="ltitle">返现券 <font color="red" ng-show="clickBox==0">请选择下方返现券↓</font></p>
+						<div class="bills">
+							<div ng-if="product.type == 1">
+								<div ng-class="{true:'icon bill-voucher-act',false:'icon bill-voucher'}[item.sel]" ng-repeat="item in HBList" ng-init="newhand('新手券',item)" ng-click="newhand('新手券',item)">
+									<div class="t">
+										<p>{{item.amount| currency:''}} 元</p>
+										<span></span>
+									</div>
+									<div class="content">
+										有效期：{{item.addtime| date:'yyyy.MM.dd'}}-{{item.expireDate| date:'yyyy.MM.dd'}}<br>
+										作用描述：投资成功返现<br>
+										单笔满{{item.enableAmount| currency:''}} 元使用
+									</div>
+								</div>
+							</div>
+
+							<div ng-if="product.type != 1">
+								<div ng-class="{true:'icon bill-voucher-act',false:'icon bill-voucher'}[item.sel]" ng-repeat="item in HBList" ng-click="onClick('券',item)">
+									<div class="t">
+										<p>{{item.amount| currency:''}} 元</p>
+										<span></span>
+									</div>
+									<div class="content">
+										有效期：{{item.addtime| date:'yyyy.MM.dd'}}-{{item.expireDate| date:'yyyy.MM.dd'}}<br>
+										作用描述：投资成功返现<br>
+										单笔满{{item.enableAmount| currency:''}} 元使用
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				&lt;!&ndash; 加息券 &ndash;&gt;
+				<div ng-show="QList.length>0" ng-class="{1:'selected-box',0:'selected-box closed',2:'selected-box closed'}[clickBox]" ng-click="clickBox=1">
+					<i ng-class="{1:'select bill-selected',0:'select bill-noselected',2:'select bill-noselected'}[clickBox]"></i>
+					<div class="box">
+						<p class="ltitle">加息券  <font color="red" ng-show="clickBox==1">请选择下方加息券↓</font></p>
+						<div class="bills">
+							<div ng-class="{true:'icon bill-voucher-act',false:'icon bill-voucher'}[item.sel]" ng-click="onClick('券',item)" ng-repeat="item in QList">
+								<div class="t">
+									<p>{{item.raisedRates}}%</p>
+									<span>加息券</span>
+								</div>
+								<div class="content" ng-if="item.fullName == undefined">
+									有效期：{{item.addtime| date:'yyyy.MM.dd'}}-{{item.expireDate| date:'yyyy.MM.dd'}}<br>作用描述：增加投资利息<br>单笔满{{item.enableAmount| currency:''}} 元使用
+								</div>
+								<div class="content" ng-if="item.fullName != undefined">
+									限用标的：{{item.fullName}}<br>
+									有效期至：满标过期<br>
+									加息券来源：{{item.remark}}&lt;!&ndash; <br> &ndash;&gt;
+									&lt;!&ndash; 作用描述：增加投资利息 &ndash;&gt;
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				&lt;!&ndash; 翻倍券 &ndash;&gt;
+				<div ng-show="FBQList.length>0 " ng-class="{2:'selected-box',0:'selected-box closed',1:'selected-box closed'}[clickBox]" ng-click="clickBox=2">
+					<i ng-class="{2:'select bill-selected',0:'select bill-noselected',1:'select bill-noselected'}[clickBox]"></i>
+					<div class="box">
+						<p class="ltitle">翻倍券  <font color="red" ng-show="clickBox==2">请选择下方翻倍券↓</font></p>
+						<div class="bills">
+							<div ng-class="{true:'icon bill-voucher-act',false:'icon bill-voucher'}[item.sel]" ng-click="onClick('券',item)" ng-repeat="item in FBQList">
+								<div class="t">
+									<p>{{item.multiple}}倍</p>
+									<span>翻倍券</span>
+								</div>
+								<div class="content">
+									有效期：{{item.addtime| date:'yyyy.MM.dd'}}-{{item.expireDate| date:'yyyy.MM.dd'}}<br>作用描述：基础利率翻倍<br>期限≥{{item.productDeadline}}天（活动标除外）可使用
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		不用-->
+
+		<!-- 新手标 -->
+		<div class="dialog-content quan-box" ng-if="product.type == 1">
+			<p class="stitle"></p>
+			<div class="con special-con">
+				<dl>
+					<dt>历史年化收益率：</dt>
+					<dd><b>{{product.rate}}</b>%</dd>
+					<dd ng-if="product.activityRate != undefined && product.activityRate>0"> + <b>{{product.activityRate}}</b>%</dd>
+				</dl>
+				<dl>
+					<dt>预计收益：</dt>
+					<dd ng-if="product.activityRate == undefined || product.activityRate<=0">
+						<!-- <strong style="text-decoration:line-through;color: #000;">{{(product.rate/100 / 360 * product.nowNum * product.deadline) | currency:''}} 元</strong> -->
+						<!-- <strong>{{(product.rate/100 / 360 * (product.nowNum+TYJ.amount) * product.deadline) | isNumber2}}</strong> 元 -->
+						<strong>{{(product.rate/100 / 360 * (product.nowNum) * product.deadline) + curTicket.profit | isNumber2}}</strong> 元
+
+						<!-- <t>  <font style="color: #555;">(已加 {{TYJ.amount | isNumber2}}  元体验金收益)</font></t> -->
+					</dd>
+					<dd ng-if="product.activityRate != undefined && product.activityRate>0">
+						<strong style="text-decoration:line-through;color: #000;">{{(product.rate/100 / 360 * (product.nowNum) * product.deadline) | isNumber2}}<font style="color: #555">元</font></strong>
+						<strong class="ng-binding ng-scope">{{((product.rate + product.activityRate)/100 / 360 * product.nowNum * product.deadline) | isNumber2 }}<font style="color: #555">元</font></strong>
+					</dd>
+				</dl>
+				<dl>
+					<dt>实际付款金额：</dt>
+					<dd ng-show="!isReimPro"><strong>{{product.nowNum | currency:''}}</strong> 元 <!-- （投资总额<b>{{product.nowNum | currency:'':0}}</b> 元 + 体验金<b style="color: red;">{{TYJ.name}}</b> ） --></dd>
+					<dd ng-show="isReimPro"><strong>{{reimAmount | currency:''}}</strong> 元 <!-- （投资总额<b>{{product.nowNum | currency:'':0}}</b> 元 + 体验金<b style="color: red;">{{TYJ.name}}</b> ） --></dd>
+				</dl>
+			</div>
+		</div>
+		<!-- 不是新手表 ng-if="product.type != 1" （去掉判断）-->
+		<style type="text/css">.fbq{text-decoration:line-through;color: #000 !important;}</style>
+		<div class="dialog-content quan-box" ng-if="product.type != 1"><!-- （去掉判断）-->
+			<p class="stitle"></p>
+			<div class="con special-con">
+				<dl>
+					<dt>历史年化收益率：</dt>
+					<dd><b>{{product.rate}}</b>%
+					<!--加息券-->
+					<span ng-if="curTicket.type == 2"> + <b>{{curTicket.raisedRates}}</b>%</span>
+					<!--翻倍券-->
+					<span ng-if="curTicket.type == 4"> * <b>{{curTicket.multiple}}</b></span>
+						<!--<t ng-if="product.activityRate!=undefined && product.activityRate > 0"> + <font style="color: red;">{{product.activityRate}}%</font></t>--></dd>
+
+					<!-- 翻倍券 -->
+					<dd ng-if="hb.type==4">*<b style="color: #ed3334;">{{hb.multiple}}</b></dd>
+
+					<!-- 双蛋 -->
+					<!-- 正常使用加息券 -->
+					<dd ng-if="(hb.type==2 || product.activityRate>0) && !onDoubleEgg"> + <b>{{hb.raisedRates + product.activityRate}}</b>%</dd>
+
+					<!-- 使用加息券和活动加息 -->
+					<dd ng-if="onDoubleEgg && hb.type==2"> + <b>{{specialRate + hb.raisedRates + product.activityRate}}</b>%</dd>
+					<!-- 只有活动加息 -->
+					<dd ng-if="(onDoubleEgg && hb!=null && hb.type!=2) || (onDoubleEgg && hb==null)"> + <b>{{specialRate + product.activityRate}}</b>%</dd>
+
+
+				</dl>
+				<dl>
+					<dt>预计收益：</dt>
+					<dd ng-if="hb==null">
+						<!-- 双蛋 -->
+						<strong ng-if="!isEnFuPro && !ecId" ng-class="{true: 'oldrate'}[onDoubleEgg || product.activityRate>0]">
+						<!--产品利率 + 活动利率1 -->
+							{{((product.rate)/100 / 360 * pro.nowNum * product.deadline + curTicket.profit) | isNumber2 }}
+							<font style="color: #555">元</font>
+						</strong>
+
+						<strong ng-if="ecId">
+							 <!--产品利率 + 活动利率2 -->
+							<!--{{((product.rate)/100 / 360 * product.nowNum * product.deadline) | isNumber2 }}-->
+							{{((product.rate/100 + product.activityRate/100 + specialRate/100) / 360 * product.maxAmount * product.deadline + curTicket.profit) | isNumber2}}
+							<font style="color: #555">元</font>
+						</strong>
+
+						<strong ng-if="onDoubleEgg">
+							{{((product.rate + product.activityRate + specialRate)/100 / 360 * pro.nowNum * product.deadline + curTicket.profit) | isNumber2 }}
+							<font style="color: #555">元</font>
+						</strong>
+
+						<strong ng-if="!onDoubleEgg && product.activityRate>0">
+							{{((product.rate + product.activityRate)/100 / 360 * pro.nowNum * product.deadline + curTicket.profit) | isNumber2 }}
+							<font style="color: #555">元</font>
+						</strong>
+
+						<strong ng-if="isShowShouyi" >
+							{{(pro.nowNum * (product.rate/100 + product.activityRate/100 + repair.content/100) / 360 * product.deadline + curTicket.profit) | isNumber2}}
+							<font style="color: #555">元</font>
+						</strong>
+
+						<!--恩弗用户-->
+						<strong ng-if="isEnFuPro" >
+							{{((product.rate/100) * product.nowNum * product.deadline) / 360 | isNumber2}}
+							<font style="color: #555">元</font>
+						</strong>
+
+						<strong ng-if="product.activityRate == 0 && hb.type==1 && isShowShouyi" style="color: #666">(投资生效后，返现收益将返回您资产账户 <b style="color: #fe7634">{{hb.amount| isNumber2}}</b> 元)</strong>
+					</dd>
+
+					<!-- 使用券单数没有双蛋 -->
+					<dd ng-if="hb!=null && !onDoubleEgg">
+						<!-- 原利息 -->
+						<strong style="text-decoration:line-through;color: #000;">{{(product.rate)/100 / 360 * product.nowNum * product.deadline | isNumber2}} <font style="color: #555">元</font></strong>
+
+						<!-- 返现 -->
+						<strong ng-if="hb.type==1">{{(product.rate + product.activityRate)/100 / 360 * product.nowNum * product.deadline  | isNumber2}} <font style="color: #555">元</font></strong>
+						<t ng-if="hb.type==1"> <font style="color: #555;">(投资生效后，返现收益将返回您资产账户 <font color="red">{{hb.amount | currency:''}}</font> 元)</font></t>
+
+						<!-- 加息 -->
+						<strong ng-if="hb.type==2">{{(product.rate + product.activityRate)/100 / 360 * product.nowNum * product.deadline + (hb.raisedRates/100 / 360 * product.nowNum * product.deadline) | isNumber2}} <font style="color: #555">元</font></strong>
+
+						<!-- 体验金 -->
+						<strong  ng-if="hb.type==3">{{(product.rate+hb.raisedRates)/100 / 360 * product.nowNum * product.deadline | isNumber2}} <font style="color: #555">元</font></strong>
+
+						<!-- 翻倍 -->
+						<strong ng-if="hb.type==4">{{((product.rate * hb.multiple + product.activityRate)/100 / 360 * product.nowNum * product.deadline)  | isNumber2 }}<font style="color: #555">元</font></strong>
+					</dd>
+
+					<!-- 使用券并且有双蛋 -->
+					<dd ng-if="hb!=null && onDoubleEgg">
+						<!-- 原利息 -->
+						<strong style="text-decoration:line-through;color: #000;">{{(product.rate)/100 / 360 * product.nowNum * product.deadline | isNumber2}} <font style="color: #555">元</font></strong>
+
+						<!-- 返现 -->
+						<strong ng-if="hb.type==1">{{(product.rate + product.activityRate + specialRate)/100 / 360 * product.nowNum * product.deadline  | isNumber2}} <font style="color: #555">元</font></strong>
+						<t ng-if="hb.type==1"> <font style="color: #555;">(投资生效后，返现收益将返回您资产账户 <font color="red">{{hb.amount | currency:''}}</font> 元)</font></t>
+
+						<!-- 加息 -->
+						<strong ng-if="hb.type==2">{{(product.rate + product.activityRate + specialRate)/100 / 360 * product.nowNum * product.deadline + (hb.raisedRates/100 / 360 * product.nowNum * product.deadline) | isNumber2}} <font style="color: #555">元</font></strong>
+
+					</dd>
+
+				</dl>
+				<dl>
+					<dt>实际付款金额：</dt>
+					<!--不是恩福用户-->
+					<dd ng-show="!isEnFuPro">
+						<strong ng-if="!isReimPro && ecId">
+							{{maxAmount | isNumber2}}
+						</strong>
+						<strong ng-if="!isReimPro && !ecId">
+							{{pro.nowNum | isNumber2}}
+						</strong>
+						<strong ng-if="isReimPro">
+							{{reimAmount | isNumber2}}
+						</strong>
+						元
+					</dd>
+					<!--为恩福用户-->
+					<dd ng-show="isEnFuPro">
+						<strong>
+							{{product.nowNum | isNumber2}}
+						</strong>
+						元
+					</dd>
+
+				</dl>
+				<dl ng-if="product.repayType==3 || product.repayType==4">
+					<dt>回款期数：</dt>
+					<dd><b style="font-weight: bold;">{{repayPeriod}}</b> 期</dd>
+				</dl>
+				<dl ng-if="product.repayType==3 || product.repayType==4">
+					<dt>预计每期回款本金：</dt>
+					<dd><strong>{{product.nowNum/repayPeriod | isNumber2}}</strong> 元<span style="margin: 0 16px;">|</span>利息：<strong>{{(product.rate + product.activityRate + specialRate)/100 / 360 * product.nowNum * product.deadline/repayPeriod | isNumber2}}</strong> 元</dd>
+				</dl>
+			</div>
+		</div>
+
+		<form name="payFrom" class="tradepwd-box">
+			<input style="display:none">
+			<input type="password" style="display:none">
+
+			<p class="tyj-tip" ng-if="isShowLabel && product.deadline!=90 && product.type!=1">* 投资<span>≥5000</span>元可激活<span>10万</span>元体验金</p>
+
+            <!-- 交易密码未设置时，显示此dl -->
+			<dl ng-if="!XQ.tpwdFlag">
+			    <dt></dt>
+		        <dd>
+		            <div class="input-mod">
+		            	<input ng-if="!XQ.tpwdFlag" class="sub invest-btn mimawei" value="交易密码未设置" ng-disabled="true" />
+		                <div class="qianqushezhi">
+		                    <a ng-click="setTradeCode()" ui-sref="main.myAccount.security">前去设置</a>
+		                </div>
+		            </div>
+
+		        </dd>
+			</dl>
+
+            <!-- 交易密码已设置，显示此dl -->
+			<dl ng-if="XQ.tpwdFlag">
+				<dt>交易密码</dt>
+				<dd>
+					<div class="input-mod">
+						<input class="text" type="password" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'') " ng-model="product.tpwd" name="tpwd"  maxlength="6" minlength="6" required autocomplete="off">
+						<a ng-if="product.type != 4"href="" ng-click="forgetTradeCode()" class="forget">忘记密码？</a>
+						<a ng-if="product.type == 4" href="{{a|webIE8}}main/myAccount/security" target="_blank" class="forget">忘记密码？</a>
+					</div>
+
+					<input ng-click="onClick('确认投资')" ng-disabled="payFrom.$invalid" type="submit" class="sub" value="确认投资">
+					<a style="margin-left:10px; color:#17a9ef;cursor: pointer;" ng-click="closeDialog()">取消投资</a>
+				</dd>
+			</dl>
+		</form>
+</div>
+
+
+
+
+<!--<div ng-show="!isShowOver && !isRepeats && !comInvestSuc" ng-init="changeIMGCode()"  class="dialog invest-success-dialog" ng-class="{true: 'redbag-dialog'}[redbag]">-->
+	<!--<div class="success-content">-->
+		<!--<i class="dialog-{{statusCode}}" ng-if="!redbag"></i>-->
+		<!--<i class="dialog-investReg" ng-if="redbag"></i>　-->
+		<!--<div class="{{statusCode}}-text">-->
+			<!--<span ng-show="redbag">投资成功！</span>-->
+			<!--<p>{{pText}}<b ng-show="showForgetPwd == true">，请一小时后再试，或<a href="" ng-click="forgetTradeCode()">找回密码</a>解锁</b></p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div class="cs90-success" ng-if="luckCodeCount&&luckCodes" style="background:#fff;padding:0;color:#000;font-size:16px;"><p title="{{luckCodes}}">恭喜你获得<span>{{luckCodeCount}}</span>个抽奖码</p></div>-->
+	<!--<div class="process" >-->
+		<!--<div class="bill-process-line" ng-if="success"></div>-->
+		<!--<div class="process-text procOpt" ng-if="success">-->
+			<!--<div><span>投资成功</span><p>{{investTime | date:'yyyy.MM.dd'}}</p></div>-->
+			<!--<div class="center"><span>产品成立</span><p>{{product.establish | date:'yyyy.MM.dd'}}</p></div>-->
+			<!--<div><span>产品到期</span><p>{{product.expireDate | date:'yyyy.MM.dd'}}</p></div>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--&lt;!&ndash;<a class="invest-btn" ng-hide="success" href="/main/myAccount/recharge"  ng-click="closeDialog('false')">充值</a><br/><br/>&ndash;&gt;-->
+	<!--&lt;!&ndash; 抽奖活动-有抽奖码时btn查看抽奖码式 &ndash;&gt;-->
+	<!--<div ng-class="{true: 'hasCodeBox'}[showLuckCode]" class="clearfix btns">-->
+		<!--<a class="invest-btn" ng-hide="success" href="" ng-click="onClick('返回')">返回</a>-->
+		<!--<a class="invest-btn hasCode1" ng-if="luckCodeCount && luckCodes" ng-click="selectMyWinning()">查看抽奖码</a>-->
+		<!--<a class="invest-btn hasCode2" ng-show="luckCodeCount && success && !redbag" href="" ng-click="closeDialog('true')" >返回投资页面</a>-->
+		<!--<a class="invest-btn" ng-if="errorCode == 1007 || 1004 == errorCode" href="/main/myAccount/security" ng-click="closeDialog('false')">立即充值</a>-->
+		<!--<a class="invest-btn" ng-if="errorCode == 1009" href="/main/tradepasswdSet" ng-click="closeDialog('false')">立即认证</a>-->
+	<!--</div>-->
+<!--</div>-->
+
+<!--<div style="display: none;" ng-show="!isShowOver && isRepeats" ng-init="changeIMGCode()" class="dialog invest-success-dialog next-invest-dialog" ng-class="{true: 'redbag-dialog'}[redbag]">-->
+	<!--<div class="success-text" ng-if="!isDoubleEgg">-->
+		<!--恭喜您！成功投资<span>{{nextInvestNumber | currency:'' }}</span>元-->
+	<!--</div>-->
+	<!--<div class="success-text tear-success-text" ng-if="isDoubleEgg">-->
+		<!--恭喜您！成功投资<span>{{nextInvestNumber | currency:'' }}</span>元-->
+		<!--<p class="teartip">同时获得<i>1</i>次拆钱袋的机会</p>-->
+		<!--<i class="christmas-tearbag tear-rotate" ui-sref="newlayout.christmas({goTear:true})" ng-click="closeDialog('false')"></i>-->
+	<!--</div>-->
+	<!--<div class="process">-->
+		<!--<div class="process-line" ng-if="success"><img src="images/bill/process-line.png"></div>-->
+		<!--<div class="process-text" ng-if="success">-->
+			<!--<div><span>投资成功</span><p>{{investTime | date:'yyyy.MM.dd'}}</p></div>-->
+			<!--<div class="center"><span>产品成立</span><p>{{product.establish | date:'yyyy.MM.dd'}}</p></div>-->
+			<!--<div><span>产品到期</span><p>{{product.expireDate | date:'yyyy.MM.dd'}}</p></div>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div class="invite"><a href="/newlayout/invite" ng-click="closeDialog('false')"><img src="images/invitenew/investbanner.png"></a></div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 投资成功砸金蛋弹窗-->
+<!--<div ng-show="!isShowOver && toHit"  class="dialog invest-success-dialog egg-dialog" >-->
+	<!--<img src="images/hitEgg/info.png" class="info">-->
+	<!--<p class="wenzi">获得<span>1</span>次砸蛋机会</p>-->
+	<!--<div class="hitSuccess">-->
+		<!--<img src="images/hitEgg/hitegg.png" class="middle">-->
+		<!--<img src="images/hitEgg/left.png" class="left">-->
+		<!--<img src="images/hitEgg/right.png" class="right">-->
+	<!--</div>-->
+	<!--<div class="once"><a href="/smashEgg" ng-click="closeDialog()">立即砸蛋</a></div>-->
+<!--</div> &ndash;&gt;-->
+
+<!--&lt;!&ndash;常规投资成功弹窗 !isRepeats  &ndash;&gt;-->
+<!--<div ng-show="!isShowOver && !isRepeats && comInvestSuc" ng-init="changeIMGCode()"  class="dialog invest-success-dialog" ng-class="{true: 'redbag-dialog'}[redbag]">-->
+	<!--<div class="success-content" style="width: 163px;">-->
+		<!--<i class="dialog-succes"></i>-->
+		<!--&lt;!&ndash;<i class="dialog-investReg" ng-if="redbag"></i>　&ndash;&gt;-->
+		<!--<div class="{{statusCode}}-text" style="padding-left: 13px;width: 120px;">-->
+			<!--<span style="color: #3b3b3b">投资成功！</span>-->
+			<!--<p><b ng-show="showForgetPwd == true">，请一小时后再试，或<a href="" ng-click="forgetTradeCode()">找回密码</a>解锁</b></p>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div class="cs90-success" ng-if="luckCodeCount&&luckCodes" style="background:#fff;padding:0;color:#000;font-size:16px;"><p title="{{luckCodes}}">恭喜你获得<span>{{luckCodeCount}}</span>个抽奖码</p></div>-->
+	<!--<div class="process" >-->
+		<!--<div class="bill-process-line" ng-if="success"></div>-->
+		<!--<div class="process-text procOpt" ng-if="success">-->
+			<!--<div><span>投资成功</span><p>{{investTime | date:'yyyy.MM.dd'}}</p></div>-->
+			<!--<div class="center"><span>产品成立</span><p>{{product.establish | date:'yyyy.MM.dd'}}</p></div>-->
+			<!--<div><span>产品到期</span><p>{{product.expireDate | date:'yyyy.MM.dd'}}</p></div>-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div ng-class="{true: 'hasCodeBox'}[showLuckCode]" class="clearfix btns">-->
+		<!--<a class="invest-btn" ng-hide="success" href="" ng-click="onClick('返回')">返回</a>-->
+		<!--<a class="invest-btn hasCode1 processOpt viewInvestList" ng-click="closeDialog('true')" ui-sref="main.myAccount.myInvest">查看投资列表</a>　　　-->
+		<!--<a class="invest-btn hasCode2 processOpt" ng-show="success && !redbag" href="" ng-click="closeDialog('true')" ui-sref="main.bankBillList">继续投资</a>-->
+		<!--<a class="invest-btn" ng-if="errorCode == 1007 || 1004 == errorCode" href="/main/myAccount/security" ng-click="closeDialog('false')">立即充值</a>-->
+		<!--<a class="invest-btn" ng-if="errorCode == 1009" href="/main/tradepasswdSet" ng-click="closeDialog('false')">立即认证</a>-->
+	<!--</div>-->
+<!--</div>-->

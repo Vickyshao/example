@@ -1,0 +1,139 @@
+<div class="resetpasswd-wrapper" ng-controller="resetPswCtrl">
+	<div class="resetpasswd-wrap">
+		<!-- 第一步 -->
+		<form ng-model="smsFrom" name='phoneFrom'  ng-if="isRestPSWOne">
+		<!-- <form ng-model="smsFrom" name='phoneFrom'> -->
+			<input style="display:none">
+			<input type="password" style="display:none">
+			<div class="getcode-wrap">
+				<div class="reset-passwd" style="padding:0 19px">
+			    	<div class="reset-title">重置密码</div>
+			    	<img src="../../images/forgetpassone.png">
+			        <form action="" class="nice-validator n-default" novalidate="novalidate">
+			            <div class="reset-box">
+			                <div class="input-box phone-box">
+			                    <!-- <p>手机号码：</p> -->
+			                    <div class="input-mod">
+			                        <input ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/" ng-model="smsFrom.mobilephone" class="text n-invalid" type="text" name="phone"  placeholder="请输入手机号码/邮箱名" maxlength="11" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'') " required autocomplete="off" />
+			                    </div>
+			                    <div class="msg-box">
+				                    <!-- <i ng-show="phoneFrom.phone.$error.pattern || phoneFrom.phone.$error.serverError" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[phoneFrom.phone.$error.required] || {false: 'common-form-ok', true: 'common-form-error'}[phoneFrom.phone.$error.pattern] ||  {false: 'common-form-ok', true: 'common-form-error'}[phoneFrom.phone.$error.serverError]"></i>
+			                    <span class="error" ng-show="phoneFrom.phone.$error.pattern || phoneFrom.phone.$error.serverError">{{(phoneFrom.phone | resetPswCtrlPhoneError:serverErrorCode)}}</span>  -->
+			                    	<i ng-show="phoneFrom.phone.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[phoneFrom.phone.$valid]"></i>
+			                    	<span class="error" ng-show="phoneFrom.phone.$valid">{{(phoneFrom.phone | resetPswCtrlPhoneError:serverErrorCode)}}</span>
+			                    </div>
+			                    
+			                </div>
+			                <div class="input-box">
+			                    <!-- <p>手机验证码：</p> -->
+			                    <div class="input-mod">
+			                        <input ng-model="smsFrom.code" class="text text1" type="text" name="pcode" placeholder="请输入手机验证码" autocomplete="off" required>
+			                        <!--  -->
+			                        <div class="msg-box" ng-show="phoneFrom.pcode.$valid">
+				                        <i ng-class="{false: 'common-form-ok', true: 'common-form-error'}[phoneFrom.pcode.$valid]"></i>
+				                    	<span class="error" >{{phoneFrom.pcode|resetPswCtrlPhoneSmSError:serverErrorCode}}</span>
+			                    	</div>
+									<a class="get-btn" ng-class="{true: 'getcode-disabled'}[isGetCode]" ng-click="onClick('获取验证码',phoneFrom,false,$event)">{{nowTimer}}<span ng-if="!nowTimer">获取验证码</span></a>
+			                    </div>
+			                </div>
+			            </div>
+			            <div class="sub-box" >
+							<!-- <input style="background:red!important" type="submit" class="sub-btn sub" value="下一步"  ng-click="onClick('next',phoneFrom)"  ng-disabled="phoneFrom.$invalid"/> -->
+							<input type="submit" class="sub-btn sub" value="下一步"  ng-click="onClick('next',phoneFrom)" ng-if='phoneFrom.$invalid' ng-disabled="phoneFrom.$invalid"/>
+							<input type="submit" style="background:#ed3334!important;color:#fff!important" class="sub-btn sub" value="下一步"  ng-click="onClick('next',phoneFrom)" ng-if='!phoneFrom.$invalid'/>
+
+						</div>
+			        </form>
+			    </div>
+			</div>
+		</form>
+		<!-- 第一步结束 -->
+		
+		<!-- 第二步 -->
+		<form  ng-model="passwd" ng-if="isRestPSWTwo" name='passwdFrom' >
+		<!-- <form  ng-model="passwd" name='passwdFrom' > -->
+			<input style="display:none">
+			<input type="password" style="display:none">
+			<div class="reset-wrap">
+				<div class="reset-passwd" style="padding:0 19px">
+			    	<div class="reset-title">重置密码</div>
+			    	<img src="../../images/forgetpasstwo.png">
+			        <form action="" class="nice-validator n-default" novalidate="novalidate">
+			            <div class="reset-box">
+							<div class="input-box">
+                                <!-- <p>设置新密码：</p> -->
+                                <div style="color:#999;font-size: 18px;line-height:44px;padding-bottom: 10px;">密码需为6-16位数字和字母组合</div>
+                                <div class="input-mod">
+                                    <input name="newpasswd" class="prevpasswd text" id="newpasswd" type="password" required placeholder="请输入新密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/" ng-model="passwd.password" autocomplete="off">
+                                </div>
+                                <div class="msg-box" style="margin-top: 55px;">
+                                    <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[passwdFrom.newpasswd.$valid]" ng-show="passwdFrom.newpasswd.$dirty"></i>
+                                    <span class="error" ng-show="passwdFrom.newpasswd.$error.pattern">密码格式不正确</span>
+                                    <span class="error" ng-show="passwdFrom.newpasswd.$dirty && passwdFrom.newpasswd.$error.required">请输入新密码</span>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <!-- <p>重复新密码：</p> -->
+                                <div class="input-mod">
+                                    <input class="text" name="repasswd" type="password" required match="newpasswd" placeholder="请再次输入新密码" ng-model="passwd.confirmPwd" autocomplete="off">
+                                </div>
+                                <div class="msg-box">
+                                    <i ng-class="{true: 'common-form-ok', false: 'common-form-error'}[passwdFrom.repasswd.$valid]" ng-show="passwdFrom.repasswd.$dirty"></i>
+                                    <span class="error" ng-show="passwdFrom.repasswd.$error.match && !passwdFrom.repasswd.$error.required">两次输入的密码不符</span>
+                                    <span class="error" ng-show="passwdFrom.repasswd.$dirty && passwdFrom.repasswd.$error.required">请再次输入您的新密码</span>
+                                </div>
+                            </div>
+							<div class="sub-box" >
+								<!-- <input type="submit" style="margin-left: -355px;" class="sub-btn sub" value="提交" ng-click="onClick('checkPassWord')" ng-disabled="passwdFrom.$invalid"/> -->
+
+								<input type="submit" style="margin-left: -355px;" class="sub-btn sub" value="提交"  ng-click="onClick('checkPassWord',phoneFrom)" ng-if='passwdFrom.$invalid' ng-disabled="passwdFrom.$invalid"/>
+
+								<input type="submit" style="margin-left: -355px;background:#ed3334!important;color:#fff!important" class="sub-btn sub" value="提交"  ng-click="onClick('checkPassWord',phoneFrom)" ng-if='!passwdFrom.$invalid'/>
+							</div>
+						</div>
+			        </form>
+			    </div>
+			</div>
+		</form>
+		<!-- 第二步结束 -->
+
+		<!-- 第三部设置成功 -->
+		<div ng-show="isupPswdok" class="success-wrap">
+		<!-- <div class="success-wrap"> -->
+		    <div class="reset-passwd" style="padding:0 19px">
+			    <div class="reset-title">重置密码</div>
+			    <img src="../../images/forgetpassthree2.png">
+			    <div class="lijidl" ng-click="onClick('toLogin')"></div>
+			</div>
+		</div>
+
+		<!-- 第三部设置成功 -->
+		<!-- <div ng-show="isupPswdok" class="success-wrap">
+			<div class="tips-wrap">
+				<i class="login-icons-success"></i>
+				<div class="con">
+					<b>恭喜您，密码重置成功</b>
+					<p class="tip">{{nowTimerGoto}} 后直接跳转</p>
+				</div>
+			</div>
+			<div class="return">
+				<a href="" ng-click="onClick('toLogin')">立即登录</a>
+				<span>|</span>
+				<a href="/main/home">返回首页</a>
+			</div>
+		</div> -->
+		<!-- 第三部设置失败 -->
+		<div ng-show="isupPswdError" class="success-wrap">
+			<div class="tips-wrap">
+				<i class="login-icons-success"></i>
+				<div class="con">
+					<b>密码重置失败</b>
+					<p class="tip">{{nowTimerGoto}} 后直接跳转</p>
+				</div>
+			</div>
+			<div class="return"><a href="/main/home">返回首页</a></div>
+		</div>
+		<!-- 第三部设置成功结束 -->
+		
+	</div>
+</div>

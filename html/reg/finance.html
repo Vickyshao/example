@@ -1,0 +1,309 @@
+<div ng-controller="mainCtrl">
+    <div class="sem-finance-wrapper" ng-controller="regCtrl">
+        {{listDatas}}
+        <!-- 欢迎栏 -->
+        <div ng-hide="isLoginPage" class="top-global-wrapper">
+            <div class="top-content">
+                <div class="tel">
+                    <i class="global-topphone"></i>
+                    <b>客服热线：<span>{{(a | web).phone}}</span>（工作日：09:00-21:00；   周末及节假日：09:00-18:00）</b>
+                </div>
+                <div class="top-nav">
+                    <a href="{{a|webIE8}}main/home" target="_blank">首页</a><span style="margin-right: 12px;">|</span><a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a><span style="margin-right: 12px;">|</span><a href="{{a|webIE8}}main/jt2/help?menuName=help"
+                        target="_blank">帮助中心</a><span>|</span>
+                    <div class="appCode"><a href="{{a|webIE8}}downloadApp" target="_blank"><i>手机APP</i></a>
+                        <div>
+                            <img src="images/global/app.png">
+                            <p>手机客户端<br>APP下载</p>
+                        </div>
+                    </div><span style="margin-left: -4px;">|</span>
+                    <div class="appCode"><i class="global-topwechat"></i>
+                        <div>
+                            <img src="images/global/wechat.png">
+                            <p>扫一扫<br>关注官方微信</p>
+                        </div>
+                    </div>
+                    <span ng-if="(a | isRegister).register" style="margin: 0 8px 0 -8px;">|</span>
+                    <a ng-if="(a | isRegister).register" href="" ng-click="gotoLoginPage('myAccount')">{{(a | isRegister).user.userName}}</a>
+                    <i ng-if="(a | isRegister).register">，</i>
+                    <a ng-show="(a | isRegister).register" ng-click="userOut()" href="#" class="top-quit">退出</a>
+                </div>
+            </div>
+        </div>
+        <div class="regsem-wrapper semfinance-wrapper">
+            <i class="semfinance-bga sem-finance-a"></i>
+            <i class="semfinance-bga sem-finance-b"></i>
+            <i class="semfinance-bga sem-finance-c"></i>
+            <i class="semfinance-bgb sem-finance-d"></i>
+            <i class="semfinance-bgb sem-finance-e"></i>
+            <i class="semfinance-bgb sem-finance-f"></i>
+            <div class="banner">
+                <div class="quick-register-wrap" style="background: none" ng-controller="zhuceCtrl">
+                    <div class="quick-register-wrapper" ng-if="!isLogin">
+                        <a href="/main/home" target="_blank" class="mainhome"></a>
+                        <form class="login_form" ng-model="login" name="loginform">
+                            <input style="display:none">
+                            <input type="password" style="display:none">
+                            <div class="quick-register-mod">
+                                <div class="quick-top">注册领10万元体验金+666元现金红包</div>
+                                <div class="quick-register-box">
+                                    <div class="input-wrap">
+                                        <div class="input-box">
+                                            <div class="input-mod">
+                                                <b class="icon finance-phone"></b>
+                                                <input id="mobilephone" type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/" placeholder="请输入手机号码" ng-blur="blurID('focusMobilephone',loginform,$event)" onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text semmobilephone" ng-model="login.mobilephone"
+                                                    name="mobilephone" required minlength="11" maxlength="11" />
+                                            </div>
+                                            <i ng-show="loginform.mobilephone.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.mobilephone.$valid]"></i>
+                                            <span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="input-box semimg-box">
+                                            <div class="img-box"><img ng-click="clickInput('changePic',$event)" src="login/validateCode.do"></div>
+                                            <div class="input-mod small-inputmod">
+                                                <b class="icon finance-code"></b>
+                                                <input type="text" placeholder="请输入验证码" class="text small-text" ng-model="login.picCode" name="picCode" minlength="4" maxlength="4" required autocomplete="off" />
+                                            </div>
+                                            <i ng-show="loginform.picCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.picCode.$valid]"></i>
+                                            <span class="error" ng-show="loginform.picCode.$valid"><font>{{loginform.picCode | zhuCePicCodeError:serverErrorCode}}</font></span>
+                                        </div>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="input-box">
+                                            <a href="" ng-if="loginform.mobilephone.$valid" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+
+                                            <a href="" ng-if="!loginform.mobilephone.$valid" ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)" class="get-code" ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>
+                                            <div class="input-mod small-inputmod">
+                                                <b class="icon finance-code"></b>
+                                                <input ng-disabled="!loginform.mobilephone.$dirty || !loginform.picCode.$dirty || loginform.mobilephone.$valid || loginform.picCode.$valid" placeholder="手机验证码" type="text" ng-model="login.smsCode" name="smsCode" class="text small-text" maxlength="4" required/>
+                                            </div>
+                                            <i ng-show="loginform.smsCode.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.smsCode.$valid]"></i>
+                                            <span class="error" ng-show="loginform.smsCode.$valid"><font color="red">{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+                                        </div>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <div class="input-box passwd-box">
+                                            <div class="input-mod">
+                                                <b class="icon finance-mycode"></b>
+                                                <input autocomplete="off" ng-show="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" ng-mouseout="showPassword(passwordText)" type="text" ng-model="login.passWord" class="text" name="passWord" required />
+                                                <input autocomplete="off" ng-hide="passwordText" placeholder="请输入密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,18}$/" type="passWord" ng-model="login.passWord" class="text" name="passWord" required/>
+                                            </div>
+                                            <i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]" ng-click="showPassword(passwordText)"></i>
+
+                                            <i ng-show="loginform.passWord.$valid" ng-class="{false: 'common-form-ok', true: 'common-form-error'}[loginform.passWord.$valid]"></i>
+                                            <span class="error" ng-show="loginform.passWord.$valid"><font>{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+                                        </div>
+                                    </div>
+                                    <div class="agreement-box">
+                                        <label for="agreement">我已阅读并同意<a href="/zc" target="_blank" class="server-agreement">《沪深理财注册协议》</a><input type="checkbox" ng-model="login.checkbox" class="check-box" id="agreement" checked /></label>
+                                    </div>
+                                    <div class="sub-box" ng-if="!loginform.$invalid" ng-click="LoginClick('zhuCe',loginform)">
+                                        <input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+                                    </div>
+                                    <div class="sub-box" ng-if="loginform.$invalid">
+                                        <input ng-disabled="loginform.$invalid || !login.checkbox" class="sub-btn sub" type="submit" value="立即注册" />
+                                    </div>
+
+                                    <div class="choose-box bottom-choose">已有账号？
+                                        <a href="{{hrefUrl}}dl" target="_blank" class="change-btn">立即登录</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="welcome" ng-if="isLogin">
+                        <p class="top">欢迎来到沪深理财投资</p>
+                        <i class="finance-welcome"></i>
+                        <div class="con">
+                            <p>亲爱的，{{account.mobilePhone | limitTo:3}}****{{account.mobilePhone | limitTo:-4}}</p>
+                            <ul>
+                                <li>账户余额：<span>{{account.balance}}</span>元</li>
+                                <li>优惠券：<b>{{account.favourableCount}}</b>张</li>
+                            </ul>
+                        </div>
+                        <a href="/main/myAccount/accountHome" class="account">我的账户</a>
+                        <div class="bot"><a href="" class="exit" ng-click="accountUserOut()">安全退出</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="semfinance-list">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><i class="finance-icona"></i></td>
+                            <td><i class="finance-iconb"></i></td>
+                            <td><i class="finance-iconc"></i></td>
+                            <td><i class="finance-icond"></i></td>
+                        </tr>
+                        <tr>
+                            <td width="25%">
+                                <span>国企全资控股</span>
+                                <p>强大的国资背景<br>实缴1亿注册资金</p>
+                            </td>
+                            <td width="25%">
+                                <span>资金安全保障</span>
+                                <p>六大还款来源，保证资金安全<br>专业保理担保</p>
+                            </td>
+                            <td width="25%">
+                                <span>专业律师合规支持</span>
+                                <p>两大国内顶级律所<br>全程法律支持</p>
+                            </td>
+                            <td width="25%">
+                                <span>合规监管</span>
+                                <p>根据最新监管细则<br>合规合法经营</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mode semfinance-mode">
+                <div class="semfinance-titlea"></div>
+                <div class="tip">注册即送<span>10</span>万元体验金+<span>666</span>元现金红包</div>
+                <div class="con">
+                    <div class="tear">
+                        <div class="semfinance-send" ng-if="!isLogin">
+                        </div>
+                        <div class="semfinance-sendgo" ng-if="isLogin">
+                        </div>
+                        <div class="semfinance-bag" ng-if="!isLogin">
+                            <div>注册送<br>大礼包</div>
+                            <p>小手一点，红包到手</p>
+                            <a href="" ng-click="alertRegDialog()"></a>
+                        </div>
+                        <div class="semfinance-baggo" ng-if="isLogin">
+                            <a href="/main/bankBillList"></a>
+                        </div>
+                    </div>
+                    <div class="list-wrap">
+                        <div class="title"><span>他们都在领红包</span></div>
+                        <div class="table">
+                            <table>
+                                <tr>
+                                    <th width="50%">用户</th>
+                                    <th width="50%">领取时间</th>
+                                </tr>
+                            </table>
+                            <div class="box">
+                                <table>
+                                    <tr ng-repeat="item in financeList" repeat-finish="setTable()">
+                                        <td width="50%">{{item.mobilePhone}}</td>
+                                        <td width="50%">{{item.regdate}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mode modeb">
+                <div class="semfinance-titleb"></div>
+                <div class="tip">强大的国资背景，实缴1亿注册资金</div>
+                <div class="parttwo">
+                    <!-- <div class="box">
+				<div class="title"><i class="semfinance-zhuan"></i>新手专享标</div>
+				<div class="data">
+					<div>12%<i class="finance-bag bag" style="top: -20px;left: 95px;"></i><i>+3%</i></div>
+					<p>历史年化收益率</p>
+				</div>
+				<div class="deadline">起投金额：100元<span>1天</span></div>
+				<a href="" ng-click="alertRegDialog()">立即抢购</a>
+			</div> -->
+                    <div class="box">
+                        <div class="title"><i class="semfinance-shang"></i>小胜30</div>
+                        <div class="data">
+                            <div>6%+4.5%<i></i></div>
+                            <p>历史年化收益率</p>
+                        </div>
+                        <div class="deadline">100元起投<span>35天</span></div>
+                        <a href="" ng-click="alertRegDialog()" ng-if="!isLogin">立即抢购</a>
+                        <a href="/main/bankBillList" ng-if="isLogin">立即抢购</a>
+                    </div>
+                    <div class="box">
+                        <div class="title"><i class="semfinance-shang"></i>中胜60</div>
+                        <div class="data">
+                            <!--  -->
+                            <div>7.5%+3.8%<i></i></div>
+                            <p>历史年化收益率</p>
+                        </div>
+                        <div class="deadline">100元起投<span>60天</span></div>
+                        <a href="" ng-click="alertRegDialog()" ng-if="!isLogin">立即抢购</a>
+                        <a href="/main/bankBillList" ng-if="isLogin">立即抢购</a>
+                    </div>
+                    <div class="box">
+                        <div class="title"><i class="semfinance-shang"></i>中胜180</div>
+                        <div class="data">
+                            <!--  -->
+                            <div>10.5%+1.5%<i></i></div>
+                            <p>历史年化收益率</p>
+                        </div>
+                        <div class="deadline">100元起投<span>180天</span></div>
+                        <a href="" ng-click="alertRegDialog()" ng-if="!isLogin">立即抢购</a>
+                        <a href="/main/bankBillList" ng-if="isLogin">立即抢购</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="mode modec">
+		<div class="semfinance-titlec"></div>
+		<div class="content">
+			<div class="semfinance-img" ng-click="showVideo=true"></div>
+			<div class="txt">
+				<div class="top">摘要：“沪深理财正式宣布获得上海和平影视企业公司集团直接控股，至此成为100%国资控股的互联网金融信息平台。”</div>
+				<div class="text"><span>国资优势：</span>国资系p2p网站平台实力比较雄厚：获得国有资产的注资，需要在各方面经历相对严苛的审查；</div>
+				<div class="text"><span>平台管控：</span>平台的流程管控会相对严格，对所投项目的真实性和风险性也都会有更为严格的把控,为用户提供真实可靠的资产，为中小企业实现生产资金的支持；</div>
+				<div class="text"><span>普惠金融：</span>为切实执行国家促进中小微企业发展，实施国家互联网金融创新计划，沪深始终聚焦于为中国中小企业提供便捷高效的金融服务。</div>
+			</div>
+		</div>
+	</div> -->
+
+            <div class="rules">
+                <div class="rule">
+                    <div class="semfinance-titled"></div>
+                    <ul>
+                        <li><i>1.</i>活动时间：2017年3月17日起，本活动仅针对活动期间内注册的新用户；</li>
+                        <li><i>2.</i>活动期间，新用户注册即送100000元体验金，再送总额666元返现红包，请前往PC端“我的账户-我的福利”或App端“我的账户-我的红包”查看；</li>
+                        <li><i>3.</i>注册送的体验金可通过投资任意标的≥5000元激活（活动标除外），体验金为投资本金，可用于投资体验标，到期本金回收，所获得收益归用户，可随时提现；</li>
+                        <li><i>4.</i>每个身份证仅限参加一次，刷奖及冒用他人身份证、银行卡者一经核实，取消活动资格，所得奖励不予承兑。</li>
+                        <li class="bot">
+                            <p>* 本活动由沪深理财发起并就活动内容作出解释和说明，如有疑问请联系客服 400-031-9909</p>
+                        </li>
+                    </ul>
+                    <div class="step">
+                        <div class="finance-step"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-wrap">
+                <table>
+                    <tr>
+                        <td>
+                            <p>体验投资乐趣 坐享高额收益</p>
+                        </td>
+                        <td>
+                            <a href="" ng-click="alertRegDialog()" ng-if="!isLogin">立即注册领取</a>
+                            <a href="/main/bankBillList" ng-if="isLogin">立即投资</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="special-footer reg-footer">
+            <p class="foot-nav"><a href="{{a|webIE8}}main/jt/JSGK?menuName=JSGK" target="_blank">公司简介</a><span>|</span><a href="{{a|webIE8}}main/jt/LXWM?menuName=LXWM" target="_blank">联系我们</a><span>|</span><a href="{{a|webIE8}}main/guarantee?menuName=guarantee" target="_blank">安全保障</a><span>|</span>
+                <a href="{{a|webIE8}}main/jt2/help?menuName=help" target="_blank">常见问题</a><span>|</span><a href="{{a|webIE8}}main/guide" target="_blank">新手指引</a><span>|</span><a href="{{a|webIE8}}main/FLFG" target="_blank">法律保障</a><i>市场有风险，投资需谨慎</i></p>
+            <p class="right">
+
+                沪ICP备15011372号-1 Copyright Reserved © 深圳前海云轩互联网金融服务有限公司 {{v}}</p>
+        </div>
+        <div class="home-video-wrap" ng-click="closeVideo()" ng-if="showVideo==true">
+            <div class="video" ng-click="noGoDetail($event)">
+                <span ng-click="closeVideo()">×</span>
+                <video src="https://www.hushenlc.cn/images/shipin/hepingjusheng.mp4" controls="controls" width="800" height="450" poster="images/pc-d1cj.png">您的浏览器不支持该视频播放。</video>
+            </div>
+        </div>
+    </div>
+</div>

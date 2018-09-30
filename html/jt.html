@@ -1,0 +1,18 @@
+<div class="wq-my-account-wrapper my-account-wrapper" ng-controller="jtMenuCtrl">
+	<div class="wqq-my-account-wrap"><!-- my-account-wrap -->
+		<div class="wqq-my-account-title">
+	    	<a ui-sref="main.home">首页</a> > <a>信息披露</a> > <span>{{memnTitle}}</span>
+	    </div>
+	    <div class="wqq-my-account-side">
+			<div class="wqq-side-mode-list">
+				<div class="mode-list-nav">信息披露</div>
+				<menu1></menu1>
+			</div>
+		</div>
+		<div class="wqq-my-account-content">
+			<!--<div class="content-title">{{memnTitle}}</div>-->
+			<div ng-cloak class="ng-scope ng-cloak" ui-view=""></div>
+		</div>
+	</div>
+	<float-menu></float-menu>
+</div>

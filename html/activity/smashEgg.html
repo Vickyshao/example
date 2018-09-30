@@ -1,0 +1,141 @@
+<div class="smashEgg" ng-controller="smashEggCtrl">
+    <div ng-controller="mainCtrl">
+        <zt-header></zt-header>
+    </div>
+
+    <div class="activityOffMask">
+        <div class="offLine">
+            <span>砸蛋活动现已结束<br/>敬请留意更多活动</span>
+        </div>
+    </div>
+    <div class="container eggCnt">
+        <div class="banner">
+            <div class="bannerIns">
+
+            <div class="placeHolder"> &nbsp; &nbsp;
+                <!--<div class="acttTime">活动时间：11月22日-12月26日</div>-->
+            </div>
+            <div class="chance">您今天还有<span> {{remainCount}} </span>次机会砸蛋</div>
+            <div class="danbox">
+                <ul>
+                    <li ng-repeat="item in lotteryRecord">
+                        <div ng-class="{0:'ins left',1:'ins middle',2:'ins right'}[item.pos]"  class="ins left" ng-click="breakEggs(item);" ng-mousemove="chuiMove(item)">
+                            <p class="p2-egg p2-egg-hover">
+                                <img ng-class="{true:'game-over show',false:'normal'}[item.isDroped]" src="{{item.drAward.picUrl}}" width="265"/>
+                            </p>
+                            <div ng-if="!item.isDroped">
+                                <p ng-class="{true: 'p2-chui show', false: 'p2-chui'}[item.pos==currPos]">
+                                    <img class="normal" src="/images/smashEgg/hammer.png"/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="txt" ng-if="item.isDroped" ng-click="getAward(item);">
+                            <span>{{item.drAward.awardName}}</span>
+                            <span ng-show="item.status == 0">点击领取</span>
+                            <span ng-show="item.status == 1">已领取</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+        <!--banner end-->
+
+        <div class="hazyPic">
+            <img src="/images/smashEgg/hazyPic.png"/>
+        </div>
+        
+        <div class="eggBot">
+            <!--当前参加人数-->
+            <div class="currentNums">
+                <!--<div class="count">当前参加人数 <span id="number"></span> 人</div>-->
+                <div class="count">当前参加人数 <span>{{peopleNum}}</span> 人</div>
+                <ul class="title">
+                    <li>中奖用户</li>
+                    <li>砸中奖品</li>
+                    <li>获奖时间</li>
+                </ul>
+                <div class="box">
+                    <table>
+                        <tr ng-repeat="people in peoples">
+                            <td>{{people.mobilePhone}}</td>
+                            <td>{{people.awardName}}</td>
+                            <td>{{people.orderTime | date:'MM月dd日 HH:mm:ss'}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+             <!--用户留言-->
+            <div class="guestBook">
+                <div class="title">用户留言</div>
+                <div class="messages">
+                    <dl>
+                        <dt><img src="/images/smashEgg/user1.png"/> </dt>
+                        <dd class="name">小小惠</dd>
+                        <dd>我要求不是很高啦，快给我抽到500元的京东卡吧。</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/images/smashEgg/user2.png"/> </dt>
+                        <dd class="name">丢丢</dd>
+                        <dd>今天我砸满3个蛋了，明天一定要给我砸到好奖励哦！</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/images/smashEgg/user3.png"/> </dt>
+                        <dd class="name">Seven</dd>
+                        <dd>一直没买X，看来这次活动我要抽到iphoneX~~哈哈哈~
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/images/smashEgg/user4.png"/> </dt>
+                        <dd class="name">Tony-one</dd>
+                        <dd>我领到耳机啦~~等着你们发给我哦。祝平台越办越好~</dd>
+                    </dl>
+
+                    <dl>
+                        <dt><img src="/images/smashEgg/user5.png"/> </dt>
+                        <dd class="name">宝妈</dd>
+                        <dd>我每次都投你们平台，给我抽到个好奖励吧，最好是爱疯X啦！</dd>
+                    </dl>
+                    <dl>
+                        <dt><img src="/images/smashEgg/user6.png"/> </dt>
+                        <dd class="name">KID先森</dd>
+                        <dd>奖励和红包居然能一起拿，真的挺划算了。希望早点给我抽到大奖</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <!--活动规则-->
+        <div class="ruls">
+            <div class="title">活动规则</div>
+            <ul class="infos">
+                <li>1 每日均能免费获得1次砸蛋机会，同时分享后能增加1次免费砸蛋机会，当天首次任意投资后可以再次获得免费砸蛋机会，当天最高3次免费砸蛋。</li>
+                <li>2 砸蛋奖励包含话费（最高100元）、京东卡（最高500元）、小米耳机（价值129元）、小米电饭煲（价值999元）、iphoneX（价值8388元）、加息券。</li>
+                <li>3 砸蛋100%获得奖励，其中部分奖励需满足一定激活条件后即能获得，激活奖励需单次达到对应提示条件，累积投资无效。以实际获得奖励和提示为准。</li>
+                <li>4 砸蛋获得的奖励若未激活领取，次日0点将消失。</li>
+                <li>5 用户可以添加公众号：hushenlicai 对活动进行留言，若留言被选中将获得5000体验金奖励！</li>
+                <li>6 实物和话费奖励在活动结束后的10个工作日内发放，获得实物奖励需填写详细地址信息。详细步骤如下：
+                    <ul>
+                        <li>a 打开微信添加"沪深金融官微" 公众号: hushenlicai</li>
+                        <li>b 选择“活动专区”--“礼品领取”，根据页面输入详细信息。</li>
+                        <li>c 若活动结束后的15个工作日内仍未填写地址信息，且无法联系上。则视为自动放弃奖励。</li>
+                    </ul>
+                </li>
+                <li>7 本活动不与合作渠道的投资活动共享，若通过合作渠道注册的用户投资仅享受渠道活动福利，渠道活动参加后可继续参加本活动！</li>
+                <li>8 奖励中的iphoneX与苹果公司活动无关。</li>
+                <li>9 活动最终解释权归沪深理财所有，如有疑问请拨打客服热线：400-031-9909</li>
+            </ul>
+        </div>
+
+        <div class="currency">
+            <img src="/images/smashEgg/currency.png"/>
+        </div>
+
+        <!--footer部分-->
+        <div class="footer">
+            <p>粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司v1.0.0</p>
+            <h4>温馨提示：市场有风险，投资需谨慎</h4>
+        </div>
+    </div>
+</div>

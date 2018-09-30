@@ -1,0 +1,283 @@
+<div class="ecommerce" ng-controller="eCommerceCtrl">
+<!--<div class="ecommerce" ng-controller="sitefinanceCtrl">-->
+    <div ng-controller="mainCtrl">
+        <zt-header></zt-header>
+    </div>
+
+    <div class="container">
+        <!--logo-->
+        <!--<div class="logo"><a href="/main/home" class="topic-logo"></a></div>-->
+        <div class="zc">
+            <div class="ecommer-banner"></div>
+
+            <!--注册两步-->
+            <div class="cnt">
+                <div class="zcSteptwo">
+                    <div class="quick-register-wrap step1">
+                        <div class="quick-register-wrapper">
+                            <form class="login_form" ng-model="login" name="loginform">
+                                <input style="display:none">
+                                <input type="password" style="display:none">
+                                <div class="quick-register-mod">
+                                    <div class="quick-register-box">
+                                        <div class="input-wrap">
+                                            <div class="input-box">
+                                                <div class="input-mod">
+                                                    <b class="icon ecommer-phone"></b>
+                                                    <!--<input id="mobilephone"-->
+                                                           <!--ng-blur="blurID('focusMobilephone',loginform)"-->
+                                                           <!--type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/"-->
+                                                           <!--placeholder="请输入11位手机号"-->
+                                                           <!--onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')"-->
+                                                           <!--class="text"-->
+                                                           <!--ng-model="login.mobilephone" name="mobilephone" required-->
+                                                           <!--minlength="11" maxlength="11"/>-->
+                                                    <input id="mobilephone" ng-blur="blurID('focusMobilephone',loginform)"
+                                                           ng-change="setMobilephone()"
+                                                           type="text" ng-pattern="/^1[3|4|5|7|8][0-9]{9}$/"
+                                                           placeholder="请输入手机号码"
+                                                           onkeyup="this.value=this.value.replace(/[\D\.]/gi,'')" class="text"
+                                                           ng-model="login.mobilephone" name="mobilephone" required
+                                                           minlength="11" maxlength="11"/>
+                                                </div>
+                                                <span class="error" ng-show="loginform.mobilephone.$valid">{{loginform.mobilephone.valid}}{{loginform.mobilephone | zhuCePhoneError:serverErrorCode}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="input-wrap">
+                                            <div class="input-box">
+                                                <div class="input-mod">
+                                                    <b class="icon ecommer-code"></b>
+                                                    <input id="ecCode" ng-init="checkEccode('focusecCode',loginform)"
+                                                           ng-change="checkEccode('focusecCode',loginform)"
+                                                           type="text" placeholder="请输入购物专属码"
+                                                           class="text"
+                                                           ng-model="login.ecCode" name="ecCode" required/>
+                                                </div>
+                                                <!--<span class="error" ng-show="loginform.ecCode.$valid">{{ loginform.ecCode | zhuCePhoneError:serverErrorCode}}</span>-->
+                                                <span class="error" ng-show="ecCodeError">{{ecCodeError}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="reim">
+                                            <a ng-show="loginform.$invalid">
+                                                <div class="ecommer-reimBtn" ng-disabled="loginform.mobilephone.$invalid && ecCodeError"></div>
+                                            </a>
+                                            <!--<a ng-show="loginform.mobilephone.$valid && ecCodeError">-->
+                                            <a ng-show="loginform.$valid">
+                                                <!--<div class="ecommer-reimBtn" ng-click="gostep2($event)"></div>-->
+                                                <div ng-show="count1" class="ecommer-reimBtn" ng-mouseover="count1=false" ng-click="gostep2($event)"></div>
+                                                <div ng-show="!count1" class="ecommer-reimBtnHover" ng-mouseleave="count1=true" ng-click="gostep2($event)"></div>
+                                            </a>
+                                            <div class="operate">
+                                                已有账号？<a ui-sref="{{hrefUrl}}dl({fromEc: true})" class="">马上登录</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="quick-register-wrap step2 hide">
+                        <!--<div class="quick-register-wrapper" ng-if="!isLogin">-->
+                        <div class="quick-register-wrapper" ng-if="true">
+                            <form class="login_form" ng-model="login" name="loginform">
+                                <input style="display:none">
+                                <input type="password" style="display:none">
+                                <div class="quick-register-mod">
+                                    <div class="quick-register-box">
+                                        <div class="input-wrap">
+                                            <div class="change-phone">
+                                                短信验证码已发送至{{login.mobilephone}}，注意查收<a ng-click="gostep1()">更换号码</a>
+                                            </div>
+                                        </div>
+                                        <div class="input-wrap">
+                                            <div class="input-box">
+                                                <!--<a href="" ng-if="loginform.mobilephone.$valid" class="get-code"-->
+                                                   <!--ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>-->
+                                                <!--<a href="" ng-if="!loginform.mobilephone.$valid"-->
+                                                   <!--ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)"-->
+                                                   <!--class="get-code"-->
+                                                   <!--ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}获取验证码</a>-->
+
+                                                <!--<a href="" ng-if="loginform.mobilephone.$valid" class="get-code"-->
+                                                   <!--ng-class="{true: 'getcode-disabled',false: ''}[isGetCode]">{{nowTimer}}</a>-->
+                                                <a href="" ng-if="!loginform.mobilephone.$valid"
+                                                   ng-click="clickInput('phonecodeMSG',$event,null,loginform,false)"
+                                                   class="get-code">{{nowTimer}}</a>
+                                                <div class="input-mod small-inputmod">
+                                                    <b class="icon ecommer-dx"></b>
+                                                    <!--<input ng-disabled="!loginform.mobilephone.$dirty || !loginform.picCode.$dirty || loginform.mobilephone.$valid || loginform.picCode.$valid"-->
+                                                    <input placeholder="请输入验证码" type="text" ng-model="login.smsCode"
+                                                           name="smsCode" class="text small-text" maxlength="4"
+                                                           required/>
+                                                </div>
+                                                <span class="error" ng-show="loginform.smsCode.$valid"><font>{{loginform.smsCode |zhuCesmsCodeCodeError:serverErrorCode}}</font></span>
+                                            </div>
+                                        </div>
+                                        <div class="input-wrap">
+                                            <div class="input-box passwd-box">
+                                                <div class="input-mod">
+                                                    <b class="icon ecommer-pwd"></b>
+                                                    <input autocomplete="off" ng-show="passwordText"
+                                                           placeholder="设置6-16位登录密码"
+                                                           ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/"
+                                                           ng-mouseout="showPassword(passwordText)" type="text"
+                                                           ng-model="login.passWord" class="text" name="passWord"
+                                                           required/>
+                                                    <input autocomplete="off" ng-hide="passwordText"
+                                                           placeholder="设置6-16位登录密码"
+                                                           ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/"
+                                                           type="passWord" ng-model="login.passWord" class="text"
+                                                           name="passWord" required/>
+                                                </div>
+                                                <i ng-class="{true:'login-icons-eyehide',false:'login-icons-eye'}[passwordText]"
+                                                   ng-click="showPassword(passwordText)"></i>
+                                                <span class="error" ng-show="loginform.passWord.$valid"><font>{{loginform.passWord | zhuCePassWordError:serverErrorCode}}</font></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="reim" style="margin-top: 25px;">
+                                            <a  ng-click="LoginClick('zhuCe',loginform)">
+                                                <div ng-disabled="loginform.$invalid">
+                                                   <!--<div class="ecommer-reimBtnTwo"></div>-->
+                                                    <div ng-show="count2" class="ecommer-reimBtnTwo" ng-mouseover="count2=false"></div>
+                                                    <div ng-show="!count2" class="ecommer-reimBtnTwoHover" ng-mouseleave="count2=true"></div>
+                                                </div>
+                                            </a>
+                                            <div class="operate">
+                                                已有账号？<a href="{{hrefUrl}}dl" class="">马上登录</a>
+                                            </div>
+                                            <!--<a ng-if="loginform.$valid">-->
+                                                <!--<div class="ecommer-reimBtn"></div>-->
+                                            <!--</a>-->
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!--
+                    <div class="sub-box" ng-if="!loginform.$invalid"
+                         ng-click="LoginClick('zhuCe',loginform)">
+                        <input ng-disabled="loginform.$invalid || !login.checkbox"
+                               class="sub-btn sub regsub" type="submit" value="立即注册"/>
+                    </div>
+                    <div class="sub-box" ng-if="loginform.$invalid">
+                        <input ng-disabled="loginform.$invalid || !login.checkbox"
+                               class="sub-btn sub regsub" type="submit" value="立即注册"/>
+                    </div>
+                    -->
+                </div>
+
+                <div class="ecommer-process"></div>
+            </div>
+        </div>
+
+        <!--报销模式-->
+        <div class="reimstyle">
+            <br/><br/><br/>
+            <div class="ecommer-reimtitle"></div>
+            <div class="peoples">已有 <span>{{total}}</span> 位购物狂成功报销</div>
+            <br/>
+            <div class="bxpro">
+                <div class="detail">
+                    <div class="l">
+                        <table>
+                            <thead>
+                            <tr>
+                                <td>商品金额</td>
+                                <td>首期金额</td>
+                                <td>分期金额</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>50元</td>
+                                <td>10元<span class="colorRed">（注册即领）</span></td>
+                                <td>10元<span class="colorRed">（共4期）</span></td>
+                            </tr>
+                            <tr>
+                                <td>500元</td>
+                                <td>50元<span class="colorRed">（注册即领）</span></td>
+                                <td>10元<span class="colorRed">（共45期）</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="r">
+                        <div class="table">
+                            <div class="title">购物狂回血中</div>
+                            <div class="box">
+                                <table>
+                                    <!--<tr ng-repeat="item in peopleList" repeat-finish="setTable()">-->
+                                    <tr ng-repeat="item in infos">
+                                        <td width="50%">{{item.realName}} 获得{{item.title}}{{item.amount}}元</td>
+                                        <td width="50%">{{item.reimburseTime |date:"HH:mm"}}</td>
+                                    </tr>
+                                </table>
+                                <!--
+                                <div class="table">
+                                    <div class="box">
+                                        <table>
+                                            <tr ng-repeat="item in peopleList" repeat-finish="setTable()">
+                                                <td width="50%">{{item.mobilephone}}</td>
+                                                <td width="50%">投资了{{item.amount}}元</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--他们说-->
+        <div class="says">
+            <div class="saysins">
+                <img src="/images/ecommerce/says2.png"/>
+            </div>
+            <br/><br/>
+            <a>
+                <div ng-show="count" class="ecommer-reimtoo" ng-mouseover="count=false" ng-click="scrollTop()"></div>
+                <div ng-show="!count" class="ecommer-reimtooHover" ng-mouseleave="count=true" ng-click="scrollTop()"></div>
+            </a>
+        </div>
+
+        <!--活动规则-->
+        <div class="ruls">
+            <div class="rulswidth">
+                <div class="ecommer-ruls"></div>
+                <br/>
+                <div class="txt">
+                    <ul>
+                        <li>1. 活动时间：自2017年11月2日起；</li>
+                        <li>2.用户注册时需填写电商专属码，方可参与本活动，每位用户仅可报销一次；</li>
+                        <li>3.用户注册绑卡后，将获得首笔报销返现，分期报销返现将根据您所需报销金额投资相应额度的7天专属标，成功</li>
+                        <li>投资后奖励将发放至您的注册账户中；</li>
+                        <li>* 本活动最终解释权归沪深理财所有，如有疑问请咨询客服：400-031-9909。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--footer部分-->
+        <div class="footer">
+            <p>粤ICP备17064674号-1 Copyright © 2017深圳前海云轩互联网金融服务有限公司v1.0.0</p>
+            <h4>温馨提示：市场有风险，投资需谨慎</h4>
+        </div>
+
+        <!--报销攻略-->
+    </div>
+
+    <!--滚动-->
+    <div class="baoxiao">
+        <a ui-sref="eCommerceGl" target="_blank"><div class="ecommer-baoxiao"></div></a>
+    </div>

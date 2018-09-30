@@ -1,0 +1,113 @@
+<div class="task-detail-wrap">
+	<div class="account-common-title">赚钱任务</div>
+	<div class="account-common-con">
+		<div class="task-detail">
+			<div class="invite-bannerfour" ng-if="invite.periods >= 4"></div>
+			<div class="invite-banner" ng-if="invite.periods >= 2 && invite.periods <= 3">
+			</div>
+			<div class="invite-bannerone" ng-if="invite.periods == 1">
+				<p class="invite-detail-num">第<span>{{invite.periods}}</span>期</p>
+			</div>
+			<div class="time"><span class="ing" ng-if="invite.status == 1">进行中</span><span class="end" ng-if="invite.status == 2">已结束</span>活动时间：{{invite.startDate | date:'yyyy年MM月dd日'}}-{{invite.endDate | date:'MM月dd日'}}</div>
+			<div class="total-box">
+				<span class="get-now" ng-if="info.unclaimed <= 0">马上领取</span>
+				<a href="" class="get-now noget" ng-click="getReward()" ng-if="info.unclaimed > 0">马上领取</a>
+				<div class="total-add">
+					<span>累计任务奖金</span>
+					<strong>{{info.rewards | currency:''}}元</strong>
+				</div>
+				<div class="total-no">
+					<span>未领取奖金</span>
+					<strong><i>{{info.unclaimed | currency:''}}</i>元</strong>
+				</div>
+			</div>
+			<div class="share-wrap" ng-if="invite.status == 1">
+				<div class="share-mode">
+					<i class="invite-micona"></i>
+					<div class="title"><i class="invite-wechat-icon"></i>微信邀请</div>
+					<div class="taskcode-wrap">
+						<div class="taskcode-box">
+							<!-- <qrcode version="5" error-correction-level="L" size="130" data="http://m.hushenlc.cn/friendreg?frompc=true&recommCode={{myPhone}}"></qrcode> -->
+							<div id="taskcode" ng-init="showCode()"></div>
+						</div>
+						<div class="con">打开微信扫二维码，<br>将邀请函发送给微信好友或<br>分享至朋友圈</div>
+					</div>
+				</div>
+				<div class="share-mode">
+					<i class="invite-miconb"></i>
+					<div class="title"><i class="invite-link"></i>链接邀请</div>
+					<p>打开您的专属邀请链接，将邀请函发送给您的好友</p>
+					<div class="copy-wrap">
+						<textarea>https://www.hushenlc.cn/inviteLink?recommCode={{recommCode}}</textarea>
+						<div class="fin" ng-if="cpoyFin">链接复制成功</div>
+						<a href="" class="copy" ng-click="copyNow()" ng-show="!cpoyFin" id="goToCopy">复制链接</a>
+						<a href="" class="copy fincopy" ng-if="cpoyFin">复制链接</a>
+						<input id="copyTxt" value="https://www.hushenlc.cn/inviteLink?recommCode={{recommCode}}" style="margin-top: 30px;">
+					</div>
+				</div>
+			</div>
+			<div class="ad"><a href="/newlayout/invite" ng-if="invite.status == 1">了解详情>></a>邀请好友通过你的专属链接参加首投，你将获得好友首投（在平台第一次投资定期标）金额最高<span ng-if="invite.periods != 1">2%</span><span ng-if="invite.periods == 1">1%</span>返利。<br>邀请好友首投越多，返利越多！</div>
+			<table class="reward-table" ng-if="invite.periods == 1">
+				<tr class="top">
+					<th width="50%">好友首次投资</th>
+					<th width="50%" class="my">我的返现</th>
+				</tr>
+				<tr ng-repeat="item in reward" ng-class="{1: 'bot'}[item.investLimit]">
+					<td>{{item.days}}天期限产品</td>
+					<td>立返<span ng-if="item.amount < 1" style="color: #c83736;">{{item.amount * 10}}‰</span><span ng-if="item.amount >= 1" style="color: #c83736;">{{item.amount}}%</span><p ng-if="item.investLimit" style="font-size: 12px;padding-top: 6px;color: #7d7d7d;">*在活动期间内，好友首投{{item.days}}天标的后每次投资{{item.days}}天标的都有返现哦~</p></td>
+				</tr>
+			</table>
+			<table class="reward-table" ng-if="invite.periods != 1">
+				<tr class="top">
+					<th width="50%" colspan="2">好友首投</th>
+					<th width="50%" class="my">我的返现</th>
+				</tr>
+				<tr ng-repeat="item in reward">
+					<td rowspan="3" ng-if="$index == 0" class="all">电脑/微信首投</td>
+					<td ng-class="{1: 'bot'}[item.investLimit]">{{item.days}}天产品</td>
+					<td class="right">立返<span ng-if="item.amount < 1">{{item.amount * 10}}‰</span><span ng-if="item.amount >= 1">{{item.amount}}%</span></td>
+				</tr>
+				<tr ng-repeat="item in reward">
+					<td rowspan="3" ng-if="$index == 0" class="all">APP首投</td>
+					<td ng-class="{1: 'bot'}[item.investLimit]">{{item.days}}天产品</td>
+					<td class="right">立返<span ng-if="item.amount < 1">{{item.amount * 10}}‰+</span><span ng-if="item.amount >= 1">{{item.amount}}%+</span><span ng-if="item.diff < 1" class="red">{{item.diff * 10}}‰</span><span class="red" ng-if="item.diff >= 1">{{item.diff}}%</span><span class="best" ng-if="$index == 2">最高<i>{{item.appReward}}%</i></span></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="bot"><p>*活动期间内，好友首投180天标的后每次投资180天标的都有返现哦~</p></td>
+				</tr>
+			</table>
+			<div class="my-total">您共邀请了<span>{{info.friendTotal}}</span>位好友，本期有<span>{{info.firstTotal}}</span>位完成首投</div>
+			<table class="friend-table">
+				<tr class="top">
+					<th width="20%">我的好友</th>
+					<th width="20%">注册时间</th>
+					<th width="20%">投资金额（元）</th>
+					<th width="20%">投资终端</th>
+					<th width="20%">我的返现奖金（元）</th>
+				</tr>
+				<tr ng-repeat="item in friend" ng-if="mylistPage.total > 0">
+					<td>{{item.realName}}</td>
+					<td>{{item.regDate | date:'yyyy.MM.dd'}}</td>
+					<td ng-if="item.investAmount != undefined">{{item.investAmount | currency:''}}<p ng-if="item.deadline == 180 && item.isRepeat == 1">180天复投</p></td>
+					<td ng-if="item.investAmount == undefined">—</td>
+					<td ng-if="item.joinType == 1 || item.joinType == 2">APP</td>
+					<td ng-if="item.joinType == 0 || item.joinType == 3">电脑/微信</td>
+					<td ng-if="item.amount != undefined">{{item.amount | currency:''}}<p class="noget" ng-if="item.status == 0">未领取</p><p ng-if="item.status == 1">已领取</p></td>
+					<td ng-if="item.amount == undefined">—</td>
+				</tr>
+				<tr ng-if="mylistPage.total == 0">
+					<td>—</td>
+					<td>—</td>
+					<td>—</td>
+					<td>—</td>
+					<td>—</td>
+				</tr>
+			</table>
+			<div class="page-wrap" ng-if="mylistPage.total > 0">
+				<div class="page-box">
+					<a href ng-click="changePage('beforPage',a)" class="prev">上一页</a><ul><li ng-click="changePage('currentPage',a)" ng-repeat="a in mylistPage.pages"><a href="" ng-class="{true: 'cur', false: ''}[mylistPage.pageOn == a]">{{a}}</a></li></ul><a href class="next" ng-click="changePage('nextPage',a)">下一页</a>
+				</div><span>共{{mylistPage.totalPage}}页</span>
+			</div>
+		</div>
+	</div>
+</div>

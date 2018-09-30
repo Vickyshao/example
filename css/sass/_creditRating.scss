@@ -1,0 +1,149 @@
+$creditRating-sprite-dimensions: true;
+@import "creditRating/*.png";
+@include all-creditRating-sprites();
+
+li {
+  list-style: none;
+}
+
+.creditRating {
+  .container {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    background:#fff;
+
+    .banner{
+      width:100%;
+      height:719px;
+      background: url('/images/creditRating/banner.png') no-repeat center top;
+    }
+
+    .out{
+      width:100%;
+      background:#f1f4f7;
+      .bandown{
+      width:798px;
+      height:260px;
+      padding-left:302px;
+      margin:0 auto;
+      position:relative;
+      .icon0{
+        position:absolute;
+        left:0;
+        top:0;
+      }
+      .icon1{
+        width:30px;
+        height:24px;
+        background:url('/images/creditRating/icon1.png') no-repeat;
+        position:absolute;
+        left:260px;
+        top:33px;
+      }
+      .icon2{
+        width:30px;
+        height:24px;
+        background:url('/images/creditRating/icon2.png') no-repeat;
+        position:absolute;
+        right:0;
+        bottom:33px;
+      }
+      .iconzi{
+        font-size:18px;
+        color:#000;
+        line-height: 30px;
+        padding-top:57px;
+        p{
+          margin-bottom:8px;
+        }
+      }
+    }
+    }
+    
+    .wate{
+      text-align:center;
+      margin:96px 0 74px 0;
+      .wenzi{
+        font-size:20px;
+        color:#333;
+        height:70px;
+        line-height: 70px;
+      }
+      .watepic{
+        margin:32px 0 48px 0;
+      }
+    }
+
+    .weaa{
+      text-align:center;
+      background:#09abfe;
+      padding:102px 0 110px 0;
+    }
+
+    .trust{
+      padding:100px 0 0 0;
+      width:1050px;
+      margin:0 auto;
+      text-align: center;
+      font-size:20px;
+      .wenzi1{
+        line-height:36px;
+        margin:12px 0 70px 0;
+        color:#333;
+        text-align:left;
+        span{
+          font-size:24px;
+        }
+      }
+      .trustpic{
+        width:970px;
+        height:628px;
+        margin:0 auto 150px;
+        .trust1{
+          float:left;
+        }
+        .trust2{
+          float:right;
+        }
+      }
+
+
+    }
+    .wenzi2{
+      width:100%;
+      background:#f1f4f7;
+      padding-bottom:40px;
+      .weni{
+        width:1050px;
+        margin:0 auto;
+        color:#3d6890;
+        line-height:40px;
+        text-align:left;
+        font-size:20px;
+        &.wenbg {
+          padding-top: 60px;
+          background: url("/images/creditRating/whiteBg.png") no-repeat top center ;
+          background-size: 6%;
+          
+        }
+      }
+    }
+
+
+    .footer {
+      background: #585858;
+      padding: 30px 0;
+      text-align: center;
+      p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        padding-bottom: 2px;
+      }
+      h4 {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+}
